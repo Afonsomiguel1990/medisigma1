@@ -1,0 +1,14 @@
+# Query: try for free
+# ContextLines: 1
+
+2 results - 2 files
+
+src\components\sections\navbar.tsx:
+  223                    >
+  224:                     Fale conosco
+  225                    </Link>
+
+src\lib\config.tsx:
+  76        primary: {
+  77:         text: "Fale conosco",
+  78          href: "#",

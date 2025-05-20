@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { getSortedPostsData } from '@/lib/mdx';
 import BlogCard from '@/components/blog-card';
 

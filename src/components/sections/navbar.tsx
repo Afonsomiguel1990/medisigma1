@@ -131,6 +131,7 @@ export function Navbar() {
                 >
                   Fale conosco
                 </Link>
+                <ThemeToggle />
               </div>
               <button
                 className="md:hidden border border-border size-8 rounded-md cursor-pointer flex items-center justify-center"

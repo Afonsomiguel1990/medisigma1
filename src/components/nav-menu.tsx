@@ -84,6 +84,7 @@ export function NavMenu() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isManualScroll, pathname]);
 
+  /*
   const handleClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     item: NavItem,
@@ -122,6 +123,7 @@ export function NavMenu() {
       }, 500); // Adjust timing to match scroll animation duration
     }
   };
+  */
 
   return (
     <div className="w-full hidden md:block">

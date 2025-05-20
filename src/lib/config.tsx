@@ -353,7 +353,7 @@ export const siteConfig = {
             ]}
           />
         ),
-        title: "Formação Certificada, Resultados Visíveis.",
+        title: "Formação Certificada, resultados Visíveis.",
         description:
           "Acompanhe horas concluídas e taxa de certificação, prove o retorno e mantenha a sua equipa sempre qualificada.",
       },

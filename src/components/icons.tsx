@@ -1,14 +1,14 @@
 import { cn } from "@/lib/utils";
-import {
-  Stethoscope,
-  HardHat,
-  UtensilsCrossed,
-  GraduationCap,
-  Brain,
-  Bug,
-  FireExtinguisher,
-  Droplet,
-} from "lucide-react"
+//import {
+ // Stethoscope,
+  //HardHat,
+  //UtensilsCrossed,
+  //GraduationCap,
+  //Brain,
+  //Bug,
+  //FireExtinguisher,
+  //Droplet,
+//} from "lucide-react"
 
 export const Icons = {  
     logo: ({ className }: { className?: string }) => (

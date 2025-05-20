@@ -300,3 +300,17 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom Animation for Hero Background */
+@keyframes pulsar-background {
+  0%, 100% {
+    background: radial-gradient(125% 125% at 50% 10%, var(--background) 40%, var(--secondary) 100%);
+  }
+  50% {
+    background: radial-gradient(125% 125% at 50% 10%, var(--background) 40%, oklch(58% 0.25 262.87) 100%); /* Azul ligeiramente mais claro e mais próximo do original */
+  }
+}
+
+.animated-hero-background {
+  animation: pulsar-background 8s infinite ease-in-out; /* Aumentada a duração para 8s */
+}

@@ -7,11 +7,11 @@ export function CompanyShowcase() {
   return (
     <section
       id="company"
-      className="flex flex-col items-center justify-center gap-10 py-10 pt-20 w-full relative px-6"
+      className="flex flex-col items-center justify-center gap-10 py-10 pt-11 w-full relative px-6"
     >
-      <p className="text-muted-foreground font-medium">
-        Trusted by fast-growing startups
-      </p>
+      <h2 className="text-3xl md:text-4xl font-medium tracking-tighter text-center text-balance pb-1">
+        Empresas líderes confiam em nós
+      </h2>
       <div className="grid w-full max-w-7xl grid-cols-2 md:grid-cols-4 overflow-hidden border-y border-border items-center justify-center z-20">
         {companyShowcase.companyLogos.map((logo) => (
           <Link

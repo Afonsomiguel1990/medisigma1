@@ -112,14 +112,19 @@ export function Navbar() {
         >
           <div className="flex h-[56px] items-center justify-between p-4">
             <Link href="/" className="flex items-center gap-3">
-              <Icons.logo className="size-7 md:size-10" />
-              <p className="text-lg font-semibold text-primary">Medisigma</p>
+              <Icons.logo className="size-30 md:size-45" />
             </Link>
 
             <NavMenu />
 
             <div className="flex flex-row items-center gap-1 md:gap-3 shrink-0">
-              <div className="flex items-center space-x-6">
+              <div className="flex items-center space-x-2 md:space-x-4">
+                <Link
+                  href={siteConfig.hero.cta.secondary.href}
+                  className="h-8 hidden md:flex items-center justify-center text-sm font-normal tracking-wide rounded-full w-fit px-4 bg-background border border-border hover:bg-accent active:scale-95 transition-colors"
+                >
+                  {siteConfig.hero.cta.secondary.text}
+                </Link>
                 <Link
                   className="bg-secondary h-8 hidden md:flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12]"
                   href="#"
@@ -127,7 +132,6 @@ export function Navbar() {
                   Fale conosco
                 </Link>
               </div>
-              <ThemeToggle />
               <button
                 className="md:hidden border border-border size-8 rounded-md cursor-pointer flex items-center justify-center"
                 onClick={toggleDrawer}
@@ -169,9 +173,6 @@ export function Navbar() {
                 <div className="flex items-center justify-between">
                   <Link href="/" className="flex items-center gap-3">
                     <Icons.logo className="size-7 md:size-10" />
-                    <p className="text-lg font-semibold text-primary">
-                      Medisigma
-                    </p>
                   </Link>
                   <button
                     onClick={toggleDrawer}

@@ -50,8 +50,8 @@ export const siteConfig = {
     links: [
       { id: 1, name: "Home", href: "#hero" },
       { id: 2, name: "Saber mais", href: "#bento" },
-      { id: 3, name: "Features", href: "#features" },
-      { id: 4, name: "Blog", href: "/blog" },
+      { id: 3, name: "Serviços", href: "#features" },
+      { id: 4, name: "Artigos", href: "/blog" },
     ],
   },
   hero: {
@@ -70,16 +70,16 @@ export const siteConfig = {
       </svg>
     ),
     badge: "+ de 20 anos de experiência",
-    title: "As suas preocupações, sem preocupação.",
+    title: "Protegemos o seu negócio como se fosse o nosso.",
     description:
-      "Certificados todos têm, extintores todos carregam, pragas todos evitam, segurança todos garantem, mas nós fazemos isso  ",
+      "Asseguramos a conformidade e segurança de pessoas, empresas e resultados.",
     cta: {
       primary: {
-        text: "Fale conosco",
+        text: "Descubra como podemos ajudar",
         href: "#",
       },
       secondary: {
-        text: "Log in",
+        text: "Entrar",
         href: "#",
       },
     },
@@ -286,60 +286,60 @@ export const siteConfig = {
     ],
   },
   featureSection: {
-    title: "Simple. Seamless. Smart.",
+    title: "Uma empresa, tudo o que precisa.",
     description:
-      "Discover how SkyAgent transforms your commands into action in four easy steps",
+      "Estar em conformidade com a legislação deixa de ser uma tarefa complexa.",
     items: [
       {
         id: 1,
-        title: "Ask Your AI Agent Directly",
+        title: "Extintores Certificados, Risco Extinto.",
         content:
-          "Speak or type your command—let SkyAgent capture your intent. Your request instantly sets the process in motion.",
+          "Inspeccionamos, mantemos e certificamos os seus extintores, cumprindo a lei e protegendo pessoas e património.",
         image:
-          "https://images.unsplash.com/photo-1720371300677-ba4838fa0678?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://i.ibb.co/1YpF5qnH/image.webp",
       },
       {
         id: 2,
-        title: "Let SkyAgent Process It",
+        title: "Pragas Zero, Ambiente Produtivo.",
         content:
-          "We prioritize the needs and preferences of our users in our design process.",
+          "Intervenção rápida e HACCP, salvaguardando higiene e reputação da sua marca.",
         image:
-          "https://images.unsplash.com/photo-1686170287433-c95faf6d3608?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwzfHx8ZW58MHx8fHx8fA%3D%3D",
+          "https://i.ibb.co/TqBmySTP/image-1.webp",
       },
       {
         id: 3,
-        title: "Receive Instant, Actionable Results",
+        title: "Água Segura, Empresa Protegida.",
         content:
-          "Our features seamlessly integrate with your existing systems for a smooth experience.",
+          "Amostramos, analisamos e desinfectamos sistemas de água, prevenindo surtos, coimas e paragens de operação.",
         image:
-          "https://images.unsplash.com/photo-1720378042271-60aff1e1c538?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxMHx8fGVufDB8fHx8fA%3D%3D",
+          "https://i.ibb.co/Vhfgss7/image-2.webp",
       },
       {
         id: 4,
-        title: "Continuous Improvement",
+        title: "Saúde Mental, Equipa Eficiente.",
         content:
-          "We are constantly updating and improving our features to provide the best experience.",
+          "Programas de avaliação e apoio 360º que reduzem absentismo e elevam motivação e desempenho.",
         image:
-          "https://images.unsplash.com/photo-1666882990322-e7f3b8df4f75?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D",
+          "https://i.ibb.co/fYNMFJSP/image-3.webp",
       },
     ],
   },
   bentoSection: {
-    title: "Salvaguardamos o seu negócio",
+    title: "Salvaguardamos o seu negócio.",
     description:
       "Oferecemos soluções integradas em medicina do trabalho, formação profissional e segurança, garantindo o cumprimento de todas as normas e certificações.",
     items: [
       {
         id: 1,
         content: <FirstBentoAnimation />,
-        title: "Estamos à distância de um click",
+        title: "Suporte especializado, a um clique.",
         description:
-          "Contacte-nos a qualquer momento para esclarecer dúvidas, solicitar serviços ou receber apoio especializado. A nossa equipa está sempre disponível para ajudar o seu negócio.",
+          "Esclareça dúvidas, peça serviços ou apoio especializado, estamos sempre disponíveis para ajudar.",
       },
       {
         id: 2,
         content: <SecondBentoAnimation />,
-        title: "Um parceiro para tudo o que precisa",
+        title: "Um parceiro para tudo o que precisa.",
         description:
           "Os nossos serviços são certificados por todas as entidades competentes e garantidos por uma equipa pluridisciplinar.",
       },
@@ -349,20 +349,20 @@ export const siteConfig = {
           <ThirdBentoAnimation
             data={[20, 30, 25, 45, 40, 55, 75]}
             toolTipValues={[
-              1234, 1678, 2101, 2534, 2967, 3400, 3833, 4266, 4700, 5133,
+              100, 123, 161, 498, 878, 3404, 3833, 4261, 4799, 5133,
             ]}
           />
         ),
-        title: "Instant Insight Reporting",
+        title: "Formação Certificada, Resultados Visíveis.",
         description:
-          "Transform raw data into clear insights in seconds. Empower smarter decisions with real-time, always-learning intelligence.",
+          "Acompanhe horas concluídas e taxa de certificação, prove o retorno e mantenha a sua equipa sempre qualificada.",
       },
       {
         id: 4,
         content: <FourthBentoAnimation once={false} />,
-        title: "Smart Automation",
+        title: "O que precisa, quando precisa",
         description:
-          "Set it, forget it. Your AI Agent tackles repetitive tasks so you can focus on strategy, innovation, and growth.",
+          "Agendamos exames, relatórios e unidade móvel no momento certo, garantindo a lei cumprida e a sua equipa focada no negócio.",
       },
     ],
   },
@@ -691,11 +691,11 @@ export const siteConfig = {
   },
   quoteSection: {
     quote:
-      "SkyAgent has transformed our daily operations. Tasks that once consumed hours now complete in moments, freeing our team to focus on creativity and strategic growth.",
+      "Para mim as formações da Medisigma são incríveis, e o suporte é imbatível. Recomendo vivamente",
     author: {
-      name: "Alex Johnson",
-      role: "CTO, Innovatech",
-      image: "https://randomuser.me/api/portraits/men/91.jpg",
+      name: "João Andrade",
+      role: "Director Recursos Humanos, Innovatech",
+      image: "https://randomuser.me/api/portraits/men/50.jpg",
     },
   },
   pricing: {

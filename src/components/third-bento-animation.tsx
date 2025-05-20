@@ -251,6 +251,7 @@ export function NumberFlowCounter({
           minimumIntegerDigits: 1,
         }}
       />
+      <span className="ml-1">h</span>
     </div>
   );
 }

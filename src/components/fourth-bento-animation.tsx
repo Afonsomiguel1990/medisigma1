@@ -16,17 +16,17 @@ interface BoxConfig {
 
 const boxConfigs: BoxConfig[] = [
   {
-    title: "Bento grid",
+    title: "Exames Admissão",
     className: "bg-secondary text-white",
   },
   {
-    title: "Landing Page",
+    title: "Relatórios e Fichas",
     className: "bg-secondary/40 text-white",
   },
   {
-    title: "Add Task",
+    title: "Unidade Móvel",
     className:
-      "bg-secondary/20 border border-secondary border-dashed text-secondary",
+      "bg-secondary/40 text-white",
   },
 ];
 
@@ -177,11 +177,11 @@ export function FourthBentoAnimation({
 
       {/* Days of the week */}
       <div className="absolute top-4 left-0 right-0 flex justify-between max-w-md mx-auto px-8 text-sm text-gray-500">
-        <span>Tue</span>
-        <span>Wed</span>
-        <span>Thu</span>
-        <span>Fri</span>
-        <span>Sat</span>
+        <span>Segunda</span>
+        <span>Terça</span>
+        <span>Quarta</span>
+        <span>Quinta</span>
+        <span>Sexta</span>
       </div>
 
       <motion.div
@@ -214,7 +214,7 @@ export function FourthBentoAnimation({
           default: { duration: 0 }, // Makes position update instant
         }}
       >
-        <span className="text-white">12:00 AM</span>
+        <span className="text-white"></span>
       </motion.div>
 
       <div

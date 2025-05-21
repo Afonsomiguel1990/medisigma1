@@ -41,13 +41,7 @@ greet('Mundo');</code></pre>
   };
 }
 
-interface PostPageProps {
-  params: {
-    slug: string;
-  };
-}
-
-export default async function PostPage({ params }: PostPageProps) {
+export default async function PostPage({ params }: { params: { slug: string } }) {
   const post = await getPostData(params.slug);
 
   // Simples verificação caso a função getPostData falhe ou não encontre o post
@@ -74,7 +68,7 @@ export default async function PostPage({ params }: PostPageProps) {
 }
 
 // Opcional: Gerar metadados dinâmicos para SEO
-export async function generateMetadata({ params }: PostPageProps) {
+export async function generateMetadata({ params }: { params: { slug: string } }) {
   const post = await getPostData(params.slug);
   return {
     title: post?.title || 'Post de Blog',

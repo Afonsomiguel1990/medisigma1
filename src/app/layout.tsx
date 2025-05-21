@@ -4,6 +4,8 @@ import { siteConfig } from "@/lib/site";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { FooterSection } from "@/components/sections/footer-section";
+import { CTASection } from "@/components/sections/cta-section";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -53,6 +55,8 @@ export default function RootLayout({
             <div className="block w-px h-full border-r border-border absolute top-0 right-6 z-10"></div>
             <Navbar />
             {children}
+            <CTASection />
+            <FooterSection />
           </div>
         </ThemeProvider>
       </body>

@@ -764,257 +764,189 @@ export const siteConfig = {
   testimonials: [
     {
       id: "1",
-      name: "Alex Rivera",
-      role: "CTO at InnovateTech",
-      img: "https://randomuser.me/api/portraits/men/91.jpg",
+      name: "Ana Cardoso",
+      role: "Diretora de RH na IberMetal",
+      img: "https://randomuser.me/api/portraits/women/44.jpg",
       description: (
         <p>
-          The AI-driven analytics from #QuantumInsights have revolutionized our
-          product development cycle.
+          Com a #Medisigma a gerir a medicina do trabalho,
+          ganhámos total tranquilidade legal.
           <Highlight>
-            Insights are now more accurate and faster than ever.
+            Reduzimos o absentismo em 18 % num ano.
           </Highlight>{" "}
-          A game-changer for tech companies.
+          Serviço rápido e sem burocracias.
         </p>
       ),
     },
     {
       id: "2",
-      name: "Samantha Lee",
-      role: "Marketing Director at NextGen Solutions",
-      img: "https://randomuser.me/api/portraits/women/12.jpg",
+      name: "Miguel Duarte",
+      role: "Gestor de Operações na FreshFoods",
+      img: "https://randomuser.me/api/portraits/men/32.jpg",
       description: (
         <p>
-          Implementing #AIStream&apos;s customer prediction model has
-          drastically improved our targeting strategy.
-          <Highlight>Seeing a 50% increase in conversion rates!</Highlight>{" "}
-          Highly recommend their solutions.
+          A unidade móvel da #Medisigma realizou exames a 120 colaboradores em
+          apenas dois dias.
+          <Highlight>
+            Produção não parou um minuto.
+          </Highlight>{" "}
+          Excelente coordenação em fábrica.
         </p>
       ),
     },
     {
       id: "3",
-      name: "Raj Patel",
-      role: "Founder & CEO at StartUp Grid",
-      img: "https://randomuser.me/api/portraits/men/45.jpg",
+      name: "Helena Lopes",
+      role: "Responsável de QHSE na Construtec",
+      img: "https://randomuser.me/api/portraits/women/65.jpg",
       description: (
         <p>
-          As a startup, we need to move fast and stay ahead. #CodeAI&apos;s
-          automated coding assistant helps us do just that.
-          <Highlight>Our development speed has doubled.</Highlight> Essential
-          tool for any startup.
+          Os programas de segurança e extintores da #Medisigma
+          passaram na auditoria da ACT sem qualquer não conformidade.
+          <Highlight>
+            Custos de seguro baixaram 12 %.
+          </Highlight>
         </p>
       ),
     },
     {
       id: "4",
-      name: "Emily Chen",
-      role: "Product Manager at Digital Wave",
-      img: "https://randomuser.me/api/portraits/women/83.jpg",
+      name: "Ricardo Almeida",
+      role: "Director Geral na CleanHotels",
+      img: "https://randomuser.me/api/portraits/men/61.jpg",
       description: (
         <p>
-          #VoiceGen&apos;s AI-driven voice synthesis has made creating global
-          products a breeze.
-          <Highlight>Localization is now seamless and efficient.</Highlight> A
-          must-have for global product teams.
+          O controlo de legionella da #Medisigma
+          protegeu os nossos hóspedes e a reputação do grupo.
+          <Highlight>
+            Relatórios prontos em 48 h.
+          </Highlight>{" "}
+          Parceria essencial para hotelaria.
         </p>
       ),
     },
     {
       id: "5",
-      name: "Michael Brown",
-      role: "Data Scientist at FinTech Innovations",
-      img: "https://randomuser.me/api/portraits/men/1.jpg",
+      name: "Patrícia Sousa",
+      role: "HR Business Partner na TechWave",
+      img: "https://randomuser.me/api/portraits/women/24.jpg",
       description: (
         <p>
-          Leveraging #DataCrunch&apos;s AI for our financial models has given us
-          an edge in predictive accuracy.
+          Os workshops de saúde mental da #Medisigma
+          melhoraram o clima interno e a retenção.
           <Highlight>
-            Our investment strategies are now powered by real-time data
-            analytics.
-          </Highlight>{" "}
-          Transformative for the finance industry.
+            Satisfação dos colaboradores subiu para 92 %.
+          </Highlight>
         </p>
       ),
     },
     {
       id: "6",
-      name: "Linda Wu",
-      role: "VP of Operations at LogiChain Solutions",
-      img: "https://randomuser.me/api/portraits/women/5.jpg",
+      name: "João Ferreira",
+      role: "Director de Qualidade na AgroPlus",
+      img: "https://randomuser.me/api/portraits/men/48.jpg",
       description: (
         <p>
-          #LogiTech&apos;s supply chain optimization tools have drastically
-          reduced our operational costs.
+          Graças ao plano integrado de controlo de pragas da #Medisigma,
+          obtivemos certificação IFS sem ressalvas.
           <Highlight>
-            Efficiency and accuracy in logistics have never been better.
+            Contaminações reduziram para zero.
           </Highlight>{" "}
+          Fulcral na indústria alimentar.
         </p>
       ),
     },
     {
       id: "7",
-      name: "Carlos Gomez",
-      role: "Head of R&D at EcoInnovate",
-      img: "https://randomuser.me/api/portraits/men/14.jpg",
+      name: "Sofia Mendes",
+      role: "Directora de Formação na EduPro",
+      img: "https://randomuser.me/api/portraits/women/39.jpg",
       description: (
         <p>
-          By integrating #GreenTech&apos;s sustainable energy solutions,
-          we&apos;ve seen a significant reduction in carbon footprint.
+          A formação certificada da #Medisigma em segurança no trabalho
+          foi clara e prática.
           <Highlight>
-            Leading the way in eco-friendly business practices.
+            100 % de aprovação nas avaliações finais.
           </Highlight>{" "}
-          Pioneering change in the industry.
+          Recomendo para equipas grandes.
         </p>
       ),
     },
     {
       id: "8",
-      name: "Aisha Khan",
-      role: "Chief Marketing Officer at Fashion Forward",
-      img: "https://randomuser.me/api/portraits/women/56.jpg",
+      name: "Pedro Nunes",
+      role: "CEO na GreenBuild",
+      img: "https://randomuser.me/api/portraits/men/70.jpg",
       description: (
         <p>
-          #TrendSetter&apos;s market analysis AI has transformed how we approach
-          fashion trends.
+          Integrar todos os serviços da #Medisigma
+          poupou-nos horas de gestão e múltiplos fornecedores.
           <Highlight>
-            Our campaigns are now data-driven with higher customer engagement.
+            Um único parceiro, todas as áreas cobertas.
           </Highlight>{" "}
-          Revolutionizing fashion marketing.
+          Investimento que compensa.
         </p>
       ),
     },
-    {
-      id: "9",
-      name: "Tom Chen",
-      role: "Director of IT at HealthTech Solutions",
-      img: "https://randomuser.me/api/portraits/men/18.jpg",
-      description: (
-        <p>
-          Implementing #MediCareAI in our patient care systems has improved
-          patient outcomes significantly.
-          <Highlight>
-            Technology and healthcare working hand in hand for better health.
-          </Highlight>{" "}
-          A milestone in medical technology.
-        </p>
-      ),
-    },
-    {
-      id: "10",
-      name: "Sofia Patel",
-      role: "CEO at EduTech Innovations",
-      img: "https://randomuser.me/api/portraits/women/73.jpg",
-      description: (
-        <p>
-          #LearnSmart&apos;s AI-driven personalized learning plans have doubled
-          student performance metrics.
-          <Highlight>
-            Education tailored to every learner&apos;s needs.
-          </Highlight>{" "}
-          Transforming the educational landscape.
-        </p>
-      ),
-    },
-    {
-      id: "11",
-      name: "Jake Morrison",
-      role: "CTO at SecureNet Tech",
-      img: "https://randomuser.me/api/portraits/men/25.jpg",
-      description: (
-        <p>
-          With #CyberShield&apos;s AI-powered security systems, our data
-          protection levels are unmatched.
-          <Highlight>
-            Ensuring safety and trust in digital spaces.
-          </Highlight>{" "}
-          Redefining cybersecurity standards.
-        </p>
-      ),
-    },
-    {
-      id: "12",
-      name: "Nadia Ali",
-      role: "Product Manager at Creative Solutions",
-      img: "https://randomuser.me/api/portraits/women/78.jpg",
-      description: (
-        <p>
-          #DesignPro&apos;s AI has streamlined our creative process, enhancing
-          productivity and innovation.
-          <Highlight>Bringing creativity and technology together.</Highlight> A
-          game-changer for creative industries.
-        </p>
-      ),
-    },
-    {
-      id: "13",
-      name: "Omar Farooq",
-      role: "Founder at Startup Hub",
-      img: "https://randomuser.me/api/portraits/men/54.jpg",
-      description: (
-        <p>
-          #VentureAI&apos;s insights into startup ecosystems have been
-          invaluable for our growth and funding strategies.
-          <Highlight>
-            Empowering startups with data-driven decisions.
-          </Highlight>{" "}
-          A catalyst for startup success.
-        </p>
-      ),
-    },
-  ],
+  ],  
   faqSection: {
-    title: "Frequently Asked Questions",
+    title: "Perguntas Frequentes",
     description:
-      "Answers to common questions about SkyAgent and its features. If you have any other questions, please don't hesitate to contact us.",
+      "Esclareça as questões mais comuns sobre Medicina do Trabalho, Segurança no Trabalho e outros serviços da Medisigma. Se não encontrar a resposta que procura, contacte-nos estamos a um clique de distância.",
     faQitems: [
       {
         id: 1,
-        question: "What is an AI Agent?",
+        question: "A Medicina do Trabalho é obrigatória para todas as empresas?",
         answer:
-          "An AI Agent is an intelligent software program that can perform tasks autonomously, learn from interactions, and make decisions to help achieve specific goals. It combines artificial intelligence and machine learning to provide personalized assistance and automation.",
+          "Sim. A Lei n.º 102/2009 obriga todas as empresas, mesmo microempresas com 1 trabalhador, a garantirem Medicina do Trabalho para os seus colaboradores. O incumprimento pode resultar em coimas elevadas aplicadas pela ACT.",
       },
       {
         id: 2,
-        question: "How does SkyAgent work?",
+        question: "Que exames obrigatórios existem e com que frequência devem ser feitos?",
         answer:
-          "SkyAgent works by analyzing your requirements, leveraging advanced AI algorithms to understand context, and executing tasks based on your instructions. It can integrate with your workflow, learn from feedback, and continuously improve its performance.",
+          "Existem três tipos de exames: Admissão (antes do início ou até 15 dias após a contratação), Periódicos (de 2 em 2 anos para trabalhadores entre 18 e 50 anos sem risco; anuais para <18, >50 ou funções de risco) e Ocasionais (após ausência >30 dias, acidente de trabalho, mudança de funções ou por indicação médica).",
       },
       {
         id: 3,
-        question: "How secure is my data?",
+        question: "Quanto tempo demora a receber a Ficha de Aptidão?",
         answer:
-          "We implement enterprise-grade security measures including end-to-end encryption, secure data centers, and regular security audits. Your data is protected according to industry best practices and compliance standards.",
+          "A Medisigma entrega a Ficha de Aptidão — documento exigido pelo artigo 110.º da Lei 102/2009 — em até 48 h após a consulta, pronta para arquivar ou apresentar em auditoria da ACT.",
       },
       {
         id: 4,
-        question: "Can I integrate my existing tools?",
+        question: "A empresa tem acesso aos dados clínicos dos colaboradores?",
         answer:
-          "Yes, SkyAgent is designed to be highly compatible with popular tools and platforms. We offer APIs and pre-built integrations for seamless connection with your existing workflow tools and systems.",
+          "Não. Apenas a Ficha de Aptidão é enviada ao empregador. Os dados clínicos permanecem confidenciais, salvaguardados pelo sigilo médico e pelo RGPD.",
       },
       {
         id: 5,
-        question: "Is there a free trial available?",
+        question: "A Medisigma cobre todo o território nacional?",
         answer:
-          "Yes, we offer a 14-day free trial that gives you full access to all features. No credit card is required to start your trial, and you can upgrade or cancel at any time.",
+          "Sim. Dispomos de clínicas próprias e unidades móveis que realizam exames nas suas instalações em qualquer ponto de Portugal continental e ilhas, minimizando paragens de produção.",
       },
       {
         id: 6,
-        question: "How does SkyAgent save me time?",
+        question: "Que outros serviços de segurança e conformidade oferecem?",
         answer:
-          "SkyAgent automates repetitive tasks, streamlines workflows, and provides quick solutions to common challenges. This automation and efficiency can save hours of manual work, allowing you to focus on more strategic activities.",
+          "Para além da Medicina do Trabalho, oferecemos Segurança no Trabalho, manutenção de Extintores, Controlo de Pragas, análises a Legionella, Formação Profissional Certificada e programas de Psicologia e bem-estar.",
+      },
+      {
+        id: 7,
+        question: "Como agendar exames ou solicitar orçamento?",
+        answer:
+          "Basta preencher o formulário online ou ligar para a nossa linha directa. A equipa Medisigma analisa o número de colaboradores, sector e riscos, enviando uma proposta personalizada no mesmo dia.",
       },
     ],
-  },
+  },  
   ctaSection: {
     id: "cta",
-    title: "Automate. Simplify. Thrive",
-    backgroundImage: "/agent-cta-background.png",
+    title: "Seguimos juntos?",
+    backgroundImage: "/logo_site23_br.webp",
     button: {
-      text: "Start Your 30-Day Free Trial Today",
+      text: "Fale com a nossa equipa",
       href: "#",
     },
-    subtext: "Cancel anytime, no questions asked",
+    /*subtext: "Cancel anytime, no questions asked",*/
   },
   footerLinks: [
     {

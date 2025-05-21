@@ -15,19 +15,15 @@ export function FooterSection() {
         <div className="flex flex-col items-start justify-start gap-y-5 max-w-xs mx-0">
           <Link href="/" className="flex items-center gap-2">
             <Icons.logo className="size-45" />
-            <p className="text-xl font-semibold text-primary">Medisigma</p>
+          <p className="text-xl font-semibold text-primary"></p>
           </Link>
           <p className="tracking-tight text-muted-foreground font-medium">
             {siteConfig.hero.description}
           </p>
           <div className="flex items-center gap-2 dark:hidden">
-            <Icons.soc2 className="size-12" />
-            <Icons.hipaa className="size-12" />
             <Icons.gdpr className="size-12" />
           </div>
           <div className="dark:flex items-center gap-2 hidden">
-            <Icons.soc2Dark className="size-12" />
-            <Icons.hipaaDark className="size-12" />
             <Icons.gdprDark className="size-12" />
           </div>
         </div>
@@ -55,10 +51,11 @@ export function FooterSection() {
         </div>
       </div>
       <div className="w-full h-48 md:h-64 relative mt-24 z-0">
+        <div className="absolute inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_100%,#8DC63F_0%,#fff_100%)]" />
         <div className="absolute inset-0 bg-gradient-to-t from-transparent to-background z-10 from-40%" />
         <div className="absolute inset-0 mx-6">
           <FlickeringGrid
-            text={tablet ? "SkyAgent" : "Streamline your workflow"}
+            text={tablet ? "Medisigma" : "Medisigma"}
             fontSize={tablet ? 70 : 90}
             className="h-full w-full"
             squareSize={2}

@@ -1,5 +1,5 @@
 import { BentoSection } from "@/components/sections/bento-section";
-import { CompanyShowcase } from "@/components/sections/company-showcase";
+// import { CompanyShowcase } from "@/components/sections/company-showcase";
 import { CTASection } from "@/components/sections/cta-section";
 import { FAQSection } from "@/components/sections/faq-section";
 import { FeatureSection } from "@/components/sections/feature-section";
@@ -13,11 +13,11 @@ export default function Home() {
   return (
     <main className="flex flex-col items-center justify-center divide-y divide-border min-h-screen w-full">
       <HeroSection />
-      <CompanyShowcase />
+      {/* <CompanyShowcase /> */}
       <BentoSection />
       <QuoteSection />
       <FeatureSection />
-      <GrowthSection />
+      {/* <GrowthSection /> */}
       <TestimonialSection />
       <FAQSection />
       <CTASection />

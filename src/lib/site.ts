@@ -1,11 +1,11 @@
 export const siteConfig = {
-  name: "SkyAgent",
-  url: "https://agent-magicui.vercel.app",
-  description: "Your template for building AI-powered agents with Magic UI.",
-  links: {
-    twitter: "https://x.com/dillionverma",
-    github: "https://github.com/dillionverma",
-  },
+  name: "Medisigma",
+  url: "https://medisigma.pt",
+  description: "Medisigma oferece em Portugal serviços completos de Medicina do Trabalho, Segurança no Trabalho, Controlo de Pragas, Análises a Legionella, Formação Certificada e Psicologia Laboral, garantindo conformidade legal e bem-estar dos colaboradores.",
+  /*links: {
+    twitter: "",
+    github: "",
+  },*/
 };
 
 export type SiteConfig = typeof siteConfig;

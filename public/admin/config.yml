@@ -1,4 +1,5 @@
 # Configuração básica do backend - Ajuste conforme necessário (ex: GitHub, GitLab)
+local_backend: true
 backend:
   name: git-gateway # Usa Netlify Identity/Git Gateway para autenticação
   # Se usar GitHub diretamente (requer configuração de OAuth App):

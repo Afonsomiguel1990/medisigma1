@@ -19,8 +19,8 @@ export function NavMenu() {
   const [width, setWidth] = useState(0);
   const [isReady, setIsReady] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
-  const [isManualScroll, setIsManualScroll] = useState(false);
   const pathname = usePathname();
+  const [isManualScroll, setIsManualScroll] = useState(false);
 
   React.useEffect(() => {
     // Initialize with first nav item if on homepage
@@ -84,21 +84,15 @@ export function NavMenu() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isManualScroll, pathname]);
 
-  /*
   const handleClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     item: NavItem,
   ) => {
     e.preventDefault();
-
     const targetId = item.href.substring(1);
     const element = document.getElementById(targetId);
-
     if (element) {
-      // Set manual scroll flag
       setIsManualScroll(true);
-
-      // Immediately update nav state
       setActiveSection(targetId);
       const navItem = e.currentTarget.parentElement;
       if (navItem) {
@@ -106,24 +100,17 @@ export function NavMenu() {
         setLeft(navItem.offsetLeft);
         setWidth(rect.width);
       }
-
-      // Calculate exact scroll position
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - 100; // 100px offset
-
-      // Smooth scroll to exact position
+      const offsetPosition = elementPosition + window.pageYOffset - 100;
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth",
       });
-
-      // Reset manual scroll flag after animation completes
       setTimeout(() => {
         setIsManualScroll(false);
-      }, 500); // Adjust timing to match scroll animation duration
+      }, 500);
     }
   };
-  */
 
   return (
     <div className="w-full hidden md:block">
@@ -148,10 +135,16 @@ export function NavMenu() {
                   : "text-primary/60 hover:text-primary"
               } tracking-tight`}
             >
-              {/* Always use Link component. For section links, prepend '/' to href */}
-              <Link href={isSectionLink ? `/${item.href}` : item.href} className="cursor-pointer">
-                {item.name}
-              </Link>
+              {/* Usar handleClick para links de secção, Link normal para páginas */}
+              {isSectionLink ? (
+                <Link href={`/${item.href}`} className="cursor-pointer" onClick={e => handleClick(e, item)}>
+                  {item.name}
+                </Link>
+              ) : (
+                <Link href={item.href} className="cursor-pointer">
+                  {item.name}
+                </Link>
+              )}
             </li>
           );
         })}

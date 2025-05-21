@@ -2,7 +2,6 @@ import React from 'react';
 // import { getAllPostSlugs, getPostData as getMdxPostData } from '@/lib/mdx'; // Comentado ou removido
 // import { MDXRemote } from 'next-mdx-remote/rsc'; // Comentado ou removido
 // import { notFound } from 'next/navigation'; // Comentado ou removido
-import Link from 'next/link';
 
 // Esta função pode ser usada para buscar dados do post com base no slug
 // Por agora, vamos apenas usar o slug para mostrar no exemplo

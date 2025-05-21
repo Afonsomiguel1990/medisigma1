@@ -1,0 +1,41 @@
+# Plano para Resolver Erro de Build no Netlify
+
+## Contexto do Erro
+
+O build está a falhar com o seguinte erro de tipo no ficheiro `src/app/blog/[slug]/page.tsx`:
+```
+Type error: Type '{ params: { slug: string; }; }' does not satisfy the constraint 'PageProps'.
+  Types of property 'params' are incompatible.
+    Type '{ slug: string; }' is missing the following properties from type 'Promise<any>': then, catch, finally, [Symbol.toStringTag]
+```
+
+## Passos de Resolução
+
+### 1. Definir Versão do Node.js no Netlify
+   - [x] **Tarefa:** Criar um ficheiro `.nvmrc` na raiz do projeto.
+   - [x] **Sub-tarefa:** Adicionar `lts/iron` (Node 20) ao ficheiro `.nvmrc`.
+   - [ ] **Verificação:** (PENDENTE UTILIZADOR) Fazer commit e push do ficheiro `.nvmrc` e tentar um novo deploy no Netlify. Se o erro persistir, marcar esta tarefa como concluída e avançar.
+
+### 2. Analisar `package.json` e `tsconfig.json`
+   - [x] **Tarefa:** Obter o conteúdo dos ficheiros `package.json` e `tsconfig.json`.
+   - [x] **Sub-tarefa:** Analisar as dependências (Next.js, React, TypeScript) e as configurações do TypeScript em busca de conflitos ou configurações problemáticas.
+     - *Nota: As versões do Next.js (15.2.2) e React (19) são muito recentes. Configurações parecem padrão e corretas. Nenhuma alteração imediata sugerida.*
+   - [x] **Verificação:** Se forem encontradas issues, propor correções. Após aplicar correções (se houver), tentar um novo deploy. Se o erro persistir ou não houver correções óbvias, marcar como concluída e avançar.
+
+### 3. Investigar Plugin `@netlify/plugin-nextjs` (Ação do Assistente)
+   - [x] **Tarefa:** Pesquisar por issues conhecidas entre `@netlify/plugin-nextjs` v5.11.2 e Next.js 15.2.2.
+   - [x] **Verificação:** Se um bug relevante for encontrado, verificar se há workarounds ou se é necessário aguardar uma atualização. Documentar as descobertas. Marcar como concluída e avançar.
+     - *Descoberta: O erro de tipo `PageProps` vs `Promise` está relacionado com breaking changes no Next.js 15. A comunidade sugere que `params` podem precisar ser tratados como `Promise` ou usar codemods `next-async-request-api`.*
+
+### 4. Limpar Cache do Netlify
+   - [ ] **Tarefa (Netlify):** Instruir o utilizador a usar a opção "Clear cache and deploy site" nas configurações de build do Netlify.
+   - [ ] **Verificação:** Observar se o erro persiste após limpar o cache do Netlify. Marcar como concluída e avançar.
+
+### 5. Simplificar Temporariamente a Página Problemática (Se os passos anteriores falharem)
+   - [ ] **Tarefa:** Comentar seções do ficheiro `src/app/blog/[slug]/page.tsx` para isolar a causa.
+        - [ ] **Sub-tarefa 1:** Comentar a função `generateMetadata`. Tentar novo deploy.
+        - [ ] **Sub-tarefa 2:** Se persistir, na função `PostPage`, comentar a chamada a `getPostData` e o uso de `post`, retornando um JSX simples (ex: `<div>Teste</div>`). Tentar novo deploy.
+   - [ ] **Verificação:** Documentar qual simplificação resolveu o problema (se alguma).
+
+## Conclusão
+   - [ ] **Tarefa:** Documentar a solução final encontrada no ficheiro `public/troubleshooting_netlify.mdx`. 

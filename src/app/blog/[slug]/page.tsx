@@ -5,7 +5,7 @@ import React from 'react';
 
 // Esta função pode ser usada para buscar dados do post com base no slug
 // Por agora, vamos apenas usar o slug para mostrar no exemplo
-async function getPostData(_slug: string) {
+async function getPostData(slug: string) {
   // No futuro, aqui farias fetch dos dados do post (ex: de um CMS ou base de dados)
   // const res = await fetch(`https://api.example.com/posts/${slug}`);
   // const post = await res.json();

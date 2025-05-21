@@ -26,6 +26,8 @@ Type error: Type '{ params: { slug: string; }; }' does not satisfy the constrain
    - [x] **Tarefa:** Pesquisar por issues conhecidas entre `@netlify/plugin-nextjs` v5.11.2 e Next.js 15.2.2.
    - [x] **Verificação:** Se um bug relevante for encontrado, verificar se há workarounds ou se é necessário aguardar uma atualização. Documentar as descobertas. Marcar como concluída e avançar.
      - *Descoberta: O erro de tipo `PageProps` vs `Promise` está relacionado com breaking changes no Next.js 15. A comunidade sugere que `params` podem precisar ser tratados como `Promise` ou usar codemods `next-async-request-api`.*
+   - [x] **Sub-tarefa:** Executar o codemod `npx @next/codemod@latest next-async-request-api .` (Modificou 1 ficheiro).
+   - [ ] **Verificação:** (PENDENTE UTILIZADOR) Fazer commit das alterações do codemod e tentar novo deploy no Netlify. Se o erro persistir, avançar para a alteração manual de tipos.
 
 ### 4. Limpar Cache do Netlify
    - [ ] **Tarefa (Netlify):** Instruir o utilizador a usar a opção "Clear cache and deploy site" nas configurações de build do Netlify.

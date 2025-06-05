@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { serialize } from 'next-mdx-remote/serialize';
+import { compileMDX } from 'next-mdx-remote/rsc';
 
 // Define o caminho para a pasta de conteúdo do blog
 const postsDirectory = path.join(process.cwd(), 'src/content/blog');
@@ -57,13 +57,18 @@ export async function getPostData(slug: string) {
   // Usa gray-matter para analisar os metadados
   const matterResult = matter(fileContents);
 
-  // Usa next-mdx-remote para compilar o MDX
-  const mdxSource = await serialize(matterResult.content);
+  // Usa compileMDX para React Server Components
+  const { content, frontmatter } = await compileMDX<{ date: string; title: string; description?: string }>({
+    source: fileContents,
+    options: {
+      parseFrontmatter: true,
+    },
+  });
 
-  // Combina os dados com o slug e o conteúdo compilado
+  // Retorna os dados
   return {
     slug,
-    mdxSource,
-    frontmatter: matterResult.data as { date: string; title: string; description?: string },
+    content,
+    frontmatter,
   };
 } 

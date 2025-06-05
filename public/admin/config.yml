@@ -1,34 +1,28 @@
-# Configuração básica do backend - Ajuste conforme necessário (ex: GitHub, GitLab)
-local_backend: true
+# Configuração para produção no Netlify
 backend:
-  name: git-gateway # Usa Netlify Identity/Git Gateway para autenticação
-  # Se usar GitHub diretamente (requer configuração de OAuth App):
-  # name: github
-  # repo: SEU_USUARIO_GITHUB/SEU_REPOSITORIO
-  # branch: main # Ou a branch que você usa
+  name: git-gateway
+  branch: main
 
-# URL para o site publicado (opcional, usado para pré-visualizações)
-# site_url: https://seu-site.com
+# URL do teu site
+site_url: https://sigmasigma.netlify.app
 
-# URL para o logo (opcional)
-# logo_url: /logo.svg
+# Define onde os ficheiros de media serão guardados
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
 
-# Define onde os ficheiros de media (imagens, etc.) serão guardados
-media_folder: "public/images/uploads" # Relativo à raiz do projeto
-public_folder: "/images/uploads" # Caminho público para aceder às imagens
-
-# Define as coleções de conteúdo que o CMS pode gerir
+# Coleções de conteúdo
 collections:
-  - name: "blog" # Identificador da coleção
-    label: "Blog" # Nome exibido na interface do CMS
-    folder: "src/content/blog" # Pasta onde os ficheiros MDX são guardados
-    create: true # Permitir criar novos posts
-    slug: "{{slug}}" # Usa o título como base para o nome do ficheiro (slug)
-    extension: "mdx" # Extensão dos ficheiros
-    format: "frontmatter" # Formato do ficheiro (frontmatter + conteúdo)
-    fields: # Campos que aparecerão no editor do CMS para cada post
+  - name: "blog"
+    label: "Blog"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    extension: "mdx"
+    format: "frontmatter"
+    fields:
       - { label: "Título", name: "title", widget: "string" }
-      - { label: "Data de Publicação", name: "date", widget: "datetime", format: "YYYY-MM-DD", dateFormat: "YYYY-MM-DD", timeFormat: false }
+      - { label: "Data de Publicação", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
       - { label: "Descrição Curta", name: "description", widget: "string", required: false }
-      # - { label: "Imagem de Capa", name: "thumbnail", widget: "image", required: false } # Exemplo de campo de imagem
+      - { label: "Autor", name: "author", widget: "string", default: "Equipa Medisigma", required: false }
+      - { label: "Imagem de Destaque", name: "imagem_destaque", widget: "image", required: false }
       - { label: "Conteúdo", name: "body", widget: "markdown" } # O corpo do post em Markdown/MDX 

@@ -2668,5 +2668,17 @@ export const Icons = {
       </defs>
 </svg>
   ),
-  
+  svgCertificadosGeral: ({ className, width = "840px", height = "200px" }: { className?: string, width?: string, height?: string }) => (
+    <img
+      src="/admin/certificados.svg"
+      alt="Certificações Medisigma"
+      className={cn("mx-auto object-contain", className)}
+      style={{ 
+        width: width, 
+        height: height, 
+        maxWidth: "100%",
+        maxHeight: "700px"
+      }}
+    />
+  ) // Se este for o último item na lista, NÃO adiciones uma vírgula aqui. Se houver mais itens depois, adiciona. 
 };

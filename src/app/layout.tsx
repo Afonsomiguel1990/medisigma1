@@ -47,8 +47,7 @@ export default function RootLayout({
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
           disableTransitionOnChange
         >
           <div className="max-w-7xl mx-auto border-x relative flex flex-col divide-y divide-border">

@@ -49,7 +49,7 @@ export const siteConfig = {
   nav: {
     links: [
       { id: 1, name: "Home", href: "#hero" },
-      { id: 2, name: "Saber mais", href: "#bento" },
+      { id: 2, name: "Sobre Nós", href: "/sobre-nos" },
       { id: 3, name: "Serviços", href: "#features" },
       { id: 4, name: "Artigos", href: "/blog" },
     ],
@@ -75,12 +75,12 @@ export const siteConfig = {
       "Asseguramos a conformidade e segurança de pessoas, empresas e resultados.",
     cta: {
       primary: {
-        text: "Descubra como podemos ajudar",
-        href: "#",
+        text: "Fale conosco",
+        href: "/contact",
       },
       secondary: {
         text: "Entrar",
-        href: "#",
+        href: "https://careview.medisigma.pt/ext/default.asp",
       },
     },
   },
@@ -982,7 +982,7 @@ export const siteConfig = {
         { id: 4, title: "Termos e Condições", url: "/termos-e-condicoes" },
         { id: 5, title: "Política de Cookies", url: "/cookies" },
         { id: 6, title: "Resolução de Litígios", url: "/resolucao-litigios" },
-        { id: 7, title: "Livro de Reclamações", url: "/livro-reclamacoes" },
+        { id: 7, title: "Livro de Reclamações", url: "https://www.livroreclamacoes.pt/Inicio/" },
       ],
     },
   ],

@@ -1,10 +1,11 @@
 "use client";
 
 import { siteConfig } from "@/lib/config";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import React, { useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
+import { ChevronDown } from "lucide-react";
 
 interface NavItem {
   name: string;
@@ -12,6 +13,9 @@ interface NavItem {
 }
 
 const navs: NavItem[] = siteConfig.nav.links;
+
+// Obter os serviços do footer
+const servicosLinks = siteConfig.footerLinks.find(section => section.title === "Serviços")?.links || [];
 
 export function NavMenu() {
   const ref = useRef<HTMLUListElement>(null);
@@ -21,6 +25,8 @@ export function NavMenu() {
   const [activeSection, setActiveSection] = useState("hero");
   const pathname = usePathname();
   const [isManualScroll, setIsManualScroll] = useState(false);
+  const [showServicesDropdown, setShowServicesDropdown] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   React.useEffect(() => {
     // Initialize with first nav item if on homepage
@@ -80,7 +86,7 @@ export function NavMenu() {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial check
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isManualScroll, pathname]);
 
@@ -112,6 +118,47 @@ export function NavMenu() {
     }
   };
 
+  const handleServicesClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowServicesDropdown(!showServicesDropdown);
+  };
+
+  const handleMouseEnter = (item: NavItem) => {
+    if (item.name === "Serviços") {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      setShowServicesDropdown(true);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setShowServicesDropdown(false);
+    }, 150); // Pequeno delay antes de fechar
+  };
+
+  const handleDropdownMouseEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+  };
+
+  const handleDropdownMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setShowServicesDropdown(false);
+    }, 150);
+  };
+
+  // Cleanup timeout on unmount
+  React.useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
   return (
     <div className="w-full hidden md:block">
       <ul
@@ -121,6 +168,7 @@ export function NavMenu() {
         {navs.map((item) => {
           // Determine if the link is for a section or a page
           const isSectionLink = item.href.startsWith("#");
+          const isServicesItem = item.name === "Serviços";
           // Determine if the link is active
           const isActive = isSectionLink
             ? activeSection === item.href.substring(1) && pathname === "/" // Section links only active on homepage
@@ -133,23 +181,78 @@ export function NavMenu() {
                 isActive // Use combined isActive state
                   ? "text-primary"
                   : "text-primary/60 hover:text-primary"
-              } tracking-tight`}
+              } tracking-tight relative`}
+              onMouseEnter={() => handleMouseEnter(item)}
+              onMouseLeave={handleMouseLeave}
             >
-              {/* Usar handleClick para links de secção, Link normal para páginas */}
-              {isSectionLink ? (
-                <Link href={`/${item.href}`} className="cursor-pointer" onClick={e => handleClick(e, item)}>
-                  {item.name}
-                </Link>
+              {/* Serviços com dropdown */}
+              {isServicesItem ? (
+                <div className="relative">
+                  <button
+                    onClick={handleServicesClick}
+                    className="cursor-pointer flex items-center gap-1"
+                  >
+                    {item.name}
+                    <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${showServicesDropdown ? 'rotate-180' : ''}`} />
+                  </button>
+                  
+                  <AnimatePresence>
+                    {showServicesDropdown && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        transition={{ duration: 0.15, ease: "easeOut" }}
+                        className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-80 bg-background/95 backdrop-blur-lg border border-border rounded-xl shadow-lg z-50 py-2"
+                        onMouseEnter={handleDropdownMouseEnter}
+                        onMouseLeave={handleDropdownMouseLeave}
+                      >
+                        <div className="px-3 py-2 text-xs font-semibold text-muted-foreground border-b border-border">
+                          Nossos Serviços
+                        </div>
+                        <div className="grid grid-cols-1 gap-1 p-2">
+                          {servicosLinks.map((servico) => (
+                            <Link
+                              key={servico.id}
+                              href={servico.url}
+                              className="flex items-center px-3 py-2.5 text-sm text-primary/80 hover:text-primary hover:bg-accent/50 rounded-lg transition-all duration-200 group"
+                              onClick={() => setShowServicesDropdown(false)}
+                            >
+                              <div className="w-2 h-2 rounded-full bg-primary/20 group-hover:bg-primary/40 mr-3 transition-colors duration-200"></div>
+                              {servico.title}
+                            </Link>
+                          ))}
+                        </div>
+                        <div className="px-3 py-2 border-t border-border">
+                          <Link
+                            href="/servicos"
+                            className="text-xs text-muted-foreground hover:text-primary transition-colors duration-200"
+                            onClick={() => setShowServicesDropdown(false)}
+                          >
+                            Ver todos os serviços →
+                          </Link>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               ) : (
-                <Link href={item.href} className="cursor-pointer">
-                  {item.name}
-                </Link>
+                /* Links normais para secção ou páginas */
+                isSectionLink ? (
+                  <Link href={`/${item.href}`} className="cursor-pointer" onClick={e => handleClick(e, item)}>
+                    {item.name}
+                  </Link>
+                ) : (
+                  <Link href={item.href} className="cursor-pointer">
+                    {item.name}
+                  </Link>
+                )
               )}
             </li>
           );
         })}
         {/* Only show the animated indicator if an active *section* is set and we are on the homepage */}
-        {isReady && activeSection && pathname === "/" && navs.find(item => item.href === `#${activeSection}`) && (
+        {isReady && activeSection && pathname === "/" && (
           <motion.li
             animate={{ left, width }}
             transition={{ type: "spring", stiffness: 400, damping: 30 }}

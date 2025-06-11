@@ -6,64 +6,87 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 import { siteConfig } from "@/lib/config";
 import { ChevronRightIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
+
 export function FooterSection() {
   const tablet = useMediaQuery("(max-width: 1024px)");
 
   return (
-    <footer id="footer" className="w-full pb-0">
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between p-10">
-        <div className="flex flex-col items-start justify-start gap-y-5 max-w-xs mx-0">
-          <Link href="/" className="flex items-center gap-2">
-            <Icons.logo className="size-45" />
-          <p className="text-xl font-semibold text-primary"></p>
-          </Link>
-          <p className="tracking-tight text-muted-foreground font-medium">
-            {siteConfig.hero.description}
-          </p>
-          <div className="flex items-center gap-2 dark:hidden">
-            <Icons.gdpr className="size-12" />
-          </div>
-          <div className="dark:flex items-center gap-2 hidden">
-            <Icons.gdprDark className="size-12" />
-          </div>
-        </div>
-        <div className="pt-5 md:w-1/2">
-          <div className="flex flex-col items-start justify-start md:flex-row md:items-center md:justify-between gap-y-5 lg:pl-10">
-            {siteConfig.footerLinks.map((column, columnIndex) => (
-              <ul key={columnIndex} className="flex flex-col gap-y-2">
-                <li className="mb-2 text-sm font-semibold text-primary">
-                  {column.title}
-                </li>
-                {column.links.map((link) => (
-                  <li
-                    key={link.id}
-                    className="group inline-flex cursor-pointer items-center justify-start gap-1 text-[15px]/snug text-muted-foreground"
-                  >
-                    <Link href={link.url}>{link.title}</Link>
-                    <div className="flex size-4 items-center justify-center border border-border rounded translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100">
-                      <ChevronRightIcon className="h-4 w-4 " />
-                    </div>
-                  </li>
+    <footer id="footer" className="w-full">
+      {/* Seção Principal do Footer */}
+      <div className="relative bg-background border-t border-border">
+        <div className="container mx-auto px-6 py-12">
+          {/* Logo e Links */}
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12 lg:items-center">
+            {/* Coluna do Logo */}
+            <div className="lg:col-span-1 flex items-start">
+              <Link href="/" className="inline-block">
+                <Icons.logo className="h-[32rem] w-auto" />
+              </Link>
+            </div>
+
+            {/* Colunas de Links */}
+            <div className="lg:col-span-3">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {siteConfig.footerLinks.map((column, columnIndex) => (
+                  <div key={columnIndex} className="space-y-4">
+                    <h4 className="text-sm font-semibold text-foreground">
+                      {column.title}
+                    </h4>
+                    <ul className="space-y-3">
+                      {column.links.map((link) => (
+                        <li key={link.id}>
+                          <Link
+                            href={link.url}
+                            className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                          >
+                            <span>{link.title}</span>
+                            <div className="flex h-4 w-4 items-center justify-center rounded border border-border opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-1">
+                              <ChevronRightIcon className="h-3 w-3" />
+                            </div>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
-              </ul>
-            ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Certificações Centralizadas */}
+          <div className="mt-12 flex items-center justify-center gap-8 border-t border-border pt-12">
+            <Icons.svgCertificadosGeral className="h-10 w-auto flex-shrink-0" />
           </div>
         </div>
       </div>
-      <div className="w-full h-48 md:h-64 relative mt-24 z-0">
-        <div className="absolute inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_100%,#8DC63F_0%,#fff_100%)]" />
+
+      {/* Seção do FlickeringGrid */}
+      <div className="relative h-48 md:h-64 overflow-hidden">
+        {/* Gradiente de fundo */}
+        <div className="absolute inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,transparent_40%,#97bd28_100%)] opacity-20" />
+        
+        {/* Overlay para suavizar a transição */}
         <div className="absolute inset-0 bg-gradient-to-t from-transparent to-background z-10 from-40%" />
+        
+        {/* Grid animado */}
         <div className="absolute inset-0 mx-6">
           <FlickeringGrid
             text={tablet ? "Medisigma" : "Medisigma"}
-            fontSize={tablet ? 70 : 90}
+            fontSize={tablet ? 60 : 80}
             className="h-full w-full"
             squareSize={2}
             gridGap={tablet ? 2 : 3}
-            color="#6B7280"
-            maxOpacity={0.3}
-            flickerChance={0.1}
+            color="#97bd28"
+            maxOpacity={0.2}
+            flickerChance={0.08}
           />
+        </div>
+
+        {/* Copyright */}
+        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20">
+          <p className="text-xs text-muted-foreground text-center">
+            © {new Date().getFullYear()} Medisigma. Todos os direitos reservados.
+          </p>
         </div>
       </div>
     </footer>

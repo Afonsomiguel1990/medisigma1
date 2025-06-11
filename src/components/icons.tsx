@@ -15,7 +15,7 @@ export const Icons = {
         <img
           src="/logomedisigma.svg" // Garante que este é o caminho correto para o teu SVG na pasta public
           alt="Medisigma Logo"
-          className={cn("h-160 w-auto", className)} // Podes ajustar "h-8" para o tamanho que quiseres
+          className={cn("h-8 w-auto", className)} // Podes ajustar "h-8" para o tamanho que quiseres
         />
       ), // NÃO TE ESQUEÇAS da vírgula aqui se houver 
   soc2: ({ className }: { className?: string }) => (
@@ -688,14 +688,15 @@ export const Icons = {
       </defs>
     </svg>
   ),
-  gdpr: ({ className }: { className?: string }) => (
+  gdpr: ({ className, style }: { className?: string, style?: React.CSSProperties }) => (
     <svg
       width="46"
       height="45"
       viewBox="0 0 46 45"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={cn("size-4", className)}
+      className={className}
+      style={style}
     >
       <g filter="url(#filter0_ddd_1_4914)">
         <rect
@@ -1000,7 +1001,7 @@ export const Icons = {
       viewBox="0 0 46 45"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={cn("size-4", className)}
+      className={className}
     >
       <g filter="url(#filter0_ddd_1_2046)">
         <rect

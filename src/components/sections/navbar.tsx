@@ -2,10 +2,10 @@
 
 import { Icons } from "@/components/icons";
 import { NavMenu } from "@/components/nav-menu";
-import { ThemeToggle } from "@/components/theme-toggle";
+// import { ThemeToggle } from "@/components/theme-toggle"; // Removido conforme solicitado
 import { siteConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { AnimatePresence, motion, useScroll } from "motion/react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -50,11 +50,15 @@ const drawerMenuVariants = {
   visible: { opacity: 1 },
 };
 
+// Obter os serviços do footer
+const servicosLinks = siteConfig.footerLinks.find(section => section.title === "Serviços")?.links || [];
+
 export function Navbar() {
   const { scrollY } = useScroll();
   const [hasScrolled, setHasScrolled] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
+  const [showMobileServicesDropdown, setShowMobileServicesDropdown] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -89,6 +93,21 @@ export function Navbar() {
 
   const toggleDrawer = () => setIsDrawerOpen((prev) => !prev);
   const handleOverlayClick = () => setIsDrawerOpen(false);
+
+  const handleMobileNavClick = (item: any, e: React.MouseEvent) => {
+    if (item.name === "Serviços") {
+      e.preventDefault();
+      setShowMobileServicesDropdown(!showMobileServicesDropdown);
+      return;
+    }
+
+    // Para outros itens, comportamento normal
+    const element = document.getElementById(item.href.substring(1));
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      setIsDrawerOpen(false);
+    }
+  };
 
   return (
     <header
@@ -127,11 +146,11 @@ export function Navbar() {
                 </Link>
                 <Link
                   className="bg-secondary h-8 hidden md:flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12]"
-                  href="#"
+                  href="/contact"
                 >
                   Fale conosco
                 </Link>
-                <ThemeToggle />
+                {/* <ThemeToggle /> */}
               </div>
               <button
                 className="md:hidden border border-border size-8 rounded-md cursor-pointer flex items-center justify-center"
@@ -191,27 +210,63 @@ export function Navbar() {
                     {siteConfig.nav.links.map((item) => (
                       <motion.li
                         key={item.id}
-                        className="p-2.5 border-b border-border last:border-b-0"
+                        className="border-b border-border last:border-b-0"
                         variants={drawerMenuVariants}
                       >
-                        <a
-                          href={item.href}
-                          onClick={(e) => {
-                            e.preventDefault();
-                            const element = document.getElementById(
-                              item.href.substring(1),
-                            );
-                            element?.scrollIntoView({ behavior: "smooth" });
-                            setIsDrawerOpen(false);
-                          }}
-                          className={`underline-offset-4 hover:text-primary/80 transition-colors ${
-                            activeSection === item.href.substring(1)
-                              ? "text-primary font-medium"
-                              : "text-primary/60"
-                          }`}
-                        >
-                          {item.name}
-                        </a>
+                        {item.name === "Serviços" ? (
+                          <div>
+                            <button
+                              onClick={(e) => handleMobileNavClick(item, e)}
+                              className={`w-full flex items-center justify-between p-2.5 text-left underline-offset-4 hover:text-primary/80 transition-colors ${
+                                activeSection === item.href.substring(1)
+                                  ? "text-primary font-medium"
+                                  : "text-primary/60"
+                              }`}
+                            >
+                              {item.name}
+                              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${showMobileServicesDropdown ? 'rotate-180' : ''}`} />
+                            </button>
+                            
+                            <AnimatePresence>
+                              {showMobileServicesDropdown && (
+                                <motion.div
+                                  initial={{ opacity: 0, height: 0 }}
+                                  animate={{ opacity: 1, height: "auto" }}
+                                  exit={{ opacity: 0, height: 0 }}
+                                  transition={{ duration: 0.2 }}
+                                  className="overflow-hidden bg-accent/20 border-t border-border"
+                                >
+                                  {servicosLinks.map((servico) => (
+                                    <Link
+                                      key={servico.id}
+                                      href={servico.url}
+                                      className="flex items-center px-6 py-2 text-sm text-primary/70 hover:text-primary hover:bg-accent/30 transition-all duration-200"
+                                      onClick={() => setIsDrawerOpen(false)}
+                                    >
+                                      <div className="w-1.5 h-1.5 rounded-full bg-primary/30 mr-3"></div>
+                                      {servico.title}
+                                    </Link>
+                                  ))}
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </div>
+                        ) : (
+                          <a
+                            href={item.href}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleMobileNavClick(item, e);
+                            }}
+                            className={`block p-2.5 underline-offset-4 hover:text-primary/80 transition-colors ${
+                              activeSection === item.href.substring(1)
+                                ? "text-primary font-medium"
+                                : "text-primary/60"
+                            }`}
+                          >
+                            {item.name}
+                          </a>
+                        )}
                       </motion.li>
                     ))}
                   </AnimatePresence>
@@ -220,7 +275,7 @@ export function Navbar() {
                 {/* Action buttons */}
                 <div className="flex flex-col gap-2">
                   <Link
-                    href="#"
+                    href="/contact"
                     className="bg-secondary h-8 flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-full px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12] hover:bg-secondary/80 transition-all ease-out active:scale-95"
                   >
                     Fale conosco

@@ -6,6 +6,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { FooterSection } from "@/components/sections/footer-section";
 import { CTASection } from "@/components/sections/cta-section";
+import { CookieConsentComponent } from "@/components/cookie-consent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="pt" suppressHydrationWarning>
       {/* <head>
         <Script src="https://unpkg.com/react-scan/dist/auto.global.js" />
       </head> */}
@@ -58,6 +59,7 @@ export default function RootLayout({
             <CTASection />
             <FooterSection />
           </div>
+          <CookieConsentComponent />
         </ThemeProvider>
       </body>
     </html>

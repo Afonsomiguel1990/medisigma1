@@ -31,7 +31,8 @@
     "react-scan": "^0.3.2",
     "remark-gfm": "^4.0.1",
     "tailwind-merge": "^3.0.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "vanilla-cookieconsent": "^3.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

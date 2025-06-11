@@ -49,7 +49,7 @@ export default function SegurancaNoTrabalhoPage() {
       <main className="min-h-screen bg-white flex flex-col divide-y divide-border">
         {/* Hero Section */}
         <section className="relative py-16 md:py-24 mx-6 md:mx-8 rounded-3xl mb-8">
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 -z-10 pointer-events-none">
             <div className="animated-hero-background absolute inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,var(--background)_40%,var(--secondary)_100%)] rounded-3xl"></div>
           </div>
           <div className="container mx-auto px-6 max-w-6xl">
@@ -68,12 +68,6 @@ export default function SegurancaNoTrabalhoPage() {
                   <a 
                     href="#cta-section" 
                     className="bg-secondary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:bg-secondary/90 transition-colors text-center cursor-pointer"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document.getElementById('cta-section')?.scrollIntoView({ 
-                        behavior: 'smooth' 
-                      });
-                    }}
                   >
                     Fale connosco
                   </a>

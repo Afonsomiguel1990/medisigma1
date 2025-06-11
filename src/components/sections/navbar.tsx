@@ -94,7 +94,7 @@ export function Navbar() {
   const toggleDrawer = () => setIsDrawerOpen((prev) => !prev);
   const handleOverlayClick = () => setIsDrawerOpen(false);
 
-  const handleMobileNavClick = (item: any, e: React.MouseEvent) => {
+  const handleMobileNavClick = (item: { name: string; href: string; id: number }, e: React.MouseEvent) => {
     if (item.name === "Serviços") {
       e.preventDefault();
       setShowMobileServicesDropdown(!showMobileServicesDropdown);

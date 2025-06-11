@@ -30,7 +30,7 @@ export default function TermosECondicoesPage() {
         <section>
           <h2 className="text-2xl font-semibold text-foreground mb-4">2. Objeto e Âmbito de Aplicação</h2>
           <p className="text-muted-foreground mb-4">
-            Os presentes Termos e Condições regulam a utilização do website da GRUPO MEDISIGMA, LDA (doravante designada por "Medisigma" ou "Empresa"), bem como a prestação de serviços especializados em Medicina do Trabalho, Segurança e Higiene no Trabalho, Segurança Alimentar, Controlo de Pragas, Formação Certificada e demais serviços conexos.
+            Os presentes Termos e Condições regulam a utilização do website da GRUPO MEDISIGMA, LDA (doravante designada por &quot;Medisigma&quot; ou &quot;Empresa&quot;), bem como a prestação de serviços especializados em Medicina do Trabalho, Segurança e Higiene no Trabalho, Segurança Alimentar, Controlo de Pragas, Formação Certificada e demais serviços conexos.
           </p>
           <p className="text-muted-foreground mb-4">
             A utilização deste website pressupõe a aceitação integral e sem reservas dos presentes termos e condições. Caso não concorde com qualquer disposição aqui constante, deverá abster-se de utilizar este website e os serviços da Medisigma.
@@ -42,16 +42,16 @@ export default function TermosECondicoesPage() {
           <h2 className="text-2xl font-semibold text-foreground mb-4">3. Definições</h2>
           <div className="space-y-3">
             <p className="text-muted-foreground">
-              <strong>"Website":</strong> Portal eletrónico acessível através do endereço www.medisigma.pt e respetivos subdomínios.
+              <strong>&quot;Website&quot;:</strong> Portal eletrónico acessível através do endereço www.medisigma.pt e respetivos subdomínios.
             </p>
             <p className="text-muted-foreground">
-              <strong>"Utilizador":</strong> Qualquer pessoa singular ou coletiva que aceda e utilize o website da Medisigma.
+              <strong>&quot;Utilizador&quot;:</strong> Qualquer pessoa singular ou coletiva que aceda e utilize o website da Medisigma.
             </p>
             <p className="text-muted-foreground">
-              <strong>"Serviços":</strong> Totalidade dos serviços prestados pela Medisigma, incluindo mas não se limitando a Medicina do Trabalho, Segurança no Trabalho, Formação e Consultoria.
+              <strong>&quot;Serviços&quot;:</strong> Totalidade dos serviços prestados pela Medisigma, incluindo mas não se limitando a Medicina do Trabalho, Segurança no Trabalho, Formação e Consultoria.
             </p>
             <p className="text-muted-foreground">
-              <strong>"Cliente":</strong> Entidade que contrata formalmente os serviços da Medisigma mediante contrato escrito.
+              <strong>&quot;Cliente&quot;:</strong> Entidade que contrata formalmente os serviços da Medisigma mediante contrato escrito.
             </p>
           </div>
         </section>

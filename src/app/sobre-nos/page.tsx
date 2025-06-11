@@ -3,17 +3,7 @@ import { Metadata } from 'next';
 import HeroVideoDialog from '@/components/magicui/hero-video-dialog';
 import { Features } from '@/components/ui/features';
 import { Icons } from '@/components/icons';
-import { 
-  Building2, 
-  Shield, 
-  Users, 
-  TrendingUp, 
-  Award, 
-  Heart,
-  Zap,
-  Globe,
-  Lightbulb
-} from 'lucide-react';
+
 
 export const metadata: Metadata = {
   title: 'Sobre Nós | Medisigma - Mais de 20 Anos de Excelência',
@@ -83,13 +73,7 @@ const timelineEvents = [
   }
 ];
 
-const teamMembers = [
-  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face",
-  "https://images.unsplash.com/photo-1494790108755-2616b612b789?w=400&h=400&fit=crop&crop=face",
-  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face",
-  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face",
-  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&h=400&fit=crop&crop=face",
-];
+
 
 export default function SobreNosPage() {
   return (

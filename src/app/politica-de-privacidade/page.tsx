@@ -58,7 +58,7 @@ export default function PoliticaDePrivacidadePage() {
         <ul>
             <li><strong>Direito de acesso:</strong> O direito de obter uma cópia dos seus dados pessoais.</li>
             <li><strong>Direito de retificação:</strong> O direito de solicitar a correção de dados incorretos ou incompletos.</li>
-            <li><strong>Direito ao apagamento (ou "direito a ser esquecido"):</strong> O direito de solicitar o apagamento dos seus dados, em determinadas circunstâncias.</li>
+            <li><strong>Direito ao apagamento (ou &quot;direito a ser esquecido&quot;):</strong> O direito de solicitar o apagamento dos seus dados, em determinadas circunstâncias.</li>
             <li><strong>Direito à limitação do tratamento:</strong> O direito de solicitar a restrição do tratamento dos seus dados.</li>
             <li><strong>Direito de portabilidade dos dados:</strong> O direito de receber os seus dados num formato estruturado, de uso corrente e de leitura automática.</li>
             <li><strong>Direito de oposição:</strong> O direito de se opor ao tratamento dos seus dados, em determinadas circunstâncias.</li>
@@ -70,7 +70,7 @@ export default function PoliticaDePrivacidadePage() {
         <p>O nosso site pode conter links para outros sites que não são operados por nós. Se clicar num link de terceiros, será direcionado para o site desse terceiro. Aconselhamos vivamente a rever a Política de Privacidade de todos os sites que visitar. Não temos controlo e não assumimos qualquer responsabilidade pelo conteúdo, políticas de privacidade ou práticas de quaisquer sites ou serviços de terceiros.</p>
 
         <h2 className="text-2xl font-semibold mt-6 mb-4">8. Alterações a esta Política de Privacidade</h2>
-        <p>Podemos atualizar a nossa Política de Privacidade de tempos em tempos. Iremos notificá-lo de quaisquer alterações, publicando a nova Política de Privacidade nesta página e atualizando a data da "última atualização" no topo desta página.</p>
+        <p>Podemos atualizar a nossa Política de Privacidade de tempos em tempos. Iremos notificá-lo de quaisquer alterações, publicando a nova Política de Privacidade nesta página e atualizando a data da &quot;última atualização&quot; no topo desta página.</p>
 
         <h2 className="text-2xl font-semibold mt-6 mb-4">9. Contacte-nos</h2>
         <p>Se tiver alguma dúvida sobre esta Política de Privacidade, pode contactar-nos através do nosso <a href="/contact">formulário de contacto</a>.</p>

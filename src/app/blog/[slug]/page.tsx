@@ -18,9 +18,9 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
   let post;
   try {
     post = await getPostData(params.slug); // Agora params.slug deve ser seguro
-  } catch (error) {
+  } catch {
     // Se getPostData lançar um erro (ex: ficheiro não encontrado), tratar como notFound
-    console.error(`Erro ao carregar o post ${params.slug}:`, error);
+    console.error(`Erro ao carregar o post ${params.slug}`);
     notFound();
   }
 
@@ -123,7 +123,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
         // ] : undefined,
       },
     };
-  } catch (error) {
+  } catch {
     return {
       title: 'Erro ao Carregar Post',
       description: 'Ocorreu um erro ao carregar este post.',

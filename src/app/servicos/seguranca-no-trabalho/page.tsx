@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Metadata } from "next";
-import { HardHat, ShieldCheck, ClipboardList, BookOpen, Users, AlertTriangle, CheckCircle, BarChart, Wrench, Search, Activity, TrendingUp, Eye, FileText, Building2 } from 'lucide-react';
+import { ClipboardList, Users, AlertTriangle, CheckCircle, BarChart, Wrench, Search, Activity, TrendingUp, Eye, FileText, Building2 } from 'lucide-react';
 import Link from "next/link";
 
 export const metadata: Metadata = {

@@ -41,15 +41,14 @@ export function TypingAnimation({
       { threshold: 0.1 }, // Trigger when 10% of the element is visible
     );
 
-    if (ref.current) {
-      observer.observe(ref.current);
+    const currentRef = ref.current;
+    if (currentRef) {
+      observer.observe(currentRef);
     }
 
     return () => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      if (ref.current) {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        observer.unobserve(ref.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, [startOnView]);

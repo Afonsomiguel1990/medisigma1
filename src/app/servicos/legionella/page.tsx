@@ -96,7 +96,7 @@ export default function LegionellaPage() {
                         O que é a Legionella?
                     </h2>
                     <p className="text-lg text-gray-600 mb-6">
-                        É uma bactéria que habita em ambientes aquáticos, como rios e lagos, mas que se pode proliferar em sistemas de água artificiais. A sua inalação pode causar a "Doença dos Legionários", uma forma de pneumonia grave.
+                        É uma bactéria que habita em ambientes aquáticos, como rios e lagos, mas que se pode proliferar em sistemas de água artificiais. A sua inalação pode causar a &quot;Doença dos Legionários&quot;, uma forma de pneumonia grave.
                     </p>
                     <div className="space-y-4">
                         <div className="flex items-start space-x-3">
@@ -109,7 +109,7 @@ export default function LegionellaPage() {
                         </div>
                         <div className="flex items-start space-x-3">
                             <AlertTriangle className="w-6 h-6 text-secondary flex-shrink-0 mt-1" />
-                            <p className="text-gray-600"><strong>Doença Associada:</strong> Causa a "Doença dos Legionários" e a "Febre de Pontiac", com sintomas semelhantes aos de uma pneumonia.</p>
+                            <p className="text-gray-600"><strong>Doença Associada:</strong> Causa a &quot;Doença dos Legionários&quot; e a &quot;Febre de Pontiac&quot;, com sintomas semelhantes aos de uma pneumonia.</p>
                         </div>
                     </div>
                 </div>

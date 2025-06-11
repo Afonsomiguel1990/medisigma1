@@ -1,7 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
 import { CheckCircle, Phone } from "lucide-react";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Contacto | MediSigma",

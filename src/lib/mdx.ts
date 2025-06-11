@@ -54,9 +54,6 @@ export async function getPostData(slug: string) {
   const fullPath = path.join(postsDirectory, `${slug}.mdx`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
 
-  // Usa gray-matter para analisar os metadados
-  const matterResult = matter(fileContents);
-
   // Usa compileMDX para React Server Components
   const { content, frontmatter } = await compileMDX<{ date: string; title: string; description?: string }>({
     source: fileContents,

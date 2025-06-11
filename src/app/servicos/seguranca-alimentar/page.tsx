@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { Metadata } from 'next'
-import { Shield, CheckCircle, FileText, Microscope, Users, BookOpen, TrendingUp, Award, ClipboardCheck, AlertTriangle, Target, ShieldCheck, FlaskConical, CookingPot, Leaf, FileWarning, Search, Wrench } from 'lucide-react'
+import { FileText, BookOpen, ClipboardCheck, AlertTriangle, FileWarning, Search, Wrench, ShieldCheck, Award } from 'lucide-react'
 import Link from 'next/link'
 
 export const metadata: Metadata = {

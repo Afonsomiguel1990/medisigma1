@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { Droplet, Stethoscope, GraduationCap, Flame, Shield, Utensils, Bug } from 'lucide-react';
+import { Droplet, Stethoscope, GraduationCap, Flame, Bug } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'FAQs - Perguntas Frequentes | Medisigma',

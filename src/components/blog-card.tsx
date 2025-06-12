@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'; // Assumindo que os componentes Card estão aqui
+import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card'; // Assumindo que os componentes Card estão aqui
 import { Button } from '@/components/ui/button'; // Para o botão "Ler Mais"
 
 interface BlogCardProps {

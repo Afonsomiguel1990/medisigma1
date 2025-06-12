@@ -58,7 +58,7 @@ Obrigado!`);
         setIsSubmitting(false);
       }, 1000);
       
-    } catch (error) {
+    } catch {
       setIsSubmitting(false);
       setErrors({ email: "Erro ao processar pedido. Tente novamente." });
     }

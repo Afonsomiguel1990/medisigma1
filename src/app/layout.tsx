@@ -7,6 +7,8 @@ import "./globals.css";
 import { FooterSection } from "@/components/sections/footer-section";
 import { CTASection } from "@/components/sections/cta-section";
 import { CookieConsentComponent } from "@/components/cookie-consent";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -60,6 +62,8 @@ export default function RootLayout({
           </div>
           <CookieConsentComponent />
         </ThemeProvider>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );

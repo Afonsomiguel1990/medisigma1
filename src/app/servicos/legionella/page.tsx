@@ -65,10 +65,10 @@ export default function LegionellaPage() {
                 </p>
                 <div className="flex justify-start">
                   <a 
-                    href="#contacto-legionella"
-                    className="bg-secondary text-white px-8 py-3 rounded-lg font-semibold hover:bg-secondary/90 transition-colors"
+                    href="#cta-section"
+                    className="bg-secondary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:bg-secondary/90 transition-colors text-center cursor-pointer"
                   >
-                    Fale Connosco
+                    Fale connosco
                   </a>
                 </div>
               </div>
@@ -256,7 +256,7 @@ export default function LegionellaPage() {
         </section>
 
         {/* CTA Section */}
-        <section id="contacto-legionella" className="relative z-10 bg-secondary py-16 md:py-20 mx-4 md:mx-8 rounded-3xl mb-8">
+        <section id="cta-section" className="relative z-10 bg-secondary py-16 md:py-20 mx-4 md:mx-8 rounded-3xl mb-8">
           <div className="container mx-auto px-6 max-w-5xl">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="text-white">

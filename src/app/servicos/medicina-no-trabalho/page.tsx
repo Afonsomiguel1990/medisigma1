@@ -2,6 +2,7 @@ import React from "react";
 import { Metadata } from "next";
 import { Calendar, CheckCircle, Activity, Eye, Heart, Zap, UserCheck, Clipboard, Microscope, Headphones } from 'lucide-react'
 import Link from "next/link";
+import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
   title: "Medicina no Trabalho | Exames Médicos Profissionais | MediSigma",
@@ -79,7 +80,7 @@ export default function MedicinaNoTrabalhoPage() {
               <div className="flex justify-center">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
-                  src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                  src="/images/uploads/servicos/medicina-trabalho-hero.png" 
                   alt="Médico realizando exame médico no trabalho" 
                   width={500} 
                   height={400} 
@@ -531,10 +532,10 @@ export default function MedicinaNoTrabalhoPage() {
           <div className="container mx-auto px-6 md:px-8 max-w-5xl">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="text-white">
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6">
                   Pedido de Proposta
                 </h2>
-                <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+                <p className="text-base md:text-lg text-primary-foreground/90 max-w-3xl mx-auto mb-8">
                   Peça já uma proposta à medida das necessidades da sua empresa e garanta 
                   a segurança e bem-estar dos seus colaboradores. Confie na MediSigma para 
                   todos os serviços de medicina do trabalho.
@@ -542,21 +543,15 @@ export default function MedicinaNoTrabalhoPage() {
                 
                 <div className="space-y-4 mb-8 text-blue-100">
                   <div className="flex items-center space-x-3">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
+                    <CheckCircle className="w-5 h-5 text-white" />
                     <span>Proposta personalizada sem compromisso</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
+                    <CheckCircle className="w-5 h-5 text-white" />
                     <span>Resposta em 24 horas úteis</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
+                    <CheckCircle className="w-5 h-5 text-white" />
                     <span>Soluções adaptadas ao seu setor</span>
                   </div>
                 </div>
@@ -579,86 +574,7 @@ export default function MedicinaNoTrabalhoPage() {
                 </div>
               </div>
               
-              <div className="bg-white p-8 rounded-xl shadow-2xl">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6">Contacto Rápido</h3>
-                <form className="space-y-4">
-                  <div>
-                    <label htmlFor="empresa" className="block text-sm font-medium text-gray-700 mb-2">
-                      Nome da Empresa *
-                    </label>
-                    <input 
-                      type="text" 
-                      id="empresa"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
-                      placeholder="A sua empresa"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="responsavel" className="block text-sm font-medium text-gray-700 mb-2">
-                      Nome do Responsável *
-                    </label>
-                    <input 
-                      type="text" 
-                      id="responsavel"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
-                      placeholder="O seu nome"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                      Email *
-                    </label>
-                    <input 
-                      type="email" 
-                      id="email"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
-                      placeholder="empresa@exemplo.pt"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="funcionarios" className="block text-sm font-medium text-gray-700 mb-2">
-                      Número de Funcionários
-                    </label>
-                    <select 
-                      id="funcionarios"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
-                    >
-                      <option>Selecione...</option>
-                      <option>1-10 funcionários</option>
-                      <option>11-50 funcionários</option>
-                      <option>51-100 funcionários</option>
-                      <option>101-500 funcionários</option>
-                      <option>Mais de 500 funcionários</option>
-                    </select>
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="mensagem" className="block text-sm font-medium text-gray-700 mb-2">
-                      Mensagem (opcional)
-                    </label>
-                    <textarea 
-                      id="mensagem"
-                      rows={3}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
-                      placeholder="Descreva brevemente as suas necessidades..."
-                    ></textarea>
-                  </div>
-                  
-                  <button 
-                    type="submit"
-                    className="w-full bg-secondary text-white py-3 px-6 rounded-lg font-semibold hover:bg-secondary/90 transition-colors"
-                  >
-                    Enviar Pedido de Proposta
-                  </button>
-                  
-                  <p className="text-xs text-gray-500 text-center">
-                    * Campos obrigatórios. Os seus dados serão tratados com confidencialidade.
-                  </p>
-                </form>
-              </div>
+              <ContactForm />
             </div>
           </div>
         </section>

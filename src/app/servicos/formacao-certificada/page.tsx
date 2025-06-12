@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Metadata } from 'next';
 import { HeartPulse, Shield, Users, CheckCircle, FileText, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
+import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
   title: 'Formação Certificada DGERT | Cursos de Segurança e Saúde | MediSigma',
@@ -48,8 +49,8 @@ export default function FormacaoCertificadaPage() {
       <main className="min-h-screen bg-white flex flex-col divide-y divide-border">
         {/* Hero Section */}
         <section className="relative py-16 md:py-24 mx-4 md:mx-8 rounded-3xl mb-8">
-          <div className="absolute inset-0">
-            <div className="animated-hero-background absolute inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,var(--background)_40%,var(--secondary)_100%)] rounded-3xl"></div>
+          <div className="absolute inset-0 -z-10">
+            <div className="animated-hero-background absolute inset-0 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,var(--background)_40%,var(--secondary)_100%)] rounded-3xl"></div>
           </div>
           <div className="container mx-auto px-6 md:px-8 max-w-6xl">
             <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -64,12 +65,12 @@ export default function FormacaoCertificadaPage() {
                   Elaboramos ações de formação específicas de acordo com as necessidades da sua empresa. Para além dos cursos previstos no nosso plano, desenhamos programas para ir ao encontro das suas metas.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Link href="/contact" className="bg-secondary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:bg-secondary/90 transition-colors text-center">
-                    Pedir Proposta
-                  </Link>
-                  <button className="border-2 border-secondary text-secondary px-8 py-3 rounded-lg font-semibold hover:bg-secondary/10 transition-colors">
-                    Ver Cursos
-                  </button>
+                  <a 
+                    href="#cta-section" 
+                    className="bg-secondary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:bg-secondary/90 transition-colors text-center cursor-pointer"
+                  >
+                    Fale connosco
+                  </a>
                 </div>
               </div>
               <div className="flex justify-center">
@@ -233,16 +234,32 @@ export default function FormacaoCertificadaPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="relative z-10 bg-secondary py-16 md:py-20 mx-4 md:mx-8 rounded-3xl mb-8">
+        <section id="cta-section" className="relative z-10 bg-secondary py-16 md:py-20 mx-4 md:mx-8 rounded-3xl mb-8">
           <div className="container mx-auto px-6 md:px-8 max-w-5xl">
-            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="text-white">
                 <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6">
                   Vamos Criar o Seu Plano de Formação?
                 </h2>
-                <p className="text-base md:text-xl text-blue-100 mb-8 leading-relaxed">
-                  Com base no nosso plano ou em necessidades específicas, apresentamos uma proposta concreta que inclui programa, duração e custos.
+                <p className="text-base md:text-lg text-primary-foreground/90 max-w-3xl mx-auto mb-8">
+                  Com base no nosso plano ou em necessidades específicas, apresentamos uma proposta concreta que inclui programa, duração e custos para qualificar a sua equipa.
                 </p>
+                
+                <div className="space-y-4 mb-8 text-blue-100">
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="w-5 h-5 text-white" />
+                    <span>Formação certificada pela DGERT</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="w-5 h-5 text-white" />
+                    <span>Cursos à medida das suas necessidades</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="w-5 h-5 text-white" />
+                    <span>Formação nas suas instalações ou nas nossas</span>
+                  </div>
+                </div>
+                
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a 
                     href="https://wa.me/351938698260?text=Olá%2C%20estava%20no%20vosso%20website%20e%20gostaria%20de%20ter%20mais%20informações%20sobre%20Formação%20Certificada." 
@@ -261,24 +278,7 @@ export default function FormacaoCertificadaPage() {
                 </div>
               </div>
               
-              <div className="bg-white p-8 rounded-xl shadow-2xl">
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6">Peça uma Proposta</h3>
-                <form className="space-y-4">
-                  <div>
-                    <label htmlFor="empresa-formacao" className="block text-sm font-medium text-gray-700 mb-2">Nome da Empresa *</label>
-                    <input type="text" id="empresa-formacao" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent" placeholder="A sua empresa" />
-                  </div>
-                  <div>
-                    <label htmlFor="email-formacao" className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
-                    <input type="email" id="email-formacao" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent" placeholder="empresa@exemplo.pt" />
-                  </div>
-                  <div>
-                    <label htmlFor="mensagem-formacao" className="block text-sm font-medium text-gray-700 mb-2">Áreas de Interesse</label>
-                    <textarea id="mensagem-formacao" rows={3} className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent" placeholder="Ex: Primeiros socorros, Trabalho em altura..."></textarea>
-                  </div>
-                  <button type="submit" className="w-full bg-secondary text-white py-3 px-6 rounded-lg font-semibold hover:bg-secondary/90 transition-colors">Enviar Pedido</button>
-                </form>
-              </div>
+              <ContactForm />
             </div>
           </div>
         </section>

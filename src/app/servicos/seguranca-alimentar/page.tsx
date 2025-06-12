@@ -52,17 +52,17 @@ export default function SegurancaAlimentarPage() {
       
       <main className="min-h-screen bg-white flex flex-col divide-y divide-border">
         {/* Hero Section */}
-        <section className="relative py-16 md:py-24 mx-6 md:mx-8 rounded-3xl mb-8">
+        <section className="relative py-16 md:py-24 mx-4 md:mx-8 rounded-3xl mb-8">
           <div className="absolute inset-0">
             <div className="animated-hero-background absolute inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,var(--background)_40%,var(--secondary)_100%)] rounded-3xl"></div>
           </div>
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <div>
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                   Segurança Alimentar
                 </h1>
-                <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+                <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
                   A Segurança Alimentar é um pilar fundamental em qualquer negócio 
                   do setor alimentar. A MediSigma oferece um serviço completo de 
                   implementação e manutenção de Sistemas de HACCP.
@@ -99,21 +99,21 @@ export default function SegurancaAlimentarPage() {
         </section>
 
         {/* Principles Section */}
-        <section className="py-16 md:py-20">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+        <section className="py-16 md:py-20 mx-4 md:mx-0">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
                 O nosso sistema HACCP baseia-se nos 7 princípios fundamentais 
                 para garantir a máxima segurança em toda a cadeia alimentar.
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
                 O sistema HACCP (Hazard Analysis and Critical Control Points – Análises de Perigos e 
                 Controlo de Pontos Críticos) é obrigatório desde 2006 e baseia-se na segurança dos 
                 alimentos produzidos, identificando perigos específicos e aplicando medidas necessárias.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
               {[
                 { icon: AlertTriangle, title: "Análise de Perigos" },
                 { icon: FileWarning, title: "Identificação de PCCs" },
@@ -122,7 +122,7 @@ export default function SegurancaAlimentarPage() {
               ].map((principle, index) => {
                 const Icon = principle.icon;
                 return (
-                  <div key={index} className="text-center p-6 bg-white rounded-xl shadow-lg border border-border">
+                  <div key={index} className="text-center p-6 bg-white rounded-xl shadow-sm border border-border">
                     <div className="w-16 h-16 bg-secondary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                       <Icon className="w-8 h-8 text-secondary" />
                     </div>
@@ -135,20 +135,20 @@ export default function SegurancaAlimentarPage() {
         </section>
 
         {/* Services Section */}
-        <section className="bg-accent py-16 md:py-20 mx-6 md:mx-8 rounded-3xl mb-8">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+        <section className="bg-accent py-16 md:py-20 mx-4 md:mx-8 rounded-3xl mb-8">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
                 Serviços de Segurança Alimentar
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
                 A MediSigma disponibiliza, com recursos materiais adequados e através de recursos 
                 humanos qualificados, um conjunto completo de serviços especializados em segurança alimentar.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border hover:border-secondary/20">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              <div className="group bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-border hover:border-secondary/20">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <Wrench className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -158,7 +158,7 @@ export default function SegurancaAlimentarPage() {
                 </p>
               </div>
 
-              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border hover:border-secondary/20">
+              <div className="group bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-border hover:border-secondary/20">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <ClipboardCheck className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -168,7 +168,7 @@ export default function SegurancaAlimentarPage() {
                 </p>
               </div>
 
-              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border hover:border-secondary/20">
+              <div className="group bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-border hover:border-secondary/20">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <BookOpen className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -182,13 +182,13 @@ export default function SegurancaAlimentarPage() {
         </section>
 
         {/* Benefits Section */}
-        <section className="py-16 md:py-20">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+        <section className="py-16 md:py-20 mx-4 md:mx-0">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
                 Benefícios de um Sistema HACCP Eficaz
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
                 Implementar um sistema HACCP robusto não só garante a conformidade legal, 
                 mas também protege a sua marca e a saúde dos seus consumidores. Para uma proteção completa, 
                 é crucial integrar este sistema com uma <Link href="/servicos/formacao-certificada" className="text-secondary font-semibold hover:underline">Formação Certificada</Link> contínua 
@@ -196,8 +196,8 @@ export default function SegurancaAlimentarPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              <div className="group bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-border">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <ShieldCheck className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -207,7 +207,7 @@ export default function SegurancaAlimentarPage() {
                 </p>
               </div>
 
-              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border">
+              <div className="group bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-border">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <FileText className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -217,7 +217,7 @@ export default function SegurancaAlimentarPage() {
                 </p>
               </div>
 
-              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border">
+              <div className="group bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-border">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <Award className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -231,12 +231,12 @@ export default function SegurancaAlimentarPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="bg-secondary py-16 md:py-20 mx-6 md:mx-8 rounded-3xl mb-8">
-          <div className="container mx-auto px-6 max-w-5xl text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-6">
+        <section className="relative z-10 bg-secondary py-16 md:py-20 mx-4 md:mx-8 rounded-3xl mb-8">
+          <div className="container mx-auto px-6 md:px-8 max-w-5xl text-center">
+            <h2 className="text-2xl md:text-4xl font-bold text-primary-foreground mb-4 md:mb-6">
               Proteja o Seu Negócio e os Seus Clientes
             </h2>
-            <p className="text-lg text-primary-foreground/90 max-w-3xl mx-auto mb-8">
+            <p className="text-base md:text-lg text-primary-foreground/90 max-w-3xl mx-auto mb-8">
               A segurança alimentar não é uma opção, é uma obrigação. Contacte a MediSigma 
               para uma avaliação completa e descubra como podemos ajudar a sua empresa a 
               implementar um sistema HACCP eficaz e em conformidade com a lei.

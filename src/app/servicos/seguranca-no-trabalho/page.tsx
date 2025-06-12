@@ -48,17 +48,17 @@ export default function SegurancaNoTrabalhoPage() {
       
       <main className="min-h-screen bg-white flex flex-col divide-y divide-border">
         {/* Hero Section */}
-        <section className="relative py-16 md:py-24 mx-6 md:mx-8 rounded-3xl mb-8">
+        <section className="relative py-16 md:py-24 mx-4 md:mx-8 rounded-3xl mb-8">
           <div className="absolute inset-0 -z-10 pointer-events-none">
             <div className="animated-hero-background absolute inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,var(--background)_40%,var(--secondary)_100%)] rounded-3xl"></div>
           </div>
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <div>
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                   Segurança no Trabalho
                 </h1>
-                <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+                <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
                   O objetivo principal da Segurança do Trabalho é a prevenção de acidentes 
                   de trabalho e de doenças profissionais. A MediSigma assegura um serviço 
                   personalizado, altamente especializado e direcionado para as necessidades 
@@ -88,20 +88,20 @@ export default function SegurancaNoTrabalhoPage() {
         </section>
 
         {/* Key Factors Section */}
-        <section className="py-16 md:py-20">
-          <div className="container mx-auto px-6 max-w-6xl">
+        <section className="py-16 md:py-20 mx-4 md:mx-0">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
                 Fatores Chave para o Sucesso
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
                 A identificação, análise, avaliação e gestão dos riscos nos locais de trabalho 
                 constituem o fator chave para prevenir acidentes e doenças profissionais.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <div className="text-center p-6 bg-white rounded-xl shadow-lg border border-border">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+              <div className="text-center p-6 bg-white rounded-xl shadow-sm border border-border">
                 <div className="w-16 h-16 bg-secondary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <Search className="w-8 h-8 text-secondary" />
                 </div>
@@ -109,7 +109,7 @@ export default function SegurancaNoTrabalhoPage() {
                 <p className="text-gray-600 text-sm">Identificação precisa de todos os riscos presentes</p>
               </div>
 
-              <div className="text-center p-6 bg-white rounded-xl shadow-lg border border-border">
+              <div className="text-center p-6 bg-white rounded-xl shadow-sm border border-border">
                 <div className="w-16 h-16 bg-secondary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                   <BarChart className="w-8 h-8 text-secondary" />
                 </div>
@@ -324,8 +324,8 @@ export default function SegurancaNoTrabalhoPage() {
         </section>
 
         {/* CTA Section */}
-        <section id="cta-section" className="bg-secondary py-16 md:py-20 mx-6 md:mx-8 rounded-3xl mb-8">
-          <div className="container mx-auto px-6 max-w-5xl">
+        <section id="cta-section" className="relative z-10 bg-secondary py-16 md:py-20 mx-4 md:mx-8 rounded-3xl mb-8">
+          <div className="container mx-auto px-6 md:px-8 max-w-5xl">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="text-white">
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">

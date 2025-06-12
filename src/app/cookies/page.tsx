@@ -25,7 +25,7 @@ export default function PoliticaDeCookiesPage() {
         Política de Cookies
       </h1>
       <div className="prose dark:prose-invert max-w-none text-justify">
-        <p className="font-bold">Última atualização: 11 de Junho de 2024</p>
+                    <p className="font-bold">Última atualização: 11 de Junho de 2025</p>
         
         <p>A Medisigma (&quot;nós&quot;, &quot;nosso&quot;) utiliza cookies no nosso website (<a href="https://medisigma.pt">https://medisigma.pt</a>). Ao utilizar o nosso website, concorda com o uso de cookies em conformidade com esta Política de Cookies.</p>
 

@@ -1,25 +1,27 @@
 import { siteConfig } from "@/lib/config";
 import Link from "next/link";
+import { HeroVideoDialog } from "@/components/ui/hero-video-dialog";
 
 export function HeroSection() {
   const { hero } = siteConfig;
 
   return (
     <section id="hero" className="w-full relative">
+      {/* Seção principal com fundo azul */}
       <div className="relative flex flex-col items-center w-full px-6">
         <div className="absolute inset-0">
           <div className="animated-hero-background absolute inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,var(--background)_40%,var(--secondary)_100%)] rounded-b-xl"></div>
         </div>
-        <div className="relative z-10 pt-32 pb-10 max-w-3xl mx-auto h-full w-full flex flex-col gap-10 items-center justify-center">
+        <div className="relative z-10 pt-24 md:pt-32 pb-40 md:pb-40 max-w-5xl mx-auto h-full w-full flex flex-col gap-8 md:gap-10 items-center justify-center">
           <p className="border border-border bg-accent rounded-full text-sm h-8 px-3 flex items-center gap-2">
             {hero.badgeIcon}
             {hero.badge}
           </p>
-          <div className="flex flex-col items-center justify-center gap-5">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium tracking-tighter text-balance text-center text-primary">
+          <div className="flex flex-col items-center justify-center gap-4 md:gap-5">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-medium tracking-tighter text-balance text-center text-primary">
               {hero.title}
             </h1>
-            <p className="text-base md:text-lg text-center text-muted-foreground font-medium text-balance leading-relaxed tracking-tight">
+            <p className="text-sm md:text-base lg:text-lg text-center text-muted-foreground font-medium text-balance leading-relaxed tracking-tight">
               {hero.description}
             </p>
           </div>
@@ -30,9 +32,31 @@ export function HeroSection() {
             >
               {hero.cta.primary.text}
             </Link>
+            <Link
+              href="/servicos"
+              className="h-9 flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary px-4 bg-background border border-border hover:bg-accent active:scale-95 transition-colors"
+            >
+              Ver Serviços
+            </Link>
           </div>
         </div>
       </div>
+      
+      {/* Vídeo com espaçamento correto - não sobreposto */}
+      <div className="relative -mt-32 md:-mt-32 z-20 px-6">
+        <div className="max-w-4xl mx-auto">
+          <HeroVideoDialog
+            animationStyle="from-center"
+            videoSrc="https://www.youtube.com/embed/QcaxHAlYiTk"
+            thumbnailSrc="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+            thumbnailAlt="Vídeo Institucional Medisigma"
+            className="rounded-xl overflow-hidden shadow-2xl"
+          />
+        </div>
+      </div>
+      
+      {/* Espaçamento para compensar o overlap */}
+      <div className="h-32 md:h-32"></div>
     </section>
   );
 }

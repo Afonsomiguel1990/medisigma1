@@ -162,7 +162,7 @@ export function NavMenu() {
   return (
     <div className="w-full hidden md:block">
       <ul
-        className="relative mx-auto flex w-fit rounded-full h-11 px-2 items-center justify-center"
+        className="relative mx-auto flex w-fit rounded-full h-11 px-2 items-center justify-center max-w-full"
         ref={ref}
       >
         {navs.map((item) => {
@@ -177,11 +177,11 @@ export function NavMenu() {
           return (
             <li
               key={item.name}
-              className={`z-10 h-full flex items-center justify-center px-4 py-2 text-sm font-medium transition-colors duration-200 ${
+              className={`z-10 h-full flex items-center justify-center px-2 md:px-4 py-2 text-sm font-medium transition-colors duration-200 ${
                 isActive // Use combined isActive state
                   ? "text-primary"
                   : "text-primary/60 hover:text-primary"
-              } tracking-tight relative`}
+              } tracking-tight relative whitespace-nowrap`}
               onMouseEnter={() => handleMouseEnter(item)}
               onMouseLeave={handleMouseLeave}
             >
@@ -203,7 +203,7 @@ export function NavMenu() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
                         transition={{ duration: 0.15, ease: "easeOut" }}
-                        className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-80 bg-background/95 backdrop-blur-lg border border-border rounded-xl shadow-lg z-50 py-2"
+                        className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-80 bg-background/95 backdrop-blur-lg border border-border rounded-xl shadow-lg z-[9999] py-2"
                         onMouseEnter={handleDropdownMouseEnter}
                         onMouseLeave={handleDropdownMouseLeave}
                       >

@@ -66,7 +66,7 @@ const timelineEvents = [
     milestone: true
   },
   {
-    year: "2024",
+    year: "2025",
     title: "Futuro Sustentável",
     description: "Implementação de práticas sustentáveis, inovação contínua e preparação para expansão internacional.",
     milestone: true

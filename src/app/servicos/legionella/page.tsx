@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import { Metadata } from 'next';
 import { Droplet, ShieldCheck, Microscope, FileText, AlertTriangle, CheckCircle, Wind, Building, Thermometer, UserCheck } from 'lucide-react';
 import Link from 'next/link';
@@ -51,17 +50,17 @@ export default function LegionellaPage() {
       
       <main className="min-h-screen bg-white flex flex-col divide-y divide-border">
         {/* Hero Section */}
-        <section className="relative py-16 md:py-24 mx-6 md:mx-8 rounded-3xl mb-8">
+        <section className="relative py-16 md:py-24 mx-4 md:mx-8 rounded-3xl mb-8">
           <div className="absolute inset-0 -z-10 pointer-events-none">
             <div className="animated-hero-background absolute inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,var(--background)_40%,var(--secondary)_100%)] rounded-3xl"></div>
           </div>
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <div>
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                   Controlo e Prevenção de Legionella
                 </h1>
-                <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+                <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
                   A Legionella é um problema de saúde pública com uma clara relação com a colonização bacteriana em sistemas de água de grandes edifícios. A MediSigma desenvolve planos de prevenção e controlo para mitigar este risco.
                 </p>
                 <div className="flex justify-start">
@@ -74,13 +73,13 @@ export default function LegionellaPage() {
                 </div>
               </div>
               <div className="flex justify-center">
-                <Image 
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
                   src="https://images.unsplash.com/photo-1614927233212-0570b808698d?auto=format&fit=crop&q=80&w=1974" 
                   alt="Técnico a realizar colheita de água para análise de Legionella" 
                   width={500} 
                   height={400} 
                   className="rounded-lg shadow-xl"
-                  priority
                 />
               </div>
             </div>
@@ -88,14 +87,14 @@ export default function LegionellaPage() {
         </section>
 
         {/* What is Legionella Section */}
-        <section className="py-16 md:py-20">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <section className="py-16 md:py-20 mx-4 md:mx-0">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
                 <div>
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                    <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
                         O que é a Legionella?
                     </h2>
-                    <p className="text-lg text-gray-600 mb-6">
+                    <p className="text-base md:text-lg text-gray-600 mb-6">
                         É uma bactéria que habita em ambientes aquáticos, como rios e lagos, mas que se pode proliferar em sistemas de água artificiais. A sua inalação pode causar a &quot;Doença dos Legionários&quot;, uma forma de pneumonia grave.
                     </p>
                     <div className="space-y-4">
@@ -114,7 +113,8 @@ export default function LegionellaPage() {
                     </div>
                 </div>
                 <div className="flex justify-center">
-                    <Image 
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img 
                       src="https://plus.unsplash.com/premium_photo-1661963959934-54c80b3874d6?auto=format&fit=crop&q=80&w=2070" 
                       alt="Microscópio com imagem da bactéria Legionella" 
                       width={500} 
@@ -128,20 +128,20 @@ export default function LegionellaPage() {
         </section>
 
         {/* How we act Section */}
-        <section className="bg-accent py-16 md:py-20 mx-6 md:mx-8 rounded-3xl mb-8">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+        <section className="bg-accent py-16 md:py-20 mx-4 md:mx-8 rounded-3xl mb-8">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
                 Como Atuamos? O Nosso Plano de Ação
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
                 Elaboramos e implementamos o Plano de Prevenção e Controlo de Legionella (PPCL), 
                 em conformidade com a Lei n.º 52/2018, para garantir a segurança e o cumprimento legal da sua organização.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-indigo-200">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              <div className="group bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <FileText className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -150,7 +150,7 @@ export default function LegionellaPage() {
                   Desenvolvemos um Plano de Prevenção e Controlo de Legionella obrigatório e personalizado para a sua empresa.
                 </p>
               </div>
-              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-indigo-200">
+              <div className="group bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <ShieldCheck className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -159,7 +159,7 @@ export default function LegionellaPage() {
                   Realizamos o levantamento e a monitorização de pontos críticos, classificando o risco para definir medidas preventivas.
                 </p>
               </div>
-              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-indigo-200">
+              <div className="group bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <Microscope className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -168,7 +168,7 @@ export default function LegionellaPage() {
                   Efetuamos colheitas e análises de amostras (método cultural ou PCR) em parceria com laboratório acreditado.
                 </p>
               </div>
-              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-indigo-200">
+              <div className="group bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <UserCheck className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -177,7 +177,7 @@ export default function LegionellaPage() {
                   Acompanhamos as atualizações legais para prestar um serviço de aconselhamento coerente e que assegura o cumprimento.
                 </p>
               </div>
-              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-indigo-200">
+              <div className="group bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <Thermometer className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -186,7 +186,7 @@ export default function LegionellaPage() {
                   Acompanhamos os procedimentos técnicos de realização do Programa de Monitorização e Tratamento da Qualidade da Água.
                 </p>
               </div>
-              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-indigo-200">
+              <div className="group bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <Wind className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -200,14 +200,14 @@ export default function LegionellaPage() {
         </section>
 
         {/* Legal Framework Section */}
-        <section className="py-16 md:py-20">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <section className="py-16 md:py-20 mx-4 md:mx-0">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
                   Enquadramento Legal
                 </h2>
-                <p className="text-lg text-gray-600 mb-6">
+                <p className="text-base md:text-lg text-gray-600 mb-6">
                   A legislação portuguesa estabelece um regime rigoroso para a prevenção e controlo da Legionella, 
                   sendo crucial para as empresas cumprirem todas as diretivas para evitar coimas e garantir a saúde pública.
                 </p>
@@ -241,7 +241,8 @@ export default function LegionellaPage() {
               </div>
               
               <div className="flex justify-center">
-                <Image 
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
                   src="https://images.unsplash.com/photo-1589216532372-1c2a36790039?auto=format&fit=crop&q=80&w=2070" 
                   alt="Documentos legais sobre a prevenção de Legionella" 
                   width={500} 
@@ -255,7 +256,7 @@ export default function LegionellaPage() {
         </section>
 
         {/* CTA Section */}
-        <section id="contacto-legionella" className="bg-secondary py-16 md:py-20 mx-6 md:mx-8 rounded-3xl mb-8">
+        <section id="contacto-legionella" className="relative z-10 bg-secondary py-16 md:py-20 mx-4 md:mx-8 rounded-3xl mb-8">
           <div className="container mx-auto px-6 max-w-5xl">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="text-white">
@@ -305,7 +306,7 @@ export default function LegionellaPage() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-16 md:py-20 bg-gray-50 mx-6 md:mx-8 rounded-3xl mb-8">
+        <section className="py-16 md:py-20 bg-gray-50 mx-4 md:mx-8 rounded-3xl mb-8">
           <div className="container mx-auto px-6 max-w-4xl">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">
               Perguntas Frequentes

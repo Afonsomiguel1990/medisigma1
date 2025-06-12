@@ -19,33 +19,31 @@ export default function BlogCard({ slug, title, date, image, excerpt }: BlogCard
   });
 
   return (
-    <Card className="flex flex-col h-full overflow-hidden transition-shadow duration-300 hover:shadow-lg">
-      <CardHeader className="p-0">
-        <Link href={`/blog/${slug}`} className="block aspect-video relative">
-          {/* Usar next/image para otimização */}
+    <Card className="flex flex-col h-full overflow-hidden transition-shadow duration-300 hover:shadow-lg border-0 shadow-md rounded-lg p-0">
+      <div className="relative aspect-[16/10] overflow-hidden rounded-t-lg">
+        <Link href={`/blog/${slug}`} className="block w-full h-full">
           <Image
             src={image}
             alt={`Imagem de capa para ${title}`}
-            fill // Faz a imagem preencher o container
-            className="object-cover" // Garante que a imagem cubra a área sem distorcer
-            // Adicionar sizes para otimização responsiva, se necessário
-            // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            priority={false} // Marcar como false, apenas imagens acima da dobra devem ser priority
+            fill
+            className="object-cover transition-transform duration-300 hover:scale-105"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority={false}
           />
         </Link>
-      </CardHeader>
-      <CardContent className="p-4 flex-grow"> {/* flex-grow para empurrar o footer para baixo */}
-        <CardTitle className="mb-2 text-lg font-semibold leading-tight">
+      </div>
+      <CardContent className="p-6 flex-grow">
+        <CardTitle className="mb-3 text-lg font-semibold leading-tight">
           <Link href={`/blog/${slug}`} className="hover:text-primary transition-colors">
             {title}
           </Link>
         </CardTitle>
-        <p className="text-sm text-muted-foreground mb-3">{formattedDate}</p>
-        <p className="text-sm text-muted-foreground line-clamp-3"> {/* line-clamp limita o excerto a 3 linhas */}
+        <p className="text-sm text-muted-foreground mb-4">{formattedDate}</p>
+        <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
           {excerpt}
         </p>
       </CardContent>
-      <CardFooter className="p-4 pt-0"> {/* Remover padding-top para colar ao content */}
+      <CardFooter className="px-6 pb-6 pt-0">
         <Button asChild variant="link" className="p-0 h-auto">
           <Link href={`/blog/${slug}`}>
             Ler Mais <span aria-hidden="true" className="ml-1">→</span>

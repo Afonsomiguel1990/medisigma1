@@ -1,5 +1,6 @@
 import { Icons } from "@/components/icons";
 import { OrbitingCircles } from "@/components/ui/orbiting-circle";
+import { Droplet, ShieldCheck, Microscope, FileText, AlertTriangle, UserCheck, Wind, Building, Thermometer } from "lucide-react";
 
 export function SecondBentoAnimation() {
   return (
@@ -20,15 +21,27 @@ export function SecondBentoAnimation() {
             reverse
             speed={1}
           >
-            <Icons.extintor />
-            <Icons.documento />
-            <Icons.extintor />
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white/90 shadow-md text-secondary">
+              <Droplet className="w-6 h-6" />
+            </div>
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white/90 shadow-md text-secondary">
+              <ShieldCheck className="w-6 h-6" />
+            </div>
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white/90 shadow-md text-secondary">
+              <Microscope className="w-6 h-6" />
+            </div>
           </OrbitingCircles>
 
           <OrbitingCircles index={1} iconSize={60} speed={0.5}>
-            <Icons.workos />
-            <Icons.figma />
-            <Icons.figma />
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white/90 shadow-md text-secondary">
+              <FileText className="w-6 h-6" />
+            </div>
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white/90 shadow-md text-secondary">
+              <UserCheck className="w-6 h-6" />
+            </div>
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white/90 shadow-md text-secondary">
+              <Wind className="w-6 h-6" />
+            </div>
           </OrbitingCircles>
 
           <OrbitingCircles
@@ -38,9 +51,15 @@ export function SecondBentoAnimation() {
             reverse
             speed={0.5}
           >
-            <Icons.vercel />
-            <Icons.replit />
-            <Icons.figma />
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white/90 shadow-md text-secondary">
+              <Building className="w-6 h-6" />
+            </div>
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white/90 shadow-md text-secondary">
+              <Thermometer className="w-6 h-6" />
+            </div>
+            <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white/90 shadow-md text-secondary">
+              <AlertTriangle className="w-6 h-6" />
+            </div>
           </OrbitingCircles>
         </div>
       </div>

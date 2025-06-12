@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import { Metadata } from "next";
 import { Calendar, CheckCircle, Activity, Eye, Heart, Zap, UserCheck, Clipboard, Microscope, Headphones } from 'lucide-react'
 import Link from "next/link";
@@ -52,17 +51,17 @@ export default function MedicinaNoTrabalhoPage() {
       
       <main className="min-h-screen bg-white flex flex-col divide-y divide-border">
         {/* Hero Section */}
-        <section className="relative py-16 md:py-24 mx-6 md:mx-8 rounded-3xl mb-8">
+        <section className="relative py-16 md:py-24 mx-4 md:mx-8 rounded-3xl mb-8">
           <div className="absolute inset-0 -z-10 pointer-events-none">
             <div className="animated-hero-background absolute inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,var(--background)_40%,var(--secondary)_100%)] rounded-3xl"></div>
           </div>
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <div>
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                   Medicina no Trabalho
                 </h1>
-                <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+                <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
                   Prevenir os riscos ocupacionais significa desenvolver locais de trabalho saudáveis 
                   e contribuir ativamente para a proteção e promoção da saúde, valorizando os fatores 
                   individuais e psicossociais dos trabalhadores. A MediSigma assegura o cumprimento 
@@ -78,13 +77,13 @@ export default function MedicinaNoTrabalhoPage() {
                 </div>
               </div>
               <div className="flex justify-center">
-                <Image 
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
                   src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                   alt="Médico realizando exame médico no trabalho" 
                   width={500} 
                   height={400} 
                   className="rounded-lg shadow-xl"
-                  priority
                 />
               </div>
             </div>
@@ -92,13 +91,13 @@ export default function MedicinaNoTrabalhoPage() {
         </section>
 
         {/* Services Section */}
-        <section className="py-16 md:py-20">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+        <section className="py-16 md:py-20 mx-4 md:mx-0">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
                 Os nossos Serviços de Medicina no Trabalho
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
                 A MediSigma oferece serviços completos de medicina do trabalho com uma equipa 
                 altamente qualificada, constituída por médicos especializados, enfermeiros, 
                 psicólogos e técnicos especializados, garantindo a vigilância da saúde dos 
@@ -106,9 +105,9 @@ export default function MedicinaNoTrabalhoPage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
               {/* Exames Admissionais */}
-              <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200">
+              <div className="group bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-blue-200">
                 <div className="flex items-center justify-center w-16 h-16 bg-secondary/10 rounded-2xl mb-6 group-hover:bg-secondary/20 transition-colors duration-300">
                   <UserCheck className="w-8 h-8 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -134,7 +133,7 @@ export default function MedicinaNoTrabalhoPage() {
               </div>
 
               {/* Exames Periódicos */}
-              <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200">
+              <div className="group bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-blue-200">
                 <div className="flex items-center justify-center w-16 h-16 bg-secondary/10 rounded-2xl mb-6 group-hover:bg-secondary/20 transition-colors duration-300">
                   <Calendar className="w-8 h-8 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -160,7 +159,7 @@ export default function MedicinaNoTrabalhoPage() {
               </div>
 
               {/* Exames Ocasionais */}
-              <div className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200">
+              <div className="group bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-blue-200">
                 <div className="flex items-center justify-center w-16 h-16 bg-secondary/10 rounded-2xl mb-6 group-hover:bg-secondary/20 transition-colors duration-300">
                   <Activity className="w-8 h-8 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -189,21 +188,21 @@ export default function MedicinaNoTrabalhoPage() {
         </section>
 
         {/* Detailed Exams Section */}
-        <section className="bg-accent py-16 md:py-20 mx-6 md:mx-8 rounded-3xl mb-8">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+        <section className="bg-accent py-16 md:py-20 mx-4 md:mx-8 rounded-3xl mb-8">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
                 Exames Complementares Disponíveis
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
                 Dispondo de equipamentos médicos de última geração, oferecemos uma vasta gama 
                 de exames complementares para uma avaliação médica completa e rigorosa.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {/* ECG */}
-              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-indigo-200">
+              <div className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <Heart className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -215,7 +214,7 @@ export default function MedicinaNoTrabalhoPage() {
               </div>
 
               {/* Oftalmologia */}
-              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-indigo-200">
+              <div className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <Eye className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -227,7 +226,7 @@ export default function MedicinaNoTrabalhoPage() {
               </div>
 
               {/* Análises */}
-              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-indigo-200">
+              <div className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <Microscope className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -239,7 +238,7 @@ export default function MedicinaNoTrabalhoPage() {
               </div>
 
               {/* Espirometria */}
-              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-indigo-200">
+              <div className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <Zap className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -251,7 +250,7 @@ export default function MedicinaNoTrabalhoPage() {
               </div>
 
               {/* Audiometria */}
-              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-indigo-200">
+              <div className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <Headphones className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -263,7 +262,7 @@ export default function MedicinaNoTrabalhoPage() {
               </div>
 
               {/* Urina */}
-              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-indigo-200">
+              <div className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <Clipboard className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
@@ -278,14 +277,14 @@ export default function MedicinaNoTrabalhoPage() {
         </section>
 
         {/* Ficha de Aptidão Section */}
-        <section className="py-16 md:py-20">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <section className="py-16 md:py-20 mx-4 md:mx-0">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
                   Ficha de Aptidão
                 </h2>
-                <p className="text-lg text-gray-600 mb-6">
+                <p className="text-base md:text-lg text-gray-600 mb-6">
                   A Ficha de Aptidão é o documento que evidencia a aptidão do trabalhador 
                   para o desempenho das suas funções. De acordo com o art.º 110 da Lei n.º 102/2009, 
                   de 10 de setembro, face aos resultados dos exames médicos, o Médico do Trabalho 
@@ -377,8 +376,8 @@ export default function MedicinaNoTrabalhoPage() {
         </section>
 
         {/* Mobile Health Section */}
-        <section className="bg-gray-50 py-16 md:py-20 mx-6 md:mx-8 rounded-3xl mb-8">
-          <div className="container mx-auto px-6 max-w-6xl">
+        <section className="bg-gray-50 py-16 md:py-20 mx-4 md:mx-8 rounded-3xl mb-8">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
@@ -405,7 +404,8 @@ export default function MedicinaNoTrabalhoPage() {
                 </ul>
               </div>
               <div className="flex justify-center">
-                <Image 
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
                   src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                   alt="Unidade móvel de medicina do trabalho MediSigma" 
                   width={500} 
@@ -419,14 +419,14 @@ export default function MedicinaNoTrabalhoPage() {
         </section>
 
         {/* Benefits Section */}
-        <section className="py-16 md:py-20">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <section className="py-16 md:py-20 mx-4 md:mx-0">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
                   Vantagens da Medicina no Trabalho
                 </h2>
-                <p className="text-gray-700 mb-6 leading-relaxed">
+                <p className="text-base md:text-lg text-gray-700 mb-6 leading-relaxed">
                   Investir na saúde ocupacional é fundamental para o sucesso e sustentabilidade 
                   de qualquer empresa. Um serviço de medicina do trabalho eficaz, em conjunto com a <Link href="/servicos/seguranca-no-trabalho" className="text-secondary font-semibold hover:underline">Segurança no Trabalho</Link>, oferece inúmeros benefícios.
                 </p>
@@ -463,7 +463,8 @@ export default function MedicinaNoTrabalhoPage() {
                 </div>
               </div>
               <div className="flex justify-center">
-                <Image 
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
                   src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                   alt="Benefícios da medicina no trabalho para empresas" 
                   width={500} 
@@ -477,19 +478,19 @@ export default function MedicinaNoTrabalhoPage() {
         </section>
 
         {/* Process Section */}
-        <section className="py-16 md:py-20">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+        <section className="py-16 md:py-20 mx-4 md:mx-0">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
                 Como Funciona o Nosso Processo
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
                 Um processo estruturado e eficiente para garantir a melhor vigilância 
                 da saúde dos seus colaboradores.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-4 gap-8">
+            <div className="grid md:grid-cols-4 gap-6 md:gap-8">
               <div className="text-center">
                 <div className="w-16 h-16 bg-secondary text-white rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
                   1
@@ -526,8 +527,8 @@ export default function MedicinaNoTrabalhoPage() {
         </section>
 
         {/* CTA Section */}
-        <section id="cta-section" className="bg-secondary py-16 md:py-20 mx-6 md:mx-8 rounded-3xl mb-8">
-          <div className="container mx-auto px-6 max-w-5xl">
+        <section id="cta-section" className="relative z-10 bg-secondary py-16 md:py-20 mx-4 md:mx-8 rounded-3xl mb-8">
+          <div className="container mx-auto px-6 md:px-8 max-w-5xl">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="text-white">
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
@@ -663,8 +664,8 @@ export default function MedicinaNoTrabalhoPage() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-16 md:py-20 bg-gray-50 mx-6 md:mx-8 rounded-3xl mb-8">
-          <div className="container mx-auto px-6 max-w-4xl">
+        <section className="py-16 md:py-20 bg-gray-50 mx-4 md:mx-8 rounded-3xl mb-8">
+          <div className="container mx-auto px-6 md:px-8 max-w-4xl">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">
               Perguntas Frequentes
             </h2>

@@ -48,7 +48,7 @@ export const siteConfig = {
   },
   nav: {
     links: [
-      { id: 1, name: "Home", href: "#hero" },
+      { id: 1, name: "Início", href: "/" },
       { id: 2, name: "Sobre Nós", href: "/sobre-nos" },
       { id: 3, name: "Serviços", href: "#features" },
       { id: 4, name: "Artigos", href: "/blog" },
@@ -952,7 +952,7 @@ export const siteConfig = {
     {
       title: "Empresa",
       links: [
-        { id: 1, title: "Home", url: "/" },
+        { id: 1, title: "Início", url: "/" },
         { id: 2, title: "Sobre Nós", url: "/sobre-nos" },
         { id: 3, title: "Casos de Sucesso", url: "/casos-de-sucesso" },
         { id: 4, title: "Testemunhos", url: "/testemunhos" },
@@ -976,13 +976,14 @@ export const siteConfig = {
     {
       title: "Apoio ao Cliente",
       links: [
-        { id: 1, title: "Bolsa de Recrutamento", url: "/recrutamento" },
-        { id: 2, title: "FAQs", url: "/faqs" },
-        { id: 3, title: "Política de Privacidade", url: "/politica-de-privacidade" },
-        { id: 4, title: "Termos e Condições", url: "/termos-e-condicoes" },
-        { id: 5, title: "Política de Cookies", url: "/cookies" },
-        { id: 6, title: "Resolução de Litígios", url: "/resolucao-litigios" },
-        { id: 7, title: "Livro de Reclamações", url: "https://www.livroreclamacoes.pt/Inicio/" },
+        { id: 1, title: "Newsletter", url: "#newsletter" },
+        { id: 2, title: "Bolsa de Recrutamento", url: "/recrutamento" },
+        { id: 3, title: "FAQs", url: "/faqs" },
+        { id: 4, title: "Política de Privacidade", url: "/politica-de-privacidade" },
+        { id: 5, title: "Termos e Condições", url: "/termos-e-condicoes" },
+        { id: 6, title: "Política de Cookies", url: "/cookies" },
+        { id: 7, title: "Resolução de Litígios", url: "/resolucao-litigios" },
+        { id: 8, title: "Livro de Reclamações", url: "https://www.livroreclamacoes.pt/Inicio/" },
       ],
     },
   ],

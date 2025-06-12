@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import { Metadata } from 'next';
 import { ShieldCheck, FileText, Users, Zap, DoorOpen, DraftingCompass, CheckCircle, Calendar, RefreshCw } from 'lucide-react';
 import Link from 'next/link';
@@ -62,18 +61,20 @@ export default function SegurancaIncendiosPage() {
       
       <main className="min-h-screen bg-white flex flex-col divide-y divide-border">
         {/* Hero Section */}
-        <section className="relative py-16 md:py-24 mx-6 md:mx-8 rounded-3xl">
-          <div className="absolute inset-0">
+        <section className="relative py-16 md:py-24 mx-4 md:mx-8 rounded-3xl mb-8">
+          <div className="absolute inset-0 -z-10 pointer-events-none">
             <div className="animated-hero-background absolute inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,var(--background)_40%,var(--secondary)_100%)] rounded-3xl"></div>
           </div>
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <div>
-                <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">
-                  Segurança Contra Incêndios em Edifícios (SCIE)
+                <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                  Segurança Contra Incêndios
                 </h1>
-                <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                  Asseguramos a manutenção das condições de segurança definidas na legislação ao longo do tempo de vida do seu edifício, com serviços completos de SCIE.
+                <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
+                  Protegemos vidas e património através de soluções integrais de segurança contra incêndios. 
+                  Desde a conceção até à manutenção, garantimos o cumprimento de todas as normas 
+                  de segurança e a máxima proteção das suas instalações.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a 
@@ -93,7 +94,8 @@ export default function SegurancaIncendiosPage() {
                 </div>
               </div>
               <div className="lg:text-right">
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src="/images/seguranca-incendios-hero.jpg"
                   alt="Equipamentos de segurança contra incêndios, incluindo extintores e sinalização"
                   width={600}
@@ -107,8 +109,17 @@ export default function SegurancaIncendiosPage() {
         </section>
 
         {/* Projetos e Medidas Section */}
-        <section className="py-16 md:py-20">
-          <div className="container mx-auto px-6 max-w-6xl">
+        <section className="py-16 md:py-20 mx-4 md:mx-0">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
+                Os Nossos Serviços
+              </h2>
+              <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+                Oferecemos soluções completas de segurança contra incêndios, abrangendo todas as fases do projeto.
+              </p>
+            </div>
+
             <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div>
                     <h2 className="text-3xl font-bold text-primary mb-6">
@@ -134,7 +145,8 @@ export default function SegurancaIncendiosPage() {
                     </div>
                 </div>
               <div>
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src="/images/medidas-autoprotecao.jpg"
                   alt="Técnico a inspecionar um plano de evacuação de incêndio"
                   width={500}
@@ -148,7 +160,7 @@ export default function SegurancaIncendiosPage() {
         </section>
 
         {/* Processo Section */}
-        <section className="bg-accent py-16 md:py-20 mx-6 md:mx-8 rounded-3xl">
+        <section className="bg-accent py-16 md:py-20 mx-4 md:mx-8 rounded-3xl">
             <div className="container mx-auto px-6 max-w-6xl">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold text-primary">O Nosso Processo</h2>
@@ -185,7 +197,8 @@ export default function SegurancaIncendiosPage() {
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src="/images/extintores-manutencao.jpg"
                   alt="Extintores de incêndio alinhados e prontos para manutenção"
                   width={500}
@@ -267,15 +280,14 @@ export default function SegurancaIncendiosPage() {
         </section>
         
         {/* CTA Section */}
-        <section className="bg-secondary py-16 md:py-20 mx-6 md:mx-8 rounded-3xl mb-8">
-          <div className="container mx-auto px-6 max-w-5xl text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-6">
-              Garanta a Conformidade e Segurança do Seu Edifício
+        <section className="relative z-10 bg-secondary py-16 md:py-20 mx-4 md:mx-8 rounded-3xl mb-8">
+          <div className="container mx-auto px-6 md:px-8 max-w-5xl text-center">
+            <h2 className="text-2xl md:text-4xl font-bold text-primary-foreground mb-4 md:mb-6">
+              Proteja o Seu Património
             </h2>
-            <p className="text-lg text-primary-foreground/90 max-w-3xl mx-auto mb-8">
-              A segurança contra incêndios é uma responsabilidade crítica. Contacte a MediSigma para 
-              uma consulta e garanta que o seu espaço está em total conformidade com a legislação e 
-              pronto para responder a qualquer emergência.
+            <p className="text-base md:text-lg text-primary-foreground/90 max-w-3xl mx-auto mb-8">
+              A segurança contra incêndios não é uma opção, é uma necessidade. Contacte-nos para uma 
+              avaliação completa e descubra como podemos proteger as suas instalações.
             </p>
             <a 
               href="https://wa.me/351938698260?text=Olá%2C%20estava%20no%20vosso%20website%20e%20gostaria%20de%20ter%20mais%20informações%20sobre%20Segurança%20Contra%20Incêndios." 

@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import { Metadata } from 'next';
 import { ShieldCheck, SprayCan, Building, CheckCircle, Eye, Search, Zap, Target, Shield, FileText } from 'lucide-react';
 import Link from 'next/link';
@@ -80,17 +79,17 @@ export default function ControloPragasPage() {
       
       <main className="min-h-screen bg-white flex flex-col divide-y divide-border">
         {/* Hero Section */}
-        <section className="relative py-16 md:py-24 mx-6 md:mx-8 rounded-3xl">
+        <section className="relative py-16 md:py-24 mx-4 md:mx-8 rounded-3xl">
           <div className="absolute inset-0">
             <div className="animated-hero-background absolute inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,var(--background)_40%,var(--secondary)_100%)] rounded-3xl"></div>
           </div>
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <div>
-                <h1 className="text-4xl md:text-5xl font-bold text-primary mb-6">
+                <h1 className="text-3xl md:text-5xl font-bold text-primary mb-6">
                   Controlo de Pragas Urbanas
                 </h1>
-                <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+                <p className="text-lg md:text-xl text-muted-foreground mb-8 leading-relaxed">
                   Sistema integrado que inclui medidas preventivas e correctivas para manter as espécies que causam pragas em níveis que não conduzem à ocorrência de problemas significativos.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -111,7 +110,8 @@ export default function ControloPragasPage() {
                 </div>
               </div>
               <div className="lg:text-right">
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src="/images/controlo-pragas-hero.jpg"
                   alt="Técnico especializado em controlo de pragas a realizar inspeção"
                   width={600}
@@ -125,20 +125,20 @@ export default function ControloPragasPage() {
         </section>
 
         {/* O Que É o Controlo Integrado de Pragas */}
-        <section className="py-16 md:py-20">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
+        <section className="py-16 md:py-20 mx-4 md:mx-0">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-2xl md:text-4xl font-bold text-primary mb-4 md:mb-6">
                 Controlo Integrado de Pragas
               </h2>
-              <p className="text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+              <p className="text-base md:text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
                 O controlo de pragas urbanas é um sistema que inclui medidas preventivas e correctivas para manter as espécies nocivas em níveis que não causam problemas significativos. Este serviço é um pré-requisito essencial para qualquer sistema de <Link href="/servicos/seguranca-alimentar" className="text-secondary font-semibold hover:underline">Segurança Alimentar (HACCP)</Link>.
               </p>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center mb-12 md:mb-16">
               <div>
-                <h3 className="text-2xl font-semibold text-primary mb-4">
+                <h3 className="text-xl md:text-2xl font-semibold text-primary mb-4">
                   Abordagem Optimizada
                 </h3>
                 <p className="text-muted-foreground mb-6 leading-relaxed">
@@ -161,7 +161,8 @@ export default function ControloPragasPage() {
                 </div>
               </div>
               <div>
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src="/images/controlo-integrado-pragas.jpg"
                   alt="Diagrama do controlo integrado de pragas"
                   width={500}
@@ -175,19 +176,19 @@ export default function ControloPragasPage() {
         </section>
 
         {/* Tipos de Acções */}
-        <section className="bg-accent py-16 md:py-20 mx-6 md:mx-8 rounded-3xl">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+        <section className="bg-accent py-16 md:py-20 mx-4 md:mx-8 rounded-3xl">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-2xl md:text-4xl font-bold text-primary mb-4">
                 Os Nossos Tipos de Acção
               </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
                 Para garantir a segurança dos alimentos e a sua segurança, implementamos três tipos distintos de acções.
               </p>
             </div>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-6 md:gap-8">
               {[
-                                 {
+                {
                    icon: Shield,
                    title: "Acções Preventivas",
                    description: "Medidas proactivas para evitar o aparecimento e desenvolvimento de pragas no ambiente."
@@ -202,10 +203,10 @@ export default function ControloPragasPage() {
                    title: "Acções de Eliminação",
                    description: "Eliminação completa e eficaz de infestações através de métodos certificados."
                  }
-                             ].map((action) => {
+              ].map((action) => {
                  const Icon = action.icon;
                  return (
-                   <div key={action.title} className="bg-white p-8 rounded-xl shadow-lg border border-border text-center">
+                   <div key={action.title} className="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-border text-center">
                      <div className="w-16 h-16 bg-secondary/10 rounded-lg flex items-center justify-center mx-auto mb-6">
                        <Icon className="w-8 h-8 text-secondary" />
                      </div>
@@ -219,17 +220,17 @@ export default function ControloPragasPage() {
         </section>
 
         {/* Principais Serviços */}
-        <section className="py-16 md:py-20">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+        <section className="py-16 md:py-20 mx-4 md:mx-0">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-2xl md:text-4xl font-bold text-primary mb-4">
                 Os Nossos Principais Serviços
               </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
                 Técnicos qualificados e produtos autorizados pela Direção-Geral da Saúde garantem resultados eficazes.
               </p>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {[
                 {
                   icon: Eye,
@@ -264,7 +265,7 @@ export default function ControloPragasPage() {
               ].map((service) => {
                 const Icon = service.icon;
                 return (
-                  <div key={service.title} className="bg-white p-6 rounded-xl shadow-lg border border-border">
+                  <div key={service.title} className="bg-white p-6 rounded-xl shadow-sm border border-border">
                     <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
                       <Icon className="w-6 h-6 text-secondary" />
                     </div>
@@ -278,14 +279,14 @@ export default function ControloPragasPage() {
         </section>
 
         {/* HACCP e Segurança Alimentar */}
-        <section className="bg-accent py-16 md:py-20 mx-6 md:mx-8 rounded-3xl">
-          <div className="container mx-auto px-6 max-w-6xl">
+        <section className="bg-accent py-16 md:py-20 mx-4 md:mx-8 rounded-3xl">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">
+                <h2 className="text-2xl md:text-4xl font-bold text-primary mb-4 md:mb-6">
                   HACCP e Segurança Alimentar
                 </h2>
-                <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+                <p className="text-base md:text-lg text-muted-foreground mb-6 leading-relaxed">
                   O Grupo MEDISIGMA, para dar resposta às suas necessidades e aos pré-requisitos para a implementação e funcionamento do plano de HACCP, tem técnicos qualificados na área de controlo de pragas urbanas.
                 </p>
                 <div className="space-y-4">
@@ -304,7 +305,8 @@ export default function ControloPragasPage() {
                 </div>
               </div>
               <div>
-                <Image
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src="/images/haccp-seguranca-alimentar.jpg"
                   alt="Técnico MEDISIGMA implementando plano HACCP"
                   width={500}
@@ -318,13 +320,13 @@ export default function ControloPragasPage() {
         </section>
 
         {/* Porque Escolher a MEDISIGMA */}
-        <section className="py-16 md:py-20">
-          <div className="container mx-auto px-6 max-w-6xl">
+        <section className="py-16 md:py-20 mx-4 md:mx-0">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+              <h2 className="text-2xl md:text-4xl font-bold text-primary mb-4">
                 Porque Escolher a MEDISIGMA?
               </h2>
-              <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
                 Experiência, qualificação e compromisso com a excelência em cada intervenção.
               </p>
             </div>
@@ -360,9 +362,9 @@ export default function ControloPragasPage() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-16 md:py-20 bg-accent mx-6 md:mx-8 rounded-3xl">
-          <div className="container mx-auto px-6 max-w-4xl">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-12 text-center">
+        <section className="py-16 md:py-20 bg-accent mx-4 md:mx-8 rounded-3xl">
+          <div className="container mx-auto px-6 md:px-8 max-w-4xl">
+            <h2 className="text-2xl md:text-4xl font-bold text-primary mb-8 md:mb-12 text-center">
               Perguntas Frequentes
             </h2>
             
@@ -407,12 +409,12 @@ export default function ControloPragasPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="bg-secondary py-16 md:py-20 mx-6 md:mx-8 rounded-3xl">
-          <div className="container mx-auto px-6 max-w-5xl text-center text-white">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+        <section className="relative z-10 bg-secondary py-16 md:py-20 mx-4 md:mx-8 rounded-3xl">
+          <div className="container mx-auto px-6 md:px-8 max-w-5xl text-center text-white">
+            <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6">
               Proteja o seu Espaço de Pragas
             </h2>
-            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-base md:text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
               Ambientes livres de pragas são essenciais para a saúde e segurança de todos. A nossa equipa especializada está pronta para criar um plano de controlo à medida das suas necessidades.
             </p>
             <Link href="/contact" className="bg-white text-secondary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-center">

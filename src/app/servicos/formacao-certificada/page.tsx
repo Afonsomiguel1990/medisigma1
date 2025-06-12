@@ -47,20 +47,20 @@ export default function FormacaoCertificadaPage() {
       
       <main className="min-h-screen bg-white flex flex-col divide-y divide-border">
         {/* Hero Section */}
-        <section className="relative py-16 md:py-24 mx-6 md:mx-8 rounded-3xl mb-8">
+        <section className="relative py-16 md:py-24 mx-4 md:mx-8 rounded-3xl mb-8">
           <div className="absolute inset-0">
             <div className="animated-hero-background absolute inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,var(--background)_40%,var(--secondary)_100%)] rounded-3xl"></div>
           </div>
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <div>
                 <div className="inline-block bg-white text-secondary font-semibold py-1 px-3 rounded-full text-sm mb-4 border border-border">
                     Entidade Formadora Certificada DGERT
                 </div>
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                   Formação Certificada à Medida
                 </h1>
-                <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+                <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
                   Elaboramos ações de formação específicas de acordo com as necessidades da sua empresa. Para além dos cursos previstos no nosso plano, desenhamos programas para ir ao encontro das suas metas.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -87,17 +87,17 @@ export default function FormacaoCertificadaPage() {
         </section>
 
         {/* Certified Areas Section */}
-        <section className="py-16 md:py-20">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+        <section className="py-16 md:py-20 mx-4 md:mx-0">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
                 Áreas de Formação Certificadas pela DGERT
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
                 Somos certificados em 3 áreas fundamentais para a saúde e segurança de qualquer organização. A nossa formação é um complemento essencial para serviços como a <Link href="/servicos/seguranca-no-trabalho" className="text-secondary font-semibold hover:underline">Segurança no Trabalho</Link> e a <Link href="/servicos/seguranca-alimentar" className="text-secondary font-semibold hover:underline">Segurança Alimentar</Link>, garantindo a máxima qualidade e reconhecimento.
               </p>
             </div>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-6 md:gap-8">
               {[
                 { icon: HeartPulse, area: "729", title: "Saúde", description: "Formações essenciais para a resposta a emergências médicas e promoção do bem-estar." },
                 { icon: Users, area: "861", title: "Proteção de Pessoas e Bens", description: "Cursos focados na prevenção de riscos e na organização de equipas de emergência." },
@@ -105,7 +105,7 @@ export default function FormacaoCertificadaPage() {
               ].map((area) => {
                 const Icon = area.icon;
                 return (
-                  <div key={area.title} className="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-secondary/20">
+                  <div key={area.title} className="group bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-secondary/20">
                     <div className="flex items-center justify-center w-16 h-16 bg-secondary/10 rounded-2xl mb-6 group-hover:bg-secondary/20 transition-colors duration-300">
                       <Icon className="w-8 h-8 text-secondary group-hover:scale-110 transition-transform duration-300" />
                     </div>
@@ -120,19 +120,19 @@ export default function FormacaoCertificadaPage() {
         </section>
 
         {/* Detailed Courses Section */}
-        <section className="bg-accent py-16 md:py-20 mx-6 md:mx-8 rounded-3xl mb-8">
-          <div className="container mx-auto px-6 max-w-7xl">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+        <section className="bg-accent py-16 md:py-20 mx-4 md:mx-8 rounded-3xl mb-8">
+          <div className="container mx-auto px-6 md:px-8 max-w-7xl">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
                 O Nosso Catálogo de Cursos
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
                 Explore a nossa oferta formativa. As formações assinaladas com * podem ser ajustadas às necessidades específicas da sua empresa.
               </p>
             </div>
-            <div className="space-y-12">
+            <div className="space-y-8 md:space-y-12">
               {/* Area 729 */}
-              <div className="bg-white p-8 rounded-xl shadow-lg border border-border">
+              <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-border">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Área 729 – Saúde</h3>
                 <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">
                   {["Primeiros Socorros*", "Primeiros Socorros Pediátricos*", "Prevenção de Riscos Psicossociais: Comunicação"].map(course => (
@@ -145,7 +145,7 @@ export default function FormacaoCertificadaPage() {
               </div>
 
               {/* Area 861 */}
-              <div className="bg-white p-8 rounded-xl shadow-lg border border-border">
+              <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-border">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Área 861 – Proteção de Pessoas e Bens</h3>
                 <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">
                   {["Ergonomia do Trabalho", "Organização de Emergência*"].map(course => (
@@ -158,7 +158,7 @@ export default function FormacaoCertificadaPage() {
               </div>
 
               {/* Area 862 */}
-              <div className="bg-white p-8 rounded-xl shadow-lg border border-border">
+              <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-border">
                 <h3 className="text-2xl font-bold text-gray-900 mb-6">Área 862 – Segurança e Higiene</h3>
                 <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-3">
                   {[
@@ -181,11 +181,11 @@ export default function FormacaoCertificadaPage() {
         </section>
 
         {/* Benefits Section */}
-        <section className="py-16 md:py-20">
-          <div className="container mx-auto px-6 max-w-6xl">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <section className="py-16 md:py-20 mx-4 md:mx-0">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
                   Vantagens da Formação Certificada
                 </h2>
                 <div className="space-y-6">
@@ -233,14 +233,14 @@ export default function FormacaoCertificadaPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="bg-secondary py-16 md:py-20 mx-6 md:mx-8 rounded-3xl mb-8">
-          <div className="container mx-auto px-6 max-w-5xl">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <section className="relative z-10 bg-secondary py-16 md:py-20 mx-4 md:mx-8 rounded-3xl mb-8">
+          <div className="container mx-auto px-6 md:px-8 max-w-5xl">
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <div className="text-white">
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                <h2 className="text-2xl md:text-4xl font-bold mb-4 md:mb-6">
                   Vamos Criar o Seu Plano de Formação?
                 </h2>
-                <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+                <p className="text-base md:text-xl text-blue-100 mb-8 leading-relaxed">
                   Com base no nosso plano ou em necessidades específicas, apresentamos uma proposta concreta que inclui programa, duração e custos.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">

@@ -101,7 +101,15 @@ export function Navbar() {
       return;
     }
 
-    // Para outros itens, comportamento normal
+    // Verificar se é um link de página (não âncora)
+    if (!item.href.startsWith("#")) {
+      // É um link de página, deixar o comportamento padrão
+      setIsDrawerOpen(false);
+      return;
+    }
+
+    // Para links de âncora (#section)
+    e.preventDefault();
     const element = document.getElementById(item.href.substring(1));
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -120,6 +128,7 @@ export function Navbar() {
         initial={{ width: INITIAL_WIDTH }}
         animate={{ width: hasScrolled ? MAX_WIDTH : INITIAL_WIDTH }}
         transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+        style={{ overflow: "visible" }}
       >
         <div
           className={cn(
@@ -129,14 +138,16 @@ export function Navbar() {
               : "shadow-none px-7",
           )}
         >
-          <div className="flex h-[56px] items-center justify-between p-4">
-            <Link href="/" className="flex items-center gap-3">
+          <div className="flex h-[56px] items-center pl-0 pr-4 py-4">
+            <Link href="/" className="flex items-center gap-3 mr-8 -ml-2">
               <Icons.logo className="size-30 md:size-45" />
             </Link>
 
-            <NavMenu />
+            <div className="flex-1 flex justify-center min-w-0">
+              <NavMenu />
+            </div>
 
-            <div className="flex flex-row items-center gap-1 md:gap-3 shrink-0">
+            <div className="flex flex-row items-center gap-1 md:gap-3 shrink-0 ml-2">
               <div className="flex items-center space-x-2 md:space-x-4">
                 <Link
                   href={siteConfig.hero.cta.secondary.href}
@@ -252,10 +263,9 @@ export function Navbar() {
                             </AnimatePresence>
                           </div>
                         ) : (
-                          <a
+                          <Link
                             href={item.href}
                             onClick={(e) => {
-                              e.preventDefault();
                               handleMobileNavClick(item, e);
                             }}
                             className={`block p-2.5 underline-offset-4 hover:text-primary/80 transition-colors ${
@@ -265,7 +275,7 @@ export function Navbar() {
                             }`}
                           >
                             {item.name}
-                          </a>
+                          </Link>
                         )}
                       </motion.li>
                     ))}

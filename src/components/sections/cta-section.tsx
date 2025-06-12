@@ -8,10 +8,10 @@ export function CTASection() {
   return (
     <section
       id="cta"
-      className="w-full flex flex-col items-center justify-center py-8 md:py-12"
+      className="w-full flex flex-col items-center justify-center py-0"
     >
       <div
-        className="h-[220px] md:h-[220px] overflow-hidden shadow-xl w-full border border-border rounded-xl relative z-20 flex items-center justify-center"
+        className="h-[220px] md:h-[220px] overflow-hidden shadow-sm w-full relative z-20 flex items-center justify-center rounded-xl"
         style={{ backgroundColor: "#FFE03A" }}
       >
         <div className="flex flex-col items-center justify-center w-full">

@@ -10,7 +10,7 @@
    - Bento Grid com pilares da jornada  
    - Estatísticas da empresa (20+ anos, 5000+ empresas, etc.)
    - Missão, valores e equipa
-   - Timeline histórica (2002-2024)
+   - Timeline histórica (2002-2025)
    - Certificações e reconhecimentos
    - CTA para contacto
 
@@ -55,4 +55,4 @@
 4. **UX otimizada:** Navegação simplificada com menos páginas duplicadas
 
 ---
-**Última atualização:** Dezembro 2024 
+**Última atualização:** Dezembro 2025 

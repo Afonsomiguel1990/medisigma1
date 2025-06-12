@@ -105,7 +105,7 @@ export default function ControloPragasPage() {
               <div className="lg:text-right">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/controlo-pragas-hero.jpg"
+                  src="/images/uploads/servicos/tecnico-de-pragas.png"
                   alt="Técnico especializado em controlo de pragas a realizar inspeção"
                   width={600}
                   height={400}
@@ -156,8 +156,8 @@ export default function ControloPragasPage() {
               <div>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/controlo-integrado-pragas.jpg"
-                  alt="Diagrama do controlo integrado de pragas"
+                  src="/images/uploads/servicos/tecnico-de-pragas-2.png"
+                  alt="Técnico especializado realizando controlo integrado de pragas"
                   width={500}
                   height={400}
                   className="rounded-xl shadow-lg"
@@ -300,8 +300,8 @@ export default function ControloPragasPage() {
               <div>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/haccp-seguranca-alimentar.jpg"
-                  alt="Técnico MEDISIGMA implementando plano HACCP"
+                  src="/images/uploads/servicos/haccp.png"
+                  alt="Implementação de plano HACCP e segurança alimentar"
                   width={500}
                   height={400}
                   className="rounded-xl shadow-lg"

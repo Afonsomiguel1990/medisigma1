@@ -75,7 +75,7 @@ export default function LegionellaPage() {
               <div className="flex justify-center">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
-                  src="https://images.unsplash.com/photo-1614927233212-0570b808698d?auto=format&fit=crop&q=80&w=1974" 
+                  src="/images/uploads/servicos/legionella-recolher-amostra.png" 
                   alt="Técnico a realizar colheita de água para análise de Legionella" 
                   width={500} 
                   height={400} 
@@ -243,8 +243,8 @@ export default function LegionellaPage() {
               <div className="flex justify-center">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
-                  src="https://images.unsplash.com/photo-1589216532372-1c2a36790039?auto=format&fit=crop&q=80&w=2070" 
-                  alt="Documentos legais sobre a prevenção de Legionella" 
+                  src="/images/uploads/servicos/plano-legionella.png" 
+                  alt="Plano de Prevenção e Controlo de Legionella" 
                   width={500} 
                   height={400} 
                   className="rounded-lg shadow-xl"

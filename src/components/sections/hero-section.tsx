@@ -48,8 +48,8 @@ export function HeroSection() {
           <HeroVideoDialog
             animationStyle="from-center"
             videoSrc="https://www.youtube.com/embed/QcaxHAlYiTk"
-            thumbnailSrc="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
-            thumbnailAlt="Vídeo Institucional Medisigma"
+            thumbnailSrc="/images/uploads/imagem-para-usar-no-hero.jpg?v=2"
+            thumbnailAlt="Equipa MediSigma em formação culinária"
             className="rounded-xl overflow-hidden shadow-2xl"
           />
         </div>

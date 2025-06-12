@@ -89,8 +89,8 @@ export default function SegurancaIncendiosPage() {
               <div className="lg:text-right">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/seguranca-incendios-hero.jpg"
-                  alt="Equipamentos de segurança contra incêndios, incluindo extintores e sinalização"
+                  src="/images/uploads/servicos/verificar-extintor.png"
+                  alt="Técnico verificando extintores de segurança contra incêndios"
                   width={600}
                   height={400}
                   className="rounded-xl shadow-2xl"
@@ -140,8 +140,8 @@ export default function SegurancaIncendiosPage() {
               <div>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/medidas-autoprotecao.jpg"
-                  alt="Técnico a inspecionar um plano de evacuação de incêndio"
+                  src="/images/uploads/servicos/projecto-autoprotecao.png"
+                  alt="Técnico desenvolvendo projeto de segurança contra incêndios"
                   width={500}
                   height={400}
                   className="rounded-xl shadow-lg"
@@ -192,8 +192,8 @@ export default function SegurancaIncendiosPage() {
               <div>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/images/extintores-manutencao.jpg"
-                  alt="Extintores de incêndio alinhados e prontos para manutenção"
+                  src="/images/uploads/servicos/extintor-manutencao.png"
+                  alt="Extintores de incêndio em manutenção técnica especializada"
                   width={500}
                   height={400}
                   className="rounded-xl shadow-lg"

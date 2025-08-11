@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { AnimatePresence, motion, useScroll } from "motion/react";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const INITIAL_WIDTH = "70rem";
 const MAX_WIDTH = "800px";
@@ -59,6 +59,8 @@ export function Navbar() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const [showMobileServicesDropdown, setShowMobileServicesDropdown] = useState(false);
+  const [showLoginDropdown, setShowLoginDropdown] = useState(false);
+  const loginRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -91,6 +93,18 @@ export function Navbar() {
     return unsubscribe;
   }, [scrollY]);
 
+  // Close login dropdown on outside click
+  useEffect(() => {
+    const onDocClick = (e: MouseEvent) => {
+      if (!loginRef.current) return;
+      if (showLoginDropdown && !loginRef.current.contains(e.target as Node)) {
+        setShowLoginDropdown(false);
+      }
+    };
+    document.addEventListener("click", onDocClick);
+    return () => document.removeEventListener("click", onDocClick);
+  }, [showLoginDropdown]);
+
   const toggleDrawer = () => setIsDrawerOpen((prev) => !prev);
   const handleOverlayClick = () => setIsDrawerOpen(false);
 
@@ -120,8 +134,8 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky z-50 mx-4 flex justify-center transition-all duration-300 md:mx-0",
-        hasScrolled ? "top-6" : "top-4 mx-0",
+        "sticky z-50 top-4 mx-4 md:mx-0 flex justify-center transition-all duration-300",
+        hasScrolled ? "top-6" : "top-4 mx-0"
       )}
     >
       <motion.div
@@ -132,39 +146,58 @@ export function Navbar() {
       >
         <div
           className={cn(
-            "mx-auto max-w-7xl rounded-2xl transition-all duration-300  xl:px-0",
+            "mx-auto max-w-7xl rounded-2xl transition-all duration-300 xl:px-0",
             hasScrolled
               ? "px-2 border border-border backdrop-blur-lg bg-background/75"
               : "shadow-none px-7",
           )}
         >
-          <div className="flex h-[56px] items-center pl-0 pr-4 py-4">
-            <Link href="/" className="flex items-center gap-3 mr-8 -ml-2">
-              <Icons.logo className="size-30 md:size-45" />
+          <div className="flex items-center justify-between h-[88px] py-4 px-6">
+            <Link href="/" className="flex items-center flex-shrink-0">
+              <Icons.logo className="h-48 w-auto md:h-64 lg:h-80" />
             </Link>
 
-            <div className="flex-1 flex justify-center min-w-0">
+            <div className="hidden md:flex flex-1 justify-center min-w-0">
               <NavMenu />
             </div>
 
-            <div className="flex flex-row items-center gap-1 md:gap-3 shrink-0 ml-2">
-              <div className="flex items-center space-x-2 md:space-x-4">
+            <div className="flex items-center gap-4 flex-shrink-0">
+              <div className="hidden md:flex items-center space-x-2 md:space-x-4">
+                <div className="relative" ref={loginRef}>
+                  <button
+                    type="button"
+                    onClick={() => setShowLoginDropdown((v) => !v)}
+                    className="h-8 flex items-center gap-1 justify-center text-sm font-normal tracking-wide rounded-full w-fit px-4 bg-background border border-border hover:bg-accent active:scale-95 transition-colors"
+                  >
+                    {siteConfig.hero.cta.secondary.text}
+                    <ChevronDown className="h-4 w-4" />
+                  </button>
+                  {showLoginDropdown && (
+                    <div className="absolute right-0 mt-1 min-w-[160px] rounded-md border border-border bg-background shadow-md overflow-hidden z-50">
+                      <a
+                        href={siteConfig.hero.cta.secondary.href}
+                        className="block px-3 py-2 text-sm text-primary/80 hover:bg-accent/40 hover:text-primary"
+                      >
+                        Careview
+                      </a>
+                      <a
+                        href="#"
+                        className="block px-3 py-2 text-sm text-primary/80 hover:bg-accent/40 hover:text-primary"
+                      >
+                        Moodle
+                      </a>
+                    </div>
+                  )}
+                </div>
                 <Link
-                  href={siteConfig.hero.cta.secondary.href}
-                  className="h-8 hidden md:flex items-center justify-center text-sm font-normal tracking-wide rounded-full w-fit px-4 bg-background border border-border hover:bg-accent active:scale-95 transition-colors"
-                >
-                  {siteConfig.hero.cta.secondary.text}
-                </Link>
-                <Link
-                  className="bg-secondary h-8 hidden md:flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12]"
+                  className="bg-secondary h-8 flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12]"
                   href="/contact"
                 >
                   Fale conosco
                 </Link>
-                {/* <ThemeToggle /> */}
               </div>
               <button
-                className="md:hidden border border-border size-8 rounded-md cursor-pointer flex items-center justify-center"
+                className="md:hidden border border-border size-8 rounded-md cursor-pointer flex items-center justify-center mr-4"
                 onClick={toggleDrawer}
               >
                 {isDrawerOpen ? (

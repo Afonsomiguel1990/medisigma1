@@ -354,7 +354,7 @@ export const Feature = ({
                       }}
                     />
                   </div>
-                  <AccordionTrigger tabIndex={-1} className="font-semibold text-lg tracking-tight text-left normal-case focus:outline-none focus:ring-0 line-clamp-2 whitespace-normal leading-snug min-h-[56px]">
+                  <AccordionTrigger className="font-semibold text-lg tracking-tight text-left normal-case focus:outline-none focus:ring-0 line-clamp-2 whitespace-normal leading-snug min-h-[56px]">
                     {item.title}
                   </AccordionTrigger>
                   <AccordionContent className="hidden">

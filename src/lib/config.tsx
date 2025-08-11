@@ -8,7 +8,6 @@ import { FlickeringGrid } from "@/components/ui/flickering-grid";
 import { Globe } from "@/components/ui/globe";
 import { cn } from "@/lib/utils";
 
-
 export const Highlight = ({
   children,
   className,

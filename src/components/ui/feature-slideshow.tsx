@@ -265,20 +265,21 @@ export const Feature = ({
   return (
     <div ref={ref} className="w-full">
       <div className="flex w-full flex-col items-center justify-center max-w-7xl mx-auto">
-        <div className="grid h-full grid-cols-5 gap-x-10 px-10 md:px-20 items-center w-full">
+        <div className="grid grid-cols-5 gap-x-10 px-10 md:px-20 items-start w-full">
           <div
-            className={`col-span-2 w-full h-full hidden lg:flex md:items-center ${
+            className={`col-span-2 w-full hidden lg:flex md:items-start ${
               ltr ? "md:order-2 md:justify-end" : "justify-start"
             }`}
           >
             <Accordion.Root
-              className="w-full h-full flex flex-col gap-8"
+              className="w-full flex flex-col gap-8"
               type="single"
-              defaultValue={`item-${currentIndex}`}
-              value={`item-${currentIndex}`}
-              onValueChange={(value) =>
-                setCurrentIndex(Number(value.split("-")[1]))
-              }
+              value={currentIndex >= 0 ? `item-${currentIndex}` : undefined}
+              onValueChange={(value) => {
+                if (!value) return;
+                const idx = Number(value.split("-")[1]);
+                if (!Number.isNaN(idx)) setCurrentIndex(idx);
+              }}
             >
               {featureItems.map((item, index) => (
                 <AccordionItem

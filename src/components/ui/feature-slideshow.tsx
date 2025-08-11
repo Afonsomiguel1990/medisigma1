@@ -43,7 +43,7 @@ const AccordionTrigger = forwardRef<HTMLButtonElement, AccordionTriggerProps>(
     <Accordion.Header className="flex">
       <Accordion.Trigger
         className={cn(
-          "group flex h-[45px] flex-1 cursor-pointer items-center justify-between p-3 text-[15px] leading-none outline-none",
+          "group flex h-auto min-h-[45px] flex-1 cursor-pointer items-start justify-between p-3 text-[15px] leading-snug outline-none whitespace-normal",
           className
         )}
         {...props}
@@ -104,6 +104,7 @@ export const Feature = ({
   const [previousIndex, setPreviousIndex] = useState<number>(-1);
 
   const carouselRef = useRef<HTMLUListElement>(null);
+  const leftListRef = useRef<HTMLDivElement>(null);
   const ref = useRef(null);
   const isInView = useInView(ref, {
     once: true,
@@ -191,6 +192,24 @@ export const Feature = ({
     }
   }, [currentIndex, previousIndex]);
 
+  // Keep the left list scrolled so the active item stays visible
+  useEffect(() => {
+    const container = leftListRef.current;
+    if (!container) return;
+
+    const items = container.querySelectorAll(".accordion-item");
+    const el = items[currentIndex] as HTMLElement | undefined;
+    if (!el) return;
+
+    // Calcular posição alvo relativa ao contentor para evitar "saltos em bloco"
+    const containerRect = container.getBoundingClientRect();
+    const itemRect = el.getBoundingClientRect();
+    const delta = itemRect.top - containerRect.top; // quanto falta para alinhar o topo
+    const target = container.scrollTop + delta;
+
+    container.scrollTo({ top: target, behavior: "instant" as ScrollBehavior });
+  }, [currentIndex]);
+
   // Replace the existing image rendering section with this optimized version
   const renderMedia = () => {
     const currentItem = featureItems[currentIndex];
@@ -265,27 +284,27 @@ export const Feature = ({
   return (
     <div ref={ref} className="w-full">
       <div className="flex w-full flex-col items-center justify-center max-w-7xl mx-auto">
-        <div className="grid grid-cols-5 gap-x-10 px-10 md:px-20 items-start w-full">
+        <div className="grid h-full grid-cols-5 gap-x-10 px-10 md:px-20 items-center w-full">
           <div
+            ref={leftListRef}
             className={`col-span-2 w-full hidden lg:flex md:items-start ${
               ltr ? "md:order-2 md:justify-end" : "justify-start"
-            }`}
+            } max-h-[350px] overflow-y-auto pr-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden [overflow-anchor:none] snap-y snap-proximity`}
           >
             <Accordion.Root
-              className="w-full flex flex-col gap-8"
+              className="w-full h-full flex flex-col gap-8"
               type="single"
-              value={currentIndex >= 0 ? `item-${currentIndex}` : undefined}
-              onValueChange={(value) => {
-                if (!value) return;
-                const idx = Number(value.split("-")[1]);
-                if (!Number.isNaN(idx)) setCurrentIndex(idx);
-              }}
+              defaultValue={`item-${currentIndex}`}
+              value={`item-${currentIndex}`}
+              onValueChange={(value) =>
+                setCurrentIndex(Number(value.split("-")[1]))
+              }
             >
               {featureItems.map((item, index) => (
                 <AccordionItem
                   key={item.id}
                   className={cn(
-                    "relative data-[state=open]:bg-white dark:data-[state=open]:bg-[#27272A] rounded-lg data-[state=closed]:rounded-none data-[state=closed]:border-0",
+                    "accordion-item relative snap-start data-[state=open]:bg-white dark:data-[state=open]:bg-[#27272A] rounded-lg data-[state=closed]:rounded-none data-[state=closed]:border-0",
                     "dark:data-[state=open]:shadow-[0px_0px_0px_1px_rgba(249,250,251,0.06),0px_0px_0px_1px_var(--color-zinc-800,#27272A),0px_1px_2px_-0.5px_rgba(0,0,0,0.24),0px_2px_4px_-1px_rgba(0,0,0,0.24)]",
                     "data-[state=open]:shadow-[0px_0px_1px_0px_rgba(0,0,0,0.16),0px_1px_2px_-0.5px_rgba(0,0,0,0.16)]"
                   )}
@@ -335,10 +354,10 @@ export const Feature = ({
                       }}
                     />
                   </div>
-                  <AccordionTrigger className="font-semibold text-lg tracking-tight text-left">
+                  <AccordionTrigger tabIndex={-1} className="font-semibold text-lg tracking-tight text-left normal-case focus:outline-none focus:ring-0 line-clamp-2 whitespace-normal leading-snug min-h-[56px]">
                     {item.title}
                   </AccordionTrigger>
-                  <AccordionContent className="text-sm font-medium">
+                  <AccordionContent className="hidden">
                     {item.content}
                   </AccordionContent>
                 </AccordionItem>
@@ -346,7 +365,7 @@ export const Feature = ({
             </Accordion.Root>
           </div>
           <div
-            className={`col-span-5 h-[350px] min-h-[450px] w-auto lg:col-span-3 ${
+            className={`col-span-5 h-[350px] min-h-[200px] w-auto lg:col-span-3 ${
               ltr && "md:order-1"
             }`}
           >
@@ -413,8 +432,8 @@ export const Feature = ({
                     }}
                   />
                 </div>
-                <div className="flex flex-col gap-2">
-                  <h2 className="text-lg font-bold">{item.title}</h2>
+                <div className="flex flex-col gap-2 text-center">
+                  <h2 className="text-lg font-bold normal-case">{item.title}</h2>
                   <p className="mx-0 max-w-sm text-balance text-sm font-medium leading-relaxed">
                     {item.content}
                   </p>

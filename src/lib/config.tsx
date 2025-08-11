@@ -7,7 +7,7 @@ import { ThirdBentoAnimation } from "@/components/third-bento-animation";
 import { FlickeringGrid } from "@/components/ui/flickering-grid";
 import { Globe } from "@/components/ui/globe";
 import { cn } from "@/lib/utils";
-
+import { motion } from "framer-motion";
 
 export const Highlight = ({
   children,
@@ -727,14 +727,19 @@ export const siteConfig = {
                 </defs>
               </svg>
             </div>
-            <div className="size-full">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="size-full"
+            >
               <FlickeringGrid
                 className="size-full"
                 gridGap={4}
                 squareSize={2}
                 maxOpacity={0.5}
               />
-            </div>
+            </motion.div>
           </div>
         ),
 

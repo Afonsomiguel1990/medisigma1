@@ -346,7 +346,7 @@ export const Feature = ({
             </Accordion.Root>
           </div>
           <div
-            className={`col-span-5 h-[350px] min-h-[200px] w-auto lg:col-span-3 ${
+            className={`col-span-5 h-[350px] min-h-[450px] w-auto lg:col-span-3 ${
               ltr && "md:order-1"
             }`}
           >

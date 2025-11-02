@@ -60,10 +60,7 @@ export default function SegurancaNoTrabalhoPage() {
                   Segurança no Trabalho
                 </h1>
                 <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
-                  O objetivo principal da Segurança do Trabalho é a prevenção de acidentes 
-                  de trabalho e de doenças profissionais. A MediSigma assegura um serviço 
-                  personalizado, altamente especializado e direcionado para as necessidades 
-                  dos seus clientes.
+                  A Segurança no Trabalho é o conjunto de metodologias adequadas à prevenção de acidentes de trabalho e doenças profissionais. Identificamos e controlamos os riscos associados ao local de trabalho para proteger a saúde e a integridade física dos seus colaboradores.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a 
@@ -88,191 +85,139 @@ export default function SegurancaNoTrabalhoPage() {
           </div>
         </section>
 
-        {/* Key Factors Section */}
-        <section className="py-16 md:py-20 mx-4 md:mx-0">
-          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
-            <div className="text-center mb-16">
-              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
-                Fatores Chave para o Sucesso
-              </h2>
-              <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-                A identificação, análise, avaliação e gestão dos riscos nos locais de trabalho 
-                constituem o fator chave para prevenir acidentes e doenças profissionais.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-              <div className="text-center p-6 bg-white rounded-xl shadow-sm border border-border">
-                <div className="w-16 h-16 bg-secondary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Search className="w-8 h-8 text-secondary" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Identificação</h3>
-                <p className="text-gray-600 text-sm">Identificação precisa de todos os riscos presentes</p>
-              </div>
-
-              <div className="text-center p-6 bg-white rounded-xl shadow-sm border border-border">
-                <div className="w-16 h-16 bg-secondary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <BarChart className="w-8 h-8 text-secondary" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Análise</h3>
-                <p className="text-gray-600 text-sm">Análise detalhada dos riscos identificados</p>
-              </div>
-
-              <div className="text-center p-6 bg-white rounded-xl shadow-lg border border-border">
-                <div className="w-16 h-16 bg-secondary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="w-8 h-8 text-secondary" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Avaliação</h3>
-                <p className="text-gray-600 text-sm">Avaliação sistemática de cada risco</p>
-              </div>
-
-              <div className="text-center p-6 bg-white rounded-xl shadow-lg border border-border">
-                <div className="w-16 h-16 bg-secondary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <Wrench className="w-8 h-8 text-secondary" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Gestão</h3>
-                <p className="text-gray-600 text-sm">Gestão eficaz e controlo contínuo</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Services Section */}
         <section className="bg-accent py-16 md:py-20 mx-6 md:mx-8 rounded-3xl mb-8">
           <div className="container mx-auto px-6 max-w-6xl">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Serviços de Segurança no Trabalho
+                Os Nossos Serviços de Segurança
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                No âmbito da Segurança no Trabalho, a MediSigma presta um conjunto 
-                abrangente de serviços especializados para garantir a máxima proteção dos trabalhadores.
+                Em conformidade com a Lei n.º 102/2009, de 10 de Setembro, oferecemos um serviço completo de segurança no trabalho, que inclui:
               </p>
             </div>
 
-            {/* Avaliação e Análise */}
-            <div className="mb-12">
-              <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-                Avaliação e Análise de Riscos
-              </h3>
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border hover:border-secondary/20">
-                  <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
-                    <Wrench className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-3">Apoio Técnico</h4>
-                  <p className="text-gray-600 text-sm">
-                    Assessoria técnica especializada para implementação de medidas de segurança e prevenção de acidentes de trabalho.
-                  </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {/* Planeamento da Atividade Preventiva */}
+              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border hover:border-secondary/20">
+                <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
+                  <FileText className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Planeamento da Atividade Preventiva</h3>
+                <p className="text-gray-600 text-sm">
+                  Definimos um plano estratégico e personalizado para a prevenção de riscos na sua empresa.
+                </p>
+              </div>
 
-                <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border hover:border-secondary/20">
-                  <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
-                    <Search className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-3">Vistorias Técnicas</h4>
-                  <p className="text-gray-600 text-sm">
-                    Inspeções técnicas detalhadas de instalações, equipamentos e processos para identificação de perigos.
-                  </p>
+              {/* Auditoria Interna Periódica */}
+              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border hover:border-secondary/20">
+                <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
+                  <Search className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Auditoria Interna Periódica</h3>
+                <p className="text-gray-600 text-sm">
+                  Realizamos auditorias para levantar as condições de trabalho e identificar perigos e riscos.
+                </p>
+              </div>
 
-                <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border hover:border-secondary/20">
-                  <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
-                    <AlertTriangle className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-3">Avaliação de Riscos</h4>
-                  <p className="text-gray-600 text-sm">
-                    Análise sistemática e documentada de todos os riscos presentes nos locais de trabalho.
-                  </p>
+              {/* Avaliação dos Riscos Profissionais */}
+              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border hover:border-secondary/20">
+                <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
+                  <AlertTriangle className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Avaliação dos Riscos Profissionais</h3>
+                <p className="text-gray-600 text-sm">
+                  Avaliamos os riscos em todas as secções e áreas de trabalho da sua empresa.
+                </p>
+              </div>
 
-                <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border hover:border-secondary/20">
-                  <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
-                    <FileText className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-3">Planos de Emergência</h4>
-                  <p className="text-gray-600 text-sm">
-                    Desenvolvimento de procedimentos de emergência e planos de evacuação adequados às instalações.
-                  </p>
+              {/* Programa de Prevenção */}
+              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border hover:border-secondary/20">
+                <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
+                  <ClipboardList className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Programa de Prevenção de Riscos</h3>
+                <p className="text-gray-600 text-sm">
+                  Elaboramos um programa de prevenção de riscos profissionais à medida das suas necessidades.
+                </p>
+              </div>
+
+              {/* Formação e Informação */}
+              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border hover:border-secondary/20">
+                <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
+                  <Users className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Formação e Informação</h3>
+                <p className="text-gray-600 text-sm">
+                  Promovemos ações de formação e informação para todos os trabalhadores sobre os riscos e medidas de prevenção.
+                </p>
+              </div>
+
+              {/* Análise e Estatística */}
+              <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border hover:border-secondary/20">
+                <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
+                  <BarChart className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Análise e Estatística</h3>
+                <p className="text-gray-600 text-sm">
+                  Analisamos os acidentes de trabalho e doenças profissionais, e organizamos os dados estatísticos de segurança.
+                </p>
               </div>
             </div>
+          </div>
+        </section>
 
-            {/* Monitorização e Medição */}
-            <div className="mb-12">
-              <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-                Monitorização e Medição
-              </h3>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border">
-                  <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
-                    <Activity className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-3">Medição de Ruído</h4>
-                  <p className="text-gray-600 text-sm">
-                    Avaliação dos níveis de exposição ao ruído conforme legislação aplicável e normas técnicas.
-                  </p>
-                </div>
-
-                <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border">
-                  <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
-                    <TrendingUp className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-3">Medição de Vibrações</h4>
-                  <p className="text-gray-600 text-sm">
-                    Monitorização da exposição a vibrações transmitidas ao sistema mão-braço e corpo inteiro.
-                  </p>
-                </div>
-
-                <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border">
-                  <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
-                    <Eye className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-3">Avaliação da Iluminação</h4>
-                  <p className="text-gray-600 text-sm">
-                    Medição dos níveis de iluminância nos postos de trabalho e verificação da qualidade luminosa.
-                  </p>
-                </div>
-              </div>
+        {/* Complementary Services Section */}
+        <section className="py-16 md:py-20 mx-4 md:mx-0">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="text-center mb-16">
+              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
+                Serviços e Ações Complementares
+              </h2>
+              <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
+                Para além dos serviços essenciais, dispomos de um conjunto de avaliações técnicas especializadas para garantir um controlo rigoroso de todos os riscos.
+              </p>
             </div>
 
-            {/* Formação e Consultoria */}
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-                Formação e Consultoria
-              </h3>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border">
-                  <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
-                    <Users className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-3">Formação de Trabalhadores</h4>
-                  <p className="text-gray-600 text-sm">
-                    Ações de formação à medida sobre riscos específicos, procedimentos de segurança e utilização de EPIs.
-                  </p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              <div className="text-left p-6 bg-white rounded-xl shadow-sm border border-border">
+                <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
+                  <Activity className="w-7 h-7 text-secondary" />
                 </div>
-
-                <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border">
-                  <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
-                    <ClipboardList className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-3">Auditorias de Segurança</h4>
-                  <p className="text-gray-600 text-sm">
-                    Realização de auditorias internas para verificar a conformidade do sistema de gestão de segurança.
-                  </p>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Avaliações de Ruído Ocupacional</h3>
+              </div>
+              <div className="text-left p-6 bg-white rounded-xl shadow-sm border border-border">
+                <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
+                  <Eye className="w-7 h-7 text-secondary" />
                 </div>
-
-                <div className="group bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-border">
-                  <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
-                    <Building2 className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
-                  </div>
-                  <h4 className="text-lg font-semibold text-gray-900 mb-3">Consultoria Especializada</h4>
-                  <p className="text-gray-600 text-sm">
-                    Apoio na implementação de políticas de segurança, legislação e melhores práticas do setor.
-                  </p>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Avaliação de Níveis de Iluminância</h3>
+              </div>
+              <div className="text-left p-6 bg-white rounded-xl shadow-sm border border-border">
+                <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
+                  <Wrench className="w-7 h-7 text-secondary" />
                 </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Avaliação de Contaminantes Químicos</h3>
+              </div>
+              <div className="text-left p-6 bg-white rounded-xl shadow-sm border border-border">
+                <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
+                  <TrendingUp className="w-7 h-7 text-secondary" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Avaliação do Conforto/Stress Térmico</h3>
+              </div>
+              <div className="text-left p-6 bg-white rounded-xl shadow-sm border border-border">
+                <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
+                  <Building2 className="w-7 h-7 text-secondary" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Medidas de Autoproteção</h3>
+              </div>
+              <div className="text-left p-6 bg-white rounded-xl shadow-sm border border-border">
+                <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
+                  <BarChart className="w-7 h-7 text-secondary" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Avaliação dos Níveis de Vibrações</h3>
               </div>
             </div>
+             <p className="text-center mt-8 text-gray-600">E ainda... <span className="font-semibold">Coordenação de segurança em obra.</span></p>
           </div>
         </section>
 

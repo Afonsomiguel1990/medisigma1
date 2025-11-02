@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { Metadata } from 'next'
-import { FileText, BookOpen, ClipboardCheck, AlertTriangle, FileWarning, Search, Wrench, ShieldCheck, Award, CheckCircle } from 'lucide-react'
+import { FileText, BookOpen, ClipboardCheck, AlertTriangle, FileWarning, Search, Wrench, ShieldCheck, Award, CheckCircle, Monitor, CheckSquare, Archive } from 'lucide-react'
 import Link from 'next/link'
 import ContactForm from '@/components/ContactForm'
 
@@ -64,9 +64,7 @@ export default function SegurancaAlimentarPage() {
                   Segurança Alimentar
                 </h1>
                 <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
-                  A Segurança Alimentar é um pilar fundamental em qualquer negócio 
-                  do setor alimentar. A MediSigma oferece um serviço completo de 
-                  implementação e manutenção de Sistemas de HACCP.
+                  Implementamos o sistema HACCP (Análise de Perigos e Pontos Críticos de Controlo), um sistema preventivo que dota a sua empresa dos meios e procedimentos adequados para garantir a total segurança e higiene dos produtos alimentares que comercializa.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a 
@@ -110,8 +108,11 @@ export default function SegurancaAlimentarPage() {
               {[
                 { icon: AlertTriangle, title: "Análise de Perigos" },
                 { icon: FileWarning, title: "Identificação de PCCs" },
-                { icon: Search, title: "Estabelecimento de Limites" },
-                { icon: ClipboardCheck, title: "Ações Corretivas" }
+                { icon: Search, title: "Estabelecimento de Limites Críticos" },
+                { icon: Monitor, title: "Monitorização dos PCCs" },
+                { icon: ClipboardCheck, title: "Estabelecimento de Ações Corretivas" },
+                { icon: CheckSquare, title: "Procedimentos de Verificação" },
+                { icon: Archive, title: "Documentação e Registos" }
               ].map((principle, index) => {
                 const Icon = principle.icon;
                 return (
@@ -132,32 +133,21 @@ export default function SegurancaAlimentarPage() {
           <div className="container mx-auto px-6 md:px-8 max-w-6xl">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
-                Serviços de Segurança Alimentar
+                Implementação de Sistemas de Autocontrolo/HACCP
               </h2>
               <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-                A MediSigma disponibiliza, com recursos materiais adequados e através de recursos 
-                humanos qualificados, um conjunto completo de serviços especializados em segurança alimentar.
+                O nosso serviço cumpre a legislação em vigor, nomeadamente o Regulamento (CE) n.º 852/2004, e inclui um acompanhamento completo em todas as fases do processo:
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               <div className="group bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-border hover:border-secondary/20">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
-                  <Wrench className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
+                  <Search className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
-                <h4 className="text-xl font-semibold text-gray-900 mb-4">Implementação HACCP</h4>
-                <p className="text-gray-600 mb-4">
-                  Apoio técnico na conceção, implementação e manutenção de sistemas HACCP.
-                </p>
-              </div>
-
-              <div className="group bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-border hover:border-secondary/20">
-                <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
-                  <ClipboardCheck className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
-                </div>
-                <h4 className="text-xl font-semibold text-gray-900 mb-4">Auditorias Higiossanitárias</h4>
-                <p className="text-gray-600 mb-4">
-                  Execução de auditorias e elaboração de relatórios com indicação das não conformidades.
+                <h4 className="text-xl font-semibold text-gray-900 mb-4">Levantamento Inicial</h4>
+                <p className="text-gray-600">
+                  Análise detalhada das instalações e entrega de um dossier de apoio com lista de verificação e relatório inicial.
                 </p>
               </div>
 
@@ -165,9 +155,39 @@ export default function SegurancaAlimentarPage() {
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <BookOpen className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
-                <h4 className="text-xl font-semibold text-gray-900 mb-4">Formação</h4>
-                <p className="text-gray-600 mb-4">
-                  Formação teórica e prática em higiene e segurança alimentar para todos os colaboradores.
+                <h4 className="text-xl font-semibold text-gray-900 mb-4">Formação aos Funcionários</h4>
+                <p className="text-gray-600">
+                  Ações de formação em Higiene e Segurança Alimentar para toda a equipa, garantindo as melhores práticas.
+                </p>
+              </div>
+
+              <div className="group bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-border hover:border-secondary/20">
+                <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
+                  <Wrench className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
+                </div>
+                <h4 className="text-xl font-semibold text-gray-900 mb-4">Elaboração de Planos HACCP</h4>
+                <p className="text-gray-600">
+                  Visitas para recolha de dados e elaboração de planos de HACCP personalizados para a sua realidade.
+                </p>
+              </div>
+
+              <div className="group bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-border hover:border-secondary/20">
+                <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
+                  <ClipboardCheck className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
+                </div>
+                <h4 className="text-xl font-semibold text-gray-900 mb-4">Visitas e Análises</h4>
+                <p className="text-gray-600">
+                  Realizamos visitas simples de verificação e a recolha de análises para controlo de qualidade.
+                </p>
+              </div>
+
+              <div className="group bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-border hover:border-secondary/20">
+                <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
+                  <ShieldCheck className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
+                </div>
+                <h4 className="text-xl font-semibold text-gray-900 mb-4">Auditoria de Verificação</h4>
+                <p className="text-gray-600">
+                  Auditoria final para verificação e validação de todo o sistema HACCP implementado.
                 </p>
               </div>
             </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { ShieldCheck, SprayCan, Building, CheckCircle, Eye, Search, Zap, Target, Shield, FileText } from 'lucide-react';
+import { ShieldCheck, SprayCan, Building, CheckCircle, Eye, Search, Zap, Target, Shield, FileText, Bug, Rat, Bird, Annoyed } from 'lucide-react';
 import Link from 'next/link';
 import ContactForm from '@/components/ContactForm';
 
@@ -122,26 +122,25 @@ export default function ControloPragasPage() {
           <div className="container mx-auto px-6 md:px-8 max-w-6xl">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="text-2xl md:text-4xl font-bold text-primary mb-4 md:mb-6">
-                Controlo Integrado de Pragas
+                O Que é o Controlo Integrado de Pragas?
               </h2>
               <p className="text-base md:text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-                O controlo de pragas urbanas é um sistema que inclui medidas preventivas e correctivas para manter as espécies nocivas em níveis que não causam problemas significativos. Este serviço é um pré-requisito essencial para qualquer sistema de <Link href="/servicos/seguranca-alimentar" className="text-secondary font-semibold hover:underline">Segurança Alimentar (HACCP)</Link>.
+                O Controlo Integrado de Pragas é uma abordagem que optimiza as técnicas de controlo tendo em consideração critérios ecológicos, económicos e toxicológicos. Este serviço é um pré-requisito essencial para a implementação de qualquer sistema de <Link href="/servicos/seguranca-alimentar" className="text-secondary font-semibold hover:underline">Segurança Alimentar (HACCP)</Link>.
               </p>
             </div>
             
             <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center mb-12 md:mb-16">
               <div>
                 <h3 className="text-xl md:text-2xl font-semibold text-primary mb-4">
-                  Abordagem Optimizada
+                  A Nossa Metodologia
                 </h3>
                 <p className="text-muted-foreground mb-6 leading-relaxed">
-                  Pretende-se com esta abordagem optimizar as técnicas de controlo de pragas tendo em consideração critérios ecológicos, económicos e toxicológicos.
+                  A nossa abordagem sistemática garante uma solução eficaz e duradoura para o problema das pragas urbanas.
                 </p>
                 <div className="space-y-4">
                   {[
                     'Inspecção dos locais afectados',
                     'Identificação e conhecimento detalhado da praga',
-                    'Determinação da necessidade do controlo',
                     'Planeamento das actividades a desenvolver',
                     'Implementação de medidas de controlo',
                     'Supervisão e avaliação dos resultados'
@@ -168,15 +167,48 @@ export default function ControloPragasPage() {
           </div>
         </section>
 
-        {/* Tipos de Acções */}
+        {/* Tipos de Pragas */}
         <section className="bg-accent py-16 md:py-20 mx-4 md:mx-8 rounded-3xl">
           <div className="container mx-auto px-6 md:px-8 max-w-6xl">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="text-2xl md:text-4xl font-bold text-primary mb-4">
-                Os Nossos Tipos de Acção
+                Tipos de Pragas que Controlamos
               </h2>
               <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
-                Para garantir a segurança dos alimentos e a sua segurança, implementamos três tipos distintos de acções.
+                As infestações podem ocorrer em locais que favoreçam a sua proliferação. Atuamos sobre os principais tipos de pragas urbanas.
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+              {[
+                { icon: Rat, title: "Roedores", description: "Ratos e ratazanas." },
+                { icon: Bug, title: "Rastejantes", description: "Baratas, formigas, etc." },
+                { icon: Annoyed, title: "Voadores", description: "Moscas, mosquitos, traças." },
+                { icon: Bird, title: "Aves", description: "Pombos, pardais, etc." }
+              ].map((praga) => {
+                 const Icon = praga.icon;
+                 return (
+                   <div key={praga.title} className="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-border text-center">
+                     <div className="w-16 h-16 bg-secondary/10 rounded-lg flex items-center justify-center mx-auto mb-6">
+                       <Icon className="w-8 h-8 text-secondary" />
+                     </div>
+                     <h3 className="text-xl font-semibold text-primary mb-2">{praga.title}</h3>
+                     <p className="text-muted-foreground text-sm">{praga.description}</p>
+                   </div>
+                 );
+               })}
+            </div>
+          </div>
+        </section>
+
+        {/* Níveis de Intervenção */}
+        <section className="py-16 md:py-20 mx-4 md:mx-0">
+          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
+            <div className="text-center mb-12 md:mb-16">
+              <h2 className="text-2xl md:text-4xl font-bold text-primary mb-4">
+                Os Nossos Níveis de Intervenção
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
+                O Controlo Integrado de Pragas do Grupo MEDISIGMA consiste em três níveis de acção para garantir a sua segurança.
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-6 md:gap-8">
@@ -184,22 +216,22 @@ export default function ControloPragasPage() {
                 {
                    icon: Shield,
                    title: "Acções Preventivas",
-                   description: "Medidas proactivas para evitar o aparecimento e desenvolvimento de pragas no ambiente."
+                   description: "Medidas proactivas para evitar o aparecimento e desenvolvimento de pragas, incluindo a selagem de entradas e melhoria da higienização."
                  },
                  {
                    icon: Target,
                    title: "Acções Correctivas",
-                   description: "Intervenções específicas para corrigir problemas identificados e controlar pragas existentes."
+                   description: "Intervenções específicas para corrigir problemas identificados e controlar pragas existentes de forma eficaz."
                  },
                  {
                    icon: Zap,
                    title: "Acções de Eliminação",
-                   description: "Eliminação completa e eficaz de infestações através de métodos certificados."
+                   description: "Eliminação completa e eficaz de infestações através de métodos e produtos certificados e autorizados pela DGS."
                  }
               ].map((action) => {
                  const Icon = action.icon;
                  return (
-                   <div key={action.title} className="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-border text-center">
+                   <div key={action.title} className="bg-white p-6 md:p-8 rounded-xl shadow-lg border border-border text-center hover:shadow-xl transition-shadow">
                      <div className="w-16 h-16 bg-secondary/10 rounded-lg flex items-center justify-center mx-auto mb-6">
                        <Icon className="w-8 h-8 text-secondary" />
                      </div>
@@ -271,53 +303,12 @@ export default function ControloPragasPage() {
           </div>
         </section>
 
-        {/* HACCP e Segurança Alimentar */}
-        <section className="bg-accent py-16 md:py-20 mx-4 md:mx-8 rounded-3xl">
-          <div className="container mx-auto px-6 md:px-8 max-w-6xl">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-2xl md:text-4xl font-bold text-primary mb-4 md:mb-6">
-                  HACCP e Segurança Alimentar
-                </h2>
-                <p className="text-base md:text-lg text-muted-foreground mb-6 leading-relaxed">
-                  O Grupo MEDISIGMA, para dar resposta às suas necessidades e aos pré-requisitos para a implementação e funcionamento do plano de HACCP, tem técnicos qualificados na área de controlo de pragas urbanas.
-                </p>
-                <div className="space-y-4">
-                  {[
-                    'Cumprimento dos requisitos HACCP',
-                    'Produtos autorizados pela Direção-Geral da Saúde',
-                    'Técnicos certificados e qualificados',
-                    'Relatórios detalhados de conformidade',
-                    'Acompanhamento contínuo'
-                  ].map((item, index) => (
-                    <div key={index} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-secondary flex-shrink-0" />
-                      <span className="text-muted-foreground">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/images/uploads/servicos/haccp.png"
-                  alt="Implementação de plano HACCP e segurança alimentar"
-                  width={500}
-                  height={400}
-                  className="rounded-xl shadow-lg"
-                  loading="lazy"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Porque Escolher a MEDISIGMA */}
         <section className="py-16 md:py-20 mx-4 md:mx-0">
           <div className="container mx-auto px-6 md:px-8 max-w-6xl">
             <div className="text-center mb-16">
               <h2 className="text-2xl md:text-4xl font-bold text-primary mb-4">
-                Porque Escolher a MEDISIGMA?
+                Porque Escolher a Medisigma?
               </h2>
               <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
                 Experiência, qualificação e compromisso com a excelência em cada intervenção.

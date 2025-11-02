@@ -16,12 +16,11 @@ export default function FAQsPage() {
           <div className="animated-hero-background absolute inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,var(--background)_40%,var(--secondary)_100%)] rounded-3xl"></div>
         </div>
         <div className="container mx-auto px-6 max-w-4xl text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
             Perguntas Frequentes
           </h1>
-          <p className="text-xl text-gray-700 leading-relaxed">
-            Encontre respostas às perguntas mais comuns sobre os nossos serviços de saúde ocupacional, 
-            segurança no trabalho, formação certificada e muito mais.
+          <p className="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            Encontre aqui respostas para as dúvidas mais comuns sobre os serviços da Medisigma. Se não encontrar o que procura, não hesite em nos contactar.
           </p>
         </div>
       </section>
@@ -139,7 +138,7 @@ export default function FAQsPage() {
             <div className="space-y-6">
               <details className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                 <summary className="font-semibold text-gray-900 cursor-pointer text-lg">
-                  A MediSigma é uma entidade formadora certificada?
+                  A Medisigma é uma entidade formadora certificada?
                 </summary>
                 <p className="mt-4 text-gray-600">
                   Sim, o Grupo MEDISIGMA é uma entidade formadora certificada pela DGERT (Direção-Geral do Emprego e das Relações de Trabalho) nas áreas de Saúde (729), Proteção de Pessoas e Bens (861) e Segurança e Higiene (862).

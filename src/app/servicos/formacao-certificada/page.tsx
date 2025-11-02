@@ -75,8 +75,8 @@ export default function FormacaoCertificadaPage() {
               </div>
               <div className="flex justify-center">
                 <Image 
-                  src="https://images.unsplash.com/photo-1543269865-cbf427effbad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                  alt="Sessão de formação profissional numa empresa" 
+                  src="/images/uploads/servicos/formacao-2.jpg" 
+                  alt="Sala com formandos a assistir a uma formação da Medisigma" 
                   width={500} 
                   height={400} 
                   className="rounded-lg shadow-xl"
@@ -221,8 +221,8 @@ export default function FormacaoCertificadaPage() {
               </div>
               <div className="flex justify-center">
                 <Image 
-                  src="https://images.unsplash.com/photo-1573496130407-57329f01f769?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-                  alt="Equipa de trabalho a celebrar sucesso após formação" 
+                  src="/images/uploads/servicos/formacao-1.jpg" 
+                  alt="Formandos a interagir numa sessão de formação da Medisigma" 
                   width={500} 
                   height={400} 
                   className="rounded-lg shadow-xl"
@@ -295,8 +295,8 @@ export default function FormacaoCertificadaPage() {
             </h2>
             <div className="space-y-6">
               <details className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                <summary className="font-semibold text-gray-900 cursor-pointer text-lg">A MediSigma é uma entidade formadora certificada?</summary>
-                <p className="mt-4 text-gray-600">Sim, o Grupo MEDISIGMA é uma entidade formadora certificada pela DGERT (Direção-Geral do Emprego e das Relações de Trabalho) nas áreas de Saúde (729), Proteção de Pessoas e Bens (861) e Segurança e Higiene (862).</p>
+                <summary className="font-semibold text-gray-900 cursor-pointer text-lg">A Medisigma é uma entidade formadora certificada?</summary>
+                <p className="mt-4 text-gray-600">Sim, o Grupo Medisigma é uma entidade formadora certificada pela DGERT (Direção-Geral do Emprego e das Relações de Trabalho) nas áreas de Saúde (729), Proteção de Pessoas e Bens (861) e Segurança e Higiene (862).</p>
               </details>
               <details className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                 <summary className="font-semibold text-gray-900 cursor-pointer text-lg">A formação pode ser realizada na minha empresa?</summary>
@@ -304,7 +304,7 @@ export default function FormacaoCertificadaPage() {
               </details>
               <details className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                 <summary className="font-semibold text-gray-900 cursor-pointer text-lg">É possível criar um curso que não está na vossa lista?</summary>
-                <p className="mt-4 text-gray-600">Com certeza. Para além dos cursos previstos no nosso Plano, o Grupo MEDISIGMA elabora ações de formação específicas, de acordo com as necessidades de formação apresentadas pelos clientes. Contacte-nos para desenvolvermos uma solução à medida.</p>
+                <p className="mt-4 text-gray-600">Com certeza. Para além dos cursos previstos no nosso Plano, o Grupo Medisigma elabora ações de formação específicas, de acordo com as necessidades de formação apresentadas pelos clientes. Contacte-nos para desenvolvermos uma solução à medida.</p>
               </details>
             </div>
           </div>

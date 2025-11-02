@@ -63,10 +63,7 @@ export default function MedicinaNoTrabalhoPage() {
                   Medicina no Trabalho
                 </h1>
                 <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
-                  Prevenir os riscos ocupacionais significa desenvolver locais de trabalho saudáveis 
-                  e contribuir ativamente para a proteção e promoção da saúde, valorizando os fatores 
-                  individuais e psicossociais dos trabalhadores. A MediSigma assegura o cumprimento 
-                  integral da legislação portuguesa em medicina do trabalho.
+                  A Medicina do Trabalho avalia, através de exames, as condições de saúde dos trabalhadores, determinando a sua aptidão para desempenhar determinadas funções. O nosso objetivo é prevenir doenças profissionais e garantir que as condições de trabalho não prejudicam a saúde da sua equipa.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a 
@@ -96,41 +93,23 @@ export default function MedicinaNoTrabalhoPage() {
           <div className="container mx-auto px-6 md:px-8 max-w-6xl">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
-                Os nossos Serviços de Medicina no Trabalho
+                Exames Médicos: O Que Diz a Lei
               </h2>
               <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-                A MediSigma oferece serviços completos de medicina do trabalho com uma equipa 
-                altamente qualificada, constituída por médicos especializados, enfermeiros, 
-                psicólogos e técnicos especializados, garantindo a vigilância da saúde dos 
-                trabalhadores conforme as características específicas de cada atividade profissional.
+                Realizamos todos os exames médicos previstos na Lei n.º 102/2009, de 10 de Setembro, para assegurar a conformidade legal da sua empresa e o bem-estar dos seus colaboradores.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
-              {/* Exames Admissionais */}
+              {/* Exames de Admissão */}
               <div className="group bg-white rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-blue-200">
                 <div className="flex items-center justify-center w-16 h-16 bg-secondary/10 rounded-2xl mb-6 group-hover:bg-secondary/20 transition-colors duration-300">
                   <UserCheck className="w-8 h-8 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Exames Admissionais</h3>
-                <p className="text-gray-600 mb-6">
-                  Avaliação médica completa antes do início da atividade laboral, 
-                  garantindo a aptidão do trabalhador para a função específica.
+                <h3 className="text-xl font-semibold text-gray-900 mb-4">Exames de Admissão</h3>
+                <p className="text-gray-600">
+                  Realizados antes do início da prestação de trabalho ou, em casos de urgência, nos 15 dias seguintes à admissão.
                 </p>
-                <ul className="space-y-3">
-                  <li className="flex items-center text-sm text-gray-600">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    História clínica e profissional
-                  </li>
-                  <li className="flex items-center text-sm text-gray-600">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    Exame físico completo
-                  </li>
-                  <li className="flex items-center text-sm text-gray-600">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    Exames complementares necessários
-                  </li>
-                </ul>
               </div>
 
               {/* Exames Periódicos */}
@@ -139,24 +118,9 @@ export default function MedicinaNoTrabalhoPage() {
                   <Calendar className="w-8 h-8 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">Exames Periódicos</h3>
-                <p className="text-gray-600 mb-6">
-                  Vigilância médica regular para monitorização contínua do estado 
-                  de saúde e prevenção de doenças profissionais.
+                <p className="text-gray-600">
+                  Anuais para trabalhadores com menos de 18 ou mais de 50 anos, e de dois em dois anos para os restantes trabalhadores.
                 </p>
-                <ul className="space-y-3">
-                  <li className="flex items-center text-sm text-gray-600">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    Frequência adaptada aos riscos
-                  </li>
-                  <li className="flex items-center text-sm text-gray-600">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    Monitorização específica
-                  </li>
-                  <li className="flex items-center text-sm text-gray-600">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    Relatórios detalhados
-                  </li>
-                </ul>
               </div>
 
               {/* Exames Ocasionais */}
@@ -165,24 +129,9 @@ export default function MedicinaNoTrabalhoPage() {
                   <Activity className="w-8 h-8 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">Exames Ocasionais</h3>
-                <p className="text-gray-600 mb-6">
-                  Avaliações médicas extraordinárias motivadas por alterações 
-                  nas condições de trabalho ou estado de saúde do trabalhador.
+                <p className="text-gray-600">
+                  Realizados no regresso ao trabalho após ausência superior a 30 dias por doença ou acidente, ou sempre que ocorram alterações substanciais nas condições de trabalho.
                 </p>
-                <ul className="space-y-3">
-                  <li className="flex items-center text-sm text-gray-600">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    Regresso após ausência
-                  </li>
-                  <li className="flex items-center text-sm text-gray-600">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    Mudança de função
-                  </li>
-                  <li className="flex items-center text-sm text-gray-600">
-                    <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                    Novos riscos profissionais
-                  </li>
-                </ul>
               </div>
             </div>
           </div>
@@ -193,84 +142,77 @@ export default function MedicinaNoTrabalhoPage() {
           <div className="container mx-auto px-6 md:px-8 max-w-6xl">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
-                Exames Complementares Disponíveis
+                Exames Complementares Incluídos
               </h2>
               <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-                Dispondo de equipamentos médicos de última geração, oferecemos uma vasta gama 
-                de exames complementares para uma avaliação médica completa e rigorosa.
+                Os nossos exames médicos incluem um conjunto de análises e testes complementares para uma avaliação completa e rigorosa.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {/* ECG */}
+              {/* Eletrocardiograma */}
               <div className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <Heart className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Eletrocardiograma (ECG)</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Eletrocardiograma com relatório</h3>
                 <p className="text-gray-600 text-sm">
-                  Avaliação da atividade elétrica do coração para deteção de arritmias 
-                  e outras patologias cardiovasculares.
+                  Avaliação da atividade elétrica do coração para detetar potenciais anomalias cardíacas.
                 </p>
               </div>
 
-              {/* Oftalmologia */}
-              <div className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
-                <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
-                  <Eye className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Rastreio Oftalmológico</h3>
-                <p className="text-gray-600 text-sm">
-                  Avaliação da acuidade visual, campo visual e rastreio de patologias 
-                  oculares relacionadas com a atividade profissional.
-                </p>
-              </div>
-
-              {/* Análises */}
-              <div className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
-                <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
-                  <Microscope className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Glicemia e Colesterol</h3>
-                <p className="text-gray-600 text-sm">
-                  Análises sanguíneas para monitorização de parâmetros metabólicos 
-                  e prevenção de doenças cardiovasculares.
-                </p>
-              </div>
-
-              {/* Espirometria */}
+              {/* Peak Flow */}
               <div className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <Zap className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Espirometria</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Peak Flow</h3>
                 <p className="text-gray-600 text-sm">
-                  Avaliação da função pulmonar através de testes de capacidade 
-                  e fluxo respiratório, essencial para exposições ocupacionais.
+                  Medição do débito expiratório máximo para avaliar a função pulmonar.
                 </p>
               </div>
 
-              {/* Audiometria */}
+              {/* Teste optométrico */}
+              <div className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
+                <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
+                  <Eye className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Teste Optométrico</h3>
+                <p className="text-gray-600 text-sm">
+                  Avaliação da acuidade visual para garantir uma visão adequada às tarefas a desempenhar.
+                </p>
+              </div>
+
+              {/* Audiogramas */}
               <div className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <Headphones className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Audiometria</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Audiogramas</h3>
                 <p className="text-gray-600 text-sm">
-                  Teste auditivo para avaliação da capacidade auditiva e prevenção 
-                  de surdez profissional em ambientes ruidosos.
+                  Realizados a trabalhadores expostos a ruído superior a 80 dB(A) para prevenir perdas auditivas.
                 </p>
               </div>
 
-              {/* Urina */}
+              {/* Análises Clínicas */}
+              <div className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
+                <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
+                  <Microscope className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Análises Clínicas</h3>
+                <p className="text-gray-600 text-sm">
+                  Colesterol, Glicemia e análise à Urina para um check-up geral da saúde do trabalhador.
+                </p>
+              </div>
+              
+              {/* Ficha de Aptidão */}
               <div className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
                 <div className="flex items-center justify-center w-12 h-12 bg-secondary/10 rounded-xl mb-4 group-hover:bg-secondary/20 transition-colors duration-300">
                   <Clipboard className="w-6 h-6 text-secondary group-hover:scale-110 transition-transform duration-300" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Urina Tipo II</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Ficha de Aptidão</h3>
                 <p className="text-gray-600 text-sm">
-                  Análise completa da urina para deteção de alterações renais 
-                  e metabólicas relacionadas com exposições profissionais.
+                  No final, o médico do trabalho preenche a Ficha de Aptidão, que é remetida à empresa.
                 </p>
               </div>
             </div>

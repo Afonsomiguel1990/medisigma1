@@ -61,7 +61,7 @@ export default function LegionellaPage() {
                   Controlo e Prevenção de Legionella
                 </h1>
                 <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
-                  A Legionella é um problema de saúde pública com uma clara relação com a colonização bacteriana em sistemas de água de grandes edifícios. A MediSigma desenvolve planos de prevenção e controlo para mitigar este risco.
+                  A Legionella é um problema de saúde pública com “uma clara relação causa-efeito com a colonização da água pela bactéria em sistemas de água de grandes edifícios”, segundo a Direção-Geral de Saúde. Desenvolvemos planos de prevenção para mitigar este risco.
                 </p>
                 <div className="flex justify-start">
                   <a 
@@ -92,31 +92,31 @@ export default function LegionellaPage() {
             <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
                 <div>
                     <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
-                        O que é a Legionella?
+                        Onde se Encontra a Bactéria?
                     </h2>
                     <p className="text-base md:text-lg text-gray-600 mb-6">
-                        É uma bactéria que habita em ambientes aquáticos, como rios e lagos, mas que se pode proliferar em sistemas de água artificiais. A sua inalação pode causar a &quot;Doença dos Legionários&quot;, uma forma de pneumonia grave.
+                        A Legionella encontra-se em ambientes aquáticos naturais, como rios e lagos, mas pode colonizar sistemas de água artificiais, onde sobrevive por longos meses. A sua inalação através de aerossóis (gotículas de água) pode causar a "Doença dos Legionários".
                     </p>
                     <div className="space-y-4">
                         <div className="flex items-start space-x-3">
-                            <Droplet className="w-6 h-6 text-secondary flex-shrink-0 mt-1" />
-                            <p className="text-gray-600"><strong>Habitat Natural:</strong> Encontra-se em lagos, rios e águas subterrâneas.</p>
+                            <Wind className="w-6 h-6 text-secondary flex-shrink-0 mt-1" />
+                            <p className="text-gray-600"><strong>Sistemas de Risco:</strong> Sistemas de ar condicionado (torres de arrefecimento, condensadores), água quente sanitária e fontes decorativas.</p>
                         </div>
                         <div className="flex items-start space-x-3">
                             <Building className="w-6 h-6 text-secondary flex-shrink-0 mt-1" />
-                            <p className="text-gray-600"><strong>Sistemas de Risco:</strong> Coloniza redes de água quente, sistemas de AVAC, torres de arrefecimento e fontes decorativas.</p>
+                            <p className="text-gray-600"><strong>Redes de Abastecimento:</strong> A bactéria pode isolar-se e sobreviver nas redes de abastecimento de água de edifícios.</p>
                         </div>
                         <div className="flex items-start space-x-3">
-                            <AlertTriangle className="w-6 h-6 text-secondary flex-shrink-0 mt-1" />
-                            <p className="text-gray-600"><strong>Doença Associada:</strong> Causa a &quot;Doença dos Legionários&quot; e a &quot;Febre de Pontiac&quot;, com sintomas semelhantes aos de uma pneumonia.</p>
+                            <Droplet className="w-6 h-6 text-secondary flex-shrink-0 mt-1" />
+                            <p className="text-gray-600"><strong>Pontos de Disseminação:</strong> Os pontos de maior risco de disseminação de aerossóis são as torneiras de água quente/fria e os chuveiros.</p>
                         </div>
                     </div>
                 </div>
                 <div className="flex justify-center">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img 
-                      src="https://plus.unsplash.com/premium_photo-1661963959934-54c80b3874d6?auto=format&fit=crop&q=80&w=2070" 
-                      alt="Microscópio com imagem da bactéria Legionella" 
+                      src="/images/uploads/servicos/micro-legionella.png" 
+                      alt="Imagem microscópica da bactéria Legionella" 
                       width={500} 
                       height={400} 
                       className="rounded-lg shadow-xl"

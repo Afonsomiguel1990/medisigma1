@@ -70,12 +70,10 @@ export default function SegurancaIncendiosPage() {
             <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <div>
                 <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                  Segurança Contra Incêndios
+                  Segurança Contra Incêndios (SCIE)
                 </h1>
                 <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
-                  Protegemos vidas e património através de soluções integrais de segurança contra incêndios. 
-                  Desde a conceção até à manutenção, garantimos o cumprimento de todas as normas 
-                  de segurança e a máxima proteção das suas instalações.
+                  Asseguramos a manutenção das condições de segurança contra incêndios ao longo de todo o ciclo de vida do seu edifício, garantindo a conformidade com a legislação em vigor e a máxima proteção de pessoas e bens.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a 
@@ -104,29 +102,29 @@ export default function SegurancaIncendiosPage() {
         {/* Projetos e Medidas Section */}
         <section className="py-16 md:py-20 mx-4 md:mx-0">
           <div className="container mx-auto px-6 md:px-8 max-w-6xl">
-            <div className="text-center mb-12 md:mb-16">
-              <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
-                Os Nossos Serviços
+            <div className="text-center mb-16">
+              <h2 className="text-2xl md:text-4xl font-bold text-primary mb-4">
+                Porque Escolher a Medisigma?
               </h2>
-              <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-                Oferecemos soluções completas de segurança contra incêndios, abrangendo todas as fases do projeto.
+              <p className="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
+                Experiência, qualificação e compromisso com a excelência em cada intervenção.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 items-center">
                 <div>
                     <h2 className="text-3xl font-bold text-primary mb-6">
-                        Projetos de Segurança e Medidas de Autoproteção
+                        Projetos e Medidas de Autoproteção
                     </h2>
                     <p className="text-muted-foreground mb-6 leading-relaxed">
-                        Elaboramos Medidas de Autoproteção e Projetos de SCIE para qualquer estabelecimento, conforme a Lei n.º 123/2019. O nosso objetivo é garantir a manutenção das condições de segurança e uma estrutura mínima de resposta a emergências. Uma abordagem integrada com a <Link href="/servicos/seguranca-no-trabalho" className="text-secondary font-semibold hover:underline">Segurança no Trabalho</Link> e a <Link href="/servicos/formacao-certificada" className="text-secondary font-semibold hover:underline">Formação Certificada</Link> é essencial para uma prevenção completa.
+                        Elaboramos Projetos de Segurança Contra Incêndios e implementamos Medidas de Autoproteção, conforme a Lei n.º 123/2019, para garantir a segurança de qualquer estabelecimento. O nosso objetivo é claro: manter as condições de segurança e assegurar uma resposta eficaz em caso de emergência.
                     </p>
                     <div className="space-y-4">
                         {[
-                            { icon: ShieldCheck, text: "Garantia da manutenção das condições de segurança" },
-                            { icon: Users, text: "Estrutura de resposta a emergências" },
-                            { icon: Zap, text: "Operacionalidade permanente dos equipamentos de segurança" },
-                            { icon: DoorOpen, text: "Evacuação segura dos ocupantes em caso de emergência" },
+                            { icon: ShieldCheck, text: "Manutenção das condições de segurança definidas no projeto" },
+                            { icon: Users, text: "Garantia de uma estrutura mínima de resposta a emergências" },
+                            { icon: Zap, text: "Operacionalidade permanente de todos os equipamentos e sistemas" },
+                            { icon: DoorOpen, text: "Evacuação segura dos ocupantes em caso de incêndio" },
                         ].map((item, index) => {
                             const Icon = item.icon;
                             return(
@@ -156,8 +154,8 @@ export default function SegurancaIncendiosPage() {
         <section className="bg-accent py-16 md:py-20 mx-4 md:mx-8 rounded-3xl">
             <div className="container mx-auto px-6 max-w-6xl">
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold text-primary">O Nosso Processo</h2>
-                    <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">A MEDISIGMA responsabiliza-se pela execução de todo o processo para a concretização dos trabalhos.</p>
+                    <h2 className="text-3xl md:text-4xl font-bold text-primary">O Nosso Processo de Execução</h2>
+                    <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">Assumimos a responsabilidade por todo o processo, desde a análise inicial à entrega final da documentação.</p>
                 </div>
                 <div className="grid md:grid-cols-3 gap-8 text-center">
                     <div>
@@ -202,10 +200,10 @@ export default function SegurancaIncendiosPage() {
               </div>
               <div>
                 <h2 className="text-3xl font-bold text-primary mb-6">
-                  Comércio e Manutenção de Extintores
+                  Comércio e Manutenção de Extintores e Carretéis
                 </h2>
                 <p className="text-muted-foreground mb-6 leading-relaxed">
-                    Os extintores são equipamentos de primeira intervenção, cruciais para combater incêndios na sua fase inicial. Oferecemos um serviço de comercialização e manutenção em conformidade com as normas NP 4413:2019 e NP EN 671.
+                  Os extintores são equipamentos de primeira intervenção, essenciais no combate a incêndios na sua fase inicial. Fornecemos e mantemos extintores, cumprindo as normas NP 4413:2019 e NP EN 671 para garantir a sua total operacionalidade.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="bg-white p-6 rounded-xl shadow-lg border border-border">
@@ -213,14 +211,14 @@ export default function SegurancaIncendiosPage() {
                             <Calendar className="w-6 h-6 text-secondary" />
                         </div>
                         <h3 className="text-lg font-semibold text-primary mb-2">Manutenção Anual</h3>
-                        <p className="text-muted-foreground text-sm">Ações técnicas para conservar o equipamento, efetuadas em intervalos de 12 meses.</p>
+                        <p className="text-muted-foreground text-sm">Verificação completa do estado do extintor, realizada anualmente para garantir a sua conformidade e funcionamento.</p>
                     </div>
                     <div className="bg-white p-6 rounded-xl shadow-lg border border-border">
                         <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
                             <RefreshCw className="w-6 h-6 text-secondary" />
                         </div>
-                        <h3 className="text-lg font-semibold text-primary mb-2">Carregamento</h3>
-                        <p className="text-muted-foreground text-sm">Substituição do agente extintor de 5 em 5 anos, ou sempre que o seu estado o justifique.</p>
+                        <h3 className="text-lg font-semibold text-primary mb-2">Carregamento e Recarga</h3>
+                        <p className="text-muted-foreground text-sm">Substituição do agente extintor de 5 em 5 anos (carregamento) ou após utilização (recarga).</p>
                     </div>
                 </div>
               </div>
@@ -257,7 +255,7 @@ export default function SegurancaIncendiosPage() {
                   O que faço se não tiver as plantas do meu edifício?
                 </summary>
                 <p className="mt-4 text-muted-foreground">
-                  Caso não possua as plantas em formato digital (AutoCAD), o Grupo MEDISIGMA dispõe de desenhadores qualificados para fazer o levantamento e a sua criação.
+                  Caso não possua as plantas em formato digital (AutoCAD), a Medisigma dispõe de desenhadores qualificados para fazer o levantamento e a sua criação.
                 </p>
               </details>
               <details className="bg-white p-6 rounded-lg shadow-sm border border-border">

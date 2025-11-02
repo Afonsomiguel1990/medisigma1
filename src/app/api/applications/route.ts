@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseAdmin, getSupabaseServer } from '@/lib/supabase';
 
-export const runtime = 'node';
+export const runtime = 'nodejs';
 
 // TODO: validar uso futuro desta rota quando candidaturas espontâneas forem centralizadas
 

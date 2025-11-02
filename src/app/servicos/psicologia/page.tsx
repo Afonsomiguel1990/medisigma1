@@ -2,6 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import { BrainCircuit, HeartHandshake, Users, Smile, ShieldCheck, TrendingUp, CheckCircle } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Psicologia e Bem-Estar no Trabalho | MediSigma',
@@ -57,7 +58,7 @@ export default function PsicologiaPage() {
                 </div>
               </div>
               <div className="text-center">
-                <img src="/images/uploads/servicos/psicologia-hero.png" alt="Psicologia no Trabalho" className="max-w-full h-auto rounded-lg shadow-lg" />
+                <Image src="/images/uploads/servicos/psicologia-hero.png" alt="Psicologia no Trabalho" width={500} height={500} className="max-w-full h-auto rounded-lg shadow-lg" />
               </div>
             </div>
           </div>

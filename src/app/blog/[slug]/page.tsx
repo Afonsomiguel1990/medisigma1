@@ -3,6 +3,7 @@ import { getPostData, getAllPostSlugs, getAllPostsMetadata } from '@/lib/mdx'; /
 import { notFound } from 'next/navigation'; // Para caso o post não exista
 import { Metadata } from 'next';
 import RelatedArticles from '@/components/sections/RelatedArticles';
+import Image from 'next/image';
 
 // Tipagem para o frontmatter esperado, incluindo a futura imagem_destaque
 interface PostFrontmatter {
@@ -42,9 +43,11 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
           {/* Imagem de Destaque */}
           {typedFrontmatter.imagem_destaque && (
             <div className="mb-8">
-              <img 
+              <Image 
                 src={typedFrontmatter.imagem_destaque} 
-                alt={typedFrontmatter.title} 
+                alt={typedFrontmatter.title}
+                width={1200}
+                height={630}
                 className="w-full h-auto rounded-lg shadow-lg object-cover max-h-[500px]" 
               />
             </div>

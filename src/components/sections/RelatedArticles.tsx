@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface Article {
   slug: string;
@@ -42,9 +43,11 @@ export default function RelatedArticles({ currentSlug, allArticles }: RelatedArt
               {/* Imagem de destaque */}
               {article.imagem_destaque && (
                 <div className="aspect-video overflow-hidden">
-                  <img 
+                  <Image 
                     src={article.imagem_destaque} 
                     alt={article.title}
+                    width={500}
+                    height={281}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                 </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import { HeartPulse, Dumbbell, ShieldCheck, Stethoscope, Trophy, CheckCircle } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Medicina Desportiva | MediSigma',
@@ -56,7 +57,7 @@ export default function MedicinaDesportivaPage() {
               </div>
               <div className="text-center">
                 {/* Imagem Placeholder - substituir pela imagem correta */}
-                <img src="/images/uploads/servicos/medicina-trabalho-hero.png" alt="Medicina Desportiva" className="max-w-full h-auto rounded-lg shadow-lg" />
+                <Image src="/images/uploads/servicos/medicina-trabalho-hero.png" alt="Medicina Desportiva" width={500} height={500} className="max-w-full h-auto rounded-lg shadow-lg" />
               </div>
             </div>
           </div>

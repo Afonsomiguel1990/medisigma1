@@ -2,6 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import { Apple, Leaf, Heart, Brain, Users, CheckCircle } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
+import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Nutrição | MediSigma',
@@ -56,7 +57,7 @@ export default function NutricaoPage() {
               </div>
               <div className="text-center">
                 {/* Imagem Placeholder - substituir pela imagem correta */}
-                <img src="/images/uploads/servicos/seguranca-alimentar-hero.png" alt="Nutrição" className="max-w-full h-auto rounded-lg shadow-lg" />
+                <Image src="/images/uploads/servicos/seguranca-alimentar-hero.png" alt="Nutrição" width={500} height={500} className="max-w-full h-auto rounded-lg shadow-lg" />
               </div>
             </div>
           </div>

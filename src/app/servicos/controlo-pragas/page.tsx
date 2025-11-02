@@ -446,7 +446,11 @@ export default function ControloPragasPage() {
                 </div>
               </div>
               
-              <ContactForm />
+              <ContactForm
+                pagina="Serviço Controlo de Pragas"
+                fonte="servicos/controlo-pragas"
+                servicoDefault="Controlo de Pragas"
+              />
             </div>
           </div>
         </section>

@@ -574,7 +574,11 @@ export default function MedicinaNoTrabalhoPage() {
                 </div>
               </div>
               
-              <ContactForm />
+              <ContactForm
+                pagina="Serviço Medicina no Trabalho"
+                fonte="servicos/medicina-no-trabalho"
+                servicoDefault="Medicina do Trabalho"
+              />
             </div>
           </div>
         </section>

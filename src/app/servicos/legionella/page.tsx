@@ -300,7 +300,11 @@ export default function LegionellaPage() {
                 </div>
               </div>
               
-              <ContactForm />
+              <ContactForm
+                pagina="Serviço Legionella"
+                fonte="servicos/legionella"
+                servicoDefault="Legionella"
+              />
             </div>
           </div>
         </section>

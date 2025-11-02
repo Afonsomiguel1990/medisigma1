@@ -1,22 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Icons } from "@/components/icons";
 import { FlickeringGrid } from "@/components/ui/flickering-grid";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { siteConfig } from "@/lib/config";
 import { ChevronRightIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
-import { NewsletterModal } from "@/components/newsletter-modal";
 
 export function FooterSection() {
   const tablet = useMediaQuery("(max-width: 1024px)");
-  const [isNewsletterModalOpen, setIsNewsletterModalOpen] = useState(false);
+  const [showNewsletter, setShowNewsletter] = useState(false);
+  const newsletterRef = useRef<HTMLDivElement | null>(null);
 
   const handleLinkClick = (url: string, e: React.MouseEvent) => {
     if (url === "#newsletter") {
       e.preventDefault();
-      setIsNewsletterModalOpen(true);
+      setShowNewsletter(true);
+      setTimeout(() => {
+        newsletterRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 50);
     }
   };
 
@@ -82,6 +85,32 @@ export function FooterSection() {
         </div>
       </div>
 
+      {showNewsletter && (
+        <div
+          ref={newsletterRef}
+          className="bg-muted/40 border-t border-border/50 py-12"
+        >
+          <div className="container mx-auto px-6 max-w-3xl">
+            <h3 className="text-2xl font-semibold text-foreground mb-6 text-center">
+              Subscreve a nossa newsletter
+            </h3>
+            <div className="rounded-2xl border border-border bg-white shadow-sm p-4 md:p-6">
+              <div className="relative w-full overflow-hidden" style={{ minHeight: 360 }}>
+                <iframe
+                  title="Formulário Newsletter Medisigma"
+                  src="https://c3b31976.sibforms.com/serve/MUIFADBLg1xJz3kQ6zEtAlm3xMm9a4DBmOZ5JS7LYG2N8XBBKCygpiZ-td3Up8G6wLTPTmd6W7k6U2J_PMRGItVyhWUZ8v7TdzzrSMBe6PSa3OiG_XG53IyKQPilN_RQmPOc3sjP9wKgtUChzyq0TwHvb5Raos8h6fvOJFW8rxPBgxzNmHAViJaaDIxFUxyjEA6PRZX72nDss1mw"
+                  frameBorder="0"
+                  scrolling="auto"
+                  allowFullScreen
+                  className="block w-full"
+                  style={{ minHeight: 360 }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Seção do FlickeringGrid */}
       <div className="relative h-32 md:h-48 overflow-hidden">
         {/* Gradiente de fundo */}
@@ -113,12 +142,6 @@ export function FooterSection() {
           </div>
         </div>
       </div>
-
-      {/* Newsletter Modal */}
-      <NewsletterModal 
-        isOpen={isNewsletterModalOpen} 
-        onClose={() => setIsNewsletterModalOpen(false)} 
-      />
     </footer>
   );
 }

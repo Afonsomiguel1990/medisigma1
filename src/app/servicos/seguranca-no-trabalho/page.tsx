@@ -369,7 +369,11 @@ export default function SegurancaNoTrabalhoPage() {
                 </div>
               </div>
               
-              <ContactForm />
+              <ContactForm
+                pagina="Serviço Segurança no Trabalho"
+                fonte="servicos/seguranca-no-trabalho"
+                servicoDefault="Segurança no Trabalho"
+              />
             </div>
           </div>
         </section>

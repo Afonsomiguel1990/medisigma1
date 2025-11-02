@@ -10,6 +10,7 @@ import {
   Clock, 
   GraduationCap
 } from 'lucide-react';
+import SpontaneousApplicationForm from '@/components/SpontaneousApplicationForm';
 
 export const metadata: Metadata = {
   title: 'Bolsa de Recrutamento | Medisigma',
@@ -144,7 +145,13 @@ export default function RecrutamentoPage() {
         </div>
       </section>
 
-      
+      {/* Candidatura espontânea */}
+      <section id="candidatura" className="py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+          <h3 className="text-2xl font-semibold mb-6 text-center">Candidatura Espontânea</h3>
+          <SpontaneousApplicationForm />
+        </div>
+      </section>
     </div>
   );
 }

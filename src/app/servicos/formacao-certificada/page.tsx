@@ -278,7 +278,11 @@ export default function FormacaoCertificadaPage() {
                 </div>
               </div>
               
-              <ContactForm />
+              <ContactForm
+                pagina="Serviço Formação Certificada"
+                fonte="servicos/formacao-certificada"
+                servicoDefault="Formação Certificada"
+              />
             </div>
           </div>
         </section>

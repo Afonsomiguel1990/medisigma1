@@ -1,71 +1,71 @@
 'use client';
 
+interface ContactFormProps {
+  pagina?: string;
+  fonte?: string;
+  servicoDefault?: string;
+}
+
 interface ContactFormData {
   empresa: string;
+  telefone: string;
   email: string;
   servico: string;
   mensagem: string;
   pagina: string;
   url: string;
-  timestamp: string;
+  fonte: string;
 }
 
-export default function ContactForm() {
+export default function ContactForm({ pagina, fonte, servicoDefault }: ContactFormProps) {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
     const formData = new FormData(form);
-    
-    // Garantir que todos os campos são tratados corretamente
+
     const empresa = formData.get('empresa')?.toString().trim() || '';
+    const telefone = formData.get('telefone')?.toString().trim() || '';
     const email = formData.get('email')?.toString().trim() || '';
     const servico = formData.get('servico')?.toString().trim() || '';
     const mensagem = formData.get('mensagem')?.toString().trim() || '';
-    
-    // Validação básica dos campos obrigatórios
+
     if (!empresa || !email) {
-      alert('Por favor, preencha todos os campos obrigatórios (Nome da Empresa e Email).');
+      alert('Por favor, preencha os campos obrigatórios (Empresa e Email).');
       return;
     }
-    
+
+    const paginaLabel = pagina || 'Formulário de Contacto';
+    const fonteLabel = fonte || paginaLabel;
+
     const data: ContactFormData = {
-      empresa: empresa,
-      email: email,
-      servico: servico || 'Não especificado',
+      empresa,
+      telefone,
+      email,
+      servico: servico || servicoDefault || 'Não especificado',
       mensagem: mensagem || '',
-      pagina: 'Legionella - Controlo e Prevenção',
+      pagina: paginaLabel,
+      fonte: fonteLabel,
       url: typeof window !== 'undefined' ? window.location.href : '',
-      timestamp: new Date().toISOString()
     };
 
-    // Debug: Mostrar no console o que será enviado
-    console.log('Dados a enviar para webhook:', data);
-
     try {
-      const response = await fetch('https://hook.eu1.make.com/yg81xw9zg45ltry61rj5ja40v3uloa6s', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-      });
-
-      console.log('Resposta do webhook:', {
-        status: response.status,
-        statusText: response.statusText,
-        ok: response.ok
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
       });
 
       if (response.ok) {
-        alert('Mensagem enviada com sucesso! Entraremos em contacto brevemente.');
+        alert('Mensagem recebida. Obrigado!');
         form.reset();
       } else {
-        console.error('Erro na resposta do webhook:', response);
-        throw new Error(`Erro ${response.status}: ${response.statusText}`);
+        const err = await response.json().catch(() => ({}));
+        console.error('Erro na API /api/contact:', err);
+        throw new Error(err?.error || 'Falha ao enviar');
       }
     } catch (error) {
-      console.error('Erro ao enviar para webhook:', error);
-      alert('Erro ao enviar mensagem. Tente novamente ou contacte-nos diretamente pelo telefone 241 331 504.');
+      console.error('Erro ao enviar contacto:', error);
+      alert('Erro ao enviar mensagem. Tente novamente ou contacte-nos pelo 241 331 504.');
     }
   };
 
@@ -77,8 +77,8 @@ export default function ContactForm() {
           <label htmlFor="empresa" className="block text-sm font-medium text-gray-700 mb-2">
             Nome da Empresa *
           </label>
-          <input 
-            type="text" 
+          <input
+            type="text"
             id="empresa"
             name="empresa"
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
@@ -86,13 +86,13 @@ export default function ContactForm() {
             required
           />
         </div>
-        
+
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
             Email *
           </label>
-          <input 
-            type="email" 
+          <input
+            type="email"
             id="email"
             name="email"
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
@@ -100,14 +100,28 @@ export default function ContactForm() {
             required
           />
         </div>
-        
+
+        <div>
+          <label htmlFor="telefone" className="block text-sm font-medium text-gray-700 mb-2">
+            Telefone
+          </label>
+          <input
+            type="tel"
+            id="telefone"
+            name="telefone"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
+            placeholder="Ex: 912 345 678"
+          />
+        </div>
+
         <div>
           <label htmlFor="servico" className="block text-sm font-medium text-gray-700 mb-2">
             Tipo de Instalação
           </label>
-          <select 
+          <select
             id="servico"
             name="servico"
+            defaultValue={servicoDefault || ''}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
           >
             <option value="">Selecione...</option>
@@ -118,27 +132,27 @@ export default function ContactForm() {
             <option value="Outro">Outro</option>
           </select>
         </div>
-        
+
         <div>
           <label htmlFor="mensagem" className="block text-sm font-medium text-gray-700 mb-2">
             Mensagem (opcional)
           </label>
-          <textarea 
+          <textarea
             id="mensagem"
             name="mensagem"
-            rows={3}
+            rows={4}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
             placeholder="Descreva brevemente as suas necessidades..."
-          ></textarea>
+          />
         </div>
-        
-        <button 
+
+        <button
           type="submit"
           className="w-full bg-secondary text-white py-3 px-6 rounded-lg font-semibold hover:bg-secondary/90 transition-colors"
         >
-          Enviar Pedido
+          Enviar Mensagem
         </button>
-        
+
         <p className="text-xs text-gray-500 text-center">
           * Campos obrigatórios. Os seus dados serão tratados com confidencialidade.
         </p>

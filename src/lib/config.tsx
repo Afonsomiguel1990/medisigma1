@@ -75,6 +75,7 @@ export const siteConfig = {
     title: "Protegemos o seu negócio como se fosse o nosso.",
     description:
       "Cuidamos da saúde dos seus colaboradores e da segurança da sua empresa.",
+    showVideo: false,
     cta: {
       primary: {
         text: "Fale conosco",
@@ -94,14 +95,14 @@ export const siteConfig = {
       {
         question: "A Medisigma atua em que zonas do país?",
         answer: (
-          <p>Sim. Dispomos de recursos humanos, clínicas próprias, unidades móveis, equipamentos e recursos que permitem a nossa atuação em qualquer ponto de Portugal continental.</p>
+          <p>Atuamos em todo o território nacional. Dispomos de unidades móveis, equipamentos e recursos para servir qualquer necessidade dos nossos clientes.</p>
         ),
       },
       {
         question:
           "Como posso agendar serviços, adquirir produtos ou solicitar orçamento?",
         answer: (
-          <p>Basta preencher o formulário online ou contactar para a nossa linha direta – 241 331 504 ou através do nosso e-mail info@medisigma.pt.</p>
+          <p>Basta preencher o formulário online ou contactar a nossa equipa através do telefone 241 331 504 ou através do nosso e-mail info@medisigma.pt.</p>
         ),
       },
       {

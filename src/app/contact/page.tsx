@@ -1,6 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 import { CheckCircle, Phone } from "lucide-react";
+import ContactForm from "@/components/ContactForm";
 
 export const metadata: Metadata = {
   title: "Contacto | MediSigma",
@@ -19,8 +20,8 @@ export default function ContactPage() {
     <main className="min-h-screen bg-white flex flex-col divide-y divide-border">
       {/* Hero / CTA Section */}
       <section className="relative py-16 md:py-24 mx-6 md:mx-8 rounded-3xl mb-8">
-        <div className="absolute inset-0">
-          <div className="animated-hero-background absolute inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,var(--background)_40%,var(--secondary)_100%)] rounded-3xl" />
+        <div className="absolute inset-0 -z-10 pointer-events-none">
+          <div className="animated-hero-background absolute inset-0 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,var(--background)_40%,var(--secondary)_100%)] rounded-3xl" />
         </div>
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -74,69 +75,7 @@ export default function ContactPage() {
 
             {/* Formulário de Contacto */}
             <div className="bg-white p-8 rounded-xl shadow-2xl border border-gray-200" id="contact-form">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-6 text-center">Envie-nos uma mensagem</h2>
-              <form className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    Nome *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
-                    placeholder="O seu nome"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
-                    placeholder="email@exemplo.pt"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
-                    Empresa
-                  </label>
-                  <input
-                    type="text"
-                    id="company"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
-                    placeholder="Nome da empresa"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Mensagem *
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={5}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
-                    placeholder="Descreva brevemente as suas necessidades..."
-                    required
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-secondary text-white py-3 px-6 rounded-lg font-semibold hover:bg-secondary/90 transition-colors"
-                >
-                  Enviar Mensagem
-                </button>
-                <p className="text-xs text-gray-500 text-center">
-                  * Campos obrigatórios. Os seus dados serão tratados com confidencialidade.
-                </p>
-              </form>
+              <ContactForm pagina="Página Contacto" fonte="contacto" />
             </div>
           </div>
         </div>

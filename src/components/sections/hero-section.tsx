@@ -42,21 +42,24 @@ export function HeroSection() {
         </div>
       </div>
       
-      {/* Vídeo com espaçamento correto - não sobreposto */}
-      <div className="relative -mt-32 md:-mt-32 z-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <HeroVideoDialog
-            animationStyle="from-center"
-            videoSrc="https://www.youtube.com/embed/QcaxHAlYiTk"
-            thumbnailSrc="/images/uploads/imagem-para-usar-no-hero.jpg?v=2"
-            thumbnailAlt="Equipa MediSigma em formação culinária"
-            className="rounded-xl overflow-hidden shadow-2xl"
-          />
-        </div>
-      </div>
-      
-      {/* Espaçamento para compensar o overlap */}
-      <div className="h-32 md:h-32"></div>
+      {hero.showVideo && (
+        <>
+          {/* Vídeo com espaçamento correto - não sobreposto */}
+          <div className="relative -mt-32 md:-mt-32 z-20 px-6">
+            <div className="max-w-4xl mx-auto">
+              <HeroVideoDialog
+                animationStyle="from-center"
+                videoSrc="https://www.youtube.com/embed/QcaxHAlYiTk"
+                thumbnailSrc="/images/uploads/imagem-para-usar-no-hero.jpg?v=2"
+                thumbnailAlt="Equipa MediSigma em formação culinária"
+                className="rounded-xl overflow-hidden shadow-2xl"
+              />
+            </div>
+          </div>
+          {/* Espaçamento para compensar o overlap */}
+          <div className="h-32 md:h-32"></div>
+        </>
+      )}
     </section>
   );
 }

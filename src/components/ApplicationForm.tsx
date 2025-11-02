@@ -29,7 +29,7 @@ export default function ApplicationForm() {
       }
       alert('Candidatura enviada com sucesso. Obrigado!');
       form.reset();
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
       alert(err?.message || 'Erro ao enviar');
     } finally {

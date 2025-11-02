@@ -68,7 +68,7 @@ export default function SpontaneousApplicationForm() {
 
       alert('Candidatura enviada com sucesso! Obrigado.');
       setState(initialState);
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Erro ao enviar candidatura espontânea:', error);
       alert(error?.message || 'Erro ao enviar candidatura. Tente novamente.');
     } finally {

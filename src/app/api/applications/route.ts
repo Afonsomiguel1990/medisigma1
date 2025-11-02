@@ -53,6 +53,6 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ ok: true, cv_uploaded: Boolean(cv_url) });
   } catch (e: unknown) {
-    return NextResponse.json({ error: e?.message ?? 'Erro inesperado' }, { status: 500 });
+    return NextResponse.json({ error: e instanceof Error ? e.message : 'Erro inesperado' }, { status: 500 });
   }
 }

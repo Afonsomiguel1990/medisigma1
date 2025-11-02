@@ -70,7 +70,7 @@ export default function SpontaneousApplicationForm() {
       setState(initialState);
     } catch (error: unknown) {
       console.error('Erro ao enviar candidatura espontânea:', error);
-      alert(error?.message || 'Erro ao enviar candidatura. Tente novamente.');
+      alert(error instanceof Error ? error.message : 'Erro ao enviar candidatura. Tente novamente.');
     } finally {
       setIsSubmitting(false);
     }

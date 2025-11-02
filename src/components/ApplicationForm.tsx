@@ -31,7 +31,7 @@ export default function ApplicationForm() {
       form.reset();
     } catch (err: unknown) {
       console.error(err);
-      alert(err?.message || 'Erro ao enviar');
+      alert(err instanceof Error ? err.message : 'Erro ao enviar');
     } finally {
       setIsSubmitting(false);
     }

@@ -93,14 +93,14 @@ export default function SobreNosPage() {
             </div>
             
             {/* Hero Video Dialog */}
-            <div className="mx-auto max-w-4xl">
+            {/* <div className="mx-auto max-w-4xl">
               <HeroVideoDialog
                 animationStyle="from-center"
                 videoSrc="https://www.youtube.com/embed/dQw4w9WgXcQ"
                 thumbnailSrc="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
                 thumbnailAlt="História da Medisigma"
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -124,7 +124,7 @@ export default function SobreNosPage() {
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-primary">
-                  150000+
+                  30000+
                 </div>
                 <p className="text-sm text-muted-foreground">Exames Realizados</p>
               </div>
@@ -161,7 +161,7 @@ export default function SobreNosPage() {
       <Features />
 
       {/* Mission, Vision, Values Section Placeholder */}
-      <section id="missao-visao-valores" className="py-16 sm:py-24">
+      {/* <section id="missao-visao-valores" className="py-16 sm:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="text-center mb-12">
@@ -172,13 +172,12 @@ export default function SobreNosPage() {
                 [Conteúdo sobre Missão, Visão e Valores da Medisigma será adicionado aqui...]
               </p>
             </div>
-            {/* Adicionar aqui mais detalhes ou estrutura se necessário */}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Team Section Placeholder */}
-      <section id="equipa" className="py-16 sm:py-24 bg-muted/50">
+      {/* <section id="equipa" className="py-16 sm:py-24 bg-muted/50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl">
             <div className="text-center mb-12">
@@ -189,10 +188,9 @@ export default function SobreNosPage() {
                 [Informações sobre a equipa da Medisigma serão adicionadas aqui...]
               </p>
             </div>
-            {/* Adicionar aqui grelha de membros da equipa ou similar */}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Timeline Section */}
       <section id="timeline" className="py-16 sm:py-24 bg-muted/30">

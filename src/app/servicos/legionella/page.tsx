@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { Droplet, ShieldCheck, Microscope, FileText, AlertTriangle, CheckCircle, Wind, Building, Thermometer, UserCheck } from 'lucide-react';
+import { Droplet, ShieldCheck, Microscope, FileText, CheckCircle, Wind, Building, Thermometer, UserCheck } from 'lucide-react';
 import Link from 'next/link';
 import ContactForm from '@/components/ContactForm';
 
@@ -95,7 +95,7 @@ export default function LegionellaPage() {
                         Onde se Encontra a Bactéria?
                     </h2>
                     <p className="text-base md:text-lg text-gray-600 mb-6">
-                        A Legionella encontra-se em ambientes aquáticos naturais, como rios e lagos, mas pode colonizar sistemas de água artificiais, onde sobrevive por longos meses. A sua inalação através de aerossóis (gotículas de água) pode causar a "Doença dos Legionários".
+                        A Legionella encontra-se em ambientes aquáticos naturais, como rios e lagos, mas pode colonizar sistemas de água artificiais, onde sobrevive por longos meses. A sua inalação através de aerossóis (gotículas de água) pode causar a &quot;Doença dos Legionários&quot;.
                     </p>
                     <div className="space-y-4">
                         <div className="flex items-start space-x-3">

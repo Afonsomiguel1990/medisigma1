@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import HeroVideoDialog from '@/components/magicui/hero-video-dialog';
+// import HeroVideoDialog from '@/components/magicui/hero-video-dialog';
 import { Features } from '@/components/ui/features';
 import { Icons } from '@/components/icons';
 

@@ -1,14 +1,16 @@
-import { MetadataRoute } from 'next'
+import { MetadataRoute } from 'next';
+import { getAllPublishedPosts } from '@/lib/posts';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.medisigma.pt';
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = 'https://medisigma.pt';
 
-  return [
+  // URLs estáticas
+  const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 1,
+      changeFrequency: 'monthly',
+      priority: 1.0,
     },
     {
       url: `${baseUrl}/sobre-nos`,
@@ -20,25 +22,79 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/servicos`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/servicos/medicina-trabalho`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/servicos/seguranca-trabalho`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/servicos/higiene-trabalho`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/servicos/legionella`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/servicos/formacao`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/servicos/seguranca-incendios`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/contact`,
+      url: `${baseUrl}/contactos`,
       lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.5,
+      changeFrequency: 'monthly',
+      priority: 0.7,
     },
     {
-        url: `${baseUrl}/politica-de-privacidade`,
-        lastModified: new Date(),
-        changeFrequency: 'yearly',
-        priority: 0.3,
+      url: `${baseUrl}/recrutamento`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
     },
-    {
-        url: `${baseUrl}/termos-e-condicoes`,
-        lastModified: new Date(),
-        changeFrequency: 'yearly',
-        priority: 0.3,
-    },
-  ]
-} 
+  ];
+
+  // URLs dinâmicas dos posts do blog
+  let blogRoutes: MetadataRoute.Sitemap = [];
+  
+  try {
+    const posts = await getAllPublishedPosts();
+    
+    blogRoutes = posts.map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: new Date(post.updated_at),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }));
+  } catch (error) {
+    console.error('Erro ao gerar sitemap dos posts:', error);
+  }
+
+  return [...staticRoutes, ...blogRoutes];
+}

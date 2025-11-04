@@ -1,13 +1,13 @@
-import { getSortedPostsData } from '@/lib/mdx';
+import { getAllPublishedPosts } from '@/lib/posts';
 import BlogCard from '@/components/blog-card';
 
 export const metadata = {
-  title: 'Blog',
-  description: 'Leia os nossos últimos posts.',
+  title: 'Blog | Medisigma',
+  description: 'Guias completos sobre medicina do trabalho, segurança ocupacional, Legionella e conformidade legal em Portugal.',
 };
 
-export default function BlogPage() {
-  const allPosts = getSortedPostsData();
+export default async function BlogPage() {
+  const allPosts = await getAllPublishedPosts();
 
   const placeholderImage = "/logomedisigma.svg";
 
@@ -23,18 +23,24 @@ export default function BlogPage() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
-          {allPosts.map(({ slug, date, title, excerpt, imagem_destaque }: { slug: string; date: string; title: string; excerpt: string; imagem_destaque: string | null }) => (
-            <BlogCard
-              key={slug}
-              slug={slug}
-              title={title}
-              date={date}
-              image={imagem_destaque || placeholderImage}
-              excerpt={excerpt}
-            />
-          ))}
-        </div>
+        {allPosts.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-gray-500">Ainda não existem posts publicados.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
+            {allPosts.map((post) => (
+              <BlogCard
+                key={post.slug}
+                slug={post.slug}
+                title={post.title}
+                date={post.published_at || post.created_at}
+                image={post.imagem_destaque || placeholderImage}
+                excerpt={post.excerpt || post.description || ''}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

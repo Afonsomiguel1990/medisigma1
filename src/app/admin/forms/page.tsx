@@ -32,7 +32,7 @@ export default function AdminFormsPage() {
       let data;
       try {
         data = await response.json();
-      } catch (jsonError) {
+      } catch {
         throw new Error('Resposta inválida da API');
       }
       

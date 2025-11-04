@@ -5,7 +5,7 @@ export interface Post {
   title: string;
   slug: string;
   content_mdx: string | null;
-  content_rich: any;
+  content_rich: Record<string, unknown> | null;
   excerpt: string | null;
   description: string | null;
   author: string | null;
@@ -117,7 +117,11 @@ export async function getPostBySlug(slug: string): Promise<PostWithTags | null> 
     console.error('Erro ao obter tags do post:', tagsError);
   }
 
-  const tags = postTags?.map((pt: any) => pt.tags).filter(Boolean) || [];
+  type PostTagRecord = { tag_id: string; tags: { id: string; name: string } | { id: string; name: string }[] | null };
+  const tags = postTags?.map((pt: PostTagRecord) => {
+    if (Array.isArray(pt.tags)) return pt.tags[0];
+    return pt.tags;
+  }).filter((tag): tag is { id: string; name: string } => tag !== null && tag !== undefined) || [];
 
   return {
     ...post,
@@ -154,7 +158,11 @@ export async function getPostById(id: string): Promise<PostWithTags | null> {
     console.error('Erro ao obter tags do post:', tagsError);
   }
 
-  const tags = postTags?.map((pt: any) => pt.tags).filter(Boolean) || [];
+  type PostTagRecord = { tag_id: string; tags: { id: string; name: string } | { id: string; name: string }[] | null };
+  const tags = postTags?.map((pt: PostTagRecord) => {
+    if (Array.isArray(pt.tags)) return pt.tags[0];
+    return pt.tags;
+  }).filter((tag): tag is { id: string; name: string } => tag !== null && tag !== undefined) || [];
 
   return {
     ...post,

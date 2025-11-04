@@ -169,7 +169,7 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
                 title: p.title,
                 description: p.description || p.excerpt || '',
                 date: p.published_at || p.created_at,
-                imagem_destaque: p.imagem_destaque
+                imagem_destaque: p.imagem_destaque || undefined
               }))} 
             />
           </article>

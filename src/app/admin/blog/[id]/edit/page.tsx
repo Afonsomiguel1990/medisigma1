@@ -1,12 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import PostEditor from '@/components/admin/PostEditor';
-import { PostWithTags, UpdatePostData } from '@/lib/posts';
+import { PostWithTags, CreatePostData, UpdatePostData } from '@/lib/posts';
 
 export default function EditPostPage({ params }: { params: Promise<{ id: string }> }) {
-  const router = useRouter();
   const [post, setPost] = useState<PostWithTags | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -38,7 +36,7 @@ export default function EditPostPage({ params }: { params: Promise<{ id: string 
     }
   };
 
-  const handleSave = async (data: UpdatePostData) => {
+  const handleSave = async (data: CreatePostData | UpdatePostData) => {
     if (!resolvedParams) return;
     
     setSaving(true);

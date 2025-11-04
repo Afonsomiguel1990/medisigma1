@@ -314,7 +314,7 @@ export default function PostEditor({ post, onSave, saving }: PostEditorProps) {
 
           <div>
             <Label htmlFor="status">Status</Label>
-            <Select value={status} onValueChange={(v: any) => setStatus(v)}>
+            <Select value={status} onValueChange={(v: 'draft' | 'scheduled' | 'published') => setStatus(v)}>
               <SelectTrigger>
                 <SelectValue />
               </SelectTrigger>

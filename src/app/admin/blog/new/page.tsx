@@ -3,14 +3,14 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import PostEditor from '@/components/admin/PostEditor';
-import { CreatePostData } from '@/lib/posts';
+import { CreatePostData, UpdatePostData } from '@/lib/posts';
 
 export default function NewPostPage() {
   const router = useRouter();
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleSave = async (data: CreatePostData) => {
+  const handleSave = async (data: CreatePostData | UpdatePostData) => {
     setSaving(true);
     setError(null);
 

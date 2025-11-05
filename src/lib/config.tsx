@@ -996,7 +996,7 @@ export const siteConfig = {
     {
       title: "Apoio ao Cliente",
       links: [
-        { id: 1, title: "Newsletter", url: "#newsletter" },
+        { id: 1, title: "Newsletter", url: "/newsletter" },
         { id: 2, title: "Bolsa de Recrutamento", url: "/recrutamento" },
         { id: 3, title: "FAQs", url: "/faqs" },
         { id: 4, title: "Política de Privacidade", url: "/politica-de-privacidade" },

@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef, useState } from "react";
 import { Icons } from "@/components/icons";
 import { FlickeringGrid } from "@/components/ui/flickering-grid";
 import { useMediaQuery } from "@/hooks/use-media-query";
@@ -10,18 +9,6 @@ import Link from "next/link";
 
 export function FooterSection() {
   const tablet = useMediaQuery("(max-width: 1024px)");
-  const [showNewsletter, setShowNewsletter] = useState(false);
-  const newsletterRef = useRef<HTMLDivElement | null>(null);
-
-  const handleLinkClick = (url: string, e: React.MouseEvent) => {
-    if (url === "#newsletter") {
-      e.preventDefault();
-      setShowNewsletter(true);
-      setTimeout(() => {
-        newsletterRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 50);
-    }
-  };
 
   return (
     <footer id="footer" className="w-full">
@@ -48,27 +35,15 @@ export function FooterSection() {
                     <ul className="space-y-3">
                       {column.links.map((link) => (
                         <li key={link.id}>
-                          {link.url.startsWith("#") ? (
-                            <button
-                              onClick={(e) => handleLinkClick(link.url, e)}
-                              className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 pl-2 md:pl-0"
-                            >
-                              <span>{link.title}</span>
-                              <div className="flex h-4 w-4 items-center justify-center rounded border border-border opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-1">
-                                <ChevronRightIcon className="h-3 w-3" />
-                              </div>
-                            </button>
-                          ) : (
-                            <Link
-                              href={link.url}
-                              className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 pl-2 md:pl-0"
-                            >
-                              <span>{link.title}</span>
-                              <div className="flex h-4 w-4 items-center justify-center rounded border border-border opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-1">
-                                <ChevronRightIcon className="h-3 w-3" />
-                              </div>
-                            </Link>
-                          )}
+                          <Link
+                            href={link.url}
+                            className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 pl-2 md:pl-0"
+                          >
+                            <span>{link.title}</span>
+                            <div className="flex h-4 w-4 items-center justify-center rounded border border-border opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-1">
+                              <ChevronRightIcon className="h-3 w-3" />
+                            </div>
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -84,32 +59,6 @@ export function FooterSection() {
           </div>
         </div>
       </div>
-
-      {showNewsletter && (
-        <div
-          ref={newsletterRef}
-          className="bg-muted/40 border-t border-border/50 py-12"
-        >
-          <div className="container mx-auto px-6 max-w-3xl">
-            <h3 className="text-2xl font-semibold text-foreground mb-6 text-center">
-              Subscreve a nossa newsletter
-            </h3>
-            <div className="rounded-2xl border border-border bg-white shadow-sm p-4 md:p-6">
-              <div className="relative w-full overflow-hidden" style={{ minHeight: 360 }}>
-                <iframe
-                  title="Formulário Newsletter Medisigma"
-                  src="https://c3b31976.sibforms.com/serve/MUIFADBLg1xJz3kQ6zEtAlm3xMm9a4DBmOZ5JS7LYG2N8XBBKCygpiZ-td3Up8G6wLTPTmd6W7k6U2J_PMRGItVyhWUZ8v7TdzzrSMBe6PSa3OiG_XG53IyKQPilN_RQmPOc3sjP9wKgtUChzyq0TwHvb5Raos8h6fvOJFW8rxPBgxzNmHAViJaaDIxFUxyjEA6PRZX72nDss1mw"
-                  frameBorder="0"
-                  scrolling="auto"
-                  allowFullScreen
-                  className="block w-full"
-                  style={{ minHeight: 360 }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Seção do FlickeringGrid */}
       <div className="relative h-32 md:h-48 overflow-hidden">

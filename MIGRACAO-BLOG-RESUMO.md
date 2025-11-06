@@ -447,3 +447,6 @@ A migração foi concluída com sucesso. O blog está agora numa plataforma mode
 
 **Próximo passo:** Configurar variáveis de ambiente e executar script de migração.
 
+
+
+

@@ -10,6 +10,12 @@ import Link from 'next/link';
 export default async function PostPage(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params;
   
+  // Redirect do slug antigo para o novo
+  if (params.slug === 'radao-o-inimigo-invisivel-na-sua-empresa') {
+    const { redirect } = await import('next/navigation');
+    redirect('/blog/o-que-e-o-radao');
+  }
+  
   const post = await getPostBySlug(params.slug);
 
   if (!post) {
@@ -192,7 +198,12 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const params = await props.params;
 
-  const post = await getPostBySlug(params.slug);
+  // Se for o slug antigo, buscar o post com o novo slug
+  const slugToUse = params.slug === 'radao-o-inimigo-invisivel-na-sua-empresa' 
+    ? 'o-que-e-o-radao' 
+    : params.slug;
+
+  const post = await getPostBySlug(slugToUse);
   
   if (!post) {
     return {

@@ -60,7 +60,7 @@ export default function ContactPage() {
                   Ligar
                 </a>
                 <a
-                  href="https://wa.me/351241331504?text=Olá%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20vossos%20serviços."
+                  href="https://wa.me/351966979226?text=Olá%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20vossos%20serviços."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-green-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors text-center flex items-center justify-center gap-2"

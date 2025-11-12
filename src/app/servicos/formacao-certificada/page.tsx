@@ -262,7 +262,7 @@ export default function FormacaoCertificadaPage() {
                 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a 
-                    href="https://wa.me/351938698260?text=Olá%2C%20estava%20no%20vosso%20website%20e%20gostaria%20de%20ter%20mais%20informações%20sobre%20Formação%20Certificada." 
+                    href="https://wa.me/351966979226?text=Olá%2C%20estava%20no%20vosso%20website%20e%20gostaria%20de%20ter%20mais%20informações%20sobre%20Formação%20Certificada." 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="bg-white text-secondary px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"

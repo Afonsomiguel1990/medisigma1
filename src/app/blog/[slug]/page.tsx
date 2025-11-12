@@ -19,13 +19,23 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
   // Compilar MDX
   let compiledContent = null;
   if (post.content_mdx) {
-    const { content } = await compileMDX({
-      source: post.content_mdx,
-      options: {
-        parseFrontmatter: false,
-      },
-    });
-    compiledContent = content;
+    try {
+      const { content } = await compileMDX({
+        source: post.content_mdx,
+        options: {
+          parseFrontmatter: false,
+        },
+      });
+      compiledContent = content;
+    } catch (error) {
+      console.error(`Erro ao compilar MDX para o post ${post.slug}:`, error);
+      // Se houver erro na compilação, mostrar mensagem de erro
+      compiledContent = (
+        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+          <p className="text-red-800">Erro ao carregar o conteúdo deste artigo. Por favor, contacte o suporte.</p>
+        </div>
+      );
+    }
   }
   
   // Obter todos os artigos para a secção de relacionados
@@ -230,9 +240,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
   };
 }
 
-export async function generateStaticParams() {
-  const posts = await getAllPublishedPosts();
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
-} 
+// Desabilitar geração estática para evitar erros durante o build
+// As páginas serão geradas dinamicamente quando solicitadas
+export const dynamic = 'force-dynamic';
+export const revalidate = 3600; // Revalidar a cada hora 

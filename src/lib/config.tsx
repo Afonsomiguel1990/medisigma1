@@ -441,29 +441,29 @@ export const siteConfig = {
   benefits: [
     {
       id: 1,
-      text: "Save hours each week with AI-optimized scheduling.",
+      text: "Poupe horas todas as semanas com agendamentos otimizados.",
       image: "/Device-6.png",
     },
     {
       id: 2,
-      text: "Reduce scheduling conflicts and double-bookings.",
+      text: "Reduza conflitos de agendamento e duplicações.",
       image: "/Device-7.png",
     },
     {
       id: 3,
-      text: "Improve work-life balance with smart time allocation.",
+      text: "Melhore o equilíbrio trabalho-vida com gestão inteligente do tempo.",
       image: "/Device-8.png",
     },
     {
       id: 4,
-      text: "Increase productivity with AI-driven time management insights.",
+      text: "Aumente a produtividade com insights de gestão de tempo.",
       image: "/Device-1.png",
     },
   ],
   growthSection: {
-    title: "Built for Secure Growth",
+    title: "Crescimento Seguro e Sustentado",
     description:
-      "Where advanced security meets seamless scalability—designed to protect your data and empower your growth.",
+      "Onde a segurança avançada encontra escalabilidade perfeita—projetado para proteger os seus dados e potenciar o seu crescimento.",
     items: [
       {
         id: 1,
@@ -738,9 +738,9 @@ export const siteConfig = {
           </div>
         ),
 
-        title: "Advanced Task Security",
+        title: "Segurança e Conformidade Garantidas",
         description:
-          "Safeguard your tasks with state-of-art encryption and secure access to your workflow data.",
+          "Protegemos os seus dados e garantimos o cumprimento de todas as normas legais e certificações exigidas.",
       },
       {
         id: 2,
@@ -750,9 +750,9 @@ export const siteConfig = {
           </div>
         ),
 
-        title: "Scalable for Teams",
+        title: "Crescimento Sustentado",
         description:
-          "Grow with your team. Track tasks across multiple workspaces and all team members.",
+          "Crescemos consigo. Acompanhamos a evolução da sua empresa e adaptamos os nossos serviços às suas necessidades.",
       },
     ],
   },
@@ -766,9 +766,9 @@ export const siteConfig = {
     },
   },
   pricing: {
-    title: "Pricing that scales with you",
+    title: "Soluções adaptadas às suas necessidades",
     description:
-      "Whichever plan you pick, it's free until you love your docs. That's our promise.",
+      "Oferecemos soluções personalizadas que se adaptam ao crescimento da sua empresa.",
     pricingItems: [
       {
         name: "Free",

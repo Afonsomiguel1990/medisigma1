@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 
 // Configuration exports
 export const runtime = "edge";
-export const alt = "SkyAgent - AI-powered agents with Magic UI";
+export const alt = "Medisigma - Medicina do Trabalho e Segurança no Trabalho em Portugal";
 export const size = {
   width: 1200,
   height: 630,
@@ -27,15 +27,15 @@ export default async function Image() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            background: "black",
+            background: "linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%)",
           }}
         >
           <img
-            src={`${baseUrl}/agent-template-og.png`}
+            src={`${baseUrl}/logomedisigma.svg`}
             alt={alt}
             style={{
-              width: "100%",
-              height: "100%",
+              width: "600px",
+              height: "auto",
               objectFit: "contain",
             }}
           />

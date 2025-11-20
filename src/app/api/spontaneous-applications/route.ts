@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getSupabaseAnon, getSupabaseServer, getSupabaseAdmin } from '@/lib/supabase';
+import { getSupabaseAdmin } from '@/lib/supabase';
 import { WEBHOOK_URL, formatSlackMessage } from '@/lib/webhook';
 
 export async function POST(req: Request) {

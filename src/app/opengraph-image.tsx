@@ -31,7 +31,7 @@ export default async function Image() {
           }}
         >
           <img
-            src={`${baseUrl}/logomedisigma.svg`}
+            src={`${baseUrl}/logo.png`}
             alt={alt}
             style={{
               width: "600px",

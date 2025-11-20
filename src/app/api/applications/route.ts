@@ -39,7 +39,7 @@ export async function POST(req: Request) {
     }
 
     const supabase = getSupabaseServer();
-    const { data, error } = await supabase
+    const { error } = await supabase
       .schema('web')
       .from('applications')
       .insert({ job_id, name, email, phone, cv_url, cover_letter, consent })

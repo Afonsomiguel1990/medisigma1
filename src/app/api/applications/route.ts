@@ -16,14 +16,14 @@ export async function POST(req: Request) {
     const consent = (formData.get('consent') ?? 'false').toString() === 'true';
     const job_id = (formData.get('job_id') ?? '').toString() || null;
     const cv = formData.get('cv') as File | null;
+    let cv_url = (formData.get('cv_link') ?? '').toString() || null;
 
     if (!name || !email) {
       return NextResponse.json({ error: 'name e email são obrigatórios' }, { status: 400 });
     }
 
-    // Se houver service role, usamos para upload; se não houver, saltamos upload e ainda assim gravamos candidatura
-    let cv_url: string | null = null;
-    if (cv && process.env.SUPABASE_SERVICE_ROLE) {
+    // Se houver service role e ficheiro, fazemos upload. Ficheiro tem prioridade sobre link.
+    if (cv && cv.size > 0 && process.env.SUPABASE_SERVICE_ROLE) {
       const supabaseAdmin = getSupabaseAdmin();
       const arrayBuffer = await cv.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);
@@ -35,7 +35,9 @@ export async function POST(req: Request) {
       if (upload.error) {
         return NextResponse.json({ error: upload.error.message }, { status: 500 });
       }
-      cv_url = upload.data.path;
+      // Obter URL público se upload bem sucedido
+      const { data: publicUrlData } = supabaseAdmin.storage.from('os-cv').getPublicUrl(upload.data.path);
+      cv_url = publicUrlData.publicUrl;
     }
 
     const supabase = getSupabaseServer();

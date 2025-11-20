@@ -962,7 +962,7 @@ export const siteConfig = {
     backgroundImage: "/logo_site23_br.webp",
     button: {
       text: "Fale com a nossa equipa",
-      href: "#",
+      href: "/contact",
     },
     /*subtext: "Cancel anytime, no questions asked",*/
   },

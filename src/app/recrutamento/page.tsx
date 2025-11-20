@@ -70,7 +70,7 @@ export default function RecrutamentoPage() {
                 <a href="#oportunidades">Ver Oportunidades</a>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <a href="#candidatura-espontanea">Candidatura Espontânea</a>
+                <a href="#candidatura">Candidatura Espontânea</a>
               </Button>
             </div>
           </div>
@@ -146,10 +146,12 @@ export default function RecrutamentoPage() {
       </section>
 
       {/* Candidatura espontânea */}
-      <section id="candidatura" className="py-16">
+      <section id="candidatura" className="py-16 relative z-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
           <h3 className="text-2xl font-semibold mb-6 text-center">Candidatura Espontânea</h3>
-          <SpontaneousApplicationForm />
+          <div className="relative z-10">
+            <SpontaneousApplicationForm />
+          </div>
         </div>
       </section>
     </div>

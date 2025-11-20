@@ -1,8 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseAnon, getSupabaseServer } from '@/lib/supabase';
-
-const NOTIFY_URL = process.env.NOTIFY_URL;
-const NOTIFY_SECRET = process.env.NOTIFY_SHARED_SECRET;
+import { WEBHOOK_URL, formatSlackMessage } from '@/lib/webhook';
 
 export async function POST(req: Request) {
   try {
@@ -47,22 +45,27 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: insertResult.error.message }, { status: 500 });
     }
 
-    if (NOTIFY_URL && NOTIFY_SECRET) {
-      try {
-        await fetch(NOTIFY_URL, {
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json',
-            'x-notify-secret': NOTIFY_SECRET,
-          },
-          body: JSON.stringify({
-            type: 'candidatura',
-            data: insertResult.data,
-          }),
-        });
-      } catch (notifyError) {
-        console.error('Falha ao notificar equipa (candidatura)', notifyError);
-      }
+    try {
+      const slackMessage = formatSlackMessage({
+        tipo: 'candidatura',
+        nome,
+        email,
+        telefone,
+        mensagem,
+        area_interesse,
+        cv_link,
+        pagina,
+        origem: origem || pagina || 'Candidatura Espontânea',
+      });
+
+      await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(slackMessage),
+      });
+    } catch (notifyError) {
+      console.error('Falha ao notificar Slack (candidatura)', notifyError);
+      // Não falhar a request original
     }
 
     return NextResponse.json({ ok: true });

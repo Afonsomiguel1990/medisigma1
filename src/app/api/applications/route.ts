@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseAdmin, getSupabaseServer } from '@/lib/supabase';
+import { WEBHOOK_URL, formatSlackMessage } from '@/lib/webhook';
 
 export const runtime = 'nodejs';
 
@@ -38,13 +39,37 @@ export async function POST(req: Request) {
     }
 
     const supabase = getSupabaseServer();
-    const { error } = await supabase
+    const { data, error } = await supabase
       .schema('web')
       .from('applications')
-      .insert({ job_id, name, email, phone, cv_url, cover_letter, consent });
+      .insert({ job_id, name, email, phone, cv_url, cover_letter, consent })
+      .select()
+      .single();
 
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    try {
+      const slackMessage = formatSlackMessage({
+        tipo: 'candidatura',
+        nome: name,
+        email,
+        telefone: phone,
+        mensagem: cover_letter,
+        area_interesse: job_id ? `Vaga ID: ${job_id}` : 'Candidatura a vaga',
+        cv_link: cv_url || '',
+        origem: 'Candidatura a Vaga',
+        job_id: job_id || undefined,
+      });
+
+      await fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(slackMessage),
+      });
+    } catch (notifyError) {
+      console.error('Falha ao notificar Slack (applications)', notifyError);
     }
 
     if (process.env.EMAIL_ENABLED === 'true') {

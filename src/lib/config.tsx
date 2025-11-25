@@ -758,11 +758,11 @@ export const siteConfig = {
   },
   quoteSection: {
     quote:
-      "Para mim as formações da Medisigma são incríveis, e o suporte é imbatível. Recomendo vivamente",
+      "Para a WiiGroup, o Grupo Medisigma destaca-se pela excelência das suas formações, práticas e totalmente aplicáveis nos serviços que dispomos diariamente.\n\nAlém disso, o serviço de Segurança no Trabalho de que usufruímos transparece profissionalismo, pelo que recomendamos vivamente.",
     author: {
-      name: "João Andrade",
-      role: "Director Recursos Humanos, Innovatech",
-      image: "https://randomuser.me/api/portraits/men/50.jpg",
+      name: "Carlos Mendes",
+      role: "CEO Wii Group",
+      image: "/1737068060229.jpeg",
     },
   },
   pricing: {
@@ -831,17 +831,12 @@ export const siteConfig = {
   testimonials: [
     {
       id: "1",
-      name: "Ana Cardoso",
-      role: "Diretora de RH na IberMetal",
-      img: "https://randomuser.me/api/portraits/women/44.jpg",
+      name: "Francisco André",
+      role: "Mediação de Seguros",
+      img: "/1547655487386.jpeg",
       description: (
         <p>
-          Com a #Medisigma a gerir a medicina do trabalho,
-          ganhámos total tranquilidade legal.
-          <Highlight>
-            Reduzimos o absentismo em 18 % num ano.
-          </Highlight>{" "}
-          Serviço rápido e sem burocracias.
+          O Grupo Medisigma é o parceiro ideal para empresas na área da SST conforme exigências legais, também gostamos muito da sua proatividade.
         </p>
       ),
     },

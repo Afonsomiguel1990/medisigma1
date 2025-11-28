@@ -20,7 +20,7 @@ export async function POST(req: Request) {
     }
 
     const supabase = getSupabaseServer() ?? getSupabaseAnon();
-    const insertResult = await supabase
+    const { error } = await supabase
       .schema('web')
       .from('contacts')
       .insert({
@@ -32,12 +32,11 @@ export async function POST(req: Request) {
         pagina,
         url,
         fonte,
-      })
-      .select()
-      .single();
+      });
 
-    if (insertResult.error) {
-      return NextResponse.json({ error: insertResult.error.message }, { status: 500 });
+    if (error) {
+      console.error('Erro ao inserir contacto:', error);
+      return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
     try {

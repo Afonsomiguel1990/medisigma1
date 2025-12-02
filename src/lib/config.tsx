@@ -847,7 +847,7 @@ export const siteConfig = {
       img: "https://randomuser.me/api/portraits/men/32.jpg",
       description: (
         <p>
-          A unidade móvel da #Medisigma realizou exames a 120 colaboradores em
+          A unidade móvel da #Medisigma realizou exames a 80 colaboradores em
           apenas dois dias.
           <Highlight>
             Produção não parou um minuto.

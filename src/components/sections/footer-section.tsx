@@ -54,8 +54,24 @@ export function FooterSection() {
           </div>
 
           {/* Certificações Centralizadas */}
-          <div className="mt-12 flex items-center justify-center gap-8 border-t border-border pt-12 px-4 md:px-0">
-            <Icons.svgCertificadosGeral className="h-10 w-auto flex-shrink-0" />
+          <div className="mt-12 border-t border-border pt-12 px-4 md:px-0">
+            <div className="flex items-center justify-center gap-3 flex-wrap">
+              <img 
+                src="/admin/certificados.svg" 
+                alt="Certificações Medisigma" 
+                className="h-14 md:h-[70px] w-auto object-contain"
+              />
+              <img 
+                src="/certifs_employees_PLATINUM Medisigma.png" 
+                alt="ChooseMyCompany Employees Platinum Portugal 2026" 
+                className="h-14 md:h-[70px] w-auto object-contain"
+              />
+              <img 
+                src="/certifs_employees_HAPPYATWORK - Medisigma.png" 
+                alt="ChooseMyCompany Employees HappyAtWork Portugal 2026" 
+                className="h-14 md:h-[70px] w-auto object-contain"
+              />
+            </div>
           </div>
         </div>
       </div>

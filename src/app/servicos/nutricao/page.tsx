@@ -57,7 +57,7 @@ export default function NutricaoPage() {
               </div>
               <div className="text-center">
                 {/* Imagem Placeholder - substituir pela imagem correta */}
-                <Image src="/images/uploads/servicos/seguranca-alimentar-hero.png" alt="Nutrição" width={500} height={500} className="max-w-full h-auto rounded-lg shadow-lg" />
+                <Image src="/images/uploads/sundaraprakash-r-AMNvyr5RH-c-unsplash (1).jpg" alt="Nutrição" width={500} height={500} className="max-w-full h-auto rounded-lg shadow-lg" />
               </div>
             </div>
           </div>

@@ -10,11 +10,11 @@ export function Features() {
                         O Que Fazemos & Os Nossos Valores
                     </h2>
                     <p className="text-lg leading-8 text-muted-foreground max-w-4xl mx-auto">
-                        Protegemos a saúde e segurança dos trabalhadores através de soluções integradas, 
+                        Protegemos a saúde e segurança dos trabalhadores através de soluções integradas,
                         guiados pelos nossos valores fundamentais de excelência e integridade.
                     </p>
                 </div>
-                
+
                 <div className="relative">
                     <div className="relative z-10 grid grid-cols-6 gap-3">
                         {/* Integridade */}
@@ -40,9 +40,9 @@ export function Features() {
                                             fill="currentColor"
                                         />
                                     </svg>
-                                    <span className="mx-auto block w-fit text-5xl font-semibold">20+</span>
+                                    <span className="mx-auto block w-fit text-5xl font-semibold">Vasta</span>
                                 </div>
-                                <h2 className="mt-6 text-center text-3xl font-semibold">Anos de Medicina no Trabalho</h2>
+                                <h2 className="mt-6 text-center text-3xl font-semibold">Experiência em Medicina do Trabalho</h2>
                             </CardContent>
                         </Card>
 

@@ -192,61 +192,63 @@ export default function SobreNosPage() {
         </div>
       </section> */}
 
-      {/* Timeline Section */}
-      <section id="timeline" className="py-16 sm:py-24 bg-muted/30">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl">
-            <div className="text-center mb-6">
-              <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-6">
-                A Nossa História
-              </h2>
-              <p className="mt-2 mb-6 text-lg leading-8 text-muted-foreground">
-                Os momentos que definiram a nossa trajetória rumo à excelência.
-              </p>
-            </div>
+      {/* Timeline Section - Hidden */}
+      {false && (
+        <section id="timeline" className="py-16 sm:py-24 bg-muted/30">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl">
+              <div className="text-center mb-6">
+                <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-6">
+                  A Nossa História
+                </h2>
+                <p className="mt-2 mb-6 text-lg leading-8 text-muted-foreground">
+                  Os momentos que definiram a nossa trajetória rumo à excelência.
+                </p>
+              </div>
 
-            <div className="relative">
-              {/* Timeline Line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary via-primary/50 to-primary hidden lg:block"></div>
+              <div className="relative">
+                {/* Timeline Line */}
+                <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary via-primary/50 to-primary hidden lg:block"></div>
 
-              <div className="space-y-12">
-                {timelineEvents.map((event, index) => (
-                  <div
-                    key={event.year}
-                    className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
-                  >
-                    {/* Event Card - Alterna entre esquerda e direita */}
-                    <div className={`${index % 2 === 0 ? 'lg:pr-8 lg:text-right' : 'lg:pl-8 lg:text-left lg:order-2'}`}>
-                      <div className="relative overflow-hidden rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-all duration-300 group hover:scale-105">
-                        <div className={`${index % 2 === 0 ? 'lg:text-right' : ''}`}>
-                          <div className={`flex items-center gap-2 mb-2 ${index % 2 === 0 ? 'lg:justify-end' : ''}`}>
-                            <span className="text-2xl font-bold text-primary">{event.year}</span>
-                            {event.milestone && (
-                              <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
-                                Marco
-                              </span>
-                            )}
+                <div className="space-y-12">
+                  {timelineEvents.map((event, index) => (
+                    <div
+                      key={event.year}
+                      className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
+                    >
+                      {/* Event Card - Alterna entre esquerda e direita */}
+                      <div className={`${index % 2 === 0 ? 'lg:pr-8 lg:text-right' : 'lg:pl-8 lg:text-left lg:order-2'}`}>
+                        <div className="relative overflow-hidden rounded-lg border bg-card p-6 shadow-sm hover:shadow-md transition-all duration-300 group hover:scale-105">
+                          <div className={`${index % 2 === 0 ? 'lg:text-right' : ''}`}>
+                            <div className={`flex items-center gap-2 mb-2 ${index % 2 === 0 ? 'lg:justify-end' : ''}`}>
+                              <span className="text-2xl font-bold text-primary">{event.year}</span>
+                              {event.milestone && (
+                                <span className="inline-flex items-center rounded-full bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
+                                  Marco
+                                </span>
+                              )}
+                            </div>
+                            <h3 className="text-xl font-semibold text-foreground mb-2">
+                              {event.title}
+                            </h3>
+                            <p className="text-muted-foreground">
+                              {event.description}
+                            </p>
                           </div>
-                          <h3 className="text-xl font-semibold text-foreground mb-2">
-                            {event.title}
-                          </h3>
-                          <p className="text-muted-foreground">
-                            {event.description}
-                          </p>
                         </div>
                       </div>
-                    </div>
 
-                    {/* Spacer para manter o layout */}
-                    <div className={`hidden lg:block ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
+                      {/* Spacer para manter o layout */}
+                      <div className={`hidden lg:block ${index % 2 === 0 ? 'lg:order-2' : 'lg:order-1'}`}>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            </div >
+          </div >
+        </section>
+      )}
 
       {/* Certifications Section */}
       <section id="conquistas" className="py-16 sm:py-24 bg-muted/50">
@@ -267,6 +269,6 @@ export default function SobreNosPage() {
         </div>
       </section>
 
-    </div>
+    </div >
   );
 } 

@@ -6,14 +6,14 @@ import { Icons } from '@/components/icons';
 
 
 export const metadata: Metadata = {
-  title: 'Sobre Nós | Medisigma - Mais de 20 Anos de Excelência',
-  description: 'Conheça a Medisigma, líder em Medicina do Trabalho desde 2002. Nossa história, missão, valores e a jornada que nos tornou referência no setor, com sede em Abrantes.',
+  title: 'Sobre Nós | Medisigma - Excelência em Medicina do Trabalho',
+  description: 'Conheça a Medisigma, líder em Medicina do Trabalho. Nossa história, missão, valores e a jornada que nos tornou referência no setor, com sede em Abrantes.',
 };
 
 const timelineEvents = [
   {
     year: "2002",
-    title: "Fundação da Medisigma",
+    title: "Início da Medisigma",
     description: "Início da atividade do Grupo MEDISIGMA em Abrantes, com foco em Medicina do Trabalho e prestação de serviços de elevada qualidade.",
     milestone: true
   },
@@ -49,8 +49,8 @@ const timelineEvents = [
   },
   {
     year: "2017",
-    title: "Marco dos 15 Anos",
-    description: "Celebração de 15 anos com certificação ISO 45001 e consolidação da posição de liderança.",
+    title: "Marco de Consolidação",
+    description: "Celebração de certificação ISO 45001 e consolidação da posição de liderança.",
     milestone: true
   },
   {
@@ -61,8 +61,8 @@ const timelineEvents = [
   },
   {
     year: "2022",
-    title: "Duas Décadas de Excelência",
-    description: "20 anos de história, servindo mais de 5.000 empresas e realizando centenas de milhares de exames.",
+    title: "Excelência Continuada",
+    description: "História de sucesso, servindo mais de 5.000 empresas e realizando centenas de milhares de exames.",
     milestone: true
   },
   {
@@ -88,10 +88,10 @@ export default function SobreNosPage() {
                 <span className="text-primary">Medisigma</span>
               </h1>
               <p className="mt-2 mb-6 text-lg leading-8 text-muted-foreground">
-                Mais de 20 anos dedicados à excelência em Medicina do Trabalho e Segurança, com sede em Abrantes, sempre inovando para proteger melhor os trabalhadores portugueses.
+                Vasta experiência dedicada à excelência em Medicina do Trabalho e Segurança, com sede em Abrantes, sempre inovando para proteger melhor os trabalhadores portugueses.
               </p>
             </div>
-            
+
             {/* Hero Video Dialog */}
             {/* <div className="mx-auto max-w-4xl">
               <HeroVideoDialog
@@ -112,9 +112,9 @@ export default function SobreNosPage() {
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
               <div className="text-center">
                 <div className="text-4xl font-bold text-primary">
-                  20+
+                  Vasta
                 </div>
-                <p className="text-sm text-muted-foreground">Anos de Experiência</p>
+                <p className="text-sm text-muted-foreground">Experiência Comprovada</p>
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-primary">
@@ -146,10 +146,10 @@ export default function SobreNosPage() {
             <div className="text-center mb-6">
               <h3 className="text-2xl font-bold text-foreground mb-6">A Nossa Missão</h3>
               <p className="mt-2 mb-6 text-lg leading-8 text-muted-foreground max-w-4xl mx-auto">
-                O Grupo MEDISIGMA, fundado em 2002, é um grupo de empresas prestadoras de serviços, 
-                em diferentes áreas, sediado em Abrantes. Tem como missão satisfazer os clientes, 
-                oferecendo-lhes serviços de elevada qualidade, tendo por base as normas de Saúde e 
-                Segurança, com o empenho individual e coletivo dos colaboradores e ser reconhecida 
+                O Grupo MEDISIGMA é um grupo de empresas prestadoras de serviços,
+                em diferentes áreas, sediado em Abrantes. Tem como missão satisfazer os clientes,
+                oferecendo-lhes serviços de elevada qualidade, tendo por base as normas de Saúde e
+                Segurança, com o empenho individual e coletivo dos colaboradores e ser reconhecida
                 como empresa líder no mercado, melhorando e inovando sempre os nossos serviços.
               </p>
             </div>
@@ -208,10 +208,10 @@ export default function SobreNosPage() {
             <div className="relative">
               {/* Timeline Line */}
               <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary via-primary/50 to-primary hidden lg:block"></div>
-              
+
               <div className="space-y-12">
                 {timelineEvents.map((event, index) => (
-                  <div 
+                  <div
                     key={event.year}
                     className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 items-center"
                   >

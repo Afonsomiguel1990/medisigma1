@@ -13,10 +13,10 @@ export function HeroSection() {
           <div className="animated-hero-background absolute inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,var(--background)_40%,var(--secondary)_100%)] rounded-b-xl"></div>
         </div>
         <div className="relative z-10 pt-24 md:pt-32 pb-40 md:pb-40 max-w-5xl mx-auto h-full w-full flex flex-col gap-8 md:gap-10 items-center justify-center">
-          <p className="border border-border bg-accent rounded-full text-sm h-8 px-3 flex items-center gap-2">
+          {/* <p className="border border-border bg-accent rounded-full text-sm h-8 px-3 flex items-center gap-2">
             {hero.badgeIcon}
             {hero.badge}
-          </p>
+          </p> */}
           <div className="flex flex-col items-center justify-center gap-4 md:gap-5">
             <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-medium tracking-tighter text-balance text-center text-primary">
               {hero.title}
@@ -41,7 +41,7 @@ export function HeroSection() {
           </div>
         </div>
       </div>
-      
+
       {hero.showVideo && (
         <>
           {/* Vídeo com espaçamento correto - não sobreposto */}

@@ -2,12 +2,12 @@ import React from 'react';
 import { Metadata } from 'next';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { 
-  Users, 
-  TrendingUp, 
-  Shield, 
-  Heart, 
-  Clock, 
+import {
+  Users,
+  TrendingUp,
+  Shield,
+  Heart,
+  Clock,
   GraduationCap
 } from 'lucide-react';
 import SpontaneousApplicationForm from '@/components/SpontaneousApplicationForm';
@@ -37,7 +37,7 @@ export default function RecrutamentoPage() {
     {
       icon: Shield,
       title: "Estabilidade",
-      description: "Empresa sólida com mais de 20 anos no mercado"
+      description: "Empresa sólida com vasta experiência no mercado"
     },
     {
       icon: Heart,
@@ -62,7 +62,7 @@ export default function RecrutamentoPage() {
               <span className="text-primary">Medisigma</span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-muted-foreground max-w-2xl mx-auto">
-              Faça parte de uma equipa que protege a saúde e segurança de milhares de trabalhadores. 
+              Faça parte de uma equipa que protege a saúde e segurança de milhares de trabalhadores.
               Na Medisigma, o seu talento faz a diferença.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
@@ -86,11 +86,11 @@ export default function RecrutamentoPage() {
                 Por que trabalhar na Medisigma?
               </h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-                Somos uma empresa líder em Medicina do Trabalho e Segurança, com mais de 20 anos de experiência 
+                Somos uma empresa líder em Medicina do Trabalho e Segurança, com vasta experiência
                 e um compromisso sólido com a excelência e inovação.
               </p>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {benefits.map((benefit, index) => (
                 <Card key={index} className="border-0 shadow-sm hover:shadow-md transition-all duration-300">
@@ -134,12 +134,12 @@ export default function RecrutamentoPage() {
                 Nenhuma oportunidade disponível
               </h3>
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                De momento não temos posições em aberto, mas encorajamos candidaturas espontâneas. 
+                De momento não temos posições em aberto, mas encorajamos candidaturas espontâneas.
                 Mantemos o seu CV na nossa base de dados para futuras oportunidades.
               </p>
-                             <Button variant="outline" asChild className="hover:bg-primary hover:text-primary-foreground">
-                 <a href="mailto:geral@medisigma.pt?subject=Candidatura espontânea">Enviar Candidatura Espontânea</a>
-               </Button>
+              <Button variant="outline" asChild className="hover:bg-primary hover:text-primary-foreground">
+                <a href="mailto:geral@medisigma.pt?subject=Candidatura espontânea">Enviar Candidatura Espontânea</a>
+              </Button>
             </div>
           </div>
         </div>

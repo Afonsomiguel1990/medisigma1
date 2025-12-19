@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getAllPosts, createPost, CreatePostData } from '@/lib/posts';
 
 export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
 
 /**
  * GET /api/admin/posts
@@ -27,7 +28,7 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    
+
     // Validação básica
     if (!body.title || !body.slug || !body.content_mdx) {
       return NextResponse.json(
@@ -54,7 +55,7 @@ export async function POST(req: NextRequest) {
     };
 
     const post = await createPost(postData);
-    
+
     return NextResponse.json({ post }, { status: 201 });
   } catch (error) {
     console.error('Erro ao criar post:', error);

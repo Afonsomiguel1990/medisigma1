@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 // import HeroVideoDialog from '@/components/magicui/hero-video-dialog';
 import { Features } from '@/components/ui/features';
 import { Icons } from '@/components/icons';
+import { ServicesShowcase } from '@/components/sections/services-showcase';
 
 
 export const metadata: Metadata = {
@@ -159,6 +160,9 @@ export default function SobreNosPage() {
 
       {/* Features Section - O que fazemos & Valores */}
       <Features />
+
+      {/* Services Section */}
+      <ServicesShowcase />
 
       {/* Mission, Vision, Values Section Placeholder */}
       {/* <section id="missao-visao-valores" className="py-16 sm:py-24">

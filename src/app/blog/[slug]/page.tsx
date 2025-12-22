@@ -9,13 +9,13 @@ import Link from 'next/link';
 
 export default async function PostPage(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params;
-  
+
   // Redirect do slug antigo para o novo
   if (params.slug === 'radao-o-inimigo-invisivel-na-sua-empresa') {
     const { redirect } = await import('next/navigation');
     redirect('/blog/o-que-e-o-radao');
   }
-  
+
   const post = await getPostBySlug(params.slug);
 
   if (!post) {
@@ -43,7 +43,7 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
       );
     }
   }
-  
+
   // Obter todos os artigos para a secção de relacionados
   const allArticles = await getAllPublishedPosts();
 
@@ -115,8 +115,8 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
             {/* Imagem de Destaque */}
             {post.imagem_destaque && (
               <div className="mb-8">
-                <Image 
-                  src={post.imagem_destaque} 
+                <Image
+                  src={post.imagem_destaque}
                   alt={post.title}
                   width={1200}
                   height={630}
@@ -125,7 +125,7 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
                 />
               </div>
             )}
-          
+
             <header className="mb-8 border-b pb-6">
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-gray-100 leading-tight break-words">
                 {post.title}
@@ -158,15 +158,15 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
                 </p>
               )}
             </header>
-            
+
             <div className="prose prose-sm sm:prose-base lg:prose-lg dark:prose-invert max-w-none overflow-hidden
                             prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-gray-100 prose-headings:break-words
-                            prose-h1:text-3xl sm:prose-h1:text-4xl prose-h1:mt-12 prose-h1:mb-6 prose-h1:border-b prose-h1:border-gray-200 prose-h1:pb-4
-                            prose-h2:text-2xl sm:prose-h2:text-3xl prose-h2:mt-8 prose-h2:mb-4
-                            prose-h3:text-xl sm:prose-h3:text-2xl prose-h3:mt-6 prose-h3:mb-3
-                            prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed prose-p:mb-4 prose-p:break-words
-                            prose-ul:my-4 prose-ul:list-disc prose-ul:pl-6
-                            prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-li:mb-2 prose-li:break-words
+                            prose-h1:text-3xl sm:prose-h1:text-4xl prose-h1:mt-12 prose-h1:mb-8 prose-h1:border-b prose-h1:border-gray-200 prose-h1:pb-4
+                            prose-h2:text-2xl sm:prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
+                            prose-h3:text-xl sm:prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-4
+                            prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed prose-p:mb-8 prose-p:break-words
+                            prose-ul:my-8 prose-ul:list-disc prose-ul:pl-6
+                            prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-li:mb-4 prose-li:break-words
                             prose-strong:text-gray-900 dark:prose-strong:text-gray-100 prose-strong:font-semibold
                             prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:break-words
                             prose-table:border-collapse prose-table:w-full
@@ -176,17 +176,17 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
                 {compiledContent}
               </div>
             </div>
-            
+
             {/* Secção de artigos relacionados */}
-            <RelatedArticles 
-              currentSlug={params.slug} 
+            <RelatedArticles
+              currentSlug={params.slug}
               allArticles={allArticles.map(p => ({
                 slug: p.slug,
                 title: p.title,
                 description: p.description || p.excerpt || '',
                 date: p.published_at || p.created_at,
                 imagem_destaque: p.imagem_destaque || undefined
-              }))} 
+              }))}
             />
           </article>
         </div>
@@ -199,12 +199,12 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
   const params = await props.params;
 
   // Se for o slug antigo, buscar o post com o novo slug
-  const slugToUse = params.slug === 'radao-o-inimigo-invisivel-na-sua-empresa' 
-    ? 'o-que-e-o-radao' 
+  const slugToUse = params.slug === 'radao-o-inimigo-invisivel-na-sua-empresa'
+    ? 'o-que-e-o-radao'
     : params.slug;
 
   const post = await getPostBySlug(slugToUse);
-  
+
   if (!post) {
     return {
       title: 'Post Não Encontrado | Medisigma',

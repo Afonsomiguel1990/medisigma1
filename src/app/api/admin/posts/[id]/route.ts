@@ -14,7 +14,7 @@ export async function GET(
   try {
     const { id } = await params;
     const post = await getPostById(id);
-    
+
     if (!post) {
       return NextResponse.json(
         { error: 'Post não encontrado' },
@@ -63,12 +63,12 @@ export async function PUT(
     };
 
     const post = await updatePost(updateData);
-    
+
     return NextResponse.json({ post }, { status: 200 });
   } catch (error) {
     console.error('Erro ao atualizar post:', error);
     return NextResponse.json(
-      { error: 'Erro ao atualizar post' },
+      { error: error instanceof Error ? error.message : 'Erro ao atualizar post' },
       { status: 500 }
     );
   }
@@ -85,7 +85,7 @@ export async function DELETE(
   try {
     const { id } = await params;
     await deletePost(id);
-    
+
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
     console.error('Erro ao eliminar post:', error);

@@ -24,7 +24,10 @@ export const viewport: Viewport = {
   themeColor: "black",
 };
 
+import { metadata as baseMetadata } from "./metadata";
+
 export const metadata: Metadata = {
+  ...baseMetadata,
   metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.name,

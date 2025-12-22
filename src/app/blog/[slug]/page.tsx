@@ -7,6 +7,29 @@ import Image from 'next/image';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 
+const serviceKeywords = [
+  { keywords: ['segurança', 'higiene', 'acidente', 'risco', 'proteção'], url: '/servicos/seguranca-no-trabalho', label: 'Segurança no Trabalho' },
+  { keywords: ['medicina', 'exames', 'analises', 'saúde', 'ficha de aptidão'], url: '/servicos/medicina-no-trabalho', label: 'Medicina no Trabalho' },
+  { keywords: ['alimentar', 'haccp', 'alimentos', 'cozinha', 'restauração'], url: '/servicos/seguranca-alimentar', label: 'Segurança Alimentar' },
+  { keywords: ['formação', 'certificado', 'curso', 'aprender', 'ensino'], url: '/servicos/formacao-certificada', label: 'Formação Certificada' },
+  { keywords: ['psicologia', 'mental', 'stress', 'burnout', 'ansiedade'], url: '/servicos/psicologia', label: 'Psicologia' },
+  { keywords: ['pragas', 'baratas', 'ratos', 'desinfestação', 'insetos'], url: '/servicos/controlo-pragas', label: 'Controlo de Pragas' },
+  { keywords: ['incêndio', 'fogo', 'extintor', 'emergência', 'evacuação'], url: '/servicos/seguranca-incendios', label: 'Segurança Contra Incêndios' },
+  { keywords: ['legionella', 'água', 'bactéria', 'torres de arrefecimento'], url: '/servicos/legionella', label: 'Prevenção de Legionella' },
+  { keywords: ['nutrição', 'dieta', 'alimentação saudável'], url: '/servicos/nutricao', label: 'Nutrição' },
+  { keywords: ['desportiva', 'atleta', 'desporto', 'lesão'], url: '/servicos/medicina-desportiva', label: 'Medicina Desportiva' },
+];
+
+function getServiceCta(title: string, content: string | null) {
+  const text = (title + ' ' + (content || '')).toLowerCase();
+  for (const service of serviceKeywords) {
+    if (service.keywords.some(k => text.includes(k))) {
+      return service;
+    }
+  }
+  return null; // ou um default se quiser
+}
+
 export default async function PostPage(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params;
 
@@ -43,6 +66,9 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
       );
     }
   }
+
+  // Determinar serviço relacionado
+  const relatedService = getServiceCta(post.title, post.content_mdx);
 
   // Obter todos os artigos para a secção de relacionados
   const allArticles = await getAllPublishedPosts();
@@ -176,6 +202,24 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
                 {compiledContent}
               </div>
             </div>
+
+            {/* CTA do Serviço Relacionado */}
+            {relatedService && (
+              <div className="bg-primary/5 border border-primary/10 rounded-xl p-8 my-12 text-center">
+                <h3 className="text-2xl font-bold text-primary mb-4">
+                  Precisa de ajuda profissional com {relatedService.label}?
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+                  A Medisigma tem especialistas prontos para apoiar a sua empresa e garantir a conformidade legal. Fale connosco hoje mesmo.
+                </p>
+                <Link
+                  href={relatedService.url}
+                  className="inline-flex items-center justify-center px-8 py-3 text-base font-semibold rounded-full text-white bg-primary hover:bg-primary/90 transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                >
+                  Saber mais sobre {relatedService.label}
+                </Link>
+              </div>
+            )}
 
             {/* Secção de artigos relacionados */}
             <RelatedArticles

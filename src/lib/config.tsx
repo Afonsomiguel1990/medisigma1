@@ -148,13 +148,13 @@ export const siteConfig = {
         question: "Qual a periodicidade de manutenção de extintores?",
         answer:
           (
-          <ul className="list-disc pl-4 space-y-1">
-            <li>Inspeção Trimestral – pelo menos a cada três meses para verificar acesso, visibilidade e estado geral.</li>
-            <li>Manutenção Anual – obrigatória, realizada por empresa certificada.</li>
-            <li>Recarga – após qualquer utilização ou quando o estado o justifique.</li>
-            <li>Prova Hidráulica – a cada 10 anos para verificar a integridade sob pressão.</li>
-            <li>A vida útil dos extintores não deve exceder 20 anos.</li>
-          </ul>
+            <ul className="list-disc pl-4 space-y-1">
+              <li>Inspeção Trimestral – pelo menos a cada três meses para verificar acesso, visibilidade e estado geral.</li>
+              <li>Manutenção Anual – obrigatória, realizada por empresa certificada.</li>
+              <li>Recarga – após qualquer utilização ou quando o estado o justifique.</li>
+              <li>Prova Hidráulica – a cada 10 anos para verificar a integridade sob pressão.</li>
+              <li>A vida útil dos extintores não deve exceder 20 anos.</li>
+            </ul>
           ),
       },
       {
@@ -169,14 +169,14 @@ export const siteConfig = {
           "Onde posso esclarecer dúvidas mais frequentes, no âmbito da Saúde e Segurança no trabalho?",
         answer: (
           <ul className="list-disc pl-4 space-y-2">
-            <li><strong>Autoridade para as Condições do Trabalho (ACT):</strong><br/>
-            <a href="https://portal.act.gov.pt/Pages/PerguntasFrequentes.aspx" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-              https://portal.act.gov.pt/Pages/PerguntasFrequentes.aspx
-            </a></li>
-            <li><strong>Direção-Geral da Saúde (DGS):</strong><br/>
-            <a href="https://www.dgs.pt/saude-ocupacional/perguntas-frequentes-.aspx" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-              https://www.dgs.pt/saude-ocupacional/perguntas-frequentes-.aspx
-            </a></li>
+            <li><strong>Autoridade para as Condições do Trabalho (ACT):</strong><br />
+              <a href="https://portal.act.gov.pt/Pages/PerguntasFrequentes.aspx" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                https://portal.act.gov.pt/Pages/PerguntasFrequentes.aspx
+              </a></li>
+            <li><strong>Direção-Geral da Saúde (DGS):</strong><br />
+              <a href="https://www.dgs.pt/saude-ocupacional/perguntas-frequentes-.aspx" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                https://www.dgs.pt/saude-ocupacional/perguntas-frequentes-.aspx
+              </a></li>
           </ul>
         ),
       },
@@ -950,7 +950,7 @@ export const siteConfig = {
         </p>
       ),
     },
-  ],  
+  ],
   ctaSection: {
     id: "cta",
     title: "Seguimos juntos?",
@@ -999,6 +999,18 @@ export const siteConfig = {
         { id: 6, title: "Política de Cookies", url: "/cookies" },
         { id: 7, title: "Resolução de Litígios", url: "/resolucao-litigios" },
         { id: 8, title: "Livro de Reclamações", url: "https://www.livroreclamacoes.pt/Inicio/" },
+      ],
+    },
+    {
+      title: "Onde Atuamos",
+      links: [
+        { id: 1, title: "Lisboa", url: "/servicos/lisboa" },
+        { id: 2, title: "Covilhã", url: "/servicos/covilha" },
+        { id: 3, title: "Abrantes", url: "/servicos/abrantes" },
+        { id: 4, title: "Santarém", url: "/servicos/santarem" },
+        { id: 5, title: "Rio Maior", url: "/servicos/rio-maior" },
+        { id: 6, title: "Castelo Branco", url: "/servicos/castelo-branco" },
+        { id: 7, title: "Coimbra", url: "/servicos/coimbra" },
       ],
     },
   ],

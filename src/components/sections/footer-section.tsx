@@ -26,7 +26,7 @@ export function FooterSection() {
 
             {/* Colunas de Links */}
             <div className="lg:col-span-3">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 {siteConfig.footerLinks.map((column, columnIndex) => (
                   <div key={columnIndex} className="space-y-4">
                     <h4 className="text-sm font-semibold text-foreground pl-2 md:pl-0">
@@ -56,19 +56,19 @@ export function FooterSection() {
           {/* Certificações Centralizadas */}
           <div className="mt-12 border-t border-border pt-12 px-4 md:px-0">
             <div className="flex items-center justify-center gap-3 flex-wrap">
-              <img 
-                src="/admin/certificados.svg" 
-                alt="Certificações Medisigma" 
+              <img
+                src="/admin/certificados.svg"
+                alt="Certificações Medisigma"
                 className="h-14 md:h-[70px] w-auto object-contain"
               />
-              <img 
-                src="/certifs_employees_PLATINUM Medisigma.png" 
-                alt="ChooseMyCompany Employees Platinum Portugal 2026" 
+              <img
+                src="/certifs_employees_PLATINUM Medisigma.png"
+                alt="ChooseMyCompany Employees Platinum Portugal 2026"
                 className="h-14 md:h-[70px] w-auto object-contain"
               />
-              <img 
-                src="/certifs_employees_HAPPYATWORK - Medisigma.png" 
-                alt="ChooseMyCompany Employees HappyAtWork Portugal 2026" 
+              <img
+                src="/certifs_employees_HAPPYATWORK - Medisigma.png"
+                alt="ChooseMyCompany Employees HappyAtWork Portugal 2026"
                 className="h-14 md:h-[70px] w-auto object-contain"
               />
             </div>
@@ -80,10 +80,10 @@ export function FooterSection() {
       <div className="relative h-32 md:h-48 overflow-hidden">
         {/* Gradiente de fundo */}
         <div className="absolute inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,transparent_40%,#97bd28_100%)] opacity-20" />
-        
+
         {/* Overlay para suavizar a transição */}
         <div className="absolute inset-0 bg-gradient-to-t from-transparent to-background z-10 from-40%" />
-        
+
         {/* Grid animado */}
         <div className="absolute inset-0 mx-6">
           <FlickeringGrid

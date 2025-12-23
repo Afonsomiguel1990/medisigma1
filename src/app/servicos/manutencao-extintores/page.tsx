@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { ShieldCheck, Calendar, CheckCircle, Flame, FileText } from 'lucide-react';
+import { ShieldCheck, CheckCircle, FileText } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {

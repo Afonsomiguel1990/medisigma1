@@ -2,8 +2,8 @@ import React from 'react';
 import { Metadata } from 'next';
 // import HeroVideoDialog from '@/components/magicui/hero-video-dialog';
 import { Features } from '@/components/ui/features';
-import { Icons } from '@/components/icons';
 import { ServicesShowcase } from '@/components/sections/services-showcase';
+import { CertificationsShowcase } from '@/components/sections/certifications-showcase';
 
 
 export const metadata: Metadata = {
@@ -254,24 +254,8 @@ export default function SobreNosPage() {
         </section>
       )}
 
-      {/* Certifications Section */}
-      <section id="conquistas" className="py-16 sm:py-24 bg-muted/50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-7xl">
-            <div className="text-center mb-6">
-              <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-6">
-                Certificações e Reconhecimentos
-              </h2>
-              <p className="mt-2 mb-6 text-lg leading-8 text-muted-foreground">
-                Reconhecimento oficial da qualidade e conformidade dos nossos serviços.
-              </p>
-            </div>
-            <div className="flex justify-center">
-              <Icons.svgCertificadosGeral className="max-w-full h-auto" />
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Certifications & Awards Section */}
+      <CertificationsShowcase />
 
     </div >
   );

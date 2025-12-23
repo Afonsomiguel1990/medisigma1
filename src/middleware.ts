@@ -83,8 +83,9 @@ export function middleware(request: NextRequest) {
       'legionella',
       'medicina-desportiva',
       'nutricao',
+      'manutencao-extintores',
     ];
-    
+
     if (!validServices.includes(serviceSlug)) {
       return new NextResponse(null, {
         status: 404,

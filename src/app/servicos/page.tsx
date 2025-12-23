@@ -1,16 +1,17 @@
 "use client";
 
 import { motion } from "motion/react";
-import { 
-  Stethoscope, 
-  Shield, 
-  Utensils, 
-  Brain, 
+import {
+  Stethoscope,
+  Shield,
+  Utensils,
+  Brain,
   Flame,
   Droplets,
   GraduationCap,
   Bug,
-  ArrowRight
+  ArrowRight,
+  FireExtinguisher
 } from "lucide-react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
@@ -26,7 +27,7 @@ export default function ServicosPage() {
     },
     {
       id: 2,
-      title: "Segurança no Trabalho", 
+      title: "Segurança no Trabalho",
       description: "Medidas de prevenção de acidentes, formação e auditorias.",
       icon: Shield,
       href: "/servicos/seguranca-no-trabalho"
@@ -72,6 +73,13 @@ export default function ServicosPage() {
       description: "Prevenção e controlo em sistemas de água.",
       icon: Droplets,
       href: "/servicos/legionella"
+    },
+    {
+      id: 9,
+      title: "Manutenção de Extintores",
+      description: "Serviço certificado NP 4413, recargas e manutenção.",
+      icon: FireExtinguisher,
+      href: "/servicos/manutencao-extintores"
     }
   ];
 
@@ -91,7 +99,7 @@ export default function ServicosPage() {
             >
               Protegemos o seu negócio
             </motion.div>
-            
+
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -100,7 +108,7 @@ export default function ServicosPage() {
             >
               Os nossos Serviços
             </motion.h1>
-            
+
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -109,7 +117,7 @@ export default function ServicosPage() {
             >
               Soluções completas em segurança e saúde para o seu negócio.
             </motion.p>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -139,7 +147,7 @@ export default function ServicosPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
             {services.map((service, index) => {
               const IconComponent = service.icon;
-              
+
               return (
                 <motion.div
                   key={service.id}

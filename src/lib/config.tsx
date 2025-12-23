@@ -986,6 +986,7 @@ export const siteConfig = {
         { id: 8, title: "Legionella", url: "/servicos/legionella" },
         { id: 9, title: "Medicina Desportiva", url: "/servicos/medicina-desportiva" },
         { id: 10, title: "Nutrição", url: "/servicos/nutricao" },
+        { id: 11, title: "Manutenção de Extintores", url: "/servicos/manutencao-extintores" },
       ],
     },
     {

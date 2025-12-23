@@ -58,17 +58,17 @@ export function FooterSection() {
             <div className="flex items-center justify-center gap-3 flex-wrap">
               <img
                 src="/admin/certificados.svg"
-                alt="Certificações Medisigma"
+                alt="Certificações Entidades: ACT, DGS, ANEPC, DGERT, SGS NP4413"
                 className="h-14 md:h-[70px] w-auto object-contain"
               />
               <img
                 src="/certifs_employees_PLATINUM Medisigma.png"
-                alt="ChooseMyCompany Employees Platinum Portugal 2026"
+                alt="ChooseMyCompany Employees Platinum Portugal 2026 - Certificação Satisfação Colaboradores"
                 className="h-14 md:h-[70px] w-auto object-contain"
               />
               <img
                 src="/certifs_employees_HAPPYATWORK - Medisigma.png"
-                alt="ChooseMyCompany Employees HappyAtWork Portugal 2026"
+                alt="ChooseMyCompany Employees HappyAtWork Portugal 2026 - Excelência Ambiente de Trabalho"
                 className="h-14 md:h-[70px] w-auto object-contain"
               />
             </div>

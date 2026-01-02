@@ -16,29 +16,29 @@ export default function EditPostPage({ params }: { params: Promise<{ id: string 
   }, [params]);
 
   useEffect(() => {
+    const fetchPost = async () => {
+      if (!resolvedParams) return;
+
+      try {
+        const response = await fetch(`/api/admin/posts/${resolvedParams.id}`);
+        if (!response.ok) throw new Error('Erro ao carregar post');
+        const data = await response.json();
+        setPost(data.post);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Erro ao carregar post');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     if (resolvedParams) {
       fetchPost();
     }
   }, [resolvedParams]);
 
-  const fetchPost = async () => {
-    if (!resolvedParams) return;
-    
-    try {
-      const response = await fetch(`/api/admin/posts/${resolvedParams.id}`);
-      if (!response.ok) throw new Error('Erro ao carregar post');
-      const data = await response.json();
-      setPost(data.post);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Erro ao carregar post');
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const handleSave = async (data: CreatePostData | UpdatePostData) => {
     if (!resolvedParams) return;
-    
+
     setSaving(true);
     setError(null);
 
@@ -93,7 +93,7 @@ export default function EditPostPage({ params }: { params: Promise<{ id: string 
   return (
     <div className="container mx-auto py-8 px-4">
       <h1 className="text-3xl font-bold mb-8">Editar Post</h1>
-      
+
       {error && (
         <div className="mb-4 p-4 bg-red-50 border border-red-200 text-red-700 rounded">
           {error}

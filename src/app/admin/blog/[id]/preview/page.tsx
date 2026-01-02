@@ -19,36 +19,36 @@ export default function PreviewPostPage({ params }: { params: Promise<{ id: stri
   }, [params]);
 
   useEffect(() => {
+    const fetchPost = async () => {
+      if (!resolvedParams) return;
+
+      try {
+        const response = await fetch(`/api/admin/posts/${resolvedParams.id}`);
+        if (!response.ok) throw new Error('Erro ao carregar post');
+        const data = await response.json();
+        setPost(data.post);
+
+        // Compilar MDX
+        if (data.post.content_mdx) {
+          const { content: compiledContent } = await compileMDX({
+            source: data.post.content_mdx,
+            options: {
+              parseFrontmatter: false,
+            },
+          });
+          setContent(compiledContent);
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Erro ao carregar post');
+      } finally {
+        setLoading(false);
+      }
+    };
+
     if (resolvedParams) {
       fetchPost();
     }
   }, [resolvedParams]);
-
-  const fetchPost = async () => {
-    if (!resolvedParams) return;
-    
-    try {
-      const response = await fetch(`/api/admin/posts/${resolvedParams.id}`);
-      if (!response.ok) throw new Error('Erro ao carregar post');
-      const data = await response.json();
-      setPost(data.post);
-
-      // Compilar MDX
-      if (data.post.content_mdx) {
-        const { content: compiledContent } = await compileMDX({
-          source: data.post.content_mdx,
-          options: {
-            parseFrontmatter: false,
-          },
-        });
-        setContent(compiledContent);
-      }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Erro ao carregar post');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   if (loading) {
     return (

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getSupabaseAdmin } from '@/lib/supabase';
+import { getSupabaseAdmin, getSupabaseServer } from '@/lib/supabase';
 import { WEBHOOK_URL, formatSlackMessage } from '@/lib/webhook';
 
 export async function POST(req: Request) {
@@ -46,27 +46,23 @@ export async function POST(req: Request) {
       );
     }
 
-    // Verificar Service Role
-    const hasServiceRole = !!process.env.SUPABASE_SERVICE_ROLE;
-    console.log('[DEBUG] Tem Service Role definida?', hasServiceRole);
-
     // Upload de ficheiro se existir
-    if (cv_file && hasServiceRole) {
+    if (cv_file) {
       console.log('[DEBUG] Iniciando upload de CV...');
       try {
-        const supabaseAdmin = getSupabaseAdmin();
+        const supabase = getSupabaseServer();
         const arrayBuffer = await cv_file.arrayBuffer();
         const buffer = Buffer.from(arrayBuffer);
         const path = `${Date.now()}_${encodeURIComponent(nome)}_${cv_file.name}`.replace(/\s+/g, '_');
-        
+
         console.log('[DEBUG] Uploading to os-cv:', path);
-        const upload = await supabaseAdmin.storage.from('os-cv').upload(path, buffer, {
+        const upload = await supabase.storage.from('os-cv').upload(path, buffer, {
           contentType: cv_file.type || 'application/octet-stream',
           upsert: false,
         });
 
         if (!upload.error) {
-          const { data: publicUrlData } = supabaseAdmin.storage.from('os-cv').getPublicUrl(path);
+          const { data: publicUrlData } = supabase.storage.from('os-cv').getPublicUrl(path);
           cv_link = publicUrlData.publicUrl;
           console.log('[DEBUG] Upload sucesso. URL:', cv_link);
         } else {
@@ -75,81 +71,70 @@ export async function POST(req: Request) {
       } catch (uploadErr) {
         console.error('[DEBUG] Exceção no upload:', uploadErr);
       }
-    } else if (cv_file && !hasServiceRole) {
-        console.warn('[DEBUG] CV recebido mas sem Service Role configurada. Upload ignorado.');
     }
 
     console.log('[DEBUG] Tentando inserir na base de dados...');
-    // Usamos o admin client (service role) explicitamente
-    // IMPORTANTE: A service_role deve bypassar RLS automaticamente
     try {
-        if (!process.env.SUPABASE_SERVICE_ROLE) {
-          console.error('[DEBUG] ERRO CRÍTICO: SUPABASE_SERVICE_ROLE não está definida!');
-          return NextResponse.json({ error: 'Configuração do servidor inválida' }, { status: 500 });
-        }
-        
-        const supabaseAdmin = getSupabaseAdmin();
-        console.log('[DEBUG] Cliente admin criado com sucesso');
-        
-        const insertPayload = {
-            nome,
-            email,
-            telefone,
-            area_interesse,
-            cv_link,
-            mensagem,
-            pagina,
-            url,
-            origem: origem || pagina || 'Candidatura Espontânea',
-        };
-        console.log('[DEBUG] Payload inserção:', JSON.stringify(insertPayload, null, 2));
+      const supabase = getSupabaseServer();
+      console.log('[DEBUG] Cliente Supabase obtido');
 
-        // Usar função SQL com SECURITY DEFINER para garantir permissões
-        // A função está no schema 'web', mas o Supabase RPC procura no schema 'public' por padrão
-        // Vamos tentar primeiro com o schema explícito, depois fallback para INSERT direto
-        let insertResult;
-        try {
-          insertResult = await supabaseAdmin.rpc('insert_candidatura', {
-            p_nome: nome,
-            p_email: email,
-            p_telefone: telefone,
-            p_area_interesse: area_interesse || null,
-            p_cv_link: cv_link || null,
-            p_mensagem: mensagem || null,
-            p_pagina: pagina || null,
-            p_url: url || null,
-            p_origem: origem || pagina || 'Candidatura Espontânea'
-          });
-          
-          // Se RPC falhar, tentar INSERT direto (que agora deve funcionar com as permissões GRANT)
-          if (insertResult.error && insertResult.error.code === '42883') {
-            console.log('[DEBUG] Função RPC não encontrada, tentando INSERT direto...');
-            insertResult = await supabaseAdmin
-              .schema('web')
-              .from('candidaturas')
-              .insert(insertPayload);
-          }
-        } catch (rpcErr) {
-          console.log('[DEBUG] Erro ao chamar RPC, tentando INSERT direto...', rpcErr);
-          insertResult = await supabaseAdmin
+      const insertPayload = {
+        nome,
+        email,
+        telefone,
+        area_interesse,
+        cv_link,
+        mensagem,
+        pagina,
+        url,
+        origem: origem || pagina || 'Candidatura Espontânea',
+      };
+      console.log('[DEBUG] Payload inserção:', JSON.stringify(insertPayload, null, 2));
+
+      // Tentar usar RPC primeiro (pode ser SECURITY DEFINER)
+      let insertResult;
+      try {
+        insertResult = await supabase.rpc('insert_candidatura', {
+          p_nome: nome,
+          p_email: email,
+          p_telefone: telefone,
+          p_area_interesse: area_interesse || null,
+          p_cv_link: cv_link || null,
+          p_mensagem: mensagem || null,
+          p_pagina: pagina || null,
+          p_url: url || null,
+          p_origem: insertPayload.origem
+        });
+
+        // Se falhar porque a função não foi encontrada ou permissão negada, tenta INSERT direto
+        if (insertResult.error) {
+          console.log(`[DEBUG] RPC falhou (${insertResult.error.code}), tentando INSERT direto...`);
+          insertResult = await supabase
             .schema('web')
             .from('candidaturas')
-            .insert(insertPayload);
+            .insert(insertPayload)
+            .select()
+            .single();
         }
-        
-        console.log('[DEBUG] Resultado inserção - Error:', insertResult.error);
-        console.log('[DEBUG] Resultado inserção - Data:', insertResult.data);
+      } catch (rpcErr) {
+        console.log('[DEBUG] Exceção ao chamar RPC, tentando INSERT direto...', rpcErr);
+        insertResult = await supabase
+          .schema('web')
+          .from('candidaturas')
+          .insert(insertPayload)
+          .select()
+          .single();
+      }
 
-        if (insertResult.error) {
-          console.error('[DEBUG] Erro detalhado inserção:', JSON.stringify(insertResult.error, null, 2));
-          return NextResponse.json({ error: `DB Error: ${insertResult.error.message} (${insertResult.error.code})` }, { status: 500 });
-        }
+      if (insertResult.error) {
+        console.error('[DEBUG] Erro final na inserção DB:', JSON.stringify(insertResult.error, null, 2));
+        return NextResponse.json({ error: `DB Error: ${insertResult.error.message}` }, { status: 500 });
+      }
+
+      console.log('[DEBUG] Inserção concluída com sucesso');
     } catch (dbErr) {
-        console.error('[DEBUG] Exceção na inserção DB:', dbErr);
-        if (dbErr instanceof Error) {
-          console.error('[DEBUG] Stack trace:', dbErr.stack);
-        }
-        throw dbErr;
+      console.error('[DEBUG] Exceção no fluxo DB:', dbErr);
+      throw dbErr;
     }
 
     try {

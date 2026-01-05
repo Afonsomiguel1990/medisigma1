@@ -8,6 +8,7 @@ import { compileMDX } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 
 const serviceKeywords = [
+  { keywords: ['legionella', 'água', 'bactéria', 'torres de arrefecimento'], url: '/servicos/legionella', label: 'Prevenção de Legionella' },
   { keywords: ['segurança', 'higiene', 'acidente', 'risco', 'proteção'], url: '/servicos/seguranca-no-trabalho', label: 'Segurança no Trabalho' },
   { keywords: ['medicina', 'exames', 'analises', 'saúde', 'ficha de aptidão'], url: '/servicos/medicina-no-trabalho', label: 'Medicina no Trabalho' },
   { keywords: ['alimentar', 'haccp', 'alimentos', 'cozinha', 'restauração'], url: '/servicos/seguranca-alimentar', label: 'Segurança Alimentar' },
@@ -15,7 +16,6 @@ const serviceKeywords = [
   { keywords: ['psicologia', 'mental', 'stress', 'burnout', 'ansiedade'], url: '/servicos/psicologia', label: 'Psicologia' },
   { keywords: ['pragas', 'baratas', 'ratos', 'desinfestação', 'insetos'], url: '/servicos/controlo-pragas', label: 'Controlo de Pragas' },
   { keywords: ['incêndio', 'fogo', 'extintor', 'emergência', 'evacuação'], url: '/servicos/seguranca-incendios', label: 'Segurança Contra Incêndios' },
-  { keywords: ['legionella', 'água', 'bactéria', 'torres de arrefecimento'], url: '/servicos/legionella', label: 'Prevenção de Legionella' },
   { keywords: ['nutrição', 'dieta', 'alimentação saudável'], url: '/servicos/nutricao', label: 'Nutrição' },
   { keywords: ['desportiva', 'atleta', 'desporto', 'lesão'], url: '/servicos/medicina-desportiva', label: 'Medicina Desportiva' },
 ];
@@ -195,6 +195,7 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
                             prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-li:mb-4 prose-li:break-words
                             prose-strong:text-gray-900 dark:prose-strong:text-gray-100 prose-strong:font-semibold
                             prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:break-words
+                            prose-a:text-primary prose-a:underline prose-a:decoration-primary/30 prose-a:underline-offset-4 hover:prose-a:decoration-primary prose-a:transition-all
                             prose-table:border-collapse prose-table:w-full
                             prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-100
                             prose-td:border prose-td:border-gray-300 prose-td:p-2">

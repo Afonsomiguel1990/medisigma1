@@ -51,7 +51,7 @@ export interface UpdatePostData extends Partial<CreatePostData> {
  */
 export async function getAllPublishedPosts(): Promise<Post[]> {
   const supabase = getSupabaseAnon();
-  
+
   const { data, error } = await supabase
     .schema('web')
     .from('posts')
@@ -72,7 +72,7 @@ export async function getAllPublishedPosts(): Promise<Post[]> {
  */
 export async function getAllPosts(): Promise<Post[]> {
   const supabase = getSupabaseServer();
-  
+
   const { data, error } = await supabase
     .schema('web')
     .from('posts')
@@ -92,7 +92,7 @@ export async function getAllPosts(): Promise<Post[]> {
  */
 export async function getPostBySlug(slug: string): Promise<PostWithTags | null> {
   const supabase = getSupabaseAnon();
-  
+
   const { data: post, error: postError } = await supabase
     .schema('web')
     .from('posts')
@@ -102,7 +102,9 @@ export async function getPostBySlug(slug: string): Promise<PostWithTags | null> 
     .single();
 
   if (postError) {
-    console.error('Erro ao obter post por slug:', postError);
+    if (postError.code !== 'PGRST116') {
+      console.error('Erro ao obter post por slug:', postError);
+    }
     return null;
   }
 
@@ -134,7 +136,7 @@ export async function getPostBySlug(slug: string): Promise<PostWithTags | null> 
  */
 export async function getPostById(id: string): Promise<PostWithTags | null> {
   const supabase = getSupabaseServer();
-  
+
   const { data: post, error: postError } = await supabase
     .schema('web')
     .from('posts')
@@ -175,9 +177,9 @@ export async function getPostById(id: string): Promise<PostWithTags | null> {
  */
 export async function createPost(data: CreatePostData): Promise<Post> {
   const supabase = getSupabaseServer();
-  
+
   const { tags, ...postData } = data;
-  
+
   // Criar o post
   const { data: post, error: postError } = await supabase
     .schema('web')
@@ -208,9 +210,9 @@ export async function createPost(data: CreatePostData): Promise<Post> {
  */
 export async function updatePost(data: UpdatePostData): Promise<Post> {
   const supabase = getSupabaseServer();
-  
+
   const { id, tags, ...postData } = data;
-  
+
   // Atualizar o post
   const { data: post, error: postError } = await supabase
     .schema('web')
@@ -251,7 +253,7 @@ export async function updatePost(data: UpdatePostData): Promise<Post> {
  */
 export async function deletePost(id: string): Promise<void> {
   const supabase = getSupabaseServer();
-  
+
   const { error } = await supabase
     .schema('web')
     .from('posts')
@@ -269,7 +271,7 @@ export async function deletePost(id: string): Promise<void> {
  */
 export async function publishPost(id: string, publishedAt?: string): Promise<Post> {
   const supabase = getSupabaseServer();
-  
+
   const { data: post, error } = await supabase
     .schema('web')
     .from('posts')
@@ -295,7 +297,7 @@ export async function publishPost(id: string, publishedAt?: string): Promise<Pos
  */
 export async function schedulePost(id: string, scheduledFor: string): Promise<Post> {
   const supabase = getSupabaseServer();
-  
+
   const { data: post, error } = await supabase
     .schema('web')
     .from('posts')
@@ -321,7 +323,7 @@ export async function schedulePost(id: string, scheduledFor: string): Promise<Po
  */
 export async function getAllTags(): Promise<{ id: string; name: string }[]> {
   const supabase = getSupabaseAnon();
-  
+
   const { data, error } = await supabase
     .schema('web')
     .from('tags')
@@ -341,7 +343,7 @@ export async function getAllTags(): Promise<{ id: string; name: string }[]> {
  */
 export async function createOrGetTag(name: string): Promise<{ id: string; name: string }> {
   const supabase = getSupabaseServer();
-  
+
   // Tentar obter tag existente
   const { data: existing } = await supabase
     .schema('web')
@@ -375,7 +377,7 @@ export async function createOrGetTag(name: string): Promise<{ id: string; name: 
  */
 async function associateTags(postId: string, tagNames: string[]): Promise<void> {
   const supabase = getSupabaseServer();
-  
+
   // Criar ou obter tags
   const tagPromises = tagNames.map(name => createOrGetTag(name));
   const tags = await Promise.all(tagPromises);
@@ -416,7 +418,7 @@ export function generateSlug(title: string): string {
  */
 export async function isSlugUnique(slug: string, excludeId?: string): Promise<boolean> {
   const supabase = getSupabaseAnon();
-  
+
   let query = supabase
     .schema('web')
     .from('posts')

@@ -15,7 +15,7 @@ export default async function BlogPage() {
     <section className="py-12 md:py-20">
       <div className="w-full px-8 md:px-12 lg:px-16 xl:px-20">
         <h1 className="text-3xl md:text-4xl font-bold mb-8 text-center">Blog</h1>
-        
+
         {/* Introdução do Blog */}
         <div className="max-w-4xl mx-auto mb-12">
           <p className="text-lg text-gray-600 text-center leading-relaxed">

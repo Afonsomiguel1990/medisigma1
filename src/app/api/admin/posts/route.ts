@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { getAllPosts, createPost, CreatePostData } from '@/lib/posts';
 
 export const runtime = 'nodejs';
@@ -55,6 +56,10 @@ export async function POST(req: NextRequest) {
     };
 
     const post = await createPost(postData);
+
+    revalidatePath('/blog');
+    revalidatePath(`/blog/${post.slug}`);
+    revalidatePath('/'); // Caso existam destaques na home
 
     return NextResponse.json({ post }, { status: 201 });
   } catch (error) {

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { getPostById, updatePost, deletePost, UpdatePostData } from '@/lib/posts';
 
 export const runtime = 'nodejs';
@@ -64,6 +65,10 @@ export async function PUT(
 
     const post = await updatePost(updateData);
 
+    revalidatePath('/blog');
+    revalidatePath(`/blog/${post.slug}`);
+    revalidatePath('/');
+
     return NextResponse.json({ post }, { status: 200 });
   } catch (error) {
     console.error('Erro ao atualizar post:', error);
@@ -85,6 +90,9 @@ export async function DELETE(
   try {
     const { id } = await params;
     await deletePost(id);
+
+    revalidatePath('/blog');
+    revalidatePath('/');
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {

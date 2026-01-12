@@ -1,6 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { ShieldCheck, FileText, Users, Zap, DoorOpen, DraftingCompass, CheckCircle, Calendar, RefreshCw } from 'lucide-react';
+import { siteConfig } from "@/lib/config";
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
@@ -58,7 +59,7 @@ export default function SegurancaIncendiosPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      
+
       <main className="min-h-screen bg-white flex flex-col divide-y divide-border">
         {/* Hero Section */}
         <section className="relative py-16 md:py-24 mx-4 md:mx-8 rounded-3xl mb-8">
@@ -75,8 +76,8 @@ export default function SegurancaIncendiosPage() {
                   Asseguramos a manutenção das condições de segurança contra incêndios ao longo de todo o ciclo de vida do seu edifício, garantindo a conformidade com a legislação em vigor e a máxima proteção de pessoas e bens.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <a 
-                    href="#cta-section" 
+                  <a
+                    href="#cta-section"
                     className="bg-secondary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:bg-secondary/90 transition-colors text-center cursor-pointer"
                   >
                     Fale connosco
@@ -111,29 +112,30 @@ export default function SegurancaIncendiosPage() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <h2 className="text-3xl font-bold text-primary mb-6">
-                        Projetos e Medidas de Autoproteção
-                    </h2>
-                    <p className="text-muted-foreground mb-6 leading-relaxed">
-                        Elaboramos Projetos de Segurança Contra Incêndios e implementamos Medidas de Autoproteção, conforme a Lei n.º 123/2019, para garantir a segurança de qualquer estabelecimento. O nosso objetivo é claro: manter as condições de segurança e assegurar uma resposta eficaz em caso de emergência.
-                    </p>
-                    <div className="space-y-4">
-                        {[
-                            { icon: ShieldCheck, text: "Manutenção das condições de segurança definidas no projeto" },
-                            { icon: Users, text: "Garantia de uma estrutura mínima de resposta a emergências" },
-                            { icon: Zap, text: "Operacionalidade permanente de todos os equipamentos e sistemas" },
-                            { icon: DoorOpen, text: "Evacuação segura dos ocupantes em caso de incêndio" },
-                        ].map((item, index) => {
-                            const Icon = item.icon;
-                            return(
-                            <div key={index} className="flex items-center gap-3">
-                                <Icon className="w-5 h-5 text-secondary flex-shrink-0" />
-                                <span className="text-muted-foreground">{item.text}</span>
-                            </div>
-                        )})}
-                    </div>
+              <div>
+                <h2 className="text-3xl font-bold text-primary mb-6">
+                  Projetos e Medidas de Autoproteção
+                </h2>
+                <p className="text-muted-foreground mb-6 leading-relaxed">
+                  Elaboramos Projetos de Segurança Contra Incêndios e implementamos Medidas de Autoproteção, conforme a Lei n.º 123/2019, para garantir a segurança de qualquer estabelecimento. O nosso objetivo é claro: manter as condições de segurança e assegurar uma resposta eficaz em caso de emergência.
+                </p>
+                <div className="space-y-4">
+                  {[
+                    { icon: ShieldCheck, text: "Manutenção das condições de segurança definidas no projeto" },
+                    { icon: Users, text: "Garantia de uma estrutura mínima de resposta a emergências" },
+                    { icon: Zap, text: "Operacionalidade permanente de todos os equipamentos e sistemas" },
+                    { icon: DoorOpen, text: "Evacuação segura dos ocupantes em caso de incêndio" },
+                  ].map((item, index) => {
+                    const Icon = item.icon;
+                    return (
+                      <div key={index} className="flex items-center gap-3">
+                        <Icon className="w-5 h-5 text-secondary flex-shrink-0" />
+                        <span className="text-muted-foreground">{item.text}</span>
+                      </div>
+                    )
+                  })}
                 </div>
+              </div>
               <div>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -151,35 +153,35 @@ export default function SegurancaIncendiosPage() {
 
         {/* Processo Section */}
         <section className="bg-accent py-16 md:py-20 mx-4 md:mx-8 rounded-3xl">
-            <div className="container mx-auto px-6 max-w-6xl">
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold text-primary">O Nosso Processo de Execução</h2>
-                    <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">Assumimos a responsabilidade por todo o processo, desde a análise inicial à entrega final da documentação.</p>
-                </div>
-                <div className="grid md:grid-cols-3 gap-8 text-center">
-                    <div>
-                        <div className="w-16 h-16 bg-secondary/10 text-secondary rounded-full flex items-center justify-center mx-auto mb-4">
-                            <DraftingCompass className="w-8 h-8"/>
-                        </div>
-                        <h3 className="text-xl font-semibold mb-2">Levantamento e Desenho</h3>
-                        <p className="text-muted-foreground">Levantamento das instalações e equipamentos. Se não possuir plantas digitais, os nossos desenhadores tratam da sua criação.</p>
-                    </div>
-                    <div>
-                        <div className="w-16 h-16 bg-secondary/10 text-secondary rounded-full flex items-center justify-center mx-auto mb-4">
-                            <FileText className="w-8 h-8"/>
-                        </div>
-                        <h3 className="text-xl font-semibold mb-2">Conceção Documental</h3>
-                        <p className="text-muted-foreground">Elaboração de toda a documentação necessária para as Medidas de Autoproteção e Projetos de SCIE.</p>
-                    </div>
-                    <div>
-                        <div className="w-16 h-16 bg-secondary/10 text-secondary rounded-full flex items-center justify-center mx-auto mb-4">
-                           <CheckCircle className="w-8 h-8"/>
-                        </div>
-                        <h3 className="text-xl font-semibold mb-2">Entrega e Implementação</h3>
-                        <p className="text-muted-foreground">Entrega da documentação final e apoio na implementação das medidas de segurança.</p>
-                    </div>
-                </div>
+          <div className="container mx-auto px-6 max-w-6xl">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-primary">O Nosso Processo de Execução</h2>
+              <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">Assumimos a responsabilidade por todo o processo, desde a análise inicial à entrega final da documentação.</p>
             </div>
+            <div className="grid md:grid-cols-3 gap-8 text-center">
+              <div>
+                <div className="w-16 h-16 bg-secondary/10 text-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                  <DraftingCompass className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Levantamento e Desenho</h3>
+                <p className="text-muted-foreground">Levantamento das instalações e equipamentos. Se não possuir plantas digitais, os nossos desenhadores tratam da sua criação.</p>
+              </div>
+              <div>
+                <div className="w-16 h-16 bg-secondary/10 text-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                  <FileText className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Conceção Documental</h3>
+                <p className="text-muted-foreground">Elaboração de toda a documentação necessária para as Medidas de Autoproteção e Projetos de SCIE.</p>
+              </div>
+              <div>
+                <div className="w-16 h-16 bg-secondary/10 text-secondary rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">Entrega e Implementação</h3>
+                <p className="text-muted-foreground">Entrega da documentação final e apoio na implementação das medidas de segurança.</p>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Manutenção de Extintores Section */}
@@ -205,20 +207,20 @@ export default function SegurancaIncendiosPage() {
                   Os extintores são equipamentos de primeira intervenção, essenciais no combate a incêndios na sua fase inicial. Fornecemos e mantemos extintores, cumprindo as normas NP 4413:2019 e NP EN 671 para garantir a sua total operacionalidade.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div className="bg-white p-6 rounded-xl shadow-lg border border-border">
-                        <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
-                            <Calendar className="w-6 h-6 text-secondary" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-primary mb-2">Manutenção Anual</h3>
-                        <p className="text-muted-foreground text-sm">Verificação completa do estado do extintor, realizada anualmente para garantir a sua conformidade e funcionamento.</p>
+                  <div className="bg-white p-6 rounded-xl shadow-lg border border-border">
+                    <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
+                      <Calendar className="w-6 h-6 text-secondary" />
                     </div>
-                    <div className="bg-white p-6 rounded-xl shadow-lg border border-border">
-                        <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
-                            <RefreshCw className="w-6 h-6 text-secondary" />
-                        </div>
-                        <h3 className="text-lg font-semibold text-primary mb-2">Carregamento e Recarga</h3>
-                        <p className="text-muted-foreground text-sm">Substituição do agente extintor de 5 em 5 anos (carregamento) ou após utilização (recarga).</p>
+                    <h3 className="text-lg font-semibold text-primary mb-2">Manutenção Anual</h3>
+                    <p className="text-muted-foreground text-sm">Verificação completa do estado do extintor, realizada anualmente para garantir a sua conformidade e funcionamento.</p>
+                  </div>
+                  <div className="bg-white p-6 rounded-xl shadow-lg border border-border">
+                    <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
+                      <RefreshCw className="w-6 h-6 text-secondary" />
                     </div>
+                    <h3 className="text-lg font-semibold text-primary mb-2">Carregamento e Recarga</h3>
+                    <p className="text-muted-foreground text-sm">Substituição do agente extintor de 5 em 5 anos (carregamento) ou após utilização (recarga).</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -231,7 +233,7 @@ export default function SegurancaIncendiosPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-primary mb-12 text-center">
               Perguntas Frequentes
             </h2>
-            
+
             <div className="space-y-6">
               <details className="bg-white p-6 rounded-lg shadow-sm border border-border">
                 <summary className="font-semibold text-primary cursor-pointer text-lg">
@@ -268,7 +270,7 @@ export default function SegurancaIncendiosPage() {
             </div>
           </div>
         </section>
-        
+
         {/* CTA Section */}
         <section id="cta-section" className="relative z-10 bg-secondary py-16 md:py-20 mx-4 md:mx-8 rounded-3xl mb-8">
           <div className="container mx-auto px-6 md:px-8 max-w-5xl">
@@ -280,7 +282,7 @@ export default function SegurancaIncendiosPage() {
                 <p className="text-base md:text-lg text-primary-foreground/90 max-w-3xl mx-auto mb-8">
                   A prevenção de incêndios é fundamental para a segurança de pessoas e bens. Implementamos soluções completas de segurança contra incêndios adaptadas às suas necessidades.
                 </p>
-                
+
                 <div className="space-y-4 mb-8 text-blue-100">
                   <div className="flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-white" />
@@ -295,16 +297,16 @@ export default function SegurancaIncendiosPage() {
                     <span>Formação e treino especializado</span>
                   </div>
                 </div>
-                
+
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <a 
-                    href="https://wa.me/351966979226?text=Olá%2C%20estava%20no%20vosso%20website%20e%20gostaria%20de%20ter%20mais%20informações%20sobre%20Segurança%20contra%20Incêndios." 
-                    target="_blank" 
+                  <a
+                    href={`https://wa.me/${siteConfig.links.whatsapp}?text=Olá%2C%20estava%20no%20vosso%20website%20e%20gostaria%20de%20ter%20mais%20informações%20sobre%20Segurança%20contra%20Incêndios.`}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="bg-white text-secondary px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"
                   >
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.515z"/>
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.515z" />
                     </svg>
                     WhatsApp
                   </a>
@@ -313,7 +315,7 @@ export default function SegurancaIncendiosPage() {
                   </a>
                 </div>
               </div>
-              
+
               <ContactForm
                 pagina="Serviço Segurança Contra Incêndios"
                 fonte="servicos/seguranca-incendios"

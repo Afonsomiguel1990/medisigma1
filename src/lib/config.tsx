@@ -48,6 +48,7 @@ export const siteConfig = {
     discord: "https://discord.gg/medisigma",
     github: "https://github.com/medisigma",
     instagram: "https://instagram.com/medisigma",
+    whatsapp: "351933717503",
   },
   nav: {
     links: [

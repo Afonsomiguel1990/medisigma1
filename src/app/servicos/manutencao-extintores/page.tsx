@@ -1,6 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { ShieldCheck, CheckCircle, FileText } from 'lucide-react';
+import { siteConfig } from "@/lib/config";
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
@@ -191,7 +192,7 @@ export default function ManutencaoExtintoresPage() {
 
                                 <div className="flex flex-col sm:flex-row gap-4">
                                     <a
-                                        href="https://wa.me/351966979226?text=Olá%2C%20gostaria%20de%20saber%20mais%20sobre%20a%20manutenção%20de%20extintores."
+                                        href={`https://wa.me/${siteConfig.links.whatsapp}?text=Olá%2C%20gostaria%20de%20saber%20mais%20sobre%20a%20manutenção%20de%20extintores.`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="bg-white text-secondary px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"

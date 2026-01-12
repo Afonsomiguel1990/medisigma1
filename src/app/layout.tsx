@@ -9,6 +9,7 @@ import { CTASection } from "@/components/sections/cta-section";
 import { CookieConsentComponent } from "@/components/cookie-consent";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,6 +44,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt" suppressHydrationWarning>
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-GB5WGQPXK3"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-GB5WGQPXK3');
+        `}
+      </Script>
       {/* <head>
         <Script src="https://unpkg.com/react-scan/dist/auto.global.js" />
       </head> */}

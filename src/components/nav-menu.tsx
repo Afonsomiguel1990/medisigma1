@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 import React, { useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Activity, TriangleAlert } from "lucide-react";
 
 interface NavItem {
   name: string;
@@ -16,6 +16,7 @@ const navs: NavItem[] = siteConfig.nav.links;
 
 // Obter os serviços do footer
 const servicosLinks = siteConfig.footerLinks.find(section => section.title === "Serviços")?.links || [];
+const companiesLinks = siteConfig.companies || [];
 
 export function NavMenu() {
   const ref = useRef<HTMLUListElement>(null);
@@ -26,6 +27,7 @@ export function NavMenu() {
   const pathname = usePathname();
   const [isManualScroll, setIsManualScroll] = useState(false);
   const [showServicesDropdown, setShowServicesDropdown] = useState(false);
+  const [showCompaniesDropdown, setShowCompaniesDropdown] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   React.useEffect(() => {
@@ -68,20 +70,20 @@ export function NavMenu() {
       // Ensure we only update based on scroll if the link is a section link
       const activeItem = navs.find(item => item.href.substring(1) === closestSection);
       if (activeItem && activeItem.href.startsWith("#")) {
-          setActiveSection(closestSection);
-          const navItemElement = ref.current?.querySelector(
-            `[href="#${closestSection}"]`,
-          )?.parentElement;
-          if (navItemElement) {
-            const rect = navItemElement.getBoundingClientRect();
-            setLeft(navItemElement.offsetLeft);
-            setWidth(rect.width);
-          }
+        setActiveSection(closestSection);
+        const navItemElement = ref.current?.querySelector(
+          `[href="#${closestSection}"]`,
+        )?.parentElement;
+        if (navItemElement) {
+          const rect = navItemElement.getBoundingClientRect();
+          setLeft(navItemElement.offsetLeft);
+          setWidth(rect.width);
+        }
       } else if (!navs.some(item => item.href === pathname)) {
-          // If not on a defined page path and no section is active, potentially clear or default activeSection
-          // Or handle based on desired behavior when scrolling on non-main pages
-          // For now, we clear activeSection if not matching a section ID
-          // setActiveSection(""); // Option: Clear active section if not a section link
+        // If not on a defined page path and no section is active, potentially clear or default activeSection
+        // Or handle based on desired behavior when scrolling on non-main pages
+        // For now, we clear activeSection if not matching a section ID
+        // setActiveSection(""); // Option: Clear active section if not a section link
       }
     };
 
@@ -121,6 +123,13 @@ export function NavMenu() {
   const handleServicesClick = (e: React.MouseEvent) => {
     e.preventDefault();
     setShowServicesDropdown(!showServicesDropdown);
+    setShowCompaniesDropdown(false);
+  };
+
+  const handleCompaniesClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setShowCompaniesDropdown(!showCompaniesDropdown);
+    setShowServicesDropdown(false);
   };
 
   const handleMouseEnter = (item: NavItem) => {
@@ -129,12 +138,21 @@ export function NavMenu() {
         clearTimeout(timeoutRef.current);
       }
       setShowServicesDropdown(true);
+      setShowCompaniesDropdown(false);
+    }
+    if (item.name === "Empresas") {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      setShowCompaniesDropdown(true);
+      setShowServicesDropdown(false);
     }
   };
 
   const handleMouseLeave = () => {
     timeoutRef.current = setTimeout(() => {
       setShowServicesDropdown(false);
+      setShowCompaniesDropdown(false);
     }, 150); // Pequeno delay antes de fechar
   };
 
@@ -147,6 +165,7 @@ export function NavMenu() {
   const handleDropdownMouseLeave = () => {
     timeoutRef.current = setTimeout(() => {
       setShowServicesDropdown(false);
+      setShowCompaniesDropdown(false);
     }, 150);
   };
 
@@ -169,6 +188,7 @@ export function NavMenu() {
           // Determine if the link is for a section or a page
           const isSectionLink = item.href.startsWith("#");
           const isServicesItem = item.name === "Serviços";
+          const isCompaniesItem = item.name === "Empresas";
           // Determine if the link is active
           const isActive = isSectionLink
             ? activeSection === item.href.substring(1) && pathname === "/" // Section links only active on homepage
@@ -177,11 +197,10 @@ export function NavMenu() {
           return (
             <li
               key={item.name}
-              className={`z-10 h-full flex items-center justify-center px-2 md:px-4 py-2 text-sm font-medium transition-colors duration-200 ${
-                isActive // Use combined isActive state
+              className={`z-10 h-full flex items-center justify-center px-2 md:px-4 py-2 text-sm font-medium transition-colors duration-200 ${isActive // Use combined isActive state
                   ? "text-primary"
                   : "text-primary/60 hover:text-primary"
-              } tracking-tight relative whitespace-nowrap`}
+                } tracking-tight relative whitespace-nowrap`}
               onMouseEnter={() => handleMouseEnter(item)}
               onMouseLeave={handleMouseLeave}
             >
@@ -195,7 +214,7 @@ export function NavMenu() {
                     {item.name}
                     <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${showServicesDropdown ? 'rotate-180' : ''}`} />
                   </button>
-                  
+
                   <AnimatePresence>
                     {showServicesDropdown && (
                       <motion.div
@@ -231,6 +250,52 @@ export function NavMenu() {
                           >
                             Ver todos os serviços →
                           </Link>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ) : isCompaniesItem ? (
+                <div className="relative">
+                  <button
+                    onClick={handleCompaniesClick}
+                    className="cursor-pointer flex items-center gap-1"
+                  >
+                    {item.name}
+                    <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${showCompaniesDropdown ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  <AnimatePresence>
+                    {showCompaniesDropdown && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        transition={{ duration: 0.15, ease: "easeOut" }}
+                        className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-72 bg-background/95 backdrop-blur-lg border border-border rounded-xl shadow-lg z-[9999] py-2"
+                        onMouseEnter={handleDropdownMouseEnter}
+                        onMouseLeave={handleDropdownMouseLeave}
+                      >
+                        <div className="px-3 py-2 text-xs font-semibold text-muted-foreground border-b border-border">
+                          Nossas Empresas
+                        </div>
+                        <div className="grid grid-cols-1 gap-1 p-2">
+                          {companiesLinks.map((company) => (
+                            <Link
+                              key={company.id}
+                              href={company.href}
+                              className="flex items-start px-3 py-2.5 text-sm text-primary/80 hover:text-primary hover:bg-accent/50 rounded-lg transition-all duration-200 group"
+                              onClick={() => setShowCompaniesDropdown(false)}
+                            >
+                              <div className="mt-0.5 mr-3 p-1.5 rounded-md bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-200">
+                                {company.icon === "TriangleAlert" ? <TriangleAlert className="w-4 h-4" /> : <Activity className="w-4 h-4" />}
+                              </div>
+                              <div>
+                                <div className="font-medium">{company.name}</div>
+                                <div className="text-xs text-muted-foreground font-normal mt-0.5">{company.description}</div>
+                              </div>
+                            </Link>
+                          ))}
                         </div>
                       </motion.div>
                     )}

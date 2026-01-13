@@ -49,14 +49,32 @@ export const siteConfig = {
     github: "https://github.com/medisigma",
     instagram: "https://instagram.com/medisigma",
     whatsapp: "351933717503",
+    moodle: "https://medisigma.tech/elearning/",
   },
   nav: {
     links: [
       { id: 1, name: "Sobre Nós", href: "/sobre-nos" },
+      { id: 5, name: "Empresas", href: "#" },
       { id: 2, name: "Serviços", href: "/servicos" },
       { id: 4, name: "Recrutamento", href: "/recrutamento" },
     ],
   },
+  companies: [
+    {
+      id: 1,
+      name: "Medisigma",
+      description: "Saúde e Segurança no Trabalho",
+      href: "/",
+      icon: "Activity" // Using string reference for icon, will handle in component
+    },
+    {
+      id: 2,
+      name: "SinalSigma",
+      description: "Sinalização e Sinalética",
+      href: "/signalsigma",
+      icon: "TriangleAlert"
+    }
+  ],
   hero: {
     badgeIcon: (
       <svg

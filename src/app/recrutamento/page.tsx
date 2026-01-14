@@ -11,13 +11,24 @@ import {
   GraduationCap
 } from 'lucide-react';
 import SpontaneousApplicationForm from '@/components/SpontaneousApplicationForm';
+import { getSupabaseServer } from '@/lib/supabase';
+import JobsList from './JobsList';
 
 export const metadata: Metadata = {
   title: 'Bolsa de Recrutamento | Medisigma',
   description: 'Consulte as oportunidades de carreira e junte-se à equipa Medisigma. Faça parte de uma empresa líder em Medicina do Trabalho e Segurança.',
 };
 
-export default function RecrutamentoPage() {
+export default async function RecrutamentoPage() {
+  const supabase = getSupabaseServer();
+
+  const { data: jobs } = await supabase
+    .schema('web')
+    .from('jobs')
+    .select('*')
+    .eq('status', 'published')
+    .order('published_at', { ascending: false });
+
   const benefits = [
     {
       icon: TrendingUp,
@@ -125,22 +136,7 @@ export default function RecrutamentoPage() {
               </p>
             </div>
 
-            {/* Lista vazia por agora */}
-            <div className="bg-muted/50 rounded-xl p-12 text-center">
-              <div className="mx-auto w-16 h-16 bg-muted rounded-full flex items-center justify-center mb-6">
-                <Users className="w-8 h-8 text-muted-foreground" />
-              </div>
-              <h3 className="text-xl font-semibold text-foreground mb-4">
-                Nenhuma oportunidade disponível
-              </h3>
-              <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                De momento não temos posições em aberto, mas encorajamos candidaturas espontâneas.
-                Mantemos o seu CV na nossa base de dados para futuras oportunidades.
-              </p>
-              <Button variant="outline" asChild className="hover:bg-primary hover:text-primary-foreground">
-                <a href="mailto:geral@medisigma.pt?subject=Candidatura espontânea">Enviar Candidatura Espontânea</a>
-              </Button>
-            </div>
+            <JobsList initialJobs={(jobs as any[]) || []} />
           </div>
         </div>
       </section>

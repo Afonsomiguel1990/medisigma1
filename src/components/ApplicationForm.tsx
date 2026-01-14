@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 
-export default function ApplicationForm() {
+export default function ApplicationForm({ jobId, jobTitle }: { jobId?: string, jobTitle?: string }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [cvMode, setCvMode] = useState<'file' | 'link'>('file');
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -64,6 +64,13 @@ export default function ApplicationForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      <input type="hidden" name="job_id" value={jobId || ''} />
+      {jobTitle && (
+        <div className="mb-4 p-3 bg-muted rounded-lg border">
+          <p className="text-sm font-medium">Candidatura para:</p>
+          <p className="text-lg font-bold text-primary">{jobTitle}</p>
+        </div>
+      )}
       <div>
         <label htmlFor="name" className="block text-sm font-medium mb-2">Nome *</label>
         <input id="name" name="name" type="text" required className="w-full px-4 py-3 border rounded-lg" />
@@ -77,9 +84,10 @@ export default function ApplicationForm() {
         <input id="phone" name="phone" type="tel" className="w-full px-4 py-3 border rounded-lg" />
       </div>
       <div>
-        <label htmlFor="cover_letter" className="block text-sm font-medium mb-2">Carta de Apresentação</label>
+        <label htmlFor="cover_letter" className="block text-sm font-medium mb-2">Carta de Apresentação / Mensagem</label>
         <textarea id="cover_letter" name="cover_letter" rows={4} className="w-full px-4 py-3 border rounded-lg" />
       </div>
+
       <div>
         <label className="block text-sm font-medium mb-2">CV *</label>
         <div className="flex gap-4 mb-4">

@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import SpontaneousApplicationForm from '@/components/SpontaneousApplicationForm';
 import { getSupabaseServer } from '@/lib/supabase';
-import JobsList from './JobsList';
+import JobsList, { Job } from './JobsList';
 
 export const metadata: Metadata = {
   title: 'Bolsa de Recrutamento | Medisigma',
@@ -136,7 +136,7 @@ export default async function RecrutamentoPage() {
               </p>
             </div>
 
-            <JobsList initialJobs={(jobs as any[]) || []} />
+            <JobsList initialJobs={(jobs as unknown as Job[]) || []} />
           </div>
         </div>
       </section>

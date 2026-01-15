@@ -80,12 +80,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  const locationRoutes: MetadataRoute.Sitemap = [
+    { url: `${baseUrl}/lisboa`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/covilha`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/abrantes`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/santarem`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/rio-maior`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/castelo-branco`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/coimbra`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+  ];
+
   // URLs dinâmicas dos posts do blog
   let blogRoutes: MetadataRoute.Sitemap = [];
-  
+
   try {
     const posts = await getAllPublishedPosts();
-    
+
     blogRoutes = posts.map((post) => ({
       url: `${baseUrl}/blog/${post.slug}`,
       lastModified: new Date(post.updated_at),
@@ -96,5 +106,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error('Erro ao gerar sitemap dos posts:', error);
   }
 
-  return [...staticRoutes, ...blogRoutes];
+  return [...staticRoutes, ...locationRoutes, ...blogRoutes];
 }

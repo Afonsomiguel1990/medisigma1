@@ -30,7 +30,7 @@ export const Highlight = ({
 export const BLUR_FADE_DELAY = 0.15;
 
 export const siteConfig = {
-  name: "Medisigma",
+  name: "Grupo Medisigma",
   description: "Cuidamos da saúde dos seus colaboradores e da segurança da sua empresa",
   cta: "Fale Conosco",
   url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
@@ -62,7 +62,7 @@ export const siteConfig = {
   companies: [
     {
       id: 1,
-      name: "Medisigma",
+      name: "Grupo Medisigma",
       description: "Saúde e Segurança no Trabalho",
       href: "/",
       icon: "Activity" // Using string reference for icon, will handle in component
@@ -109,10 +109,10 @@ export const siteConfig = {
   faqSection: {
     title: "Perguntas Frequentes",
     description:
-      "Esclareça as questões mais comuns sobre Medicina do Trabalho, Segurança no Trabalho e outros serviços da Medisigma. Se não encontrar a resposta que procura, contacte-nos estamos a um clique de distância.",
+      "Esclareça as questões mais comuns sobre Medicina do Trabalho, Segurança no Trabalho e outros serviços do Grupo Medisigma. Se não encontrar a resposta que procura, contacte-nos estamos a um clique de distância.",
     faQitems: [
       {
-        question: "A Medisigma atua em que zonas do país?",
+        question: "O Grupo Medisigma atua em que zonas do país?",
         answer: (
           <p>Atuamos em todo o território nacional. Dispomos de unidades móveis, equipamentos e recursos para servir qualquer necessidade dos nossos clientes.</p>
         ),
@@ -154,11 +154,11 @@ export const siteConfig = {
       {
         question: "O que é o Portal Careview?",
         answer: (
-          <p>É o portal do cliente da Medisigma, onde pode consultar online o estado dos exames médicos, aceder a Fichas de Aptidão, relatórios e outros documentos relevantes de forma segura e imediata.</p>
+          <p>É o portal do cliente do Grupo Medisigma, onde pode consultar online o estado dos exames médicos, aceder a Fichas de Aptidão, relatórios e outros documentos relevantes de forma segura e imediata.</p>
         ),
       },
       {
-        question: "A Medisigma disponibiliza Unidades Móveis de Saúde?",
+        question: "O Grupo Medisigma disponibiliza Unidades Móveis de Saúde?",
         answer: (
           <p>Sim. As nossas Unidades Móveis de Saúde estão equipadas para realizar os exames médicos diretamente nas instalações da sua empresa, em qualquer ponto do país, otimizando o tempo e evitando deslocações dos seus colaboradores.</p>
         ),
@@ -1024,13 +1024,13 @@ export const siteConfig = {
     {
       title: "Onde Atuamos",
       links: [
-        { id: 1, title: "Lisboa", url: "/servicos/lisboa" },
-        { id: 2, title: "Covilhã", url: "/servicos/covilha" },
-        { id: 3, title: "Abrantes", url: "/servicos/abrantes" },
-        { id: 4, title: "Santarém", url: "/servicos/santarem" },
-        { id: 5, title: "Rio Maior", url: "/servicos/rio-maior" },
-        { id: 6, title: "Castelo Branco", url: "/servicos/castelo-branco" },
-        { id: 7, title: "Coimbra", url: "/servicos/coimbra" },
+        { id: 1, title: "Lisboa", url: "/lisboa" },
+        { id: 2, title: "Covilhã", url: "/covilha" },
+        { id: 3, title: "Abrantes", url: "/abrantes" },
+        { id: 4, title: "Santarém", url: "/santarem" },
+        { id: 5, title: "Rio Maior", url: "/rio-maior" },
+        { id: 6, title: "Castelo Branco", url: "/castelo-branco" },
+        { id: 7, title: "Coimbra", url: "/coimbra" },
       ],
     },
   ],

@@ -5,8 +5,8 @@ import ContactForm from "@/components/ContactForm";
 import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Contacto | MediSigma",
-  description: "Entre em contacto com a MediSigma para solicitar propostas ou esclarecer dúvidas sobre os nossos serviços.",
+  title: "Contacto | Grupo Medisigma",
+  description: "Entre em contacto com o Grupo Medisigma para solicitar propostas ou esclarecer dúvidas sobre os nossos serviços.",
   robots: {
     index: true,
     follow: true,

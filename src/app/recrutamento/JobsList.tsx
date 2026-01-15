@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { Card, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Users, MapPin, Clock, Briefcase, X } from 'lucide-react';
-import ApplicationForm from '@/components/ApplicationForm';
 
 export interface Job {
     id: string;
@@ -19,9 +18,17 @@ export interface Job {
     published_at: string;
 }
 
-export default function JobsList({ initialJobs }: { initialJobs: Job[] }) {
+export default function JobsList({ initialJobs, onApplyClick }: { initialJobs: Job[], onApplyClick?: (jobId: string) => void }) {
     const [selectedJob, setSelectedJob] = useState<Job | null>(null);
-    const [showApplyForm, setShowApplyForm] = useState(false);
+
+    // Helper to handle apply click
+    const handleApply = (jobId: string) => {
+        // If onApplyClick provided, use it (closes modal if open)
+        if (onApplyClick) {
+            setSelectedJob(null);
+            onApplyClick(jobId);
+        }
+    };
 
     if (initialJobs.length === 0) {
         return (
@@ -70,7 +77,7 @@ export default function JobsList({ initialJobs }: { initialJobs: Job[] }) {
                             <Button onClick={() => setSelectedJob(job)} variant="outline" className="w-full">
                                 Ver Detalhes
                             </Button>
-                            <Button onClick={() => { setSelectedJob(job); setShowApplyForm(true); }} className="w-full">
+                            <Button onClick={() => handleApply(job.id)} className="w-full">
                                 Enviar Candidatura
                             </Button>
                         </div>
@@ -78,14 +85,14 @@ export default function JobsList({ initialJobs }: { initialJobs: Job[] }) {
                 </Card>
             ))}
 
-            {/* Modal de Detalhes / Candidatura */}
+            {/* Modal de Detalhes */}
             {selectedJob && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200">
                     <div className="bg-background w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-xl shadow-2xl flex flex-col">
                         <div className="sticky top-0 bg-background z-10 px-6 py-4 border-b flex items-center justify-between">
-                            <h2 className="text-xl font-bold">{showApplyForm ? "Nova Candidatura" : "Detalhes da Vaga"}</h2>
+                            <h2 className="text-xl font-bold">Detalhes da Vaga</h2>
                             <button
-                                onClick={() => { setSelectedJob(null); setShowApplyForm(false); }}
+                                onClick={() => setSelectedJob(null)}
                                 className="p-1 hover:bg-muted rounded-full transition-colors"
                             >
                                 <X className="w-6 h-6" />
@@ -93,64 +100,50 @@ export default function JobsList({ initialJobs }: { initialJobs: Job[] }) {
                         </div>
 
                         <div className="p-6">
-                            {!showApplyForm ? (
-                                <div className="space-y-6">
-                                    <div>
-                                        <h3 className="text-2xl font-bold text-foreground mb-1">{selectedJob.title}</h3>
-                                        <div className="flex gap-4 text-sm text-muted-foreground">
-                                            <span className="flex items-center"><MapPin className="w-4 h-4 mr-1" /> {selectedJob.location}</span>
-                                            <span className="flex items-center"><Briefcase className="w-4 h-4 mr-1" /> {selectedJob.type}</span>
-                                        </div>
-                                    </div>
-
-                                    <div className="prose prose-sm dark:prose-invert max-w-none">
-                                        <p>{selectedJob.description.intro}</p>
-
-                                        {selectedJob.description.requirements && (
-                                            <>
-                                                <h4 className="font-bold text-foreground mt-4 mb-2">Requisitos:</h4>
-                                                <ul className="list-disc pl-5 space-y-1">
-                                                    {selectedJob.description.requirements.map((req, i) => (
-                                                        <li key={i}>{req}</li>
-                                                    ))}
-                                                </ul>
-                                            </>
-                                        )}
-
-                                        {selectedJob.description.responsibilities && (
-                                            <>
-                                                <h4 className="font-bold text-foreground mt-4 mb-2">Responsabilidades:</h4>
-                                                <ul className="list-disc pl-5 space-y-1">
-                                                    {selectedJob.description.responsibilities.map((res, i) => (
-                                                        <li key={i}>{res}</li>
-                                                    ))}
-                                                </ul>
-                                            </>
-                                        )}
-                                    </div>
-
-                                    <div className="pt-6 border-t flex flex-col sm:flex-row gap-3">
-                                        <Button onClick={() => setShowApplyForm(true)} size="lg" className="flex-grow">
-                                            Enviar Candidatura
-                                        </Button>
-                                        <Button onClick={() => setSelectedJob(null)} variant="ghost" size="lg">
-                                            Fechar
-                                        </Button>
-                                    </div>
-                                </div>
-                            ) : (
+                            <div className="space-y-6">
                                 <div>
-                                    <Button
-                                        variant="ghost"
-                                        size="sm"
-                                        onClick={() => setShowApplyForm(false)}
-                                        className="mb-4 -ml-2 text-muted-foreground hover:text-foreground"
-                                    >
-                                        ← Voltar aos detalhes
-                                    </Button>
-                                    <ApplicationForm jobId={selectedJob.id} jobTitle={selectedJob.title} />
+                                    <h3 className="text-2xl font-bold text-foreground mb-1">{selectedJob.title}</h3>
+                                    <div className="flex gap-4 text-sm text-muted-foreground">
+                                        <span className="flex items-center"><MapPin className="w-4 h-4 mr-1" /> {selectedJob.location}</span>
+                                        <span className="flex items-center"><Briefcase className="w-4 h-4 mr-1" /> {selectedJob.type}</span>
+                                    </div>
                                 </div>
-                            )}
+
+                                <div className="prose prose-sm dark:prose-invert max-w-none">
+                                    <p>{selectedJob.description.intro}</p>
+
+                                    {selectedJob.description.requirements && (
+                                        <>
+                                            <h4 className="font-bold text-foreground mt-4 mb-2">Requisitos:</h4>
+                                            <ul className="list-disc pl-5 space-y-1">
+                                                {selectedJob.description.requirements.map((req, i) => (
+                                                    <li key={i}>{req}</li>
+                                                ))}
+                                            </ul>
+                                        </>
+                                    )}
+
+                                    {selectedJob.description.responsibilities && (
+                                        <>
+                                            <h4 className="font-bold text-foreground mt-4 mb-2">Responsabilidades:</h4>
+                                            <ul className="list-disc pl-5 space-y-1">
+                                                {selectedJob.description.responsibilities.map((res, i) => (
+                                                    <li key={i}>{res}</li>
+                                                ))}
+                                            </ul>
+                                        </>
+                                    )}
+                                </div>
+
+                                <div className="pt-6 border-t flex flex-col sm:flex-row gap-3">
+                                    <Button onClick={() => handleApply(selectedJob.id)} size="lg" className="flex-grow">
+                                        Enviar Candidatura
+                                    </Button>
+                                    <Button onClick={() => setSelectedJob(null)} variant="ghost" size="lg">
+                                        Fechar
+                                    </Button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

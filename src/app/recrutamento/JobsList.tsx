@@ -71,7 +71,7 @@ export default function JobsList({ initialJobs }: { initialJobs: Job[] }) {
                                 Ver Detalhes
                             </Button>
                             <Button onClick={() => { setSelectedJob(job); setShowApplyForm(true); }} className="w-full">
-                                Candidatar
+                                Enviar Candidatura
                             </Button>
                         </div>
                     </div>
@@ -131,7 +131,7 @@ export default function JobsList({ initialJobs }: { initialJobs: Job[] }) {
 
                                     <div className="pt-6 border-t flex flex-col sm:flex-row gap-3">
                                         <Button onClick={() => setShowApplyForm(true)} size="lg" className="flex-grow">
-                                            Candidatar Agora
+                                            Enviar Candidatura
                                         </Button>
                                         <Button onClick={() => setSelectedJob(null)} variant="ghost" size="lg">
                                             Fechar

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getSupabaseAdmin, getSupabaseServer } from '@/lib/supabase';
+import { getSupabaseAdmin } from '@/lib/supabase';
 import { WEBHOOK_URL, formatSlackMessage } from '@/lib/webhook';
 
 export const runtime = 'nodejs';
@@ -40,7 +40,7 @@ export async function POST(req: Request) {
       cv_url = publicUrlData.publicUrl;
     }
 
-    const supabase = getSupabaseServer();
+    const supabase = getSupabaseAdmin();
     const { error } = await supabase
       .schema('web')
       .from('applications')

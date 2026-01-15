@@ -5,7 +5,6 @@ import Image from "next/image";
 import {
     Factory,
     MapPin,
-    CheckCircle,
     Phone,
     Mail,
     ArrowRight,
@@ -232,7 +231,7 @@ export default function AbrantesPage() {
                                     Parceiros do Médio Tejo
                                 </h2>
                                 <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                                    Com a nossa sede central na região, Abrantes é o nosso "coração".
+                                    Com a nossa sede central na região, Abrantes é o nosso &quot;coração&quot;.
                                     Conhecemos profundamente o tecido industrial local, desde a metalomecânica à agroindústria e serviços.
                                 </p>
 
@@ -267,7 +266,7 @@ export default function AbrantesPage() {
                                     className="object-cover"
                                 />
                                 <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-6 m-6 rounded-xl shadow-lg border border-gray-100">
-                                    <p className="font-semibold text-gray-900 mb-2">"A proximidade do Grupo Medisigma faz toda a diferença quando temos urgências na fábrica."</p>
+                                    <p className="font-semibold text-gray-900 mb-2">&quot;A proximidade do Grupo Medisigma faz toda a diferença quando temos urgências na fábrica.&quot;</p>
                                     <div className="flex items-center gap-2 text-sm text-gray-500">
                                         <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
                                         Diretor Fabril, Abrantes

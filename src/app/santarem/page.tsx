@@ -5,7 +5,6 @@ import Image from "next/image";
 import {
     Tractor,
     MapPin,
-    CheckCircle,
     Phone,
     Mail,
     ArrowRight,
@@ -267,7 +266,7 @@ export default function SantaremPage() {
                                     className="object-cover"
                                 />
                                 <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-6 m-6 rounded-xl shadow-lg border border-gray-100">
-                                    <p className="font-semibold text-gray-900 mb-2">"O apoio do Grupo Medisigma foi fundamental para a certificação da nossa adega."</p>
+                                    <p className="font-semibold text-gray-900 mb-2">&quot;O apoio do Grupo Medisigma foi fundamental para a certificação da nossa adega.&quot;</p>
                                     <div className="flex items-center gap-2 text-sm text-gray-500">
                                         <span className="w-2 h-2 bg-green-500 rounded-full"></span>
                                         Produtor de Vinhos, Cartaxo

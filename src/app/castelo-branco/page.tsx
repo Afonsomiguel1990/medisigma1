@@ -5,7 +5,6 @@ import Image from "next/image";
 import {
     Trees,
     MapPin,
-    CheckCircle,
     Phone,
     Mail,
     ArrowRight,
@@ -267,7 +266,7 @@ export default function CasteloBrancoPage() {
                                     className="object-cover"
                                 />
                                 <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-6 m-6 rounded-xl shadow-lg border border-gray-100">
-                                    <p className="font-semibold text-gray-900 mb-2">"Conseguimos certificar a nossa unidade de produção graças ao apoio HACCP do Grupo Medisigma."</p>
+                                    <p className="font-semibold text-gray-900 mb-2">&quot;Conseguimos certificar a nossa unidade de produção graças ao apoio HACCP do Grupo Medisigma.&quot;</p>
                                     <div className="flex items-center gap-2 text-sm text-gray-500">
                                         <span className="w-2 h-2 bg-yellow-500 rounded-full"></span>
                                         Queijaria Tradicional, Idanha

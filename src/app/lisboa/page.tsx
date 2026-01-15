@@ -6,7 +6,6 @@ import {
     Building2,
     Users,
     MapPin,
-    CheckCircle,
     Phone,
     Mail,
     ArrowRight,
@@ -22,7 +21,6 @@ import {
 } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 import ContactForm from '@/components/ContactForm';
-import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
     title: "Segurança e Saúde no Trabalho em Lisboa | Grupo Medisigma",
@@ -283,7 +281,7 @@ export default function LisboaPage() {
                                     className="object-cover"
                                 />
                                 <div className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-6 m-6 rounded-xl shadow-lg border border-gray-100">
-                                    <p className="font-semibold text-gray-900 mb-2">"O Grupo Medisigma simplificou todo o processo de SST na nossa sede em Lisboa. Profissionais e rápidos."</p>
+                                    <p className="font-semibold text-gray-900 mb-2">&quot;O Grupo Medisigma simplificou todo o processo de SST na nossa sede em Lisboa. Profissionais e rápidos.&quot;</p>
                                     <div className="flex items-center gap-2 text-sm text-gray-500">
                                         <span className="w-2 h-2 bg-green-500 rounded-full"></span>
                                         Cliente setor tecnológico, Parque das Nações

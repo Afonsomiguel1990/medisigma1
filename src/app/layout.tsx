@@ -38,6 +38,31 @@ export const metadata: Metadata = {
   description: siteConfig.description,
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Grupo Medisigma",
+  "url": "https://medisigma.pt",
+  "logo": "https://medisigma.pt/logos/logomedisigma.svg",
+  "sameAs": [
+    "https://facebook.com/medisigma",
+    "https://linkedin.com/company/medisigma"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+351 241 331 504",
+    "contactType": "customer service",
+    "areaServed": "PT",
+    "availableLanguage": ["Portuguese"]
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Abrantes",
+    "addressRegion": "Santarém",
+    "addressCountry": "PT"
+  }
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -45,6 +70,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt" suppressHydrationWarning>
+      <Script
+        id="schema-org-organization"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-GB5WGQPXK3"
         strategy="afterInteractive"

@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { getAllPublishedPosts } from '@/lib/posts';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://medisigma.pt';
+  const baseUrl = 'https://www.medisigma.pt';
   const now = new Date();
 
   // URLs principais estatícas

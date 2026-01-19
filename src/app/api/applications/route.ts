@@ -25,7 +25,8 @@ export async function POST(req: Request) {
       const supabase = getSupabaseServer();
       const arrayBuffer = await cv.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);
-      const path = `${Date.now()}_${encodeURIComponent(name)}_${cv.name}`.replace(/\s+/g, '_');
+      const sanitize = (str: string) => str.replace(/[^a-zA-Z0-9.\-_]/g, '_');
+      const path = `${Date.now()}_${sanitize(name)}_${sanitize(cv.name)}`;
       const upload = await supabase.storage.from('os-cv').upload(path, buffer, {
         contentType: cv.type || 'application/octet-stream',
         upsert: false,

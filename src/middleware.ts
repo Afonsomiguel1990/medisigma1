@@ -71,7 +71,18 @@ export function middleware(request: NextRequest) {
 
   // Verificar se é uma rota de serviços válida
   if (pathname.startsWith('/servicos/')) {
-    const serviceSlug = pathname.replace('/servicos/', '');
+    let serviceSlug = pathname.replace('/servicos/', '');
+
+    // Remove trailing slash if present (due to trailingSlash: true)
+    if (serviceSlug.endsWith('/')) {
+      serviceSlug = serviceSlug.slice(0, -1);
+    }
+
+    // Se for apenas /servicos/ (agora vazio após remover o prefixo), é válido
+    if (serviceSlug === '') {
+      return NextResponse.next();
+    }
+
     const validServices = [
       'medicina-no-trabalho',
       'seguranca-no-trabalho',

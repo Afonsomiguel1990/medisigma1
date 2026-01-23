@@ -14,6 +14,14 @@ export async function POST(req: Request) {
     const pagina = (body.pagina ?? '').toString();
     const url = (body.url ?? '').toString();
     const fonte = (body.fonte ?? '').toString();
+    const confirmMail = (body.confirm_mail ?? '').toString(); // Honeypot field
+
+    // Anti-spam check (Honeypot)
+    if (confirmMail) {
+      console.log('Spam detectado (honeypot preenchido). Ignorando envio.', { confirmMail, empresa, email });
+      // Retorna sucesso para enganar o bot (shadow ban)
+      return NextResponse.json({ ok: true });
+    }
 
     if (!email) {
       return NextResponse.json({ error: 'Email é obrigatório' }, { status: 400 });

@@ -146,6 +146,18 @@ export default function ContactForm({ pagina, fonte, servicoDefault }: ContactFo
           />
         </div>
 
+        {/* Honeypot field for anti-spam */}
+        <div style={{ opacity: 0, position: 'absolute', top: 0, left: 0, height: 0, width: 0, zIndex: -1 }}>
+          <label htmlFor="confirm_mail">Não preencha este campo</label>
+          <input
+            type="text"
+            id="confirm_mail"
+            name="confirm_mail"
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
+
         <button
           type="submit"
           className="w-full bg-secondary text-white py-3 px-6 rounded-lg font-semibold hover:bg-secondary/90 transition-colors"

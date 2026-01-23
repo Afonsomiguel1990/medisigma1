@@ -1,23 +1,24 @@
+/* eslint-disable @next/next/no-img-element */
 import { cn } from "@/lib/utils";
 //import {
- // Stethoscope,
-  //HardHat,
-  //UtensilsCrossed,
-  //GraduationCap,
-  //Brain,
-  //Bug,
-  //FireExtinguisher,
-  //Droplet,
+// Stethoscope,
+//HardHat,
+//UtensilsCrossed,
+//GraduationCap,
+//Brain,
+//Bug,
+//FireExtinguisher,
+//Droplet,
 //} from "lucide-react"
 
-export const Icons = {  
-    logo: ({ className }: { className?: string }) => (
-        <img
-          src="/logomedisigma.svg" // Garante que este é o caminho correto para o teu SVG na pasta public
-          alt="Medisigma Logo"
-          className={cn("h-8 w-auto", className)} // Podes ajustar "h-8" para o tamanho que quiseres
-        />
-      ), // NÃO TE ESQUEÇAS da vírgula aqui se houver 
+export const Icons = {
+  logo: ({ className }: { className?: string }) => (
+    <img
+      src="/logomedisigma.svg" // Garante que este é o caminho correto para o teu SVG na pasta public
+      alt="Medisigma Logo"
+      className={cn("h-8 w-auto", className)} // Podes ajustar "h-8" para o tamanho que quiseres
+    />
+  ), // NÃO TE ESQUEÇAS da vírgula aqui se houver 
   soc2: ({ className }: { className?: string }) => (
     <svg
       width="46"
@@ -2468,12 +2469,12 @@ export const Icons = {
           d="M5 22C5 10.402 14.402 1 26 1C37.598 1 47 10.402 47 22C47 33.598 37.598 43 26 43C14.402 43 5 33.598 5 22Z"
           fill="white"
         />
-  
+
         {/* recorte padrão (20 × 30) */}
         <g clipPath="url(#myIconClip)">
           {/* posição e escala finais que testaste */}
           <g transform="translate(11 5) scale(0.065)">
-	<defs>
+            <defs>
               <linearGradient
                 id="myGrad0"
                 gradientUnits="userSpaceOnUse"
@@ -2495,9 +2496,9 @@ export const Icons = {
               >
                 <stop offset="0" stopColor="#FFD30D" />
                 <stop offset="1" stopColor="#FF944E" />
-		</linearGradient>
-	</defs>
-  
+              </linearGradient>
+            </defs>
+
             {/* ---------- DESENHO COMPLETO DO EXTINTOR ---------- */}
             <path
               fill="url(#myGrad0)"
@@ -2519,13 +2520,13 @@ export const Icons = {
           </g>
         </g>
       </g>
-  
+
       {/* defs fora da escala */}
-	<defs>
+      <defs>
         <clipPath id="myIconClip">
           <rect x="15" y="7" width="20" height="30" />
         </clipPath>
-  
+
         <filter
           id="badgeShadow"
           x="0"
@@ -2542,7 +2543,7 @@ export const Icons = {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.10 0"
           />
           <feBlend in2="SourceGraphic" result="s1" />
-  
+
           <feOffset dy="3" in="s1" />
           <feGaussianBlur stdDeviation="1.5" />
           <feColorMatrix
@@ -2550,7 +2551,7 @@ export const Icons = {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0"
           />
           <feBlend in2="s1" result="s2" />
-  
+
           <feOffset dy="7" in="s2" />
           <feGaussianBlur stdDeviation="2" />
           <feColorMatrix
@@ -2558,7 +2559,7 @@ export const Icons = {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"
           />
           <feBlend in2="s2" result="s3" />
-  
+
           <feOffset dy="12" in="s3" />
           <feGaussianBlur stdDeviation="2.5" />
           <feColorMatrix
@@ -2566,12 +2567,12 @@ export const Icons = {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.01 0"
           />
           <feBlend in2="s3" result="s4" />
-  
+
           <feBlend in="SourceGraphic" in2="s4" mode="normal" />
         </filter>
       </defs>
     </svg>
-  ),  
+  ),
   documento: () => (
     <svg
       width="60"
@@ -2586,7 +2587,7 @@ export const Icons = {
           d="M5 22C5 10.402 14.402 1 26 1C37.598 1 47 10.402 47 22C47 33.598 37.598 43 26 43C14.402 43 5 33.598 5 22Z"
           fill="white"
         />
-  
+
         {/* recorte padrão */}
         <g clipPath="url(#docIconClip)">
           {/* escala e posição finais */}
@@ -2604,9 +2605,9 @@ export const Icons = {
               <linearGradient id="docGrad2" gradientUnits="userSpaceOnUse" x1="281.42923" y1="355.21555" x2="231.22807" y2="221.28806">
                 <stop offset="0" stopColor="#FBC201" />
                 <stop offset="1" stopColor="#FEFF49" />
-		</linearGradient>
-	</defs>
-  
+              </linearGradient>
+            </defs>
+
             {/* ---------- DESENHO COMPLETO ---------- */}
             <path
               fill="url(#docGrad0)"
@@ -2628,13 +2629,13 @@ export const Icons = {
           </g>
         </g>
       </g>
-  
+
       {/* recorte e sombra */}
       <defs>
         <clipPath id="docIconClip">
           <rect x="15" y="9" width="50" height="50" />
         </clipPath>
-  
+
         <filter
           id="docShadow"
           x="0"
@@ -2648,35 +2649,35 @@ export const Icons = {
           <feGaussianBlur stdDeviation="1" />
           <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.10 0" />
           <feBlend in2="SourceGraphic" result="s1" />
-  
+
           <feOffset dy="3" in="s1" />
           <feGaussianBlur stdDeviation="1.5" />
           <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.09 0" />
           <feBlend in2="s1" result="s2" />
-  
+
           <feOffset dy="7" in="s2" />
           <feGaussianBlur stdDeviation="2" />
           <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0" />
           <feBlend in2="s2" result="s3" />
-  
+
           <feOffset dy="12" in="s3" />
           <feGaussianBlur stdDeviation="2.5" />
           <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.01 0" />
           <feBlend in2="s3" result="s4" />
-  
+
           <feBlend in="SourceGraphic" in2="s4" mode="normal" />
         </filter>
       </defs>
-</svg>
+    </svg>
   ),
   svgCertificadosGeral: ({ className, width = "840px", height = "200px" }: { className?: string, width?: string, height?: string }) => (
     <img
       src="/admin/certificados.svg"
       alt="Certificações Medisigma"
       className={cn("mx-auto object-contain", className)}
-      style={{ 
-        width: width, 
-        height: height, 
+      style={{
+        width: width,
+        height: height,
         maxWidth: "100%",
         maxHeight: "700px"
       }}

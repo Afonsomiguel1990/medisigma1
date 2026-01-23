@@ -1,9 +1,9 @@
-import { getSupabaseAdmin } from "@/lib/supabase";
+import { getSupabaseAnon } from "@/lib/supabase";
 import { NextResponse } from "next/server";
 
 export async function POST() {
     try {
-        const supabase = getSupabaseAdmin();
+        const supabase = getSupabaseAnon();
 
         const { error } = await supabase.from("whatsapp_clicks").insert({});
 

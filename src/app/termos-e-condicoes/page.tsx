@@ -13,7 +13,7 @@ export default function TermosECondicoesPage() {
         Termos e Condições
       </h1>
       <div className="prose dark:prose-invert max-w-none space-y-8">
-        
+
         {/* Identificação da Empresa */}
         <section>
           <h2 className="text-2xl font-semibold text-foreground mb-4">1. Identificação da Entidade</h2>
@@ -21,7 +21,7 @@ export default function TermosECondicoesPage() {
             <p className="text-foreground mb-2"><strong>Denominação Social:</strong> GRUPO MEDISIGMA, LDA</p>
             <p className="text-foreground mb-2"><strong>Morada:</strong> Via Industrial 1 2 Lote 5, 2200-293 Abrantes</p>
             <p className="text-foreground mb-2"><strong>Número de Identificação Fiscal:</strong> 516858513</p>
-            <p className="text-foreground mb-2"><strong>Email:</strong> geral@medisigma.pt</p>
+            <p className="text-foreground mb-2"><strong>Email:</strong> info@medisigma.pt</p>
             <p className="text-foreground"><strong>Website:</strong> www.medisigma.pt</p>
           </div>
         </section>
@@ -179,10 +179,10 @@ export default function TermosECondicoesPage() {
         {/* Data de Vigência */}
         <section className="border-t pt-8">
           <p className="text-sm text-muted-foreground text-center">
-            <strong>Última atualização:</strong> {new Date().toLocaleDateString('pt-PT', { 
-              year: 'numeric', 
-              month: 'long', 
-              day: 'numeric' 
+            <strong>Última atualização:</strong> {new Date().toLocaleDateString('pt-PT', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
             })}
           </p>
           <p className="text-sm text-muted-foreground text-center mt-2">

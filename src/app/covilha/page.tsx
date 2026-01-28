@@ -312,7 +312,7 @@ export default function CovilhaPage() {
                                         </div>
                                         <div>
                                             <p className="text-sm text-blue-200">Envie um email</p>
-                                            <p className="font-bold text-xl">geral@medisigma.pt</p>
+                                            <p className="font-bold text-xl">info@medisigma.pt</p>
                                         </div>
                                     </div>
                                 </div>

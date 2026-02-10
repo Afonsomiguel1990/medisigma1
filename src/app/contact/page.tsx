@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { CheckCircle, Phone } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { ContactLink } from "@/components/custom/contact-link";
 
 
 export const metadata: Metadata = {
@@ -54,13 +55,14 @@ export default function ContactPage() {
               </ul>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <a
+                <ContactLink
                   href="tel:241331504"
+                  type="phone"
                   className="bg-white text-secondary px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors text-center border-2 border-white flex items-center justify-center gap-2"
                 >
                   <Phone className="w-4 h-4" />
                   Ligar
-                </a>
+                </ContactLink>
                 <WhatsAppButton />
               </div>
             </div>

@@ -7,6 +7,7 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 import { siteConfig } from "@/lib/config";
 import { ChevronRightIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
+import { ContactLink } from "@/components/custom/contact-link";
 
 export function FooterSection() {
   const tablet = useMediaQuery("(max-width: 1024px)");
@@ -36,15 +37,39 @@ export function FooterSection() {
                     <ul className="space-y-3">
                       {column.links.map((link) => (
                         <li key={link.id}>
-                          <Link
-                            href={link.url}
-                            className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 pl-2 md:pl-0"
-                          >
-                            <span>{link.title}</span>
-                            <div className="flex h-4 w-4 items-center justify-center rounded border border-border opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-1">
-                              <ChevronRightIcon className="h-3 w-3" />
-                            </div>
-                          </Link>
+                          {link.url.startsWith("mailto:") ? (
+                            <ContactLink
+                              href={link.url}
+                              type="email"
+                              className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 pl-2 md:pl-0"
+                            >
+                              <span>{link.title}</span>
+                              <div className="flex h-4 w-4 items-center justify-center rounded border border-border opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-1">
+                                <ChevronRightIcon className="h-3 w-3" />
+                              </div>
+                            </ContactLink>
+                          ) : link.url.startsWith("tel:") ? (
+                            <ContactLink
+                              href={link.url}
+                              type="phone"
+                              className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 pl-2 md:pl-0"
+                            >
+                              <span>{link.title}</span>
+                              <div className="flex h-4 w-4 items-center justify-center rounded border border-border opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-1">
+                                <ChevronRightIcon className="h-3 w-3" />
+                              </div>
+                            </ContactLink>
+                          ) : (
+                            <Link
+                              href={link.url}
+                              className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 pl-2 md:pl-0"
+                            >
+                              <span>{link.title}</span>
+                              <div className="flex h-4 w-4 items-center justify-center rounded border border-border opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-1">
+                                <ChevronRightIcon className="h-3 w-3" />
+                              </div>
+                            </Link>
+                          )}
                         </li>
                       ))}
                     </ul>

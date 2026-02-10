@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Card, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Users, MapPin, Clock, Briefcase, X } from 'lucide-react';
+import { ContactLink } from '@/components/custom/contact-link';
 
 export interface Job {
     id: string;
@@ -44,7 +45,7 @@ export default function JobsList({ initialJobs, onApplyClick }: { initialJobs: J
                     Mantemos o seu CV na nossa base de dados para futuras oportunidades.
                 </p>
                 <Button variant="outline" asChild className="hover:bg-primary hover:text-primary-foreground">
-                    <a href="mailto:info@medisigma.pt?subject=Candidatura espontânea">Enviar Candidatura Espontânea</a>
+                    <ContactLink href="mailto:info@medisigma.pt?subject=Candidatura espontânea" type="email">Enviar Candidatura Espontânea</ContactLink>
                 </Button>
             </div>
         );

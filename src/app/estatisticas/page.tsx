@@ -13,13 +13,20 @@ export const dynamic = "force-dynamic";
 
 export default async function StatisticsPage() {
     const supabase = getSupabaseAnon();
-    const { count, error } = await supabase
-        .from("whatsapp_clicks")
-        .select("*", { count: "exact", head: true });
 
-    if (error) {
-        console.error("Error fetching stats:", error);
-    }
+    const [whatsappRes, emailRes, phoneRes] = await Promise.all([
+        supabase.from("whatsapp_clicks").select("*", { count: "exact", head: true }),
+        supabase.from("email_clicks").select("*", { count: "exact", head: true }),
+        supabase.from("phone_clicks").select("*", { count: "exact", head: true }),
+    ]);
+
+    const whatsappCount = whatsappRes.count;
+    const emailCount = emailRes.count;
+    const phoneCount = phoneRes.count;
+
+    if (whatsappRes.error) console.error("Error fetching whatsapp stats:", whatsappRes.error);
+    if (emailRes.error) console.error("Error fetching email stats:", emailRes.error);
+    if (phoneRes.error) console.error("Error fetching phone stats:", phoneRes.error);
 
     return (
         <main className="p-8 pb-32">
@@ -27,6 +34,7 @@ export default async function StatisticsPage() {
                 <h1 className="text-3xl font-bold mb-8 text-gray-900">Estatísticas de Contacto</h1>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {/* WhatsApp Stats */}
                     <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
                         <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
                             <svg className="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
@@ -35,14 +43,42 @@ export default async function StatisticsPage() {
                         </div>
                         <h2 className="text-gray-500 font-medium mb-1 uppercase text-xs tracking-wider">Cliques WhatsApp</h2>
                         <p className="text-5xl font-extrabold text-gray-900 mb-2">
-                            {count !== null ? count : "-"}
+                            {whatsappCount !== null ? whatsappCount : "-"}
+                        </p>
+                        <p className="text-sm text-gray-400">Total de interações</p>
+                    </div>
+
+                    {/* Email Stats */}
+                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+                        <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                            <svg className="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <h2 className="text-gray-500 font-medium mb-1 uppercase text-xs tracking-wider">Cliques Email</h2>
+                        <p className="text-5xl font-extrabold text-gray-900 mb-2">
+                            {emailCount !== null ? emailCount : "-"}
+                        </p>
+                        <p className="text-sm text-gray-400">Total de interações</p>
+                    </div>
+
+                    {/* Phone Stats */}
+                    <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex flex-col items-center text-center">
+                        <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                            <svg className="w-6 h-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                        </div>
+                        <h2 className="text-gray-500 font-medium mb-1 uppercase text-xs tracking-wider">Cliques Telefone</h2>
+                        <p className="text-5xl font-extrabold text-gray-900 mb-2">
+                            {phoneCount !== null ? phoneCount : "-"}
                         </p>
                         <p className="text-sm text-gray-400">Total de interações</p>
                     </div>
                 </div>
 
                 <div className="mt-12 p-6 bg-blue-50 rounded-2xl border border-blue-100 italic text-blue-800 text-sm">
-                    Nota: Estes dados representam apenas os cliques no botão de WhatsApp da página de contacto.
+                    Nota: Estes dados representam os cliques nos botões de contacto em todo o site.
                 </div>
             </div>
         </main>

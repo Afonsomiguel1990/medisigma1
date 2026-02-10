@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Contact, Candidatura, Application } from '@/lib/forms';
+import { ContactLink } from "@/components/custom/contact-link";
 import { Button } from '@/components/ui/button';
 import {
   Table,
@@ -28,19 +29,19 @@ export default function AdminFormsPage() {
   const fetchForms = async () => {
     try {
       const response = await fetch('/api/admin/forms');
-      
+
       let data;
       try {
         data = await response.json();
       } catch {
         throw new Error('Resposta inválida da API');
       }
-      
+
       if (!response.ok) {
         // Tenta usar a mensagem de erro da API, senão usa mensagem genérica
         throw new Error(data.error || 'Erro ao carregar formulários');
       }
-      
+
       setContacts(data.contacts || []);
       setCandidaturas(data.candidaturas || []);
       setApplications(data.applications || []);
@@ -137,21 +138,23 @@ export default function AdminFormsPage() {
                         {contact.empresa || '-'}
                       </TableCell>
                       <TableCell>
-                        <a
+                        <ContactLink
                           href={`mailto:${contact.email}`}
+                          type="email"
                           className="text-blue-600 hover:underline"
                         >
                           {contact.email || '-'}
-                        </a>
+                        </ContactLink>
                       </TableCell>
                       <TableCell>
                         {contact.telefone ? (
-                          <a
+                          <ContactLink
                             href={`tel:${contact.telefone}`}
+                            type="phone"
                             className="text-blue-600 hover:underline"
                           >
                             {contact.telefone}
-                          </a>
+                          </ContactLink>
                         ) : (
                           '-'
                         )}
@@ -210,21 +213,23 @@ export default function AdminFormsPage() {
                         {candidatura.nome || '-'}
                       </TableCell>
                       <TableCell>
-                        <a
+                        <ContactLink
                           href={`mailto:${candidatura.email}`}
+                          type="email"
                           className="text-blue-600 hover:underline"
                         >
                           {candidatura.email || '-'}
-                        </a>
+                        </ContactLink>
                       </TableCell>
                       <TableCell>
                         {candidatura.telefone ? (
-                          <a
+                          <ContactLink
                             href={`tel:${candidatura.telefone}`}
+                            type="phone"
                             className="text-blue-600 hover:underline"
                           >
                             {candidatura.telefone}
-                          </a>
+                          </ContactLink>
                         ) : (
                           '-'
                         )}
@@ -294,21 +299,23 @@ export default function AdminFormsPage() {
                         {application.name || '-'}
                       </TableCell>
                       <TableCell>
-                        <a
+                        <ContactLink
                           href={`mailto:${application.email}`}
+                          type="email"
                           className="text-blue-600 hover:underline"
                         >
                           {application.email || '-'}
-                        </a>
+                        </ContactLink>
                       </TableCell>
                       <TableCell>
                         {application.phone ? (
-                          <a
+                          <ContactLink
                             href={`tel:${application.phone}`}
+                            type="phone"
                             className="text-blue-600 hover:underline"
                           >
                             {application.phone}
-                          </a>
+                          </ContactLink>
                         ) : (
                           '-'
                         )}

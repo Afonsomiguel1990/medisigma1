@@ -4,6 +4,7 @@ import { Metadata } from 'next';
 import { HeartPulse, Shield, Users, CheckCircle, FileText, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
 import { siteConfig } from "@/lib/config";
+import { ContactLink } from "@/components/custom/contact-link";
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
@@ -273,9 +274,9 @@ export default function FormacaoCertificadaPage() {
                     </svg>
                     WhatsApp
                   </a>
-                  <a href="tel:241331504" className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-secondary transition-colors text-center">
+                  <ContactLink href="tel:241331504" type="phone" className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-secondary transition-colors text-center">
                     241 331 504
-                  </a>
+                  </ContactLink>
                 </div>
               </div>
 

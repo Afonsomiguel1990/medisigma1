@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import { BrainCircuit, HeartHandshake, Users, Smile, ShieldCheck, TrendingUp, CheckCircle } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
 import { siteConfig } from "@/lib/config";
+import { ContactLink } from "@/components/custom/contact-link";
 import Image from 'next/image';
 
 export const metadata: Metadata = {
@@ -185,9 +186,9 @@ export default function PsicologiaPage() {
                     </svg>
                     WhatsApp
                   </a>
-                  <a href="tel:241331504" className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-secondary transition-colors text-center">
+                  <ContactLink href="tel:241331504" type="phone" className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-secondary transition-colors text-center">
                     241 331 504
-                  </a>
+                  </ContactLink>
                 </div>
               </div>
 

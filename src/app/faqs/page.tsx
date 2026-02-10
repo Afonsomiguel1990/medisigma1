@@ -2,6 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import { Droplet, Stethoscope, GraduationCap, Flame, Bug } from 'lucide-react';
 import { siteConfig } from "@/lib/config";
+import { ContactLink } from "@/components/custom/contact-link";
 
 export const metadata: Metadata = {
   title: 'FAQs - Perguntas Frequentes | Medisigma',
@@ -285,9 +286,9 @@ export default function FAQsPage() {
               </svg>
               Contactar via WhatsApp
             </a>
-            <a href="tel:241331504" className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-secondary transition-colors text-center">
+            <ContactLink href="tel:241331504" type="phone" className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-secondary transition-colors text-center">
               241 331 504
-            </a>
+            </ContactLink>
           </div>
         </div>
       </section>

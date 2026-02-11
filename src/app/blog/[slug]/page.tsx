@@ -155,7 +155,7 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
 
   // Se houver configuração especial de FAQ, adicionar FAQPage schema
   const specialConfig = SPECIAL_POST_CONFIG[params.slug];
-  let finalJsonLd = [schema];
+  const finalJsonLd = [schema];
 
   if (specialConfig && specialConfig.faqs.length > 0) {
     const faqSchema = {
@@ -170,7 +170,7 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
         }
       }))
     };
-    // @ts-ignore
+    // @ts-expect-error - Pushing a different schema type to the array
     finalJsonLd.push(faqSchema);
   }
 

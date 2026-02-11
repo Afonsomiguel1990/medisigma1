@@ -20,6 +20,57 @@ const serviceKeywords = [
   { keywords: ['desportiva', 'atleta', 'desporto', 'lesão'], url: '/servicos/medicina-desportiva', label: 'Medicina Desportiva' },
 ];
 
+/**
+ * Configuração especial para override de SEO e Schema em posts específicos.
+ * Isto permite melhorar o CTR sem alterar a base de dados diretamente.
+ */
+const SPECIAL_POST_CONFIG: Record<string, {
+  title: string;
+  description: string;
+  faqs: Array<{ question: string; answer: string }>;
+}> = {
+  'tipos-extintores-classes-fogo-portugal': {
+    title: '5 Classes de Fogo: Que Extintor Usar? [Guia 2026]',
+    description: 'Sabe que o extintor errado agrava o fogo? Guia das 5 classes (A-F) e extintor certo para cada. Inclui tabela e legislação SCIE (DL 220/2008).',
+    faqs: [
+      {
+        question: 'Qual o extintor mais indicado para cozinhas?',
+        answer: 'Para cozinhas (Classe F - Óleos e Gorduras), o extintor indicado é o de Agente Húmido (Classe F) ou, em certos casos, CO2 para equipamentos elétricos. Nunca use água em óleo a arder.'
+      },
+      {
+        question: 'Que extintor usar em incêndios elétricos?',
+        answer: 'Para fogos de origem elétrica, deve usar-se um extintor de Dióxido de Carbono (CO2), pois o gás não conduz eletricidade e não danifica os equipamentos.'
+      },
+      {
+        question: 'Com que frequência devo fazer manutenção do extintor?',
+        answer: 'A manutenção dos extintores deve ser feita anualmente por empresa certificada (NP 4413). Em cada 5 ou 10 anos (dependendo do tipo) exige-se recarga ou prova hidráulica.'
+      }
+    ]
+  },
+  'simulacros-de-emergencia-em-portugal-guia-completo': {
+    title: 'Simulacros de Emergência: Lei e Coimas até 44.000€',
+    description: 'Simulacros obrigatórios: anuais (risco elevado) ou bienais (moderado) - Port. 1532/2008. Coimas até 44.000€. Saiba os tipos e como planear.',
+    faqs: [
+      {
+        question: 'O que é um simulacro de emergência?',
+        answer: 'Um simulacro é um exercício prático que testa o Plano de Emergência Interno, treinando os ocupantes e equipas de segurança para agir corretamente em situações de incêndio ou catástrofe.'
+      },
+      {
+        question: 'De quanto em quanto tempo é obrigatório fazer simulacros?',
+        answer: 'Segundo a Portaria n.º 1532/2008, os simulacros devem ser realizados anualmente para edifícios de Risco Elevado (ex: hospitais, lares) e a cada 2 anos para Risco Moderado.'
+      },
+      {
+        question: 'Qual é a coima por não fazer simulacros em Portugal?',
+        answer: 'As coimas por falta de medidas de autoproteção (incluindo simulacros) variam entre 1.800€ a 3.700€ para pessoas singulares e 2.500€ a 44.000€ para empresas (pessoas coletivas).'
+      },
+      {
+        question: 'Que tipos de simulacros existem?',
+        answer: 'Existem simulacros parciais (testam apenas um setor ou equipa), gerais (envolvem todo o edifício), anunciados (com data conhecida) e inopinados (sem aviso prévio para testar reação real).'
+      }
+    ]
+  }
+};
+
 function getServiceCta(title: string, content: string | null) {
   const text = (title + ' ' + (content || '')).toLowerCase();
   for (const service of serviceKeywords) {
@@ -102,12 +153,33 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
     }
   };
 
+  // Se houver configuração especial de FAQ, adicionar FAQPage schema
+  const specialConfig = SPECIAL_POST_CONFIG[params.slug];
+  let finalJsonLd = [schema];
+
+  if (specialConfig && specialConfig.faqs.length > 0) {
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": specialConfig.faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    };
+    // @ts-ignore
+    finalJsonLd.push(faqSchema);
+  }
+
   return (
     <>
       {/* Schema.org JSON-LD */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(finalJsonLd) }}
       />
 
       <section className="w-full relative">
@@ -257,8 +329,10 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
     };
   }
 
-  const metaTitle = post.meta_title || post.title;
-  const metaDescription = post.meta_description || post.description || post.excerpt || '';
+  const specialConfig = SPECIAL_POST_CONFIG[slugToUse];
+
+  const metaTitle = specialConfig?.title || post.meta_title || post.title;
+  const metaDescription = specialConfig?.description || post.meta_description || post.description || post.excerpt || '';
   const ogImage = post.og_image || post.imagem_destaque;
 
   return {

@@ -7,12 +7,12 @@ import { ContactLink } from "@/components/custom/contact-link";
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
-  title: 'Controlo e Prevenção de Legionella | Análise de Água | MediSigma',
-  description: 'Serviços especializados no controlo e prevenção da Legionella em Portugal. Planos de prevenção, análise de água e monitorização de riscos conforme a legislação.',
-  keywords: 'legionella, controlo legionella, prevenção legionella, análise de água legionella, lei 52/2018, doença dos legionários, planos de prevenção',
+  title: 'Legionella: PPCL Obrigatório (Lei 52/2018) | Análise de Água',
+  description: 'PPCL é obrigatório (Lei 52/2018, Port. 25/2021). Criamos o plano e fazemos análise de água (acreditada). Cumpra o DL 69/2023. Orçamento 24h.',
+  keywords: 'legionella, controlo legionella, prevenção legionella, análise de água legionella, lei 52/2018, doença dos legionários, planos de prevenção, DL 69/2023, despacho 1547/2022',
   openGraph: {
-    title: 'Controlo e Prevenção de Legionella | MediSigma',
-    description: 'Implementamos Planos de Prevenção e Controlo de Legionella para garantir a segurança de edifícios e sistemas de água.',
+    title: 'Legionella: PPCL Obrigatório (Lei 52/2018) | Análise de Água',
+    description: 'PPCL é obrigatório (Lei 52/2018). Evite coimas e garanta a saúde pública. Fazemos o plano e análises de água certificadas. Orçamento grátis em 24h.',
     type: 'website',
     locale: 'pt_PT',
   },
@@ -25,22 +25,63 @@ export const metadata: Metadata = {
   }
 };
 
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  'serviceType': 'Controlo e Prevenção de Legionella',
-  'provider': {
-    '@type': 'Organization',
-    'name': 'MediSigma'
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    'serviceType': 'Controlo e Prevenção de Legionella',
+    'provider': {
+      '@type': 'Organization',
+      'name': 'MediSigma',
+      'url': 'https://medisigma.pt'
+    },
+    'name': 'Serviço de Prevenção de Legionella (PPCL)',
+    'description': 'Elaboração e implementação de Planos de Prevenção e Controlo de Legionella (PPCL) conforme Lei n.º 52/2018 e DL 69/2023. Análises de água em laboratório acreditado.',
+    'url': 'https://medisigma.pt/servicos/legionella',
+    'areaServed': {
+      '@type': 'Country',
+      'name': 'Portugal'
+    }
   },
-  'name': 'Controlo e Prevenção de Legionella',
-  'description': 'Elaboração e implementação de Planos de Prevenção e Controlo de Legionella, em conformidade com a legislação em vigor (Lei n.º 52/2018).',
-  'url': 'https://medisigma.pt/servicos/legionella',
-  'areaServed': {
-    '@type': 'Country',
-    'name': 'Portugal'
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': [
+      {
+        '@type': 'Question',
+        'name': 'Quem está obrigado a ter um Plano de Prevenção de Legionella?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Todas as entidades com edifícios de acesso ao público que possuam sistemas de risco, como hotéis, centros comerciais, hospitais, termas, complexos desportivos e estruturas residenciais para pessoas idosas. A Lei n.º 52/2018 torna o PPCL obrigatório para estas entidades.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': 'Com que frequência devem ser feitas as análises à água?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'A frequência das análises depende da avaliação de risco. Para redes prediais, a periodicidade é, no mínimo, anual. Para torres de arrefecimento e sistemas de maior risco, a frequência é trimestral ou definida de acordo com o plano específico.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': 'O que acontece se for detetada Legionella na água?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Em caso de deteção (especialmente acima de 1000 UFC/L conforme DL 69/2023), devem ser implementadas medidas corretivas imediatas, que podem incluir um choque térmico ou químico (desinfeção) no sistema. A situação deve ser comunicada às autoridades de saúde competentes.'
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': 'Qual a importância de trabalhar com um laboratório acreditado?',
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': 'Trabalhar com um laboratório acreditado (ISO 17025) garante que as análises são realizadas segundo normas de qualidade rigorosas e reconhecidas, assegurando a fiabilidade legal e técnica dos resultados.'
+        }
+      }
+    ]
   }
-};
+];
 
 export default function LegionellaPage() {
   return (

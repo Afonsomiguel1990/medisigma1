@@ -17,7 +17,8 @@ Para cada artigo, seguir rigorosamente estes 4 passos:
     *   **Base de Dados:** Ao inserir no campo `content_mdx`, inserir **APENAS o corpo** do artigo. **NUNCA** incluir o bloco de frontmatter (`--- ... ---`). O frontmatter deve ser usado apenas nos ficheiros locais `.mdx`.
     *   **Âncoras de Cabeçalho:** Não usar `{#id}` nos títulos (ex: `## Título {#exemplo}` é proibido). O MDX interpreta as chavetas como código JavaScript e gera erro de compilação.
     *   **Tags HTML:** Evitar `<br />`. Usar linhas em branco para espaçamento e `---` para separadores horizontais.
-    *   **Caracteres Especiais:** Evitar o uso de `{` e `}` fora de contextos controlados. Em tabelas, evitar símbolos como `<` ou `>` se possível, escrevendo-os por extenso ("menos de", "maior que").
+    *   **Tabelas:** **Não usar tabelas Markdown.** O rendering atual quebra a formatação. Usar listas de bullets ou texto estruturado (H3 + Bullets) para apresentar dados comparativos.
+    *   **Caracteres Especiais:** Evitar o uso de `{` e `}` fora de contextos controlados (chavetas são interpretadas como JS).
 
 2.  **Escrita Otimizada (SEO-First)**
     *   **Gatilho (Hook):** O primeiro parágrafo deve tocar numa "dor" do gestor (multa, acidente, custo).

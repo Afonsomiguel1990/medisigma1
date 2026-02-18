@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "/servicos/seguranca-no-trabalho",
+    canonical: "https://www.medisigma.pt/servicos/seguranca-no-trabalho/",
   }
 };
 

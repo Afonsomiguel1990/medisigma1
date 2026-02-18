@@ -4,6 +4,9 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Livro de Reclamações | Medisigma',
   description: 'Aceda ao Livro de Reclamações Eletrónico.',
+  alternates: {
+    canonical: 'https://www.medisigma.pt/livro-reclamacoes/',
+  },
 };
 
 export default function LivroReclamacoesPage() {
@@ -17,9 +20,9 @@ export default function LivroReclamacoesPage() {
           Pode aceder ao Livro de Reclamações Eletrónico através do seguinte link:
         </p>
         <p>
-          <a 
+          <a
             href="https://www.livroreclamacoes.pt/inicio"
-            target="_blank" 
+            target="_blank"
             rel="noopener noreferrer"
             className="text-primary hover:underline"
           >

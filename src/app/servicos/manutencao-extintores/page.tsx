@@ -16,7 +16,7 @@ export const metadata: Metadata = {
         locale: 'pt_PT',
     },
     alternates: {
-        canonical: 'https://medisigma.pt/servicos/manutencao-extintores',
+        canonical: 'https://www.medisigma.pt/servicos/manutencao-extintores/',
     },
 };
 

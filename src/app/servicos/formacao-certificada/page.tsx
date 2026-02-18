@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "/servicos/formacao-certificada",
+    canonical: "https://www.medisigma.pt/servicos/formacao-certificada/",
   }
 };
 

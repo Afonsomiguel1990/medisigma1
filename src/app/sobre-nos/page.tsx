@@ -9,6 +9,9 @@ import { CertificationsShowcase } from '@/components/sections/certifications-sho
 export const metadata: Metadata = {
   title: 'Sobre Nós | Medisigma - Excelência em Medicina do Trabalho',
   description: 'Conheça a Medisigma, líder em Medicina do Trabalho. Nossa história, missão, valores e a jornada que nos tornou referência no setor, com sede em Abrantes.',
+  alternates: {
+    canonical: 'https://www.medisigma.pt/sobre-nos/',
+  },
 };
 
 const timelineEvents = [

@@ -32,7 +32,7 @@ export const BLUR_FADE_DELAY = 0.15;
 export const siteConfig = {
   name: "Grupo Medisigma",
   description: "Cuidamos da saúde dos seus colaboradores e da segurança da sua empresa",
-  cta: "Fale Conosco",
+  cta: "Fale connosco",
   url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
   keywords: [
     "Medicina no Trabalho",
@@ -97,7 +97,7 @@ export const siteConfig = {
     showVideo: false,
     cta: {
       primary: {
-        text: "Fale conosco",
+        text: "Fale connosco",
         href: "/contact",
       },
       secondary: {

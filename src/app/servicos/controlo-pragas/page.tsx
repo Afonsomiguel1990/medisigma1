@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     locale: 'pt_PT',
   },
   alternates: {
-    canonical: 'https://medisigma.pt/servicos/controlo-pragas',
+    canonical: 'https://www.medisigma.pt/servicos/controlo-pragas/',
   },
 };
 

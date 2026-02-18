@@ -30,11 +30,11 @@ export const metadata: Metadata = {
         description: "Parceiro de confiança na Covilhã para todos os serviços de Higiene e Segurança no Trabalho.",
         type: "website",
         locale: "pt_PT",
-        url: "https://medisigma.pt/covilha",
+        url: "https://www.medisigma.pt/covilha/",
         siteName: "Grupo Medisigma",
     },
     alternates: {
-        canonical: "/covilha",
+        canonical: "https://www.medisigma.pt/covilha/",
     }
 };
 

@@ -31,11 +31,11 @@ export const metadata: Metadata = {
         description: "Parceiro de referência para empresas agrícolas e industriais em Santarém. Saúde e segurança no trabalho certificadas.",
         type: "website",
         locale: "pt_PT",
-        url: "https://medisigma.pt/santarem",
+        url: "https://www.medisigma.pt/santarem/",
         siteName: "Grupo Medisigma",
     },
     alternates: {
-        canonical: "/santarem",
+        canonical: "https://www.medisigma.pt/santarem/",
     }
 };
 

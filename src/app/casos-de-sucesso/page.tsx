@@ -4,6 +4,9 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Casos de Sucesso | Medisigma',
   description: 'Conheça os casos de sucesso da Medisigma e como ajudamos os nossos clientes.',
+  alternates: {
+    canonical: 'https://www.medisigma.pt/casos-de-sucesso/',
+  },
 };
 
 export default function CasosDeSucessoPage() {

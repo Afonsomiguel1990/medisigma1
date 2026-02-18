@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'Psicologia e Bem-Estar no Trabalho | MediSigma',
   description: 'Serviços de psicologia para promover a saúde mental, o bem-estar e a produtividade no ambiente de trabalho. Avaliação, intervenção e workshops.',
   keywords: 'psicologia do trabalho, saúde mental, bem-estar, stress ocupacional, burnout, MediSigma',
+  alternates: {
+    canonical: 'https://www.medisigma.pt/servicos/psicologia/',
+  },
 };
 
 const jsonLd = {

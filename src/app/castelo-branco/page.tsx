@@ -31,11 +31,11 @@ export const metadata: Metadata = {
         description: "Líderes em Segurança e Saúde no Trabalho na Beira Baixa. Serviços para todo o distrito de Castelo Branco.",
         type: "website",
         locale: "pt_PT",
-        url: "https://medisigma.pt/castelo-branco",
+        url: "https://www.medisigma.pt/castelo-branco/",
         siteName: "Grupo Medisigma",
     },
     alternates: {
-        canonical: "/castelo-branco",
+        canonical: "https://www.medisigma.pt/castelo-branco/",
     }
 };
 

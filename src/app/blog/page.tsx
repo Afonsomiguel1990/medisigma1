@@ -4,6 +4,9 @@ import BlogCard from '@/components/blog-card';
 export const metadata = {
   title: 'Blog | Medisigma',
   description: 'Guias completos sobre medicina do trabalho, segurança ocupacional, Legionella e conformidade legal em Portugal.',
+  alternates: {
+    canonical: 'https://www.medisigma.pt/blog/',
+  },
 };
 
 export default async function BlogPage() {

@@ -7,6 +7,9 @@ import { ContactLink } from "@/components/custom/contact-link";
 export const metadata: Metadata = {
   title: 'FAQs - Perguntas Frequentes | Medisigma',
   description: 'Encontre respostas às perguntas mais frequentes sobre os serviços de saúde ocupacional, segurança no trabalho, formação certificada e outros serviços da Medisigma.',
+  alternates: {
+    canonical: 'https://www.medisigma.pt/faqs/',
+  },
 };
 
 export default function FAQsPage() {

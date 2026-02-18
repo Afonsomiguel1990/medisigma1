@@ -31,11 +31,11 @@ export const metadata: Metadata = {
         description: "Referência em Segurança e Saúde no Trabalho em Abrantes. Conformidade e segurança para empresas do Médio Tejo.",
         type: "website",
         locale: "pt_PT",
-        url: "https://medisigma.pt/abrantes",
+        url: "https://www.medisigma.pt/abrantes/",
         siteName: "Grupo Medisigma",
     },
     alternates: {
-        canonical: "/abrantes",
+        canonical: "https://www.medisigma.pt/abrantes/",
     }
 };
 

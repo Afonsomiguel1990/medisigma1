@@ -4,6 +4,9 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Termos e Condições | Medisigma',
   description: 'Consulte os Termos e Condições de utilização do site da Medisigma.',
+  alternates: {
+    canonical: 'https://www.medisigma.pt/termos-e-condicoes/',
+  },
 };
 
 export default function TermosECondicoesPage() {

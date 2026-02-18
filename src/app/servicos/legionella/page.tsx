@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: '/servicos/legionella',
+    canonical: 'https://www.medisigma.pt/servicos/legionella/',
   }
 };
 

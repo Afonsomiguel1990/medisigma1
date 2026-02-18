@@ -30,11 +30,11 @@ export const metadata: Metadata = {
         description: "Saúde e Segurança no Trabalho de excelência em Rio Maior. Soluções para a Cidade do Desporto e indústria local.",
         type: "website",
         locale: "pt_PT",
-        url: "https://medisigma.pt/rio-maior",
+        url: "https://www.medisigma.pt/rio-maior/",
         siteName: "Grupo Medisigma",
     },
     alternates: {
-        canonical: "/rio-maior",
+        canonical: "https://www.medisigma.pt/rio-maior/",
     }
 };
 

@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'Nutrição | MediSigma',
   description: 'Serviços de Nutrição para empresas. Planos alimentares, workshops de alimentação saudável e consultas personalizadas para os seus colaboradores.',
   keywords: 'nutrição, alimentação saudável, bem-estar, saúde ocupacional, planos alimentares, MediSigma',
+  alternates: {
+    canonical: 'https://www.medisigma.pt/servicos/nutricao/',
+  },
 };
 
 const jsonLd = {

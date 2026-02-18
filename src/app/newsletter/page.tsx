@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "/newsletter",
+    canonical: "https://www.medisigma.pt/newsletter/",
   },
 };
 
@@ -33,7 +33,7 @@ export default function NewsletterPage() {
                 Subscreva a Nossa Newsletter
               </h1>
               <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                Mantenha-se atualizado com as últimas novidades, dicas e informações 
+                Mantenha-se atualizado com as últimas novidades, dicas e informações
                 essenciais sobre medicina do trabalho, segurança e saúde ocupacional.
               </p>
 

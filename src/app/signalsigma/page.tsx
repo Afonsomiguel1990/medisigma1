@@ -31,7 +31,7 @@ export const metadata: Metadata = {
         follow: true,
     },
     alternates: {
-        canonical: "/signalsigma",
+        canonical: "https://www.medisigma.pt/signalsigma/",
     }
 };
 
@@ -40,7 +40,7 @@ const jsonLd = {
     "@type": "ProfessionalService",
     "name": "SinalSigma - Grupo Medisigma",
     "description": "Soluções de Sinalização e Sinalética de Segurança",
-    "url": "https://medisigma.pt/signalsigma",
+    "url": "https://www.medisigma.pt/signalsigma/",
     "serviceType": [
         "Sinalização de Segurança Contra Incêndios",
         "Sinalização de Segurança no Trabalho",

@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'Medicina Desportiva | MediSigma',
   description: 'Serviços de Medicina Desportiva para atletas e clubes. Avaliações de aptidão, prevenção de lesões e otimização de performance.',
   keywords: 'medicina desportiva, aptidão desportiva, prevenção de lesões, performance, atletas, MediSigma',
+  alternates: {
+    canonical: 'https://www.medisigma.pt/servicos/medicina-desportiva/',
+  },
 };
 
 const jsonLd = {

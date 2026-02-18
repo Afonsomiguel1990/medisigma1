@@ -31,11 +31,11 @@ export const metadata: Metadata = {
         description: "Serviços líderes em Medicina e Segurança no Trabalho na região de Lisboa. Conformidade legal e saúde ocupacional para a sua empresa.",
         type: "website",
         locale: "pt_PT",
-        url: "https://medisigma.pt/lisboa",
+        url: "https://www.medisigma.pt/lisboa/",
         siteName: "Grupo Medisigma",
     },
     alternates: {
-        canonical: "/lisboa",
+        canonical: "https://www.medisigma.pt/lisboa/",
     }
 };
 

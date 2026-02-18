@@ -31,11 +31,11 @@ export const metadata: Metadata = {
         description: "Referência em Saúde Ocupacional em Coimbra. Soluções inovadoras para empresas da região Centro.",
         type: "website",
         locale: "pt_PT",
-        url: "https://medisigma.pt/coimbra",
+        url: "https://www.medisigma.pt/coimbra/",
         siteName: "Grupo Medisigma",
     },
     alternates: {
-        canonical: "/coimbra",
+        canonical: "https://www.medisigma.pt/coimbra/",
     }
 };
 

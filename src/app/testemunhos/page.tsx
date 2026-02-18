@@ -4,6 +4,9 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Testemunhos de Clientes | Medisigma',
   description: 'Veja o que os nossos clientes dizem sobre os serviços da Medisigma.',
+  alternates: {
+    canonical: 'https://www.medisigma.pt/testemunhos/',
+  },
 };
 
 export default function TestemunhosPage() {

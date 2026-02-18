@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "Compliance Medicina do Trabalho",
     "Serviços SST Portugal",
     "Empresas de Medicina do Trabalho"
-  ],  
+  ],
   authors: [
     {
       name: "Afonso Andrade Marques",
@@ -40,6 +40,9 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
+  },
+  alternates: {
+    canonical: siteConfig.url,
   },
   twitter: {
     card: "summary_large_image",

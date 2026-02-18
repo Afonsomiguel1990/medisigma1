@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "/contact",
+    canonical: "https://www.medisigma.pt/contact/",
   },
 };
 

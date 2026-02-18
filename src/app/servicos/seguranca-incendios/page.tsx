@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     locale: 'pt_PT',
   },
   alternates: {
-    canonical: 'https://medisigma.pt/servicos/seguranca-incendios',
+    canonical: 'https://www.medisigma.pt/servicos/seguranca-incendios/',
   },
 };
 

@@ -365,7 +365,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
       images: ogImage ? [ogImage.startsWith('http') ? ogImage : `https://medisigma.pt${ogImage}`] : undefined,
     },
     alternates: {
-      canonical: `https://medisigma.pt/blog/${post.slug}`,
+      canonical: `https://www.medisigma.pt/blog/${post.slug}/`,
     },
   };
 }

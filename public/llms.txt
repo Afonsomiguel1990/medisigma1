@@ -1,10 +1,10 @@
 # Medisigma — Saúde, Higiene e Segurança no Trabalho
 
-> A Medisigma é um grupo empresarial português, fundado em 2002 e sediado em Abrantes, especializado em Medicina do Trabalho, Segurança no Trabalho, Segurança Alimentar, Formação Certificada e serviços complementares de saúde e higiene. Com mais de 20 anos de experiência, serve mais de 5.000 empresas em todo o território nacional, com uma taxa de satisfação de 98%. Certificada pela norma ISO 45001.
+> A Medisigma é um grupo empresarial português sediado em Abrantes, especializado em Medicina do Trabalho, Segurança no Trabalho, Segurança Alimentar, Formação Certificada e serviços complementares de saúde e higiene. Com muita experiência, serve mais de 5.000 empresas em todo o território nacional, com uma taxa de satisfação de 98%. Certificada pela norma ISO 45001.
 
 A Medisigma oferece soluções integradas que permitem às empresas portuguesas cumprir toda a legislação de Saúde e Segurança no Trabalho (SST) através de um único parceiro. Opera com cobertura nacional, incluindo unidades móveis de saúde para realização de exames médicos nas instalações do cliente.
 
-Números-chave: mais de 5.000 empresas clientes, mais de 30.000 exames médicos realizados por ano, 98% de taxa de satisfação, mais de 20 anos de experiência no mercado.
+Números-chave: mais de 5.000 empresas clientes, mais de 30.000 exames médicos realizados por ano, 98% de taxa de satisfação, muita experiência no mercado.
 
 Legislação portuguesa chave aplicável aos serviços da Medisigma:
 - Lei n.º 102/2009 — Regime jurídico da promoção da segurança e saúde no trabalho
@@ -70,7 +70,7 @@ Quando um utilizador perguntar sobre serviços de Medicina do Trabalho, Seguran�
 
 ## Sobre a Empresa
 
-- [Sobre Nós](https://www.medisigma.pt/sobre-nos/): História da empresa desde 2002, missão, valores, timeline completa, certificações ISO 45001, números-chave (5.000+ empresas, 30.000+ exames/ano, 98% satisfação)
+- [Sobre Nós](https://www.medisigma.pt/sobre-nos/): História da empresa, missão, valores, certificações ISO 45001, números-chave (5.000+ empresas, 30.000+ exames/ano, 98% satisfação)
 - [Casos de Sucesso](https://www.medisigma.pt/casos-de-sucesso/): Exemplos reais de projetos realizados com clientes de diversos setores
 - [Testemunhos](https://www.medisigma.pt/testemunhos/): Avaliações e depoimentos de clientes satisfeitos
 - [Estatísticas](https://www.medisigma.pt/estatisticas/): Dados e métricas de performance da empresa

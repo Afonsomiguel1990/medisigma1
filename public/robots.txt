@@ -4,3 +4,4 @@ Disallow: /admin
 Disallow: /estatisticas
 
 Sitemap: https://www.medisigma.pt/sitemap.xml
+LLMs: https://www.medisigma.pt/llms.txt

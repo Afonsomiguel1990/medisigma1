@@ -10,6 +10,13 @@ interface ContactLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement>
     children: React.ReactNode;
 }
 
+// GA4 event names (snake_case, as per GA4 best practices)
+const GA4_EVENT_MAP: Record<ContactType, string> = {
+    whatsapp: "whatsapp_click",
+    phone: "phone_click",
+    email: "email_click",
+};
+
 export function ContactLink({ type, pagina, children, onClick, ...props }: ContactLinkProps) {
     const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
         // Executar a função onClick original se existir
@@ -17,7 +24,32 @@ export function ContactLink({ type, pagina, children, onClick, ...props }: Conta
             onClick(e);
         }
 
-        // Determinar o endpoint baseado no tipo
+        const pageLabel = pagina || document.title || "";
+        const pageUrl = window.location.pathname || "";
+
+        // 1. Send GA4 event
+        try {
+            if (typeof window !== "undefined" && typeof window.gtag === "function") {
+                window.gtag("event", GA4_EVENT_MAP[type], {
+                    event_category: "contact",
+                    contact_method: type,
+                    page_title: pageLabel,
+                    page_location: pageUrl,
+                });
+
+                // Also send generate_lead for better GA4 attribution
+                window.gtag("event", "generate_lead", {
+                    currency: "EUR",
+                    value: 0,
+                    lead_source: type,
+                    page_title: pageLabel,
+                });
+            }
+        } catch (gaError) {
+            console.error("GA4 tracking error:", gaError);
+        }
+
+        // 2. Send to Supabase tracking
         let endpoint = "";
         switch (type) {
             case "email":
@@ -34,8 +66,8 @@ export function ContactLink({ type, pagina, children, onClick, ...props }: Conta
         if (endpoint) {
             try {
                 const trackingData = {
-                    pagina: pagina || document.title || "",
-                    url: window.location.pathname || "",
+                    pagina: pageLabel,
+                    url: pageUrl,
                 };
 
                 fetch(endpoint, {

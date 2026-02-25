@@ -56,6 +56,26 @@ export default function ContactForm({ pagina, fonte, servicoDefault }: ContactFo
       });
 
       if (response.ok) {
+        // GA4: Track form submission as conversion
+        try {
+          if (typeof window !== "undefined" && typeof window.gtag === "function") {
+            window.gtag("event", "generate_lead", {
+              currency: "EUR",
+              value: 0,
+              lead_source: "contact_form",
+              page_title: paginaLabel,
+            });
+            window.gtag("event", "form_submit", {
+              event_category: "contact",
+              form_type: "contact_form",
+              service_type: servico || servicoDefault || "Não especificado",
+              page_title: paginaLabel,
+            });
+          }
+        } catch (gaError) {
+          console.error("GA4 tracking error:", gaError);
+        }
+
         alert('Mensagem recebida. Obrigado!');
         form.reset();
       } else {

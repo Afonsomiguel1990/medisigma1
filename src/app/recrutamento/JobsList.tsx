@@ -45,7 +45,7 @@ export default function JobsList({ initialJobs, onApplyClick }: { initialJobs: J
                     Mantemos o seu CV na nossa base de dados para futuras oportunidades.
                 </p>
                 <Button variant="outline" asChild className="hover:bg-primary hover:text-primary-foreground">
-                    <ContactLink href="mailto:info@medisigma.pt?subject=Candidatura espontânea" type="email">Enviar Candidatura Espontânea</ContactLink>
+                    <ContactLink href="mailto:info@medisigma.pt?subject=Candidatura espontânea" type="email" pagina="Recrutamento">Enviar Candidatura Espontânea</ContactLink>
                 </Button>
             </div>
         );

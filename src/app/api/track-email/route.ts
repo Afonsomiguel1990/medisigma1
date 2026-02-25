@@ -1,11 +1,17 @@
 import { getSupabaseAnon } from "@/lib/supabase";
 import { NextResponse } from "next/server";
 
-export async function POST() {
+export async function POST(req: Request) {
     try {
         const supabase = getSupabaseAnon();
+        const body = await req.json().catch(() => ({}));
 
-        const { error } = await supabase.from("email_clicks").insert({});
+        const pagina = (body.pagina ?? "").toString() || null;
+        const url = (body.url ?? "").toString() || null;
+
+        const { error } = await supabase
+            .from("email_clicks")
+            .insert({ pagina, url });
 
         if (error) {
             console.error("Error tracking Email click:", error);

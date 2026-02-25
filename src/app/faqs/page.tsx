@@ -289,7 +289,7 @@ export default function FAQsPage() {
               </svg>
               Contactar via WhatsApp
             </a>
-            <ContactLink href="tel:241331504" type="phone" className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-secondary transition-colors text-center">
+            <ContactLink href="tel:241331504" type="phone" pagina="FAQs" className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-secondary transition-colors text-center">
               241 331 504
             </ContactLink>
           </div>

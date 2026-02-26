@@ -8,13 +8,13 @@ import { compileMDX } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 
 const serviceKeywords = [
+  { keywords: ['pragas', 'praga', 'baratas', 'ratos', 'desinfestação', 'insetos', 'lagarta', 'processionária'], url: '/servicos/controlo-pragas', label: 'Controlo de Pragas' },
   { keywords: ['legionella', 'água', 'bactéria', 'torres de arrefecimento'], url: '/servicos/legionella', label: 'Prevenção de Legionella' },
   { keywords: ['segurança', 'higiene', 'acidente', 'risco', 'proteção'], url: '/servicos/seguranca-no-trabalho', label: 'Segurança no Trabalho' },
   { keywords: ['medicina', 'exames', 'analises', 'saúde', 'ficha de aptidão'], url: '/servicos/medicina-no-trabalho', label: 'Medicina no Trabalho' },
   { keywords: ['alimentar', 'haccp', 'alimentos', 'cozinha', 'restauração'], url: '/servicos/seguranca-alimentar', label: 'Segurança Alimentar' },
   { keywords: ['formação', 'certificado', 'curso', 'aprender', 'ensino'], url: '/servicos/formacao-certificada', label: 'Formação Certificada' },
   { keywords: ['psicologia', 'mental', 'stress', 'burnout', 'ansiedade'], url: '/servicos/psicologia', label: 'Psicologia' },
-  { keywords: ['pragas', 'baratas', 'ratos', 'desinfestação', 'insetos'], url: '/servicos/controlo-pragas', label: 'Controlo de Pragas' },
   { keywords: ['incêndio', 'fogo', 'extintor', 'emergência', 'evacuação'], url: '/servicos/seguranca-incendios', label: 'Segurança Contra Incêndios' },
   { keywords: ['nutrição', 'dieta', 'alimentação saudável'], url: '/servicos/nutricao', label: 'Nutrição' },
   { keywords: ['desportiva', 'atleta', 'desporto', 'lesão'], url: '/servicos/medicina-desportiva', label: 'Medicina Desportiva' },
@@ -88,6 +88,11 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
   if (params.slug === 'radao-o-inimigo-invisivel-na-sua-empresa') {
     const { redirect } = await import('next/navigation');
     redirect('/blog/o-que-e-o-radao');
+  }
+
+  if (params.slug === 'perigo-lagarta-do-pinheiro-caes') {
+    const { redirect } = await import('next/navigation');
+    redirect('/blog/perigo-lagarta-do-pinheiro');
   }
 
   const post = await getPostBySlug(params.slug);
@@ -315,10 +320,12 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const params = await props.params;
 
-  // Se for o slug antigo, buscar o post com o novo slug
-  const slugToUse = params.slug === 'radao-o-inimigo-invisivel-na-sua-empresa'
-    ? 'o-que-e-o-radao'
-    : params.slug;
+  let slugToUse = params.slug;
+  if (params.slug === 'radao-o-inimigo-invisivel-na-sua-empresa') {
+    slugToUse = 'o-que-e-o-radao';
+  } else if (params.slug === 'perigo-lagarta-do-pinheiro-caes') {
+    slugToUse = 'perigo-lagarta-do-pinheiro';
+  }
 
   const post = await getPostBySlug(slugToUse);
 

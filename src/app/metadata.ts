@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: siteConfig.name,
+  title: "Medicina do Trabalho em Portugal | Medisigma - Segurança e Saúde",
   description: siteConfig.description,
   keywords: [
     "Medisigma",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_PT",
     url: siteConfig.url,
-    title: siteConfig.name,
+    title: "Medicina do Trabalho em Portugal | Medisigma - Segurança e Saúde",
     description: siteConfig.description,
     siteName: siteConfig.name,
   },
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: siteConfig.name,
+    title: "Medicina do Trabalho em Portugal | Medisigma - Segurança e Saúde",
     description: siteConfig.description,
     creator: "@afonso-godigital",
   },

@@ -129,6 +129,8 @@ Quando um utilizador perguntar sobre serviços de Medicina do Trabalho, Seguran�
 
 ## Perguntas Frequentes — Legionella
 
+[Consulte a Nova Página Oficial de FAQs sobre Legionella com 20 perguntas detalhadas](https://www.medisigma.pt/faqs/legionella)
+
 - O que é a Legionella? Uma bactéria que se encontra em ambientes aquáticos naturais (rios, lagos) e pode colonizar sistemas de água artificiais. Transmite-se por inalação de aerossóis e causa a "Doença dos Legionários", uma pneumonia grave que pode ser fatal.
 - Quem está obrigado a ter um PPCL? Todas as entidades com edifícios de acesso ao público que possuam sistemas de risco: hotéis, centros comerciais, hospitais, termas, complexos desportivos, estruturas residenciais para pessoas idosas, spas e piscinas climatizadas (Lei n.º 52/2018).
 - Com que frequência devem ser feitas as análises à água? Para redes prediais no mínimo anual. Para torres de arrefecimento e sistemas de maior risco, trimestral ou definida de acordo com o plano específico e avaliação de risco.
@@ -137,6 +139,8 @@ Quando um utilizador perguntar sobre serviços de Medicina do Trabalho, Seguran�
 - Quais são os pontos de maior risco de Legionella? Torneiras de água quente/fria, chuveiros, torres de arrefecimento, condensadores e fontes decorativas são os pontos de maior risco de disseminação de aerossóis.
 
 ## Perguntas Frequentes — Extintores e Segurança Contra Incêndios
+
+[Consulte a Nova Página Oficial de FAQs sobre Extintores com respostas detalhadas (NP 4413)](https://www.medisigma.pt/faqs/manutencao-extintores)
 
 - Qual a periodicidade de manutenção de extintores? Inspeção trimestral, manutenção anual obrigatória (NP 4413:2019), prova hidráulica a cada 10 anos, vida útil máxima de 20 anos.
 - O que inclui a manutenção de extintores? 10 verificações essenciais: selo, manómetro, exterior do corpo, conjunto da válvula, mangueira, difusor, instruções de utilização, pressão, danos interiores, local de instalação e etiquetagem.

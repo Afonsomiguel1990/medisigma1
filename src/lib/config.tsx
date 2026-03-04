@@ -1019,6 +1019,8 @@ export const siteConfig = {
         { id: 6, title: "Política de Cookies", url: "/cookies" },
         { id: 7, title: "Resolução de Litígios", url: "/resolucao-litigios" },
         { id: 8, title: "Livro de Reclamações", url: "https://www.livroreclamacoes.pt/Inicio/" },
+        { id: 9, title: "FAQs Legionella", url: "/faqs/legionella" },
+        { id: 10, title: "FAQs Extintores", url: "/faqs/manutencao-extintores" },
       ],
     },
     {

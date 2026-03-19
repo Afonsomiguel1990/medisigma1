@@ -1,6 +1,8 @@
 import { getAllPublishedPosts } from '@/lib/posts';
 import BlogCard from '@/components/blog-card';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'Blog | Medisigma',
   description: 'Guias completos sobre medicina do trabalho, segurança ocupacional, Legionella e conformidade legal em Portugal.',

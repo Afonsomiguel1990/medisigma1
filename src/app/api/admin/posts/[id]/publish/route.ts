@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { publishPost } from '@/lib/posts';
 
 export const runtime = 'nodejs';
@@ -17,6 +18,10 @@ export async function POST(
     
     const publishedAt = body.published_at || new Date().toISOString();
     const post = await publishPost(id, publishedAt);
+
+    revalidatePath('/blog');
+    revalidatePath(`/blog/${post.slug}`);
+    revalidatePath('/');
     
     return NextResponse.json({ post }, { status: 200 });
   } catch (error) {

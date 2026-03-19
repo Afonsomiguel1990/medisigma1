@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next';
 import { getAllPublishedPosts } from '@/lib/posts';
 
+export const dynamic = 'force-dynamic';
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.medisigma.pt';
   const now = new Date();

@@ -315,7 +315,42 @@
   animation: pulsar-background 8s infinite ease-in-out; /* Aumentada a duração para 8s */
 }
 
-/* Blog mobile responsiveness fixes */
+/* Blog list styling - override Tailwind Typography plugin */
+.prose ul,
+.prose :where(ul):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: disc !important;
+  padding-left: 1.5rem !important;
+  margin-top: 1.25rem !important;
+  margin-bottom: 1.25rem !important;
+}
+
+.prose ol,
+.prose :where(ol):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  list-style-type: decimal !important;
+  padding-left: 1.5rem !important;
+  margin-top: 1.25rem !important;
+  margin-bottom: 1.25rem !important;
+}
+
+.prose li,
+.prose :where(li):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  display: list-item !important;
+  margin-top: 0.4rem !important;
+  margin-bottom: 0.4rem !important;
+  padding-left: 0.375rem !important;
+}
+
+.prose :where(li)::marker {
+  color: #6b7280 !important;
+}
+
+/* Remove Tailwind Typography pseudo-element markers */
+.prose :where(ul > li)::before,
+.prose :where(ol > li)::before {
+  content: none !important;
+  display: none !important;
+}
+
 .prose table {
   width: 100%;
   border-collapse: collapse;

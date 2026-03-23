@@ -8,11 +8,11 @@ import { compileMDX } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 
 const serviceKeywords = [
+  { keywords: ['alimentar', 'haccp', 'alimentos', 'cozinha', 'restauração'], url: '/servicos/seguranca-alimentar', label: 'Segurança Alimentar' },
   { keywords: ['pragas', 'praga', 'baratas', 'ratos', 'desinfestação', 'insetos', 'lagarta', 'processionária'], url: '/servicos/controlo-pragas', label: 'Controlo de Pragas' },
-  { keywords: ['legionella', 'água', 'bactéria', 'torres de arrefecimento'], url: '/servicos/legionella', label: 'Prevenção de Legionella' },
+  { keywords: ['legionella', 'bactéria', 'torres de arrefecimento'], url: '/servicos/legionella', label: 'Prevenção de Legionella' },
   { keywords: ['segurança', 'higiene', 'acidente', 'risco', 'proteção'], url: '/servicos/seguranca-no-trabalho', label: 'Segurança no Trabalho' },
   { keywords: ['medicina', 'exames', 'analises', 'saúde', 'ficha de aptidão'], url: '/servicos/medicina-no-trabalho', label: 'Medicina no Trabalho' },
-  { keywords: ['alimentar', 'haccp', 'alimentos', 'cozinha', 'restauração'], url: '/servicos/seguranca-alimentar', label: 'Segurança Alimentar' },
   { keywords: ['formação', 'certificado', 'curso', 'aprender', 'ensino'], url: '/servicos/formacao-certificada', label: 'Formação Certificada' },
   { keywords: ['psicologia', 'mental', 'stress', 'burnout', 'ansiedade'], url: '/servicos/psicologia', label: 'Psicologia' },
   { keywords: ['incêndio', 'fogo', 'extintor', 'emergência', 'evacuação'], url: '/servicos/seguranca-incendios', label: 'Segurança Contra Incêndios' },

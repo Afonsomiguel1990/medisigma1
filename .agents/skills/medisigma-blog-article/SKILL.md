@@ -75,6 +75,7 @@ SEO expectations:
 - add external links to authoritative sources inside the article body, not only in the source list
 - include a FAQ section for long-tail queries
 - include a CTA section near the end
+- **Beware of generic keywords** in the article text (like "água") that might accidentally trigger the wrong CTA logic (e.g., Legionella instead of Segurança Alimentar). Check the `serviceKeywords` array in `src/app/blog/[slug]/page.tsx` if CTAs render incorrectly.
 
 ## Research Workflow
 
@@ -102,13 +103,15 @@ If preview shows dense blocks or malformed lists/tables, convert those sections 
 
 ## Featured Image Rules
 
-If using an external featured image:
+If using a featured image:
 
-- prefer Unsplash
+- **DO NOT use direct Unsplash URLs** (`https://images.unsplash.com/...`) in `imagem_destaque`. The Next.js image optimizer on Vercel is blocked by Unsplash (403 Forbidden).
+- ALWAYS download or generate the image locally.
+- Save the local image to `public/blog/` (e.g., `public/blog/my-image.png`).
+- Reference it with a relative path (e.g., `imagem_destaque: '/blog/my-image.png'`).
 - choose an image that matches the topic
 - avoid visible text inside the image
 - avoid images that look like screenshots, documents, or dashboards
-- verify the URL is valid before saving it
 
 Keep `imagem_destaque` and `og_image` aligned unless there is a specific reason not to.
 

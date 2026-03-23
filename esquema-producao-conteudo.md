@@ -19,6 +19,8 @@ Para cada artigo, seguir rigorosamente estes 4 passos:
     *   **Tags HTML:** Evitar `<br />`. Usar linhas em branco para espaçamento e `---` para separadores horizontais.
     *   **Tabelas:** **Não usar tabelas Markdown.** O rendering atual quebra a formatação. Usar listas de bullets ou texto estruturado (H3 + Bullets) para apresentar dados comparativos.
     *   **Caracteres Especiais:** Evitar o uso de `{` e `}` fora de contextos controlados (chavetas são interpretadas como JS).
+    *   **Pontuação Legal:** **Não usar travessões (em dashes `—`)** no texto. Usar sempre vírgulas (`, `) ou parênteses para manter a fluidez e consistência com as preferências de redação.
+    *   **Imagens de Destaque:** **NUNCA usar URLs diretos do Unsplash** no `imagem_destaque`. O otimizador de imagens do Next.js na Vercel é bloqueado pelo Unsplash (Erro 403). Guardar sempre as imagens de capa localmente na pasta `public/blog/` e referenciar o path relativo (ex: `/blog/imagem.png`).
 
 2.  **Escrita Otimizada (SEO-First)**
     *   **Gatilho (Hook):** O primeiro parágrafo deve tocar numa "dor" do gestor (multa, acidente, custo).
@@ -28,7 +30,7 @@ Para cada artigo, seguir rigorosamente estes 4 passos:
 
 3.  **Estrutura Visual & Interatividade**
     *   **Índice Rápido:** Obrigatório no início.
-    *   **Call to Action (CTA):** Inserir "Dicas Medidigma" a meio e um CTA comercial no final.
+    *   **Call to Action (CTA):** Inserir "Dicas Medidigma" a meio e um CTA comercial no final. Acautelar o uso de palavras genéricas (ex: "água") no texto que possam acionar acidentalmente CTAs errados (ex: Legionella) em vez do serviço desejado (ex: Segurança Alimentar no caso de retalho/HORECA).
 
 4.  **Revisão Final**
     *   Verificar tom de voz (Profissional, Pedagógico, Seguro).

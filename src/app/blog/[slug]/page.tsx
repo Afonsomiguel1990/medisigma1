@@ -74,11 +74,14 @@ const SPECIAL_POST_CONFIG: Record<string, {
 function getServiceCta(title: string, content: string | null) {
   const text = (title + ' ' + (content || '')).toLowerCase();
   for (const service of serviceKeywords) {
-    if (service.keywords.some(k => text.includes(k))) {
+    if (service.keywords.some(k => {
+      if (k.includes(' ')) return text.includes(k);
+      return new RegExp(`\\b${k}\\b`).test(text);
+    })) {
       return service;
     }
   }
-  return null; // ou um default se quiser
+  return null;
 }
 
 export default async function PostPage(props: { params: Promise<{ slug: string }> }) {

@@ -278,7 +278,9 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
                             prose-a:text-primary prose-a:underline prose-a:decoration-primary/30 prose-a:underline-offset-4 hover:prose-a:decoration-primary prose-a:transition-all
                             prose-table:border-collapse prose-table:w-full
                             prose-th:border prose-th:border-gray-300 prose-th:p-2 prose-th:bg-gray-100
-                            prose-td:border prose-td:border-gray-300 prose-td:p-2">
+                            prose-td:border prose-td:border-gray-300 prose-td:p-2
+                            [&_table_th:first-child]:whitespace-nowrap [&_table_td:first-child]:whitespace-nowrap
+                            [&_table_th:first-child]:min-w-12 [&_table_td:first-child]:min-w-12">
               <div className="overflow-x-auto">
                 {compiledContent}
               </div>
@@ -383,4 +385,4 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
 // Desabilitar geração estática para evitar erros durante o build
 // As páginas serão geradas dinamicamente quando solicitadas
 export const dynamic = 'force-dynamic';
-export const revalidate = 3600; // Revalidar a cada hora 
+export const revalidate = 3600; // Revalidar a cada hora

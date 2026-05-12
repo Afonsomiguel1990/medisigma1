@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Contact, Candidatura, Application } from '@/lib/forms';
+import { adminFetch } from '@/lib/admin-api';
 import { Button } from '@/components/ui/button';
 import {
   Table,
@@ -27,7 +28,7 @@ export default function AdminFormsPage() {
 
   const fetchForms = async () => {
     try {
-      const response = await fetch('/api/admin/forms');
+      const response = await adminFetch('/api/admin/forms');
       
       let data;
       try {
@@ -357,4 +358,3 @@ export default function AdminFormsPage() {
     </div>
   );
 }
-

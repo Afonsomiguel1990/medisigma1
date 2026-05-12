@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requireAdminAuth } from '@/lib/admin-auth';
 import { getPostById, updatePost, deletePost, UpdatePostData } from '@/lib/posts';
 
 export const runtime = 'nodejs';
@@ -11,6 +12,9 @@ export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const authError = requireAdminAuth(req);
+  if (authError) return authError;
+
   try {
     const { id } = await params;
     const post = await getPostById(id);
@@ -40,6 +44,9 @@ export async function PUT(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const authError = requireAdminAuth(req);
+  if (authError) return authError;
+
   try {
     const { id } = await params;
     const body = await req.json();
@@ -82,6 +89,9 @@ export async function DELETE(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const authError = requireAdminAuth(req);
+  if (authError) return authError;
+
   try {
     const { id } = await params;
     await deletePost(id);

@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requireAdminAuth } from '@/lib/admin-auth';
 import { getAllForms, getAllContacts, getAllCandidaturas, getAllApplications } from '@/lib/forms';
 
 export const runtime = 'nodejs';
@@ -9,6 +10,9 @@ export const runtime = 'nodejs';
  * Query params: ?type=contacts|candidaturas|applications
  */
 export async function GET(req: NextRequest) {
+  const authError = requireAdminAuth(req);
+  if (authError) return authError;
+
   try {
     const { searchParams } = new URL(req.url);
     const type = searchParams.get('type');
@@ -62,4 +66,3 @@ export async function GET(req: NextRequest) {
     );
   }
 }
-

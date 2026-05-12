@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { requireAdminAuth } from '@/lib/admin-auth';
 import { getSupabaseAdmin } from '@/lib/supabase';
+import { imageExtensionFromMime } from '@/lib/upload-validation';
 
 export const runtime = 'nodejs';
 
@@ -8,6 +10,9 @@ export const runtime = 'nodejs';
  * Faz upload de imagem para o bucket web-media
  */
 export async function POST(req: NextRequest) {
+  const authError = requireAdminAuth(req);
+  if (authError) return authError;
+
   try {
     const formData = await req.formData();
     const file = formData.get('file') as File;
@@ -42,7 +47,13 @@ export async function POST(req: NextRequest) {
     // Gerar nome único para o ficheiro
     const timestamp = Date.now();
     const randomString = Math.random().toString(36).substring(7);
-    const ext = file.name.split('.').pop();
+    const ext = imageExtensionFromMime(file.type);
+    if (!ext) {
+      return NextResponse.json(
+        { error: 'Tipo de ficheiro nao permitido.' },
+        { status: 400 }
+      );
+    }
     const filename = `blog/${timestamp}-${randomString}.${ext}`;
 
     // Converter File para Buffer

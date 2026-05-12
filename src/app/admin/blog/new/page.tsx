@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import PostEditor from '@/components/admin/PostEditor';
+import { adminFetch } from '@/lib/admin-api';
 import { CreatePostData, UpdatePostData } from '@/lib/posts';
 
 export default function NewPostPage() {
@@ -15,7 +16,7 @@ export default function NewPostPage() {
     setError(null);
 
     try {
-      const response = await fetch('/api/admin/posts', {
+      const response = await adminFetch('/api/admin/posts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,4 +52,3 @@ export default function NewPostPage() {
     </div>
   );
 }
-

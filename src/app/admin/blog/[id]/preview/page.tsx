@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { PostWithTags } from '@/lib/posts';
+import { adminFetch } from '@/lib/admin-api';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -28,7 +29,7 @@ export default function PreviewPostPage({ params }: { params: Promise<{ id: stri
     if (!resolvedParams) return;
     
     try {
-      const response = await fetch(`/api/admin/posts/${resolvedParams.id}`);
+      const response = await adminFetch(`/api/admin/posts/${resolvedParams.id}`);
       if (!response.ok) throw new Error('Erro ao carregar post');
       const data = await response.json();
       setPost(data.post);

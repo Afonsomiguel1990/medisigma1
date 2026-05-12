@@ -13,6 +13,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { adminFetch } from '@/lib/admin-api';
 import { PostWithTags, CreatePostData, UpdatePostData, generateSlug } from '@/lib/posts';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import Image from 'next/image';
@@ -81,7 +82,7 @@ export default function PostEditor({ post, onSave, saving }: PostEditorProps) {
       const formData = new FormData();
       formData.append('file', file);
 
-      const response = await fetch('/api/admin/upload', {
+      const response = await adminFetch('/api/admin/upload', {
         method: 'POST',
         body: formData,
       });
@@ -363,4 +364,3 @@ export default function PostEditor({ post, onSave, saving }: PostEditorProps) {
     </form>
   );
 }
-

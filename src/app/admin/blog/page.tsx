@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { adminFetch } from '@/lib/admin-api';
 import { Post } from '@/lib/posts';
 import { Button } from '@/components/ui/button';
 import {
@@ -25,7 +26,7 @@ export default function AdminBlogPage() {
 
   const fetchPosts = async () => {
     try {
-      const response = await fetch('/api/admin/posts');
+      const response = await adminFetch('/api/admin/posts');
       if (!response.ok) throw new Error('Erro ao carregar posts');
       const data = await response.json();
       setPosts(data.posts);
@@ -40,7 +41,7 @@ export default function AdminBlogPage() {
     if (!confirm('Tem certeza que deseja eliminar este post?')) return;
 
     try {
-      const response = await fetch(`/api/admin/posts/${id}`, {
+      const response = await adminFetch(`/api/admin/posts/${id}`, {
         method: 'DELETE',
       });
 

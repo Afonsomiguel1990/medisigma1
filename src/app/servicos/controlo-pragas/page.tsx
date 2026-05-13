@@ -97,7 +97,7 @@ const faqItems = [
   {
     question: 'Os produtos utilizados são seguros em zonas alimentares?',
     answer:
-      'Os produtos e métodos são selecionados de acordo com o local, a praga e o risco de contaminação. Em zonas alimentares, a intervenção deve proteger os géneros alimentícios e respeitar as fichas técnicas, fichas de dados de segurança e autorizações aplicáveis.',
+      'Os produtos e métodos são selecionados de acordo com o local, a praga e o risco de contaminação. Em zonas alimentares, a intervenção deve proteger os géneros alimentícios, respeitar as fichas técnicas, fichas de dados de segurança e autorizações aplicáveis; a aplicação de inseticidas nessas zonas não é aconselhada.',
   },
   {
     question: 'O que acontece se houver sinais de atividade?',
@@ -245,7 +245,7 @@ const pestTypes = [
   {
     icon: SprayCan,
     title: 'Insetos voadores',
-    description: 'Medidas para moscas, mosquitos e traças, incluindo avaliação da localização de equipamentos e pontos de atração.',
+    description: 'Medidas para moscas, mosquitos e traças, incluindo avaliação da localização de equipamentos e pontos de atração sem criar risco de contaminação alimentar.',
   },
   {
     icon: Bird,

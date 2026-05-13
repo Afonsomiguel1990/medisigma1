@@ -20,6 +20,13 @@ const serviceKeywords = [
   { keywords: ['desportiva', 'atleta', 'desporto', 'lesão'], url: '/servicos/medicina-desportiva', label: 'Medicina Desportiva' },
 ];
 
+const serviceCtaOverrides: Record<string, { url: string; label: string }> = {
+  'plano-controlo-pragas-haccp-dossier-empresa': {
+    url: '/servicos/controlo-pragas',
+    label: 'Controlo de Pragas',
+  },
+};
+
 /**
  * Configuração especial para override de SEO e Schema em posts específicos.
  * Isto permite melhorar o CTR sem alterar a base de dados diretamente.
@@ -71,7 +78,10 @@ const SPECIAL_POST_CONFIG: Record<string, {
   }
 };
 
-function getServiceCta(title: string, content: string | null) {
+function getServiceCta(slug: string, title: string, content: string | null) {
+  const override = serviceCtaOverrides[slug];
+  if (override) return override;
+
   const text = (title + ' ' + (content || '')).toLowerCase();
   for (const service of serviceKeywords) {
     if (service.keywords.some(k => {
@@ -127,7 +137,7 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
   }
 
   // Determinar serviço relacionado
-  const relatedService = getServiceCta(post.title, post.content_mdx);
+  const relatedService = getServiceCta(post.slug, post.title, post.content_mdx);
 
   // Obter todos os artigos para a secção de relacionados
   const allArticles = await getAllPublishedPosts();

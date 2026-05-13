@@ -23,6 +23,12 @@ const SUSPICIOUS_PATTERNS = [
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
+  if (pathname === '/controlo_pragas.php') {
+    const url = request.nextUrl.clone();
+    url.pathname = '/servicos/controlo-pragas/';
+    return NextResponse.redirect(url, 301);
+  }
+
   // Permitir rotas de API e assets estáticos
   if (
     pathname.startsWith('/api') ||

@@ -107,8 +107,9 @@ If using a featured image:
 
 - **DO NOT use direct Unsplash URLs** (`https://images.unsplash.com/...`) in `imagem_destaque`. The Next.js image optimizer on Vercel is blocked by Unsplash (403 Forbidden).
 - ALWAYS download or generate the image locally.
-- Save the local image to `public/blog/` (e.g., `public/blog/my-image.png`).
-- Reference it with a relative path (e.g., `imagem_destaque: '/blog/my-image.png'`).
+- Save the local image inside the repo, preferably `public/images/uploads/blog/` for new blog covers.
+- Reference it with a site-local path (e.g., `imagem_destaque: '/images/uploads/blog/my-image.png'`).
+- If the article is published to production, commit and push the local image asset together with any article/template changes before saying the live article is complete. Otherwise Vercel can render a broken image because the database row points to a file that is not deployed.
 - choose an image that matches the topic
 - avoid visible text inside the image
 - avoid images that look like screenshots, documents, or dashboards

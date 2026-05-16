@@ -30,7 +30,7 @@ const jsonLd = {
   "@type": "MedicalBusiness",
   "name": "MediSigma - Medicina no Trabalho",
   "description": "Serviços especializados de Medicina no Trabalho e exames médicos ocupacionais",
-  "url": "https://medisigma.pt/servicos/medicina-no-trabalho",
+  "url": "https://www.medisigma.pt/servicos/medicina-no-trabalho",
   "medicalSpecialty": "Occupational Medicine",
   "address": {
     "@type": "PostalAddress",

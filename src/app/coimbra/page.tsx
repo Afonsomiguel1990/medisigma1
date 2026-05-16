@@ -43,9 +43,9 @@ const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Grupo Medisigma Coimbra",
-    "image": "https://medisigma.pt/logos/logomedisigma.svg",
+    "image": "https://www.medisigma.pt/logomedisigma.svg",
     "description": "Serviços de Medicina e Segurança no Trabalho, HACCP e Formação na região de Coimbra.",
-    "url": "https://medisigma.pt/coimbra",
+    "url": "https://www.medisigma.pt/coimbra",
     "telephone": "+351 241 331 504",
     "address": {
         "@type": "PostalAddress",

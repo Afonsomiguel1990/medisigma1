@@ -43,7 +43,7 @@ const jsonLd = {
   "@type": "Organization",
   "name": "Grupo Medisigma",
   "url": "https://www.medisigma.pt",
-  "logo": "https://www.medisigma.pt/logos/logomedisigma.svg",
+  "logo": "https://www.medisigma.pt/logomedisigma.svg",
   "description": "Grupo empresarial português especializado em Medicina do Trabalho, Segurança no Trabalho, Segurança Alimentar (HACCP), Formação Certificada, Controlo de Pragas, Prevenção de Legionella e Psicologia Ocupacional. Cobertura nacional com sede em Abrantes.",
   "foundingLocation": "Abrantes, Portugal",
   "areaServed": {

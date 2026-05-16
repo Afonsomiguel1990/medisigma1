@@ -42,9 +42,9 @@ const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Grupo Medisigma Covilhã",
-    "image": "https://medisigma.pt/logos/logomedisigma.svg",
+    "image": "https://www.medisigma.pt/logomedisigma.svg",
     "description": "Serviços de Medicina e Segurança no Trabalho, HACCP e Formação na Covilhã e região da Cova da Beira.",
-    "url": "https://medisigma.pt/covilha",
+    "url": "https://www.medisigma.pt/covilha",
     "telephone": "+351 241 331 504",
     "address": {
         "@type": "PostalAddress",

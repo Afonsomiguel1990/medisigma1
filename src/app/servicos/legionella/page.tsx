@@ -33,11 +33,11 @@ const jsonLd = [
     'provider': {
       '@type': 'Organization',
       'name': 'MediSigma',
-      'url': 'https://medisigma.pt'
+      'url': 'https://www.medisigma.pt'
     },
     'name': 'Serviço de Prevenção de Legionella (PPCL)',
     'description': 'Elaboração e implementação de Planos de Prevenção e Controlo de Legionella (PPCL) conforme Lei n.º 52/2018 e DL 69/2023. Análises de água em laboratório acreditado.',
-    'url': 'https://medisigma.pt/servicos/legionella',
+    'url': 'https://www.medisigma.pt/servicos/legionella',
     'areaServed': {
       '@type': 'Country',
       'name': 'Portugal'

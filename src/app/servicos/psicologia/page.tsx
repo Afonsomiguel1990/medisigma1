@@ -22,7 +22,7 @@ const jsonLd = {
   'provider': {
     '@type': 'Organization',
     'name': 'MediSigma',
-    'url': 'https://medisigma.pt',
+    'url': 'https://www.medisigma.pt',
   },
   'serviceType': 'Psicologia Ocupacional',
   'description': 'Serviços de psicologia para promover a saúde mental, o bem-estar e a produtividade no ambiente de trabalho.',

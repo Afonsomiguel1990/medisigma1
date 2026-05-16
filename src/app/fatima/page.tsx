@@ -41,9 +41,9 @@ const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Grupo Medisigma Fátima",
-    "image": "https://medisigma.pt/logos/logomedisigma.svg",
+    "image": "https://www.medisigma.pt/logomedisigma.svg",
     "description": "Forte resposta do Grupo na Segurança e Saúde no Trabalho, HST e Certificação Alimentar aplicada ao forte e sensível fluxo comercial (Hotelaria) no polo de Fátima.",
-    "url": "https://medisigma.pt/fatima",
+    "url": "https://www.medisigma.pt/fatima",
     "telephone": "+351 241 331 504",
     "address": {
         "@type": "PostalAddress",

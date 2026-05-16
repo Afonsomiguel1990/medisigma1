@@ -30,7 +30,7 @@ const jsonLd = {
   "@type": "ProfessionalService",
   "name": "MediSigma - Segurança Alimentar",
   "description": "Serviços especializados de Segurança Alimentar com implementação de sistemas HACCP",
-  "url": "https://medisigma.pt/servicos/seguranca-alimentar",
+  "url": "https://www.medisigma.pt/servicos/seguranca-alimentar",
   "serviceType": [
     "Implementação HACCP",
     "Auditorias Alimentares",

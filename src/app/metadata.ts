@@ -28,11 +28,11 @@ export const metadata: Metadata = {
   ],
   authors: [
     {
-      name: "Afonso Andrade Marques",
-      url: "https://godigital.pt",
+      name: "Dra. Ana Simões",
+      url: siteConfig.url,
     },
   ],
-  creator: "afonso-godigital",
+  creator: "Dra. Ana Simões",
   openGraph: {
     type: "website",
     locale: "pt_PT",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Medicina do Trabalho em Portugal | Medisigma - Segurança e Saúde",
     description: siteConfig.description,
-    creator: "@afonso-godigital",
+    creator: "Dra. Ana Simões",
   },
   robots: {
     index: true,

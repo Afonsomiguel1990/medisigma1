@@ -42,9 +42,9 @@ const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Grupo Medisigma Entroncamento",
-    "image": "https://medisigma.pt/logos/logomedisigma.svg",
+    "image": "https://www.medisigma.pt/logomedisigma.svg",
     "description": "Apoio a empresas em Medicina e Segurança no Trabalho, Controlo de Pragas e Segurança contra Incêndios na região do Entroncamento.",
-    "url": "https://medisigma.pt/entroncamento",
+    "url": "https://www.medisigma.pt/entroncamento",
     "telephone": "+351 241 331 504",
     "address": {
         "@type": "PostalAddress",

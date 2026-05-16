@@ -43,9 +43,9 @@ const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Grupo Medisigma Castelo Branco",
-    "image": "https://medisigma.pt/logos/logomedisigma.svg",
+    "image": "https://www.medisigma.pt/logomedisigma.svg",
     "description": "Serviços de Medicina e Segurança no Trabalho, HACCP e Formação no distrito de Castelo Branco.",
-    "url": "https://medisigma.pt/castelo-branco",
+    "url": "https://www.medisigma.pt/castelo-branco",
     "telephone": "+351 241 331 504",
     "address": {
         "@type": "PostalAddress",

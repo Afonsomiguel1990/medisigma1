@@ -18,7 +18,7 @@ export default function PoliticaDePrivacidadePage() {
       <div className="prose dark:prose-invert max-w-none text-justify">
         <p className="font-bold">Última atualização: 11 de Junho de 2025</p>
 
-        <p>A sua privacidade é importante para nós. É política da Medisigma respeitar a sua privacidade em relação a qualquer informação sua que possamos recolher no site <a href="https://medisigma.pt">Medisigma</a>, e outros sites que possuímos e operamos.</p>
+        <p>A sua privacidade é importante para nós. É política da Medisigma respeitar a sua privacidade em relação a qualquer informação sua que possamos recolher no site <a href="https://www.medisigma.pt">Medisigma</a>, e outros sites que possuímos e operamos.</p>
 
         <h2 className="text-2xl font-semibold mt-6 mb-4">1. Que dados recolhemos?</h2>
         <p>Recolhemos informações pessoais que nos fornece diretamente quando preenche um formulário de contacto, subscreve a nossa newsletter ou nos contacta por outros meios. As informações podem incluir:</p>

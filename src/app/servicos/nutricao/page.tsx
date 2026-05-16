@@ -22,7 +22,7 @@ const jsonLd = {
   'provider': {
     '@type': 'Organization',
     'name': 'MediSigma',
-    'url': 'https://medisigma.pt',
+    'url': 'https://www.medisigma.pt',
   },
   'serviceType': 'Nutrição',
   'description': 'Serviços de Nutrição focados no bem-estar dos colaboradores e na promoção de hábitos alimentares saudáveis no local de trabalho.',

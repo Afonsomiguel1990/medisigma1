@@ -43,9 +43,9 @@ const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Grupo Medisigma Leiria",
-    "image": "https://medisigma.pt/logos/logomedisigma.svg",
+    "image": "https://www.medisigma.pt/logomedisigma.svg",
     "description": "Proteção ativa em Medicina e Segurança no Trabalho especializada na indústria de moldes e setor comercial no distrito de Leiria.",
-    "url": "https://medisigma.pt/leiria",
+    "url": "https://www.medisigma.pt/leiria",
     "telephone": "+351 241 331 504",
     "address": {
         "@type": "PostalAddress",

@@ -43,9 +43,9 @@ const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Grupo Medisigma Santarém",
-    "image": "https://medisigma.pt/logos/logomedisigma.svg",
+    "image": "https://www.medisigma.pt/logomedisigma.svg",
     "description": "Serviços de Medicina e Segurança no Trabalho, HACCP e Formação na região de Santarém e Ribatejo.",
-    "url": "https://medisigma.pt/santarem",
+    "url": "https://www.medisigma.pt/santarem",
     "telephone": "+351 241 331 504",
     "address": {
         "@type": "PostalAddress",

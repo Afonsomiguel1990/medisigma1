@@ -42,9 +42,9 @@ const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Grupo Medisigma Rio Maior",
-    "image": "https://medisigma.pt/logos/logomedisigma.svg",
+    "image": "https://www.medisigma.pt/logomedisigma.svg",
     "description": "Serviços de Medicina e Segurança no Trabalho, HACCP e Formação em Rio Maior.",
-    "url": "https://medisigma.pt/rio-maior",
+    "url": "https://www.medisigma.pt/rio-maior",
     "telephone": "+351 241 331 504",
     "address": {
         "@type": "PostalAddress",

@@ -27,7 +27,7 @@ const jsonLd = {
     'provider': {
         '@type': 'Organization',
         'name': 'MediSigma',
-        'url': 'https://medisigma.pt',
+        'url': 'https://www.medisigma.pt',
     },
     'serviceType': 'Segurança Contra Incêndios',
     'description': 'Serviço de manutenção preventiva e corretiva de extintores de incêndio, certificado segundo a norma NP 4413:2019.',

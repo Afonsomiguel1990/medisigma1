@@ -3,76 +3,86 @@ import { getAllPublishedPosts } from '@/lib/posts';
 
 export const dynamic = 'force-dynamic';
 
+const baseUrl = 'https://www.medisigma.pt';
+const staticLastModified = new Date('2026-05-13T00:00:00.000Z');
+const controloPragasLastModified = new Date('2026-05-13T22:58:43.000Z');
+
+function route(
+  path: string,
+  changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'],
+  priority: number,
+  lastModified: Date = staticLastModified,
+): MetadataRoute.Sitemap[number] {
+  return {
+    url: `${baseUrl}${path}`,
+    lastModified,
+    changeFrequency,
+    priority,
+  };
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://www.medisigma.pt';
-  const now = new Date();
-
-  // URLs principais estatícas
   const mainRoutes: MetadataRoute.Sitemap = [
-    { url: `${baseUrl}/`, lastModified: now, changeFrequency: 'monthly', priority: 1.0 },
-    { url: `${baseUrl}/sobre-nos/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/servicos/`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${baseUrl}/blog/`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/contact/`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/recrutamento/`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/casos-de-sucesso/`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/testemunhos/`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/signalsigma/`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    route('/', 'monthly', 1.0),
+    route('/sobre-nos/', 'monthly', 0.8),
+    route('/servicos/', 'monthly', 0.9),
+    route('/blog/', 'weekly', 0.8),
+    route('/contact/', 'monthly', 0.7),
+    route('/recrutamento/', 'monthly', 0.7),
+    route('/casos-de-sucesso/', 'monthly', 0.7),
+    route('/testemunhos/', 'monthly', 0.7),
+    route('/signalsigma/', 'monthly', 0.7),
   ];
 
-  // URLs de serviços
   const serviceRoutes: MetadataRoute.Sitemap = [
-    { url: `${baseUrl}/servicos/medicina-no-trabalho/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/servicos/seguranca-no-trabalho/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/servicos/seguranca-alimentar/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/servicos/formacao-certificada/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/servicos/psicologia/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/servicos/controlo-pragas/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/servicos/seguranca-incendios/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/servicos/legionella/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/servicos/medicina-desportiva/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/servicos/nutricao/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/servicos/manutencao-extintores/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    route('/servicos/medicina-no-trabalho/', 'monthly', 0.8),
+    route('/servicos/seguranca-no-trabalho/', 'monthly', 0.8),
+    route('/servicos/seguranca-alimentar/', 'monthly', 0.8),
+    route('/servicos/formacao-certificada/', 'monthly', 0.8),
+    route('/servicos/psicologia/', 'monthly', 0.8),
+    route('/servicos/controlo-pragas/', 'monthly', 0.8, controloPragasLastModified),
+    route('/servicos/seguranca-incendios/', 'monthly', 0.8),
+    route('/servicos/legionella/', 'monthly', 0.8),
+    route('/servicos/medicina-desportiva/', 'monthly', 0.8),
+    route('/servicos/nutricao/', 'monthly', 0.8),
+    route('/servicos/manutencao-extintores/', 'monthly', 0.8),
   ];
 
-  // URLs de apoio e suporte
   const supportRoutes: MetadataRoute.Sitemap = [
-    { url: `${baseUrl}/newsletter/`, lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
-    { url: `${baseUrl}/faqs/`, lastModified: now, changeFrequency: 'monthly', priority: 0.5 },
-    { url: `${baseUrl}/faqs/legionella/`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${baseUrl}/faqs/manutencao-extintores/`, lastModified: now, changeFrequency: 'monthly', priority: 0.6 },
-    { url: `${baseUrl}/politica-de-privacidade/`, lastModified: now, changeFrequency: 'monthly', priority: 0.3 },
-    { url: `${baseUrl}/termos-e-condicoes/`, lastModified: now, changeFrequency: 'monthly', priority: 0.3 },
-    { url: `${baseUrl}/cookies/`, lastModified: now, changeFrequency: 'monthly', priority: 0.3 },
-    { url: `${baseUrl}/resolucao-litigios/`, lastModified: now, changeFrequency: 'monthly', priority: 0.3 },
-    { url: `${baseUrl}/livro-reclamacoes/`, lastModified: now, changeFrequency: 'monthly', priority: 0.3 },
+    route('/newsletter/', 'monthly', 0.5),
+    route('/faqs/', 'monthly', 0.5),
+    route('/faqs/legionella/', 'monthly', 0.6),
+    route('/faqs/manutencao-extintores/', 'monthly', 0.6),
+    route('/politica-de-privacidade/', 'monthly', 0.3),
+    route('/termos-e-condicoes/', 'monthly', 0.3),
+    route('/cookies/', 'monthly', 0.3),
+    route('/resolucao-litigios/', 'monthly', 0.3),
+    route('/livro-reclamacoes/', 'monthly', 0.3),
   ];
 
-  // URLs de localizações
   const locationRoutes: MetadataRoute.Sitemap = [
-    { url: `${baseUrl}/lisboa/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/covilha/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/abrantes/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/santarem/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/rio-maior/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/castelo-branco/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/coimbra/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/tomar/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/torres-novas/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/entroncamento/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/portalegre/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/leiria/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/fatima/`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    route('/lisboa/', 'monthly', 0.8),
+    route('/covilha/', 'monthly', 0.8),
+    route('/abrantes/', 'monthly', 0.8),
+    route('/santarem/', 'monthly', 0.8),
+    route('/rio-maior/', 'monthly', 0.8),
+    route('/castelo-branco/', 'monthly', 0.8),
+    route('/coimbra/', 'monthly', 0.8),
+    route('/tomar/', 'monthly', 0.8),
+    route('/torres-novas/', 'monthly', 0.8),
+    route('/entroncamento/', 'monthly', 0.8),
+    route('/portalegre/', 'monthly', 0.8),
+    route('/leiria/', 'monthly', 0.8),
+    route('/fatima/', 'monthly', 0.8),
   ];
 
-  // URLs dinâmicas dos posts do blog
   let blogRoutes: MetadataRoute.Sitemap = [];
 
   try {
     const posts = await getAllPublishedPosts();
     blogRoutes = posts.map((post) => ({
       url: `${baseUrl}/blog/${post.slug}/`,
-      lastModified: new Date(post.updated_at),
+      lastModified: new Date(post.updated_at || post.published_at || post.created_at),
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     }));
@@ -85,6 +95,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...serviceRoutes,
     ...locationRoutes,
     ...supportRoutes,
-    ...blogRoutes
+    ...blogRoutes,
   ];
 }

@@ -27,7 +27,7 @@ const jsonLd = {
   'provider': {
     '@type': 'Organization',
     'name': 'MediSigma',
-    'url': 'https://medisigma.pt',
+    'url': 'https://www.medisigma.pt',
   },
   'serviceType': 'Segurança Contra Incêndios',
   'description': 'Serviços completos de SCIE, incluindo Medidas de Autoproteção, Projetos de Segurança, e comércio e manutenção de extintores de acordo com a legislação em vigor.',

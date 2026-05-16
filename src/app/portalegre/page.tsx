@@ -42,9 +42,9 @@ const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Grupo Medisigma Portalegre",
-    "image": "https://medisigma.pt/logos/logomedisigma.svg",
+    "image": "https://www.medisigma.pt/logomedisigma.svg",
     "description": "Especialistas em Medicina e Segurança Ocupacional, HACCP e Higiene do Trabalho no distrito de Portalegre e Alto Alentejo.",
-    "url": "https://medisigma.pt/portalegre",
+    "url": "https://www.medisigma.pt/portalegre",
     "telephone": "+351 241 331 504",
     "address": {
         "@type": "PostalAddress",

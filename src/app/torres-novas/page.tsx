@@ -43,9 +43,9 @@ const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Grupo Medisigma Torres Novas",
-    "image": "https://medisigma.pt/logos/logomedisigma.svg",
+    "image": "https://www.medisigma.pt/logomedisigma.svg",
     "description": "Especialistas em Medicina e Segurança no Trabalho, HACCP, Segurança contra Incêndios. Parceiros da Indústria em Torres Novas.",
-    "url": "https://medisigma.pt/torres-novas",
+    "url": "https://www.medisigma.pt/torres-novas",
     "telephone": "+351 241 331 504",
     "address": {
         "@type": "PostalAddress",

@@ -7,6 +7,8 @@ import Image from 'next/image';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 
+const metadataAuthor = 'Dra. Ana Simões';
+
 const serviceKeywords = [
   { keywords: ['alimentar', 'haccp', 'alimentos', 'cozinha', 'restauração'], url: '/servicos/seguranca-alimentar', label: 'Segurança Alimentar' },
   { keywords: ['pragas', 'praga', 'baratas', 'ratos', 'desinfestação', 'insetos', 'lagarta', 'processionária'], url: '/servicos/controlo-pragas', label: 'Controlo de Pragas' },
@@ -152,22 +154,22 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
     "datePublished": post.published_at || post.created_at,
     "dateModified": post.updated_at,
     "author": {
-      "@type": "Organization",
-      "name": post.author || "Medisigma",
-      "url": "https://medisigma.pt"
+      "@type": post.author ? "Organization" : "Person",
+      "name": post.author || metadataAuthor,
+      "url": "https://www.medisigma.pt"
     },
     "publisher": {
       "@type": "Organization",
       "name": "Medisigma",
-      "url": "https://medisigma.pt",
+      "url": "https://www.medisigma.pt",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://medisigma.pt/logomedisigma.svg"
+        "url": "https://www.medisigma.pt/logomedisigma.svg"
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://medisigma.pt/blog/${post.slug}`
+      "@id": `https://www.medisigma.pt/blog/${post.slug}`
     }
   };
 
@@ -360,20 +362,20 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
   return {
     title: metaTitle,
     description: metaDescription,
-    authors: post.author ? [{ name: post.author }] : undefined,
+    authors: [{ name: metadataAuthor }],
     openGraph: {
       title: metaTitle,
       description: metaDescription,
       type: 'article',
       publishedTime: post.published_at || post.created_at,
       modifiedTime: post.updated_at,
-      authors: post.author ? [post.author] : undefined,
-      url: `https://medisigma.pt/blog/${post.slug}`,
+      authors: [metadataAuthor],
+      url: `https://www.medisigma.pt/blog/${post.slug}`,
       siteName: 'Medisigma',
       locale: 'pt_PT',
       images: ogImage ? [
         {
-          url: ogImage.startsWith('http') ? ogImage : `https://medisigma.pt${ogImage}`,
+          url: ogImage.startsWith('http') ? ogImage : `https://www.medisigma.pt${ogImage}`,
           width: 1200,
           height: 630,
           alt: post.title,
@@ -384,7 +386,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
       card: 'summary_large_image',
       title: metaTitle,
       description: metaDescription,
-      images: ogImage ? [ogImage.startsWith('http') ? ogImage : `https://medisigma.pt${ogImage}`] : undefined,
+      images: ogImage ? [ogImage.startsWith('http') ? ogImage : `https://www.medisigma.pt${ogImage}`] : undefined,
     },
     alternates: {
       canonical: `https://www.medisigma.pt/blog/${post.slug}/`,

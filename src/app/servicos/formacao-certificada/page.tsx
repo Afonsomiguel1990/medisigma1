@@ -30,7 +30,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
   "name": "MediSigma - Formação Certificada",
-  "url": "https://medisigma.pt/servicos/formacao-certificada",
+  "url": "https://www.medisigma.pt/servicos/formacao-certificada",
   "description": "O Grupo MEDISIGMA elabora ações de formação específicas, de acordo com as necessidades de formação apresentadas pelas entidades solicitadoras.",
   "knowsAbout": [
     "Segurança no Trabalho",

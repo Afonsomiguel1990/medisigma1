@@ -42,9 +42,9 @@ const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Grupo Medisigma Tomar",
-    "image": "https://medisigma.pt/logos/logomedisigma.svg",
+    "image": "https://www.medisigma.pt/logomedisigma.svg",
     "description": "Serviços de Medicina e Segurança no Trabalho, HACCP, Segurança contra Incêndios e Formação na região de Tomar e Médio Tejo.",
-    "url": "https://medisigma.pt/tomar",
+    "url": "https://www.medisigma.pt/tomar",
     "telephone": "+351 241 331 504",
     "address": {
         "@type": "PostalAddress",

@@ -22,7 +22,7 @@ const jsonLd = {
   'provider': {
     '@type': 'Organization',
     'name': 'MediSigma',
-    'url': 'https://medisigma.pt',
+    'url': 'https://www.medisigma.pt',
   },
   'serviceType': 'Medicina Desportiva',
   'description': 'Serviços de Medicina Desportiva para atletas e clubes, focados na prevenção, diagnóstico e tratamento de lesões, e otimização da performance.',

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { requireAdminAuth } from '@/lib/admin-auth';
 
 // Lista de padrões suspeitos que devem ser bloqueados
 const SUSPICIOUS_PATTERNS = [
@@ -22,6 +23,12 @@ const SUSPICIOUS_PATTERNS = [
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const isStaticAsset =
+    pathname.startsWith('/_next') ||
+    pathname.startsWith('/favicon.ico') ||
+    pathname.startsWith('/images') ||
+    pathname.startsWith('/public') ||
+    pathname.match(/\.(ico|png|jpg|jpeg|svg|gif|webp|css|js|woff|woff2|ttf|eot)$/i);
 
   if (pathname === '/controlo_pragas.php') {
     const url = request.nextUrl.clone();
@@ -29,14 +36,17 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(url, 301);
   }
 
+  if (pathname.startsWith('/admin') && !isStaticAsset) {
+    const authError = requireAdminAuth(request);
+    if (authError) {
+      return authError;
+    }
+  }
+
   // Permitir rotas de API e assets estáticos
   if (
     pathname.startsWith('/api') ||
-    pathname.startsWith('/_next') ||
-    pathname.startsWith('/favicon.ico') ||
-    pathname.startsWith('/images') ||
-    pathname.startsWith('/public') ||
-    pathname.match(/\.(ico|png|jpg|jpeg|svg|gif|webp|css|js|woff|woff2|ttf|eot)$/i)
+    isStaticAsset
   ) {
     return NextResponse.next();
   }

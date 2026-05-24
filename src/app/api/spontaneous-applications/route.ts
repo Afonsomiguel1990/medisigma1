@@ -1,8 +1,33 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseServer } from '@/lib/supabase';
 import { WEBHOOK_URL, formatSlackMessage } from '@/lib/webhook';
+import { rateLimitRequest } from '@/lib/rate-limit';
+import { validateUploadedFile } from '@/lib/upload-validation';
+
+const CV_UPLOAD_OPTIONS = {
+  allowedExtensions: ['pdf', 'doc', 'docx', 'rtf', 'txt', 'jpg', 'jpeg', 'png'],
+  allowedTypes: [
+    'application/pdf',
+    'application/msword',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'application/rtf',
+    'text/rtf',
+    'text/plain',
+    'image/jpeg',
+    'image/png',
+    'application/octet-stream',
+  ],
+  maxSizeBytes: 5 * 1024 * 1024,
+};
 
 export async function POST(req: Request) {
+  const rateLimitError = rateLimitRequest(req, {
+    key: 'spontaneous-applications',
+    limit: 5,
+    windowMs: 30 * 60 * 1000,
+  });
+  if (rateLimitError) return rateLimitError;
+
   console.log('[DEBUG] Início do processamento de candidatura espontânea');
   try {
     let nome, email, telefone, area_interesse, cv_link, mensagem, pagina, url, origem;
@@ -48,6 +73,11 @@ export async function POST(req: Request) {
 
     // Upload de ficheiro se existir
     if (cv_file) {
+      const validationError = validateUploadedFile(cv_file, CV_UPLOAD_OPTIONS);
+      if (validationError) {
+        return NextResponse.json({ error: validationError }, { status: 400 });
+      }
+
       console.log('[DEBUG] Iniciando upload de CV...');
       try {
         const supabase = getSupabaseServer();

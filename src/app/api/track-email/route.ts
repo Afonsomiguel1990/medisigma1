@@ -1,7 +1,15 @@
 import { getSupabaseAnon } from "@/lib/supabase";
+import { rateLimitRequest } from "@/lib/rate-limit";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
+    const rateLimitError = rateLimitRequest(req, {
+        key: "track-email",
+        limit: 120,
+        windowMs: 10 * 60 * 1000,
+    });
+    if (rateLimitError) return rateLimitError;
+
     try {
         const supabase = getSupabaseAnon();
         const body = await req.json().catch(() => ({}));

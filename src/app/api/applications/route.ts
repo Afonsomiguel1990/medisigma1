@@ -1,10 +1,35 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseServer } from '@/lib/supabase';
 import { WEBHOOK_URL, formatSlackMessage } from '@/lib/webhook';
+import { rateLimitRequest } from '@/lib/rate-limit';
+import { validateUploadedFile } from '@/lib/upload-validation';
 
 export const runtime = 'nodejs';
 
+const CV_UPLOAD_OPTIONS = {
+  allowedExtensions: ['pdf', 'doc', 'docx', 'rtf', 'txt', 'jpg', 'jpeg', 'png'],
+  allowedTypes: [
+    'application/pdf',
+    'application/msword',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'application/rtf',
+    'text/rtf',
+    'text/plain',
+    'image/jpeg',
+    'image/png',
+    'application/octet-stream',
+  ],
+  maxSizeBytes: 5 * 1024 * 1024,
+};
+
 export async function POST(req: Request) {
+  const rateLimitError = rateLimitRequest(req, {
+    key: 'applications',
+    limit: 5,
+    windowMs: 30 * 60 * 1000,
+  });
+  if (rateLimitError) return rateLimitError;
+
   try {
     const formData = await req.formData();
     const name = (formData.get('name') ?? '').toString();
@@ -22,6 +47,11 @@ export async function POST(req: Request) {
 
     // Se houver service role e ficheiro, fazemos upload. Ficheiro tem prioridade sobre link.
     if (cv && cv.size > 0 && process.env.SUPABASE_SERVICE_ROLE) {
+      const validationError = validateUploadedFile(cv, CV_UPLOAD_OPTIONS);
+      if (validationError) {
+        return NextResponse.json({ error: validationError }, { status: 400 });
+      }
+
       const supabase = getSupabaseServer();
       const arrayBuffer = await cv.arrayBuffer();
       const buffer = Buffer.from(arrayBuffer);

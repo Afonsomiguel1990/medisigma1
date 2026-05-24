@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSupabaseAdmin } from '@/lib/supabase';
+import { requireAdminAuth } from '@/lib/admin-auth';
+import { validateUploadedFile } from '@/lib/upload-validation';
 
 export const runtime = 'nodejs';
 
@@ -8,6 +10,9 @@ export const runtime = 'nodejs';
  * Faz upload de imagem para o bucket web-media
  */
 export async function POST(req: NextRequest) {
+  const authError = requireAdminAuth(req);
+  if (authError) return authError;
+
   try {
     const formData = await req.formData();
     const file = formData.get('file') as File;
@@ -20,6 +25,15 @@ export async function POST(req: NextRequest) {
     }
 
     // Validar tipo de ficheiro
+    const fileValidationError = validateUploadedFile(file, {
+      allowedExtensions: ['jpg', 'jpeg', 'png', 'webp', 'gif'],
+      allowedTypes: ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'],
+      maxSizeBytes: 5 * 1024 * 1024,
+    });
+    if (fileValidationError) {
+      return NextResponse.json({ error: fileValidationError }, { status: 400 });
+    }
+
     const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp', 'image/gif'];
     if (!allowedTypes.includes(file.type)) {
       return NextResponse.json(
@@ -42,7 +56,7 @@ export async function POST(req: NextRequest) {
     // Gerar nome único para o ficheiro
     const timestamp = Date.now();
     const randomString = Math.random().toString(36).substring(7);
-    const ext = file.name.split('.').pop();
+    const ext = file.name.split('.').pop()?.toLowerCase();
     const filename = `blog/${timestamp}-${randomString}.${ext}`;
 
     // Converter File para Buffer

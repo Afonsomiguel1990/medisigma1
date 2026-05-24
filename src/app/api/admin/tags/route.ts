@@ -1,5 +1,6 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { getAllTags, createOrGetTag } from '@/lib/posts';
+import { requireAdminAuth } from '@/lib/admin-auth';
 
 export const runtime = 'nodejs';
 
@@ -7,7 +8,10 @@ export const runtime = 'nodejs';
  * GET /api/admin/tags
  * Retorna todas as tags
  */
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const authError = requireAdminAuth(req);
+  if (authError) return authError;
+
   try {
     const tags = await getAllTags();
     return NextResponse.json({ tags }, { status: 200 });
@@ -24,7 +28,10 @@ export async function GET() {
  * POST /api/admin/tags
  * Cria uma nova tag
  */
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
+  const authError = requireAdminAuth(req);
+  if (authError) return authError;
+
   try {
     const { name } = await req.json();
     

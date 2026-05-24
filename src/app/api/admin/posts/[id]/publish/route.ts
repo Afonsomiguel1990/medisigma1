@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 import { publishPost } from '@/lib/posts';
+import { requireAdminAuth } from '@/lib/admin-auth';
 
 export const runtime = 'nodejs';
 
@@ -12,6 +13,9 @@ export async function POST(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const authError = requireAdminAuth(req);
+  if (authError) return authError;
+
   try {
     const { id } = await params;
     const body = await req.json();

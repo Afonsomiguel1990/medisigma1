@@ -1,8 +1,16 @@
 import { NextResponse } from 'next/server';
 import { getSupabaseAnon, getSupabaseServer } from '@/lib/supabase';
 import { WEBHOOK_URL, formatSlackMessage } from '@/lib/webhook';
+import { rateLimitRequest } from '@/lib/rate-limit';
 
 export async function POST(req: Request) {
+  const rateLimitError = rateLimitRequest(req, {
+    key: 'contact',
+    limit: 5,
+    windowMs: 10 * 60 * 1000,
+  });
+  if (rateLimitError) return rateLimitError;
+
   try {
     const body = await req.json().catch(() => ({}));
 

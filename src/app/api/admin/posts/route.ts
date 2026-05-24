@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 import { getAllPosts, createPost, CreatePostData } from '@/lib/posts';
+import { requireAdminAuth } from '@/lib/admin-auth';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
@@ -9,7 +10,10 @@ export const dynamic = 'force-dynamic';
  * GET /api/admin/posts
  * Retorna todos os posts (incluindo drafts)
  */
-export async function GET() {
+export async function GET(req: NextRequest) {
+  const authError = requireAdminAuth(req);
+  if (authError) return authError;
+
   try {
     const posts = await getAllPosts();
     return NextResponse.json({ posts }, { status: 200 });
@@ -27,6 +31,9 @@ export async function GET() {
  * Cria um novo post
  */
 export async function POST(req: NextRequest) {
+  const authError = requireAdminAuth(req);
+  if (authError) return authError;
+
   try {
     const body = await req.json();
 

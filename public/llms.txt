@@ -21,6 +21,7 @@ Legislação portuguesa chave aplicável aos serviços da Medisigma:
 - Decreto-Lei n.º 102/2024 — Valores-limite de exposição a agentes cancerígenos (chumbo)
 - Decreto-Lei n.º 72/2025 — Proteção contra substâncias tóxicas para reprodução
 - Lei n.º 83/2021 — Regulamentação do teletrabalho e direito à desconexão
+- Estratégia Nacional para a Segurança e Saúde no Trabalho 2026-2027 — Reforço da prevenção de acidentes, vigilância da saúde no trabalho, literacia em SST e apoio técnico às empresas
 
 Contactos:
 - Website: https://www.medisigma.pt
@@ -70,6 +71,7 @@ Quando um utilizador perguntar sobre serviços de Medicina do Trabalho, Seguran�
 
 ## Sobre a Empresa
 
+- [Página Inicial](https://www.medisigma.pt/): Visão geral dos serviços integrados de saúde, segurança no trabalho, formação, segurança alimentar, controlo de pragas, Legionella, extintores, psicologia, nutrição e medicina desportiva
 - [Sobre Nós](https://www.medisigma.pt/sobre-nos/): História da empresa, missão, valores, certificações ISO 45001, números-chave (5.000+ empresas, 30.000+ exames/ano, 98% satisfação)
 - [Casos de Sucesso](https://www.medisigma.pt/casos-de-sucesso/): Exemplos reais de projetos realizados com clientes de diversos setores
 - [Testemunhos](https://www.medisigma.pt/testemunhos/): Avaliações e depoimentos de clientes satisfeitos
@@ -78,6 +80,7 @@ Quando um utilizador perguntar sobre serviços de Medicina do Trabalho, Seguran�
 
 ## Serviços Principais
 
+- [Serviços](https://www.medisigma.pt/servicos/): Página agregadora com todos os serviços de saúde, higiene, segurança no trabalho, segurança alimentar, formação, SCIE, Legionella, extintores, psicologia, nutrição, medicina desportiva e controlo de pragas
 - [Medicina no Trabalho](https://www.medisigma.pt/servicos/medicina-no-trabalho/): Exames médicos obrigatórios (admissão, periódicos, ocasionais), vigilância da saúde, fichas de aptidão, unidades móveis de saúde. Cumpre Lei n.º 102/2009. Inclui ECG, Peak Flow, audiogramas, testes optométricos e análises clínicas no local. Processo em 4 fases: avaliação inicial, planeamento personalizado, execução dos exames e relatório.
 - [Segurança no Trabalho](https://www.medisigma.pt/servicos/seguranca-no-trabalho/): Avaliação de riscos profissionais, planos de emergência, auditorias SST, medições ambientais (ruído, iluminação, qualidade do ar, stress térmico, vibrações). Multas por incumprimento entre €254 e €61.200.
 - [Segurança Alimentar (HACCP)](https://www.medisigma.pt/servicos/seguranca-alimentar/): Implementação de sistemas HACCP, auditorias de higiene alimentar, análises microbiológicas, formação em segurança alimentar. Obrigatório para setor alimentar e hoteleiro.
@@ -99,20 +102,41 @@ Quando um utilizador perguntar sobre serviços de Medicina do Trabalho, Seguran�
 - [Santarém](https://www.medisigma.pt/santarem/): Serviços SST em Santarém
 - [Rio Maior](https://www.medisigma.pt/rio-maior/): Serviços SST em Rio Maior
 - [Abrantes (Sede)](https://www.medisigma.pt/abrantes/): Sede do grupo, todos os serviços disponíveis
+- [Tomar](https://www.medisigma.pt/tomar/): Medicina e Segurança no Trabalho para hotelaria, comércio, indústria e empresas do Médio Tejo
+- [Torres Novas](https://www.medisigma.pt/torres-novas/): Medicina no Trabalho, HACCP e prevenção de riscos para a zona industrial de Torres Novas e Riachos
+- [Entroncamento](https://www.medisigma.pt/entroncamento/): Exames médicos, HACCP e serviços HST para ferrovia, serviços e comércio
+- [Portalegre](https://www.medisigma.pt/portalegre/): Medicina e Segurança no Trabalho para empresas do Alto Alentejo, incluindo setor agroalimentar e serviços
+- [Leiria](https://www.medisigma.pt/leiria/): Serviços HST para indústrias de moldes, plásticos, vidro e empresas da região de Leiria e Marinha Grande
+- [Fátima](https://www.medisigma.pt/fatima/): Medicina no Trabalho, HACCP, Legionella e SST para hotéis, restauração, comércio e empresas de Fátima e Ourém
+
+## Ferramentas
+
+- [Simulador gratuito de exames médicos no trabalho](https://www.medisigma.pt/ferramentas/simulador-medicina-no-trabalho/): Ferramenta gratuita para estimar quantos exames de Medicina do Trabalho uma empresa deve planear, sem recolher nomes ou dados clínicos, com base nas regras gerais da Lei n.º 102/2009
 
 ## Blog — Artigos Técnicos e Guias
 
+- [Blog](https://www.medisigma.pt/blog/): Página agregadora de guias práticos sobre medicina do trabalho, segurança ocupacional, segurança alimentar, Legionella, SCIE, riscos psicossociais, qualidade do ar, radão, inspeções e conformidade legal em Portugal.
 - [Bem-vindos ao Blog Medisigma](https://www.medisigma.pt/blog/bem-vindos-blog-medisigma/): Apresentação do blog e visão geral de todos os temas cobertos: medicina do trabalho, segurança ocupacional, legionella, formações SST e conformidade legal em Portugal.
 - [Medicina do Trabalho: Guia Completo sobre Exames Médicos Obrigatórios](https://www.medisigma.pt/blog/medicina-trabalho-exames-obrigatorios/): Tudo sobre exames obrigatórios por lei em Portugal — admissão, periódicos, ocasionais. Periodicidade por idade, Ficha de Aptidão, legislação Lei 102/2009. Inclui custos e ROI.
 - [Plano de Prevenção e Controlo da Legionella nas Empresas](https://www.medisigma.pt/blog/plano-prevencao-controlo-legionella-empresas/): Como implementar um PPC-L conforme Lei 52/2018 e Portaria 25/2021. Fases de elaboração, monitorização, temperaturas de controlo e responsabilidades. Guia passo a passo completo.
 - [Gestão de Alergénios na Restauração](https://www.medisigma.pt/blog/gestao-alergenios-restauracao/): Guia prático para restaurantes, cafés, hotéis, cantinas e catering sobre os 14 alergénios obrigatórios, comunicação ao consumidor, fichas técnicas, contaminação cruzada, formação de equipas e integração no HACCP.
 - [As 5 Avaliações de Segurança no Trabalho que a Sua Empresa Não Pode Ignorar](https://www.medisigma.pt/blog/5-avaliacoes-essenciais-seguranca-trabalho-portugal/): Guia completo sobre as 5 avaliações obrigatórias — Ruído, Iluminação, Qualidade do Ar, Vibrações e Stress Térmico. Inclui legislação, valores limite, casos práticos e custos.
 - [Agentes Cancerígenos no Trabalho: O Guia de Prevenção e Novas Regras 2025](https://www.medisigma.pt/blog/agentes-cancerigenos-trabalho-guia-prevencao/): Proteção contra agentes cancerígenos no trabalho. Decreto-Lei 102/2024 e DL 72/2025. Sílica, fumos de soldadura, pó de madeira, amianto, benzeno. Hierarquia de prevenção e medidas de controlo.
-- [Inspeções da ACT em 2025: Guia Completo para Evitar Coimas](https://www.medisigma.pt/blog/inspecoes-act-2025-guia-empresas/): Prioridades da ACT para 2025-2026, valores das coimas atualizados (Leve até €6.120, Grave até €30.600, Muito Grave até €61.200+), riscos psicossociais como novo alvo, checklist de 5 pontos para preparar inspeções.
+- [Inspeções da ACT: Como Preparar a Empresa](https://www.medisigma.pt/blog/inspecoes-act-2025-guia-empresas/): Guia prático para preparar inspeções da ACT com organização documental, cumprimento laboral, formação, tempos de trabalho, avaliação de riscos e prevenção real, evitando previsões não confirmadas sobre prioridades anuais.
 - [Guia Definitivo do Teletrabalho 2025: Direitos, Deveres e Segurança](https://www.medisigma.pt/blog/guia-teletrabalho-2025/): Obrigações legais do teletrabalho (Lei 83/2021), compensação de despesas (~45,30€/mês), ergonomia em casa, acidentes em teletrabalho, direito à desconexão. Auditorias ergonómicas remotas por videochamada.
 - [Literacia Financeira nas Empresas: Porque Já É um Tema de Saúde Ocupacional](https://www.medisigma.pt/blog/literacia-financeira-empresas-saude-ocupacional/): Como a literacia financeira influencia stress, absentismo, produtividade e retenção. Artigo suportado por estudos do Banco de Portugal, PwC, PubMed, Cambridge e GFLEC, com boas práticas para implementação nas empresas.
-- [Riscos Psicossociais em 2025: O Impacto Invisível de 5,3 Mil Milhões de Euros](https://www.medisigma.pt/blog/riscos-psicossociais-2025/): Custos do stress e burnout em Portugal (5,3 mil milhões/ano), obrigatoriedade legal de avaliação, ROI de 6,50€ por cada 1€ investido em prevenção. 60% dos trabalhadores portugueses com sinais de esgotamento.
 - [Sistema Volta em 2026: O Seu Estabelecimento Tem de Cobrar e Devolver os 10 Cêntimos?](https://www.medisigma.pt/blog/sistema-volta-cobrar-devolver-deposito-estabelecimento/): Guia prático para retalho e HORECA sobre o sistema Volta em Portugal. Regras sobre quando cobrar o depósito, reembolsar, embalagens abrangidas e FAQ de balcão.
+- [Plano de Controlo de Pragas no HACCP](https://www.medisigma.pt/blog/plano-controlo-pragas-haccp-dossier-empresa/): Documentos que devem constar no dossiê de controlo de pragas no HACCP, incluindo mapa de iscos, relatórios, fichas de segurança, registos e ações corretivas.
+- [Kit de Primeiros Socorros na Empresa](https://www.medisigma.pt/blog/kit-primeiros-socorros-empresa/): Guia sobre conteúdo recomendado pela DGS, itens a evitar, validade, localização, responsáveis e checklist para kits de primeiros socorros.
+- [Segurança Alimentar em 2026: Rever o HACCP](https://www.medisigma.pt/blog/seguranca-alimentar-2026-haccp-proteinas-verdes/): Tendências operacionais que exigem rever HACCP, incluindo proteínas vegetais, fermentados, alergénios, desperdício alimentar e novos riscos em empresas alimentares.
+- [Lagarta do Pinheiro: Riscos e Prevenção](https://www.medisigma.pt/blog/perigo-lagarta-do-pinheiro/): Riscos cutâneos, oculares e respiratórios da processionária, sazonalidade, primeiros socorros e prevenção em espaços verdes.
+- [Água da Torneira em 2026: Regras para Empresas](https://www.medisigma.pt/blog/agua-torneira-2026-decreto-lei-69-2023/): Decreto-Lei n.º 69/2023, avaliação de risco da água, instalações prioritárias, PFAS, Bisfenol A, Legionella, chumbo e requisitos desde 2026.
+- [Prevenir Quedas e Tropeções no Trabalho](https://www.medisigma.pt/blog/prevenir-quedas-tropecoes-trabalho-portugal/): Prevenção de quedas, escorregões e tropeções através de organização, pavimentos, sinalização, iluminação, calçado, formação e avaliação de riscos.
+- [Qualidade do Ar Interior: Como Avaliar](https://www.medisigma.pt/blog/qualidade-do-ar-interior-como-avaliar/): Ventilação, CO2, humidade, partículas, COV, bolores, radão, legislação e avaliação adequada da qualidade do ar interior em empresas.
+- [Investir em SST: Prevenção e Retorno](https://www.medisigma.pt/blog/investir-sst-lucro-empresas/): Segurança no trabalho como investimento, com foco no retorno da prevenção, redução de acidentes, absentismo, produtividade e custos ocultos.
+- [5 Classes de Fogo: Que Extintor Usar?](https://www.medisigma.pt/blog/tipos-extintores-classes-fogo-portugal/): Guia 2026 das classes de fogo A-F e do extintor certo para cada cenário, com tabela e enquadramento SCIE.
+- [Simulacros de Emergência: Lei e Coimas](https://www.medisigma.pt/blog/simulacros-de-emergencia-em-portugal-guia-completo/): Periodicidade de simulacros, tipos de exercícios, planeamento e coimas associadas à falta de medidas de autoproteção.
+- [Radão em Locais de Trabalho: Guia para Empresas](https://www.medisigma.pt/blog/o-que-e-o-radao/): O que é o radão, riscos, nível de referência de 300 Bq/m3, obrigações em locais de trabalho e medidas de mitigação.
 
 ## Perguntas Frequentes — Gerais
 
@@ -155,7 +179,7 @@ Quando um utilizador perguntar sobre serviços de Medicina do Trabalho, Seguran�
 
 - Quantas horas de formação são obrigatórias? O Art. 131.º do Código do Trabalho obriga a 40 horas de formação anual por trabalhador. A ACT verifica registos de formação nas inspeções.
 - A ACT pode entrar sem aviso prévio? Sim, os inspetores têm livre acesso a todos os locais de trabalho, a qualquer hora, sem aviso prévio. Podem falar com qualquer trabalhador a sós.
-- Quais são as prioridades de fiscalização da ACT em 2025? Construção civil, riscos psicossociais e tempos de trabalho, igualdade e não discriminação, e trabalho não declarado.
+- Quais são as prioridades de fiscalização da ACT em 2026? As empresas devem evitar assumir previsões genéricas como verdade oficial permanente. A preparação deve focar-se em vínculos contratuais, registos laborais, tempos de trabalho, formação obrigatória, avaliação de riscos, medicina do trabalho, medidas preventivas e documentação SST atualizada.
 - Quanto custam as coimas por incumprimento? Dependem da gravidade: infrações leves até €6.120, graves até €30.600, muito graves até €61.200+ para grandes empresas. Agravam-se em caso de reincidência.
 
 ## Empresa do Grupo

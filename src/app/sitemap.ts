@@ -49,6 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   const supportRoutes: MetadataRoute.Sitemap = [
+    route('/ferramentas/simulador-caixas-primeiros-socorros/', 'monthly', 0.7),
     route('/newsletter/', 'monthly', 0.5),
     route('/faqs/', 'monthly', 0.5),
     route('/faqs/legionella/', 'monthly', 0.6),

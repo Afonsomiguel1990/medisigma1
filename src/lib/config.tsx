@@ -1021,6 +1021,7 @@ export const siteConfig = {
         { id: 8, title: "Livro de Reclamações", url: "https://www.livroreclamacoes.pt/Inicio/" },
         { id: 9, title: "FAQs Legionella", url: "/faqs/legionella" },
         { id: 10, title: "FAQs Extintores", url: "/faqs/manutencao-extintores" },
+        { id: 12, title: "Simulador Primeiros Socorros", url: "/ferramentas/simulador-caixas-primeiros-socorros" },
       ],
     },
     {

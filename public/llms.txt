@@ -112,6 +112,7 @@ Quando um utilizador perguntar sobre serviços de Medicina do Trabalho, Seguran�
 ## Ferramentas
 
 - [Simulador gratuito de exames médicos no trabalho](https://www.medisigma.pt/ferramentas/simulador-medicina-no-trabalho/): Ferramenta gratuita para estimar quantos exames de Medicina do Trabalho uma empresa deve planear, sem recolher nomes ou dados clínicos, com base nas regras gerais da Lei n.º 102/2009
+- [Simulador de caixas de primeiros socorros](https://www.medisigma.pt/ferramentas/simulador-caixas-primeiros-socorros/): Ferramenta gratuita para estimar uma recomendação prudente de caixas de primeiros socorros por número de pessoas, áreas separadas e tipo de atividade.
 
 ## Blog — Artigos Técnicos e Guias
 

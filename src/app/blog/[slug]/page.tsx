@@ -27,6 +27,10 @@ const serviceCtaOverrides: Record<string, { url: string; label: string }> = {
     url: '/servicos/controlo-pragas',
     label: 'Controlo de Pragas',
   },
+  '40-horas-formacao-obrigatoria-empresas': {
+    url: '/servicos/formacao-certificada',
+    label: 'Formação Certificada',
+  },
 };
 
 /**

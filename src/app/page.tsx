@@ -5,7 +5,7 @@ import { FeatureSection } from "@/components/sections/feature-section";
 import { HeroSection } from "@/components/sections/hero-section";
 import { QuoteSection } from "@/components/sections/quote-section";
 import { TestimonialSection } from "@/components/sections/testimonial-section";
-import Script from "next/script";
+import { serializeJsonLd } from "@/lib/organization";
 
 const faqJsonLd = {
   "@context": "https://schema.org",
@@ -105,10 +105,10 @@ const faqJsonLd = {
 export default function Home() {
   return (
     <>
-      <Script
+      <script
         id="schema-org-faq"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqJsonLd) }}
       />
       <main className="flex flex-col items-center justify-center divide-y divide-border min-h-screen w-full">
         <HeroSection />

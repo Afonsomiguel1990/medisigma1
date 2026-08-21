@@ -624,3 +624,25 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+.footer-link-arrow::after {
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 0.25rem;
+  content: "›";
+  display: inline-flex;
+  font-size: 0.75rem;
+  height: 1rem;
+  justify-content: center;
+  line-height: 1;
+  opacity: 0;
+  transform: translateX(0);
+  transition: opacity 200ms, transform 200ms;
+  width: 1rem;
+}
+
+.footer-link-arrow:hover::after,
+.footer-link-arrow:focus-visible::after {
+  opacity: 1;
+  transform: translateX(0.25rem);
+}

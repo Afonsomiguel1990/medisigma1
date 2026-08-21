@@ -1,9 +1,10 @@
 import React from "react";
 import { Metadata } from "next";
-import { CheckCircle, Phone } from "lucide-react";
+import { CheckCircle, Mail, MapPin, Phone } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { ContactLink } from "@/components/custom/contact-link";
+import { MEDISIGMA, MEDISIGMA_POSTAL_ADDRESS } from "@/lib/organization";
 
 
 export const metadata: Metadata = {
@@ -56,7 +57,7 @@ export default function ContactPage() {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <ContactLink
-                  href="tel:241331504"
+                  href={`tel:${MEDISIGMA.telephoneHref}`}
                   type="phone"
                   className="bg-white text-secondary px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors text-center border-2 border-white flex items-center justify-center gap-2"
                 >
@@ -64,6 +65,32 @@ export default function ContactPage() {
                   Ligar
                 </ContactLink>
                 <WhatsAppButton />
+              </div>
+
+              <div className="mt-8 grid gap-3 text-sm text-gray-700">
+                <ContactLink
+                  href={`mailto:${MEDISIGMA.email}`}
+                  type="email"
+                  className="inline-flex items-center gap-3 hover:text-secondary"
+                >
+                  <Mail className="h-4 w-4 shrink-0" />
+                  {MEDISIGMA.email}
+                </ContactLink>
+                <ContactLink
+                  href={`tel:${MEDISIGMA.telephoneHref}`}
+                  type="phone"
+                  className="inline-flex items-center gap-3 hover:text-secondary"
+                >
+                  <Phone className="h-4 w-4 shrink-0" />
+                  {MEDISIGMA.telephone}
+                </ContactLink>
+                <address className="inline-flex items-start gap-3 not-italic">
+                  <MapPin className="h-4 w-4 shrink-0 mt-0.5" />
+                  <span>
+                    {MEDISIGMA.legalName}<br />
+                    {MEDISIGMA_POSTAL_ADDRESS}
+                  </span>
+                </address>
               </div>
             </div>
 
@@ -76,4 +103,4 @@ export default function ContactPage() {
       </section>
     </main>
   );
-} 
+}

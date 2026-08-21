@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 // Forçar rebuild para limpar cache do blog
 const nextConfig: NextConfig = {
+  skipTrailingSlashRedirect: true,
   async redirects() {
     return [
       {

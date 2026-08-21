@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "tsx --test tests/agent-readiness.test.ts",
+    "verify:agent": "tsx scripts/verify-agent-readiness.ts"
   },
   "dependencies": {
     "@number-flow/react": "^0.5.7",
@@ -38,6 +40,7 @@
     "remark-gfm": "^4.0.1",
     "tailwind-merge": "^3.0.2",
     "tailwindcss-animate": "^1.0.7",
+    "turndown": "7.2.4",
     "vanilla-cookieconsent": "^3.1.0"
   },
   "devDependencies": {
@@ -47,6 +50,7 @@
     "@types/node": "^20.17.30",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/turndown": "5.0.6",
     "eslint": "^9",
     "eslint-config-next": "^15.5.18",
     "shiki": "^3.2.1",

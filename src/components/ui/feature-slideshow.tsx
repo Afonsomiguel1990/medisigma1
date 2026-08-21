@@ -433,7 +433,7 @@ export const Feature = ({
                   />
                 </div>
                 <div className="flex flex-col gap-2 text-center">
-                  <h2 className="text-lg font-bold normal-case">{item.title}</h2>
+                  <span className="text-lg font-bold normal-case">{item.title}</span>
                   <p className="mx-0 max-w-sm text-balance text-sm font-medium leading-relaxed">
                     {item.content}
                   </p>

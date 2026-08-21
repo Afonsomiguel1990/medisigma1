@@ -1,5 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
+import { MEDISIGMA, MEDISIGMA_POSTAL_ADDRESS } from '@/lib/organization';
 
 export const metadata: Metadata = {
   title: 'Política de Privacidade | Medisigma',
@@ -76,8 +77,14 @@ export default function PoliticaDePrivacidadePage() {
         <p>Podemos atualizar a nossa Política de Privacidade de tempos em tempos. Iremos notificá-lo de quaisquer alterações, publicando a nova Política de Privacidade nesta página e atualizando a data da &quot;última atualização&quot; no topo desta página.</p>
 
         <h2 className="text-2xl font-semibold mt-6 mb-4">9. Contacte-nos</h2>
-        <p>Se tiver alguma dúvida sobre esta Política de Privacidade, pode contactar-nos através do nosso <a href="/contact">formulário de contacto</a>.</p>
+        <p>Se tiver alguma dúvida sobre esta Política de Privacidade ou pretender exercer os seus direitos, pode contactar o responsável pelo tratamento através do nosso <a href="/contact/">formulário de contacto</a> ou dos seguintes dados:</p>
+        <address className="not-italic">
+          <strong>{MEDISIGMA.legalName}</strong><br />
+          {MEDISIGMA_POSTAL_ADDRESS}<br />
+          Email: <a href={`mailto:${MEDISIGMA.email}`}>{MEDISIGMA.email}</a><br />
+          Telefone: <a href={`tel:${MEDISIGMA.telephoneHref}`}>{MEDISIGMA.telephone}</a>
+        </address>
       </div>
     </div>
   );
-} 
+}

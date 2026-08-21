@@ -1,5 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
+import { MEDISIGMA, MEDISIGMA_POSTAL_ADDRESS } from '@/lib/organization';
 
 export const metadata: Metadata = {
   title: 'Termos e Condições | Medisigma',
@@ -21,10 +22,10 @@ export default function TermosECondicoesPage() {
         <section>
           <h2 className="text-2xl font-semibold text-foreground mb-4">1. Identificação da Entidade</h2>
           <div className="bg-muted/30 rounded-lg p-6 mb-6">
-            <p className="text-foreground mb-2"><strong>Denominação Social:</strong> GRUPO MEDISIGMA, LDA</p>
-            <p className="text-foreground mb-2"><strong>Morada:</strong> Via Industrial 1 2 Lote 5, 2200-293 Abrantes</p>
-            <p className="text-foreground mb-2"><strong>Número de Identificação Fiscal:</strong> 516858513</p>
-            <p className="text-foreground mb-2"><strong>Email:</strong> info@medisigma.pt</p>
+            <p className="text-foreground mb-2"><strong>Denominação Social:</strong> {MEDISIGMA.legalName}</p>
+            <p className="text-foreground mb-2"><strong>Morada:</strong> {MEDISIGMA_POSTAL_ADDRESS}</p>
+            <p className="text-foreground mb-2"><strong>Número de Identificação Fiscal:</strong> {MEDISIGMA.taxId}</p>
+            <p className="text-foreground mb-2"><strong>Email:</strong> {MEDISIGMA.email}</p>
             <p className="text-foreground"><strong>Website:</strong> www.medisigma.pt</p>
           </div>
         </section>
@@ -173,9 +174,9 @@ export default function TermosECondicoesPage() {
             Para esclarecimento de dúvidas sobre os presentes Termos e Condições ou sobre a utilização do website, poderá contactar a Medisigma através dos seguintes meios:
           </p>
           <div className="bg-muted/30 rounded-lg p-6">
-            <p className="text-foreground mb-2"><strong>Email:</strong> geral@medisigma.pt</p>
-            <p className="text-foreground mb-2"><strong>Telefone:</strong> 241 331 504</p>
-            <p className="text-foreground"><strong>Morada:</strong> Via Industrial 1 2 Lote 5, 2200-293 Abrantes</p>
+            <p className="text-foreground mb-2"><strong>Email:</strong> {MEDISIGMA.email}</p>
+            <p className="text-foreground mb-2"><strong>Telefone:</strong> {MEDISIGMA.telephone}</p>
+            <p className="text-foreground"><strong>Morada:</strong> {MEDISIGMA_POSTAL_ADDRESS}</p>
           </div>
         </section>
 
@@ -196,4 +197,4 @@ export default function TermosECondicoesPage() {
       </div>
     </div>
   );
-} 
+}

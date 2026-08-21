@@ -5,7 +5,7 @@ import { NavMenu } from "@/components/nav-menu";
 // import { ThemeToggle } from "@/components/theme-toggle"; // Removido conforme solicitado
 import { siteConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
-import { Menu, X, ChevronDown, Activity, TriangleAlert } from "lucide-react";
+import { Activity, TriangleAlert } from "lucide-react";
 import { AnimatePresence, motion, useScroll } from "motion/react";
 import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
@@ -175,10 +175,10 @@ export function Navbar() {
                   <button
                     type="button"
                     onClick={() => setShowLoginDropdown((v) => !v)}
-                    className="h-8 flex items-center gap-1 justify-center text-sm font-normal tracking-wide rounded-full w-fit px-4 bg-background border border-border hover:bg-accent active:scale-95 transition-colors"
+                    className="nav-css-chevron h-8 flex items-center gap-2 justify-center text-sm font-normal tracking-wide rounded-full w-fit px-4 bg-background border border-border hover:bg-accent active:scale-95 transition-colors"
+                    data-open={showLoginDropdown}
                   >
                     {siteConfig.hero.cta.secondary.text}
-                    <ChevronDown className="h-4 w-4" />
                   </button>
                   {showLoginDropdown && (
                     <div className="absolute right-0 mt-1 min-w-[160px] rounded-md border border-border bg-background shadow-md overflow-hidden z-50">
@@ -205,14 +205,11 @@ export function Navbar() {
                 </Link>
               </div>
               <button
-                className="md:hidden border border-border size-8 rounded-md cursor-pointer flex items-center justify-center mr-4"
+                className="mobile-menu-css-icon md:hidden border border-border size-8 rounded-md cursor-pointer flex items-center justify-center mr-4"
                 onClick={toggleDrawer}
+                data-open={isDrawerOpen}
+                aria-label={isDrawerOpen ? "Fechar menu" : "Abrir menu"}
               >
-                {isDrawerOpen ? (
-                  <X className="size-5" />
-                ) : (
-                  <Menu className="size-5" />
-                )}
               </button>
             </div>
           </div>
@@ -248,9 +245,10 @@ export function Navbar() {
                   </Link>
                   <button
                     onClick={toggleDrawer}
-                    className="border border-border rounded-md p-1 cursor-pointer"
+                    className="mobile-menu-css-icon border border-border rounded-md p-1 size-8 cursor-pointer"
+                    data-open="true"
+                    aria-label="Fechar menu"
                   >
-                    <X className="size-5" />
                   </button>
                 </div>
 
@@ -269,13 +267,13 @@ export function Navbar() {
                           <div>
                             <button
                               onClick={(e) => handleMobileNavClick(item, e)}
-                              className={`w-full flex items-center justify-between p-2.5 text-left underline-offset-4 hover:text-primary/80 transition-colors ${activeSection === item.href.substring(1)
+                              className={`nav-css-chevron w-full flex items-center justify-between p-2.5 text-left underline-offset-4 hover:text-primary/80 transition-colors ${activeSection === item.href.substring(1)
                                 ? "text-primary font-medium"
                                 : "text-primary/60"
                                 }`}
+                              data-open={showMobileServicesDropdown}
                             >
                               {item.name}
-                              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${showMobileServicesDropdown ? 'rotate-180' : ''}`} />
                             </button>
 
                             <AnimatePresence>
@@ -306,13 +304,13 @@ export function Navbar() {
                           <div>
                             <button
                               onClick={(e) => handleMobileNavClick(item, e)}
-                              className={`w-full flex items-center justify-between p-2.5 text-left underline-offset-4 hover:text-primary/80 transition-colors ${activeSection === item.href.substring(1)
+                              className={`nav-css-chevron w-full flex items-center justify-between p-2.5 text-left underline-offset-4 hover:text-primary/80 transition-colors ${activeSection === item.href.substring(1)
                                 ? "text-primary font-medium"
                                 : "text-primary/60"
                                 }`}
+                              data-open={showMobileCompaniesDropdown}
                             >
                               {item.name}
-                              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${showMobileCompaniesDropdown ? 'rotate-180' : ''}`} />
                             </button>
 
                             <AnimatePresence>

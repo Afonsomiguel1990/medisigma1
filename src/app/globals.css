@@ -646,3 +646,61 @@
   opacity: 1;
   transform: translateX(0.25rem);
 }
+
+.accordion-css-chevron::after,
+.nav-css-chevron::after {
+  border-bottom: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  content: "";
+  flex: 0 0 auto;
+  height: 0.5rem;
+  transform: translateY(-0.125rem) rotate(45deg);
+  transition: transform 200ms;
+  width: 0.5rem;
+}
+
+.accordion-css-chevron::after {
+  border-color: var(--muted-foreground);
+  margin-top: 0.125rem;
+}
+
+.accordion-css-chevron[data-state="open"]::after,
+.nav-css-chevron[data-open="true"]::after {
+  transform: translateY(0.125rem) rotate(225deg);
+}
+
+.mobile-menu-css-icon {
+  position: relative;
+}
+
+.mobile-menu-css-icon::before,
+.mobile-menu-css-icon::after {
+  background: currentColor;
+  content: "";
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transition: box-shadow 200ms, opacity 200ms, transform 200ms;
+  width: 1.125rem;
+}
+
+.mobile-menu-css-icon::before {
+  box-shadow: 0 -6px currentColor, 0 6px currentColor;
+  transform: translate(-50%, -50%);
+}
+
+.mobile-menu-css-icon::after {
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+
+.mobile-menu-css-icon[data-open="true"]::before {
+  box-shadow: none;
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.mobile-menu-css-icon[data-open="true"]::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(-45deg);
+}

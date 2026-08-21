@@ -85,8 +85,6 @@ export const organizationAndWebsiteJsonLd = {
           itemOffered: {
             "@type": "Service",
             name,
-            provider: { "@id": organizationId },
-            areaServed: "Portugal",
           },
         })),
       },

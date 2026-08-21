@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 import React, { useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
-import { ChevronDown, Activity, TriangleAlert } from "lucide-react";
+import { Activity, TriangleAlert } from "lucide-react";
 
 interface NavItem {
   name: string;
@@ -209,10 +209,10 @@ export function NavMenu() {
                 <div className="relative">
                   <button
                     onClick={handleServicesClick}
-                    className="cursor-pointer flex items-center gap-1"
+                    className="nav-css-chevron cursor-pointer flex items-center gap-2"
+                    data-open={showServicesDropdown}
                   >
                     {item.name}
-                    <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${showServicesDropdown ? 'rotate-180' : ''}`} />
                   </button>
 
                   <AnimatePresence>
@@ -259,10 +259,10 @@ export function NavMenu() {
                 <div className="relative">
                   <button
                     onClick={handleCompaniesClick}
-                    className="cursor-pointer flex items-center gap-1"
+                    className="nav-css-chevron cursor-pointer flex items-center gap-2"
+                    data-open={showCompaniesDropdown}
                   >
                     {item.name}
-                    <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${showCompaniesDropdown ? 'rotate-180' : ''}`} />
                   </button>
 
                   <AnimatePresence>

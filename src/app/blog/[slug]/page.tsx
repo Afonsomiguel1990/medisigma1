@@ -304,7 +304,9 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
                             prose-td:border prose-td:border-gray-300 prose-td:p-2
                             [&_table_th:first-child]:whitespace-nowrap [&_table_td:first-child]:whitespace-nowrap
                             [&_table_th:first-child]:min-w-12 [&_table_td:first-child]:min-w-12">
-              <div className="overflow-x-auto">
+              <div className={post.slug === ramiroTestimonial.slug
+                ? "overflow-x-auto [&>p]:mb-6 [&>p]:leading-relaxed [&_a]:text-secondary [&_a]:underline [&_a]:underline-offset-4"
+                : "overflow-x-auto"}>
                 {compiledContent}
               </div>
             </div>

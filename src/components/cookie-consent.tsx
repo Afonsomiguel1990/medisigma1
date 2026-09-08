@@ -38,7 +38,11 @@ export const CookieConsentComponent = () => {
             ],
           },
         },
-        marketing: {},
+        marketing: {
+          services: {
+            facebook: { label: "Vídeos do Facebook" },
+          },
+        },
       },
       language: {
         default: "pt",
@@ -79,7 +83,7 @@ export const CookieConsentComponent = () => {
                 {
                   title: "Cookies de Marketing e Publicidade",
                   description:
-                    "Estes cookies são utilizados para lhe apresentar anúncios que sejam relevantes para si e para os seus interesses. Podem também ser utilizados para limitar o número de vezes que vê um anúncio e para ajudar a medir a eficácia de uma campanha publicitária.",
+                    "Estes cookies são utilizados para lhe apresentar anúncios relevantes e medir campanhas. Esta categoria inclui os vídeos incorporados do Facebook, que só carregam quando permite esse serviço. Ao carregar um vídeo, o Facebook pode recolher dados sobre a sua visita e utilizar cookies.",
                   linkedCategory: "marketing",
                 },
                 {
@@ -96,4 +100,4 @@ export const CookieConsentComponent = () => {
   }, []);
 
   return null;
-}; 
+};

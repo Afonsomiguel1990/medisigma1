@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { siteConfig } from "@/lib/config";
 import { ContactLink } from "@/components/custom/contact-link";
 import ContactForm from '@/components/ContactForm'
+import { RestaurantTestimonial } from '@/components/sections/restaurant-testimonial';
 
 export const metadata: Metadata = {
   title: "Segurança Alimentar | Sistemas HACCP e Consultoria | MediSigma",
@@ -245,6 +246,8 @@ export default function SegurancaAlimentarPage() {
           </div>
         </section>
 
+        <RestaurantTestimonial />
+
         {/* CTA Section */}
         <section id="cta-section" className="relative z-10 bg-secondary py-16 md:py-20 mx-4 md:mx-8 rounded-3xl mb-8">
           <div className="container mx-auto px-6 md:px-8 max-w-5xl">
@@ -301,4 +304,4 @@ export default function SegurancaAlimentarPage() {
       </main>
     </>
   );
-} 
+}

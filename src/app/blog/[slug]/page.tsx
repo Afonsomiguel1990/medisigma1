@@ -6,6 +6,8 @@ import RelatedArticles from '@/components/sections/RelatedArticles';
 import Image from 'next/image';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
+import { FacebookVideo } from '@/components/facebook-video';
+import { ramiroTestimonial } from '@/lib/testimonials';
 
 const metadataAuthor = 'Dra. Ana Simões';
 
@@ -23,6 +25,10 @@ const serviceKeywords = [
 ];
 
 const serviceCtaOverrides: Record<string, { url: string; label: string }> = {
+  [ramiroTestimonial.slug]: {
+    url: '/contact/',
+    label: 'Segurança na Restauração',
+  },
   'plano-controlo-pragas-haccp-dossier-empresa': {
     url: '/servicos/controlo-pragas',
     label: 'Controlo de Pragas',
@@ -126,6 +132,7 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
     try {
       const { content } = await compileMDX({
         source: post.content_mdx,
+        components: { FacebookVideo },
         options: {
           parseFrontmatter: false,
         },
@@ -235,7 +242,7 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
 
           <article className="max-w-4xl mx-auto py-8">
             {/* Imagem de Destaque */}
-            {post.imagem_destaque && (
+            {post.imagem_destaque && post.slug !== ramiroTestimonial.slug && (
               <div className="mb-8">
                 <Image
                   src={post.imagem_destaque}
@@ -309,13 +316,15 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
                   Precisa de ajuda profissional com {relatedService.label}?
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-                  A Medisigma tem especialistas prontos para apoiar a sua empresa e garantir a conformidade legal. Fale connosco hoje mesmo.
+                  {post.slug === ramiroTestimonial.slug
+                    ? 'Diga-nos que apoio procura para a sua equipa e para o seu restaurante. A Medisigma ajuda a definir o acompanhamento adequado.'
+                    : 'A Medisigma tem especialistas prontos para apoiar a sua empresa e garantir a conformidade legal. Fale connosco hoje mesmo.'}
                 </p>
                 <Link
                   href={relatedService.url}
                   className="inline-flex items-center justify-center px-8 py-3 text-base font-semibold rounded-full text-white bg-primary hover:bg-primary/90 transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
                 >
-                  Saber mais sobre {relatedService.label}
+                  {post.slug === ramiroTestimonial.slug ? 'Pedir proposta para o meu restaurante' : `Saber mais sobre ${relatedService.label}`}
                 </Link>
               </div>
             )}
@@ -366,22 +375,22 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
   return {
     title: metaTitle,
     description: metaDescription,
-    authors: [{ name: metadataAuthor }],
+    authors: [{ name: post.author || metadataAuthor }],
     openGraph: {
       title: metaTitle,
       description: metaDescription,
       type: 'article',
       publishedTime: post.published_at || post.created_at,
       modifiedTime: post.updated_at,
-      authors: [metadataAuthor],
+      authors: [post.author || metadataAuthor],
       url: `https://www.medisigma.pt/blog/${post.slug}`,
       siteName: 'Medisigma',
       locale: 'pt_PT',
       images: ogImage ? [
         {
           url: ogImage.startsWith('http') ? ogImage : `https://www.medisigma.pt${ogImage}`,
-          width: 1200,
-          height: 630,
+          width: post.slug === ramiroTestimonial.slug ? 360 : 1200,
+          height: post.slug === ramiroTestimonial.slug ? 640 : 630,
           alt: post.title,
         },
       ] : undefined,

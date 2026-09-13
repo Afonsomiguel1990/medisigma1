@@ -6,6 +6,7 @@ export const dynamic = 'force-dynamic';
 const baseUrl = 'https://www.medisigma.pt';
 const staticLastModified = new Date('2026-05-13T00:00:00.000Z');
 const controloPragasLastModified = new Date('2026-05-13T22:58:43.000Z');
+const restaurantTestimonialLastModified = new Date('2026-09-08T00:00:00.000Z');
 
 function route(
   path: string,
@@ -30,14 +31,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     route('/contact/', 'monthly', 0.7),
     route('/recrutamento/', 'monthly', 0.7),
     route('/casos-de-sucesso/', 'monthly', 0.7),
-    route('/testemunhos/', 'monthly', 0.7),
+    route('/testemunhos/', 'monthly', 0.7, restaurantTestimonialLastModified),
     route('/signalsigma/', 'monthly', 0.7),
   ];
 
   const serviceRoutes: MetadataRoute.Sitemap = [
-    route('/servicos/medicina-no-trabalho/', 'monthly', 0.8),
-    route('/servicos/seguranca-no-trabalho/', 'monthly', 0.8),
-    route('/servicos/seguranca-alimentar/', 'monthly', 0.8),
+    route('/servicos/medicina-no-trabalho/', 'monthly', 0.8, restaurantTestimonialLastModified),
+    route('/servicos/seguranca-no-trabalho/', 'monthly', 0.8, restaurantTestimonialLastModified),
+    route('/servicos/seguranca-alimentar/', 'monthly', 0.8, restaurantTestimonialLastModified),
     route('/servicos/formacao-certificada/', 'monthly', 0.8),
     route('/servicos/psicologia/', 'monthly', 0.8),
     route('/servicos/controlo-pragas/', 'monthly', 0.8, controloPragasLastModified),

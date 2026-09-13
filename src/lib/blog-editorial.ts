@@ -62,6 +62,12 @@ export const BLOG_RESOURCES: Record<string, { slug: string; label: string }> = {
 };
 
 export function getServiceCta(slug: string) {
+  if (slug === 'seguranca-restauracao-testemunho-restaurante-o-ramiro') return {
+    url: '/contact/', label: 'Segurança na Restauração',
+    heading: 'Precisa de ajuda profissional com Segurança na Restauração?',
+    description: 'Diga-nos que apoio procura para a sua equipa e para o seu restaurante. A Medisigma ajuda a definir o acompanhamento adequado.',
+    action: 'Pedir proposta para o meu restaurante',
+  };
   const key = BLOG_EDITORIAL[slug]?.service;
   if (!key) return null;
   const service = services[key];

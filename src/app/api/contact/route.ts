@@ -1,86 +1,22 @@
 import { NextResponse } from 'next/server';
-import { getSupabaseAnon, getSupabaseServer } from '@/lib/supabase';
-import { WEBHOOK_URL, formatSlackMessage } from '@/lib/webhook';
+import { createLeadRepository } from '@/lib/leads/repository';
+import { submitLead } from '@/lib/leads/submit';
 import { rateLimitRequest } from '@/lib/rate-limit';
-
 export async function POST(req: Request) {
-  const rateLimitError = rateLimitRequest(req, {
-    key: 'contact',
-    limit: 5,
-    windowMs: 10 * 60 * 1000,
-  });
-  if (rateLimitError) return rateLimitError;
-
+  const limited = rateLimitRequest(req, { key: 'contact', limit: 5, windowMs: 10 * 60 * 1000 });
+  if (limited) return limited;
   try {
-    const body = await req.json().catch(() => ({}));
-
-    const empresa = (body.empresa ?? '').toString();
-    const telefone = (body.telefone ?? '').toString();
-    const email = (body.email ?? '').toString();
-    const servico = (body.servico ?? '').toString();
-    const mensagem = (body.mensagem ?? '').toString();
-    const pagina = (body.pagina ?? '').toString();
-    const url = (body.url ?? '').toString();
-    const fonte = (body.fonte ?? '').toString();
-    const confirmMail = (body.confirm_mail ?? '').toString(); // Honeypot field
-
-    // Anti-spam check (Honeypot)
-    if (confirmMail) {
-      console.log('Spam detectado (honeypot preenchido). Ignorando envio.', { confirmMail, empresa, email });
-      // Retorna sucesso para enganar o bot (shadow ban)
-      return NextResponse.json({ ok: true });
+    const raw = await req.text();
+    if (raw.length > 20000) return NextResponse.json({ ok: false, error: 'Pedido demasiado longo.' }, { status: 413 });
+    let body: unknown;
+    try { body = JSON.parse(raw); }
+    catch { return NextResponse.json({ ok: false, error: 'Pedido inválido.' }, { status: 400 }); }
+    if (body && typeof body === 'object' && (('lead_kind' in body && body.lead_kind === 'resource_request') || 'resource_id' in body)) {
+      return NextResponse.json({ ok: false, error: 'Utilize o formulário do recurso.' }, { status: 400 });
     }
-
-    if (!email) {
-      return NextResponse.json({ error: 'Email é obrigatório' }, { status: 400 });
-    }
-
-    const supabase = getSupabaseServer() ?? getSupabaseAnon();
-    const { error } = await supabase
-      .schema('web')
-      .from('contacts')
-      .insert({
-        empresa,
-        telefone,
-        email,
-        servico,
-        mensagem,
-        pagina,
-        url,
-        fonte,
-      });
-
-    if (error) {
-      console.error('Erro ao inserir contacto:', error);
-      return NextResponse.json({ error: error.message }, { status: 500 });
-    }
-
-    try {
-      const slackMessage = formatSlackMessage({
-        tipo: 'cliente',
-        nome: empresa || 'N/A',
-        email,
-        telefone,
-        mensagem,
-        empresa,
-        servico,
-        pagina,
-        url,
-        fonte,
-      });
-
-      await fetch(WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(slackMessage),
-      });
-    } catch (notifyError) {
-      console.error('Falha ao notificar Slack (contact)', notifyError);
-      // Não falhar a request original
-    }
-
-    return NextResponse.json({ ok: true });
-  } catch (e: unknown) {
-    return NextResponse.json({ error: e instanceof Error ? e.message : 'Erro inesperado' }, { status: 500 });
+    const result = await submitLead(body, createLeadRepository());
+    return NextResponse.json(result.body, { status: result.status });
+  } catch {
+    return NextResponse.json({ ok: false, error: 'Não foi possível guardar o pedido. Tente novamente.' }, { status: 503 });
   }
 }

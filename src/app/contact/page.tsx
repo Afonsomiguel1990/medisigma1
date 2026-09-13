@@ -8,7 +8,7 @@ import { MEDISIGMA, MEDISIGMA_POSTAL_ADDRESS } from "@/lib/organization";
 
 
 export const metadata: Metadata = {
-  title: "Contacto | Grupo Medisigma",
+  title: "Contacto",
   description: "Entre em contacto com o Grupo Medisigma para solicitar propostas ou esclarecer dúvidas sobre os nossos serviços.",
   robots: {
     index: true,

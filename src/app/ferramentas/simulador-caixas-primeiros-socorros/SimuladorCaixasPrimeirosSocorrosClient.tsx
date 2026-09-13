@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
+import { submitContactIntent, type SubmissionIntent } from '@/lib/leads/client-submission';
 import type { FormEvent, ReactNode, RefObject } from "react";
 import Link from "next/link";
 import {
@@ -48,6 +49,8 @@ export default function SimuladorCaixasPrimeirosSocorrosClient() {
   const [selectedContexts, setSelectedContexts] = useState<string[]>([]);
   const [proposalOpen, setProposalOpen] = useState(false);
   const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const submissionBusy = useRef(false);
+  const submissionIntent = useRef<SubmissionIntent>({});
   const proposalRef = useRef<HTMLDivElement>(null);
 
   const result = useMemo(() => calculateFirstAidBoxes(inputs), [inputs]);
@@ -85,6 +88,7 @@ export default function SimuladorCaixasPrimeirosSocorrosClient() {
 
   const handleProposalSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (submissionBusy.current) return;
     const form = event.currentTarget;
     const formData = new FormData(form);
     const empresa = formData.get("empresa")?.toString().trim() || "";
@@ -98,6 +102,7 @@ export default function SimuladorCaixasPrimeirosSocorrosClient() {
       return;
     }
 
+    submissionBusy.current = true;
     setFormStatus("loading");
 
     const simulatorSummary = buildFirstAidSummaryLines(inputs, result, selectedContexts);
@@ -113,32 +118,18 @@ export default function SimuladorCaixasPrimeirosSocorrosClient() {
       fonte: "ferramentas/simulador-caixas-primeiros-socorros",
       url: typeof window !== "undefined" ? window.location.href : "",
       confirm_mail: confirmMail,
+      service_key: 'caixas-primeiros-socorros',
+      lead_kind: 'service_request',
     };
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) throw new Error("Falha ao enviar pedido");
-
-      if (typeof window !== "undefined" && typeof window.gtag === "function") {
-        window.gtag("event", "generate_lead", {
-          currency: "EUR",
-          value: 0,
-          lead_source: "simulador_caixas_primeiros_socorros",
-          page_title: "Simulador caixas de primeiros socorros",
-        });
-      }
-
+      await submitContactIntent(payload, submissionIntent.current);
       setFormStatus("success");
       form.reset();
-    } catch (error) {
-      console.error("Erro ao enviar pedido do simulador de primeiros socorros:", error);
+      submissionIntent.current = {};
+    } catch {
       setFormStatus("error");
-    }
+    } finally { submissionBusy.current = false; }
   };
 
   return (

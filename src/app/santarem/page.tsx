@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     keywords: "medicina trabalho santarem, segurança no trabalho ribatejo, haccp santarem, agricultura segurança, formação sst santarem",
     openGraph: {
         title: "Medicina do Trabalho em Santarém | Segurança Alimentar e SST",
-        description: "Parceiro de referência para empresas agrícolas e industriais em Santarém. Saúde e segurança no trabalho certificadas.",
+        description: "Parceiro de referência para empresas agrícolas e industriais em Santarém. Serviços de saúde e segurança no trabalho.",
         type: "website",
         locale: "pt_PT",
         url: "https://www.medisigma.pt/santarem/",
@@ -72,7 +72,7 @@ const jsonLd = {
 const services = [
     {
         title: "Medicina no Trabalho",
-        description: "Exames de admissão, periódicos e de aptidão para garantir a saúde e segurança da sua equipa.",
+        description: "Exames de admissão, periódicos e ocasionais, definidos em função das tarefas e riscos profissionais.",
         icon: Stethoscope,
         href: "/servicos/medicina-no-trabalho"
     },
@@ -84,13 +84,13 @@ const services = [
     },
     {
         title: "Segurança Alimentar",
-        description: "Implementação de sistemas HACCP e auditorias para garantir a higiene e segurança alimentar.",
+        description: "Apoio na implementação de HACCP, procedimentos de higiene e acompanhamento de medidas corretivas.",
         icon: Utensils,
         href: "/servicos/seguranca-alimentar"
     },
     {
         title: "Formação Certificada",
-        description: "Cursos certificados pela DGERT com planos de formação à medida das necessidades da sua empresa.",
+        description: "Planos de formação ajustados às funções, riscos e necessidades identificadas na empresa.",
         icon: GraduationCap,
         href: "/servicos/formacao-certificada"
     },
@@ -102,7 +102,7 @@ const services = [
     },
     {
         title: "Controlo de Pragas",
-        description: "Sistema integrado de controlo de pragas com medidas preventivas e corretivas certificadas.",
+        description: "Controlo de pragas com medidas preventivas, intervenções e registos de acompanhamento.",
         icon: Bug,
         href: "/servicos/controlo-pragas"
     },
@@ -120,7 +120,7 @@ const services = [
     },
     {
         title: "Manutenção de Extintores",
-        description: "Manutenção certificada pela NP 4413 para garantir a total operacionalidade dos seus equipamentos.",
+        description: "Verificação e manutenção de extintores, com registo das intervenções e necessidades identificadas.",
         icon: FireExtinguisher,
         href: "/servicos/manutencao-extintores"
     }
@@ -197,7 +197,7 @@ export default function SantaremPage() {
                         <div className="text-center max-w-3xl mx-auto mb-16">
                             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Soluções Completas para a Região</h2>
                             <p className="text-gray-600 text-lg">
-                                Do campo à mesa, garantimos que toda a cadeia de valor cumpre com as normas de segurança e higiene.
+                                Acompanhamos os riscos e os procedimentos de segurança e higiene identificados na atividade da empresa.
                             </p>
                         </div>
 
@@ -351,7 +351,7 @@ export default function SantaremPage() {
                                     </span>
                                 </summary>
                                 <div className="mt-4 text-gray-600 leading-relaxed">
-                                    Sim, implementamos e monitorizamos sistemas de HACCP completos para restaurantes, hotéis e cafés da região, garantindo a conformidade com a ASAE.
+                                    Sim, implementamos e monitorizamos sistemas de HACCP completos para restaurantes, hotéis e cafés da região, com registo das verificações e das medidas corretivas necessárias.
                                 </div>
                             </details>
 

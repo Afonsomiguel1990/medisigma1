@@ -1,118 +1,19 @@
 import React from 'react';
 import { getPostBySlug, getAllPublishedPosts } from '@/lib/posts';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
+import { BLOG_ALIASES, BLOG_RESOURCES, getServiceCta, getBlogAuthor, getBlogTitle, getBlogCanonical } from '@/lib/blog-editorial';
 import { Metadata } from 'next';
 import RelatedArticles from '@/components/sections/RelatedArticles';
 import Image from 'next/image';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
-
-const metadataAuthor = 'Dra. Ana Simões';
-
-const serviceKeywords = [
-  { keywords: ['alimentar', 'haccp', 'alimentos', 'cozinha', 'restauração'], url: '/servicos/seguranca-alimentar', label: 'Segurança Alimentar' },
-  { keywords: ['pragas', 'praga', 'baratas', 'ratos', 'desinfestação', 'insetos', 'lagarta', 'processionária'], url: '/servicos/controlo-pragas', label: 'Controlo de Pragas' },
-  { keywords: ['legionella', 'bactéria', 'torres de arrefecimento'], url: '/servicos/legionella', label: 'Prevenção de Legionella' },
-  { keywords: ['segurança', 'higiene', 'acidente', 'risco', 'proteção'], url: '/servicos/seguranca-no-trabalho', label: 'Segurança no Trabalho' },
-  { keywords: ['medicina', 'exames', 'analises', 'saúde', 'ficha de aptidão'], url: '/servicos/medicina-no-trabalho', label: 'Medicina no Trabalho' },
-  { keywords: ['formação', 'certificado', 'curso', 'aprender', 'ensino'], url: '/servicos/formacao-certificada', label: 'Formação Certificada' },
-  { keywords: ['psicologia', 'mental', 'stress', 'burnout', 'ansiedade'], url: '/servicos/psicologia', label: 'Psicologia' },
-  { keywords: ['incêndio', 'fogo', 'extintor', 'emergência', 'evacuação'], url: '/servicos/seguranca-incendios', label: 'Segurança Contra Incêndios' },
-  { keywords: ['nutrição', 'dieta', 'alimentação saudável'], url: '/servicos/nutricao', label: 'Nutrição' },
-  { keywords: ['desportiva', 'atleta', 'desporto', 'lesão'], url: '/servicos/medicina-desportiva', label: 'Medicina Desportiva' },
-];
-
-const serviceCtaOverrides: Record<string, { url: string; label: string }> = {
-  'plano-controlo-pragas-haccp-dossier-empresa': {
-    url: '/servicos/controlo-pragas',
-    label: 'Controlo de Pragas',
-  },
-  '40-horas-formacao-obrigatoria-empresas': {
-    url: '/servicos/formacao-certificada',
-    label: 'Formação Certificada',
-  },
-};
-
-/**
- * Configuração especial para override de SEO e Schema em posts específicos.
- * Isto permite melhorar o CTR sem alterar a base de dados diretamente.
- */
-const SPECIAL_POST_CONFIG: Record<string, {
-  title: string;
-  description: string;
-  faqs: Array<{ question: string; answer: string }>;
-}> = {
-  'tipos-extintores-classes-fogo-portugal': {
-    title: '5 Classes de Fogo: Que Extintor Usar? [Guia 2026]',
-    description: 'Sabe que o extintor errado agrava o fogo? Guia das 5 classes (A-F) e extintor certo para cada. Inclui tabela e legislação SCIE (DL 220/2008).',
-    faqs: [
-      {
-        question: 'Qual o extintor mais indicado para cozinhas?',
-        answer: 'Para cozinhas (Classe F - Óleos e Gorduras), o extintor indicado é o de Agente Húmido (Classe F) ou, em certos casos, CO2 para equipamentos elétricos. Nunca use água em óleo a arder.'
-      },
-      {
-        question: 'Que extintor usar em incêndios elétricos?',
-        answer: 'Para fogos de origem elétrica, deve usar-se um extintor de Dióxido de Carbono (CO2), pois o gás não conduz eletricidade e não danifica os equipamentos.'
-      },
-      {
-        question: 'Com que frequência devo fazer manutenção do extintor?',
-        answer: 'A manutenção dos extintores deve ser feita anualmente por empresa certificada (NP 4413). Em cada 5 ou 10 anos (dependendo do tipo) exige-se recarga ou prova hidráulica.'
-      }
-    ]
-  },
-  'simulacros-de-emergencia-em-portugal-guia-completo': {
-    title: 'Simulacros de Emergência: Lei e Coimas até 44.000€',
-    description: 'Simulacros obrigatórios: anuais (risco elevado) ou bienais (moderado) - Port. 1532/2008. Coimas até 44.000€. Saiba os tipos e como planear.',
-    faqs: [
-      {
-        question: 'O que é um simulacro de emergência?',
-        answer: 'Um simulacro é um exercício prático que testa o Plano de Emergência Interno, treinando os ocupantes e equipas de segurança para agir corretamente em situações de incêndio ou catástrofe.'
-      },
-      {
-        question: 'De quanto em quanto tempo é obrigatório fazer simulacros?',
-        answer: 'Segundo a Portaria n.º 1532/2008, os simulacros devem ser realizados anualmente para edifícios de Risco Elevado (ex: hospitais, lares) e a cada 2 anos para Risco Moderado.'
-      },
-      {
-        question: 'Qual é a coima por não fazer simulacros em Portugal?',
-        answer: 'As coimas por falta de medidas de autoproteção (incluindo simulacros) variam entre 1.800€ a 3.700€ para pessoas singulares e 2.500€ a 44.000€ para empresas (pessoas coletivas).'
-      },
-      {
-        question: 'Que tipos de simulacros existem?',
-        answer: 'Existem simulacros parciais (testam apenas um setor ou equipa), gerais (envolvem todo o edifício), anunciados (com data conhecida) e inopinados (sem aviso prévio para testar reação real).'
-      }
-    ]
-  }
-};
-
-function getServiceCta(slug: string, title: string, content: string | null) {
-  const override = serviceCtaOverrides[slug];
-  if (override) return override;
-
-  const text = (title + ' ' + (content || '')).toLowerCase();
-  for (const service of serviceKeywords) {
-    if (service.keywords.some(k => {
-      if (k.includes(' ')) return text.includes(k);
-      return new RegExp(`\\b${k}\\b`).test(text);
-    })) {
-      return service;
-    }
-  }
-  return null;
-}
+import remarkGfm from 'remark-gfm';
 
 export default async function PostPage(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params;
 
-  // Redirect do slug antigo para o novo
-  if (params.slug === 'radao-o-inimigo-invisivel-na-sua-empresa') {
-    const { redirect } = await import('next/navigation');
-    redirect('/blog/o-que-e-o-radao');
-  }
-
-  if (params.slug === 'perigo-lagarta-do-pinheiro-caes') {
-    const { redirect } = await import('next/navigation');
-    redirect('/blog/perigo-lagarta-do-pinheiro');
-  }
+  const alias = BLOG_ALIASES[params.slug];
+  if (alias) permanentRedirect(`/blog/${alias}/`);
 
   const post = await getPostBySlug(params.slug);
 
@@ -128,6 +29,7 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
         source: post.content_mdx,
         options: {
           parseFrontmatter: false,
+          mdxOptions: { remarkPlugins: [remarkGfm] },
         },
       });
       compiledContent = content;
@@ -143,10 +45,13 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
   }
 
   // Determinar serviço relacionado
-  const relatedService = getServiceCta(post.slug, post.title, post.content_mdx);
+  const relatedService = getServiceCta(post.slug);
+  const resource = BLOG_RESOURCES[post.slug];
 
   // Obter todos os artigos para a secção de relacionados
   const allArticles = await getAllPublishedPosts();
+
+  const author = getBlogAuthor(post.author);
 
   // Gerar schema.org JSON-LD
   const schema = {
@@ -157,11 +62,7 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
     "image": post.imagem_destaque || post.og_image,
     "datePublished": post.published_at || post.created_at,
     "dateModified": post.updated_at,
-    "author": {
-      "@type": post.author ? "Organization" : "Person",
-      "name": post.author || metadataAuthor,
-      "url": "https://www.medisigma.pt"
-    },
+    "author": author,
     "publisher": {
       "@type": "Organization",
       "name": "Medisigma",
@@ -173,37 +74,16 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://www.medisigma.pt/blog/${post.slug}`
+      "@id": getBlogCanonical(post.slug)
     }
   };
-
-  // Se houver configuração especial de FAQ, adicionar FAQPage schema
-  const specialConfig = SPECIAL_POST_CONFIG[params.slug];
-  const finalJsonLd = [schema];
-
-  if (specialConfig && specialConfig.faqs.length > 0) {
-    const faqSchema = {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": specialConfig.faqs.map(faq => ({
-        "@type": "Question",
-        "name": faq.question,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": faq.answer
-        }
-      }))
-    };
-    // @ts-expect-error - Pushing a different schema type to the array
-    finalJsonLd.push(faqSchema);
-  }
 
   return (
     <>
       {/* Schema.org JSON-LD */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(finalJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }}
       />
 
       <section className="w-full relative">
@@ -242,7 +122,8 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
                   alt={post.title}
                   width={1200}
                   height={630}
-                  className="w-full h-auto rounded-lg shadow-lg object-cover max-h-[500px]"
+                  sizes="(min-width: 1024px) 896px, calc(100vw - 48px)"
+                  className="w-full h-auto rounded-lg shadow-lg object-cover max-h-[160px] sm:max-h-[240px] lg:max-h-[320px]"
                   priority
                 />
               </div>
@@ -253,12 +134,12 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
                 {post.title}
               </h1>
               <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
-                {post.author && (
+                {author.name && (
                   <span className="flex items-center gap-1">
                     <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
-                    <span className="break-words">{post.author}</span>
+                    <span className="break-words">{author.name}</span>
                   </span>
                 )}
                 <span className="flex items-center gap-1">
@@ -306,17 +187,18 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
             {relatedService && (
               <div className="bg-primary/5 border border-primary/10 rounded-xl p-8 my-12 text-center">
                 <h3 className="text-2xl font-bold text-primary mb-4">
-                  Precisa de ajuda profissional com {relatedService.label}?
+                  {relatedService.heading}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
-                  A Medisigma tem especialistas prontos para apoiar a sua empresa e garantir a conformidade legal. Fale connosco hoje mesmo.
+                  {relatedService.description}
                 </p>
                 <Link
                   href={relatedService.url}
                   className="inline-flex items-center justify-center px-8 py-3 text-base font-semibold rounded-full text-white bg-primary hover:bg-primary/90 transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
                 >
-                  Saber mais sobre {relatedService.label}
+                  {relatedService.action}
                 </Link>
+                {resource && <p className="mt-4 text-sm"><Link className="text-primary underline underline-offset-4" href={`/recursos/${resource.slug}/`}>{resource.label}</Link></p>}
               </div>
             )}
 
@@ -325,6 +207,7 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
               currentSlug={params.slug}
               allArticles={allArticles.map(p => ({
                 slug: p.slug,
+                status: p.status,
                 title: p.title,
                 description: p.description || p.excerpt || '',
                 date: p.published_at || p.created_at,
@@ -341,40 +224,34 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
 export async function generateMetadata(props: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const params = await props.params;
 
-  let slugToUse = params.slug;
-  if (params.slug === 'radao-o-inimigo-invisivel-na-sua-empresa') {
-    slugToUse = 'o-que-e-o-radao';
-  } else if (params.slug === 'perigo-lagarta-do-pinheiro-caes') {
-    slugToUse = 'perigo-lagarta-do-pinheiro';
-  }
+  const slugToUse = BLOG_ALIASES[params.slug] || params.slug;
 
   const post = await getPostBySlug(slugToUse);
 
   if (!post) {
     return {
-      title: 'Post Não Encontrado | Medisigma',
+      title: { absolute: 'Post Não Encontrado - Medisigma' },
       description: 'O post que procura não foi encontrado.',
     };
   }
 
-  const specialConfig = SPECIAL_POST_CONFIG[slugToUse];
-
-  const metaTitle = specialConfig?.title || post.meta_title || post.title;
-  const metaDescription = specialConfig?.description || post.meta_description || post.description || post.excerpt || '';
+  const metaTitle = getBlogTitle(post.meta_title || post.title);
+  const metaDescription = post.meta_description || post.description || post.excerpt || '';
   const ogImage = post.og_image || post.imagem_destaque;
+  const author = getBlogAuthor(post.author);
 
   return {
-    title: metaTitle,
+    title: { absolute: metaTitle },
     description: metaDescription,
-    authors: [{ name: metadataAuthor }],
+    authors: [{ name: author.name }],
     openGraph: {
       title: metaTitle,
       description: metaDescription,
       type: 'article',
       publishedTime: post.published_at || post.created_at,
       modifiedTime: post.updated_at,
-      authors: [metadataAuthor],
-      url: `https://www.medisigma.pt/blog/${post.slug}`,
+      authors: [author.name],
+      url: getBlogCanonical(post.slug),
       siteName: 'Medisigma',
       locale: 'pt_PT',
       images: ogImage ? [
@@ -393,7 +270,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
       images: ogImage ? [ogImage.startsWith('http') ? ogImage : `https://www.medisigma.pt${ogImage}`] : undefined,
     },
     alternates: {
-      canonical: `https://www.medisigma.pt/blog/${post.slug}/`,
+      canonical: getBlogCanonical(post.slug),
     },
   };
 }

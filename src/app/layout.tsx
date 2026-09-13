@@ -9,11 +9,9 @@ import {
   serializeJsonLd,
 } from "@/lib/organization";
 import { siteConfig } from "@/lib/site";
-import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Analytics } from "@vercel/analytics/next";
+import { AnalyticsProvider } from "@/components/analytics-provider";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
 import { metadata as baseMetadata } from "./metadata";
 import "./globals.css";
 
@@ -76,20 +74,7 @@ export default function RootLayout({
           </div>
           <CookieConsentComponent />
         </ThemeProvider>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-GB5WGQPXK3"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-GB5WGQPXK3');
-          `}
-        </Script>
-        <SpeedInsights />
-        <Analytics />
+        <AnalyticsProvider />
       </body>
     </html>
   );

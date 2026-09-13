@@ -7,7 +7,7 @@ import RecrutamentoClient from './RecrutamentoClient';
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'Bolsa de Recrutamento | Medisigma',
+  title: 'Bolsa de Recrutamento',
   description: 'Consulte as oportunidades de carreira e junte-se à equipa Medisigma. Faça parte de uma empresa líder em Medicina do Trabalho e Segurança.',
   alternates: {
     canonical: 'https://www.medisigma.pt/recrutamento/',

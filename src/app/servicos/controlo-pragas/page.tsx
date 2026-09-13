@@ -33,7 +33,7 @@ const pageTitle = 'Controlo de Pragas para Empresas e HACCP | MediSigma';
 const pageDescription = 'Controlo de pragas para empresas, restauração, hotelaria e indústria alimentar. Desratização, desbaratização, monitorização e registos para HACCP.';
 
 export const metadata: Metadata = {
-  title: pageTitle,
+  title: 'Controlo de Pragas para Empresas e HACCP',
   description: pageDescription,
   keywords: [
     'controlo de pragas',
@@ -654,7 +654,7 @@ export default function ControloPragasPage() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <a
+                  <ContactLink type="whatsapp"
                     href={`https://wa.me/${siteConfig.links.whatsapp}?text=Olá%2C%20estava%20no%20vosso%20website%20e%20gostaria%20de%20ter%20mais%20informações%20sobre%20Controlo%20de%20Pragas.`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -662,7 +662,7 @@ export default function ControloPragasPage() {
                   >
                     <MessageCircle className="w-5 h-5" />
                     WhatsApp
-                  </a>
+                  </ContactLink>
                   <ContactLink href="tel:241331504" type="phone" pagina="Serviço Controlo de Pragas" className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-secondary transition-colors text-center flex items-center justify-center gap-2">
                     <Phone className="w-5 h-5" />
                     241 331 504

@@ -2,7 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Política de Cookies | Medisigma',
+  title: 'Política de Cookies',
   description: 'Consulte a nossa Política de Cookies para saber como utilizamos cookies no nosso site para garantir a conformidade com o RGPD.',
   alternates: {
     canonical: 'https://www.medisigma.pt/cookies/',

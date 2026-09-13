@@ -23,7 +23,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
-    title: "Segurança e Saúde no Trabalho em Lisboa | Grupo Medisigma",
+    title: "Segurança e Saúde no Trabalho em Lisboa",
     description: "Serviços de Medicina e Segurança no Trabalho em Lisboa. Rede de parceiros e unidades móveis para exames médicos, formação e HACCP na Grande Lisboa.",
     keywords: "medicina no trabalho lisboa, segurança no trabalho lisboa, exames médicos admissão lisboa, haccp lisboa, formação segurança lisboa, serviços sst lisboa",
     openGraph: {
@@ -72,7 +72,7 @@ const jsonLd = {
 const services = [
     {
         title: "Medicina no Trabalho",
-        description: "Exames de admissão, periódicos e de aptidão para garantir a saúde e segurança da sua equipa.",
+        description: "Exames de admissão, periódicos e ocasionais, definidos em função das tarefas e riscos profissionais.",
         icon: Stethoscope,
         href: "/servicos/medicina-no-trabalho"
     },
@@ -84,13 +84,13 @@ const services = [
     },
     {
         title: "Segurança Alimentar",
-        description: "Implementação de sistemas HACCP e auditorias para garantir a higiene e segurança alimentar.",
+        description: "Apoio na implementação de HACCP, procedimentos de higiene e acompanhamento de medidas corretivas.",
         icon: Utensils,
         href: "/servicos/seguranca-alimentar"
     },
     {
         title: "Formação Certificada",
-        description: "Cursos certificados pela DGERT com planos de formação à medida das necessidades da sua empresa.",
+        description: "Planos de formação ajustados às funções, riscos e necessidades identificadas na empresa.",
         icon: GraduationCap,
         href: "/servicos/formacao-certificada"
     },
@@ -102,7 +102,7 @@ const services = [
     },
     {
         title: "Controlo de Pragas",
-        description: "Sistema integrado de controlo de pragas com medidas preventivas e corretivas certificadas.",
+        description: "Controlo de pragas com medidas preventivas, intervenções e registos de acompanhamento.",
         icon: Bug,
         href: "/servicos/controlo-pragas"
     },
@@ -120,7 +120,7 @@ const services = [
     },
     {
         title: "Manutenção de Extintores",
-        description: "Manutenção certificada pela NP 4413 para garantir a total operacionalidade dos seus equipamentos.",
+        description: "Verificação e manutenção de extintores, com registo das intervenções e necessidades identificadas.",
         icon: FireExtinguisher,
         href: "/servicos/manutencao-extintores"
     }
@@ -237,7 +237,7 @@ export default function LisboaPage() {
                                 <p className="text-gray-600 text-lg mb-6 leading-relaxed">
                                     Lisboa é o motor económico do país, com uma diversidade única de setores.
                                     O Grupo Medisigma compreende as exigências específicas de cada atividade nesta região,
-                                    garantindo conformidade com a <strong>Lei n.º 102/2009</strong> e regulamentos específicos.
+                                    apoiando a aplicação da <strong>Lei n.º 102/2009</strong> e regulamentos específicos.
                                 </p>
 
                                 <div className="space-y-6">
@@ -381,7 +381,7 @@ export default function LisboaPage() {
                                     </span>
                                 </summary>
                                 <div className="mt-4 text-gray-600 leading-relaxed">
-                                    Sim, elaboramos Projetos de Segurança Contra Incêndios e Medidas de Autoproteção (MAP) para edifícios de qualquer categoria de risco em Lisboa, garantindo a sua aprovação junto da ANEPC.
+                                    Avaliamos o enquadramento do edifício para definir o projeto ou as medidas de autoproteção necessárias. A apreciação e decisão competem à entidade competente.
                                 </div>
                             </details>
                         </div>

@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { MEDISIGMA, MEDISIGMA_POSTAL_ADDRESS } from '@/lib/organization';
 
 export const metadata: Metadata = {
-  title: 'Termos e Condições | Medisigma',
+  title: 'Termos e Condições',
   description: 'Consulte os Termos e Condições de utilização do site da Medisigma.',
   alternates: {
     canonical: 'https://www.medisigma.pt/termos-e-condicoes/',

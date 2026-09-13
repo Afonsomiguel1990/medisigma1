@@ -22,7 +22,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
-    title: "Medicina do Trabalho em Tomar | Segurança e Saúde | Grupo Medisigma",
+    title: "Medicina do Trabalho em Tomar | Segurança e Saúde",
     description: "Serviços de Medicina e Segurança no Trabalho em Tomar. Apoio à hotelaria, comércio e indústria do Médio Tejo. Exames médicos e HACCP.",
     keywords: "medicina no trabalho tomar, segurança no trabalho tomar, haccp tomar, segurança alimentar tomar, HST turismo tomar, serviços sst tomar",
     openGraph: {
@@ -71,7 +71,7 @@ const jsonLd = {
 const services = [
     {
         title: "Medicina no Trabalho",
-        description: "Exames de admissão, periódicos e de aptidão para garantir a saúde e segurança da sua equipa.",
+        description: "Exames de admissão, periódicos e ocasionais, definidos em função das tarefas e riscos profissionais.",
         icon: Stethoscope,
         href: "/servicos/medicina-no-trabalho"
     },
@@ -89,7 +89,7 @@ const services = [
     },
     {
         title: "Formação Certificada",
-        description: "Cursos certificados pela DGERT com planos de formação à medida das necessidades da sua empresa.",
+        description: "Planos de formação ajustados às funções, riscos e necessidades identificadas na empresa.",
         icon: GraduationCap,
         href: "/servicos/formacao-certificada"
     },
@@ -101,7 +101,7 @@ const services = [
     },
     {
         title: "Controlo de Pragas",
-        description: "Sistema integrado de controlo de pragas com medidas preventivas e corretivas certificadas.",
+        description: "Controlo de pragas com medidas preventivas, intervenções e registos de acompanhamento.",
         icon: Bug,
         href: "/servicos/controlo-pragas"
     },
@@ -119,7 +119,7 @@ const services = [
     },
     {
         title: "Manutenção de Extintores",
-        description: "Manutenção certificada pela NP 4413 para garantir a total operacionalidade dos equipamentos do seu edifício.",
+        description: "Verificação e manutenção de extintores, com registo das intervenções e necessidades identificadas.",
         icon: FireExtinguisher,
         href: "/servicos/manutencao-extintores"
     }
@@ -194,7 +194,7 @@ export default function TomarPage() {
                         <div className="text-center max-w-3xl mx-auto mb-16">
                             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Serviços Obrigatórios para Empresas</h2>
                             <p className="text-gray-600 text-lg">
-                                Garantimos que o seu negócio em Tomar cumpre as exigências da ACT, ASAE e Lei n.º 102/2009. Evite coimas e proteja a sua equipa.
+                                Ajudamos a organizar a prevenção, a vigilância da saúde e os registos da empresa em Tomar, segundo a atividade e os riscos existentes.
                             </p>
                         </div>
 
@@ -239,7 +239,7 @@ export default function TomarPage() {
                                         </div>
                                         <div>
                                             <h4 className="font-bold text-gray-900 mb-1">Hotelaria e Restauração</h4>
-                                            <p className="text-sm text-gray-600">Planos de segurança alimentar (HACCP) rigorosos e Prevenção de Legionella para garantir a conformidade das operações turísticas.</p>
+                                            <p className="text-sm text-gray-600">Planos de segurança alimentar (HACCP) rigorosos e Prevenção de Legionella ajustados às instalações e às operações turísticas.</p>
                                         </div>
                                     </div>
 
@@ -289,7 +289,7 @@ export default function TomarPage() {
                                     Simplifique a HST da sua empresa em Tomar
                                 </h2>
                                 <p className="text-blue-100 text-lg mb-8 leading-relaxed">
-                                    Conte com a nossa equipa para um licenciamento seguro e uma operação livre de coimas.
+                                    Indique a atividade e as instalações para avaliarmos as necessidades de acompanhamento.
                                     Preencha o formulário para agendar o serviço adaptado às suas necessidades.
                                 </p>
 

@@ -1,7 +1,7 @@
 export const WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL || '';
 
 interface WebhookData {
-  tipo: 'cliente' | 'candidatura';
+  tipo: 'cliente' | 'candidatura' | 'recurso';
   nome: string;
   email: string;
   telefone: string;
@@ -12,6 +12,9 @@ interface WebhookData {
   pagina?: string;
   url?: string;
   fonte?: string;
+  resource_id?: string;
+  company_sector?: string;
+  service_key?: string;
   // Campos de Candidatura
   area_interesse?: string;
   cv_link?: string;
@@ -21,8 +24,8 @@ interface WebhookData {
 }
 
 export function formatSlackMessage(data: WebhookData) {
-  const isCliente = data.tipo === 'cliente';
-  const title = isCliente ? '🔔 NOVO CONTACTO' : '📝 NOVA CANDIDATURA';
+  const isCliente = data.tipo !== 'candidatura';
+  const title = data.tipo === 'recurso' ? 'PEDIDO DE RECURSO' : isCliente ? '🔔 NOVO CONTACTO' : '📝 NOVA CANDIDATURA';
   const timestamp = new Date().toLocaleString('pt-PT', { timeZone: 'Europe/Lisbon' });
 
   const fields = [
@@ -37,6 +40,10 @@ export function formatSlackMessage(data: WebhookData) {
     }
     fields.push({ type: 'mrkdwn', text: `*Serviço:*\n${data.servico || 'N/A'}` });
     fields.push({ type: 'mrkdwn', text: `*Origem:*\n${data.fonte || data.pagina || 'N/A'}` });
+    if (data.company_sector) fields.push({ type: 'mrkdwn', text: `*Tipo de instalação:*\n${data.company_sector}` });
+    if (data.resource_id) fields.push({ type: 'mrkdwn', text: `*Recurso:*\n${data.resource_id}` });
+    if (data.pagina) fields.push({ type: 'mrkdwn', text: `*Página:*\n${data.pagina}` });
+    if (data.url) fields.push({ type: 'mrkdwn', text: `*URL:*\n${data.url}` });
   } else {
     fields.push({ type: 'mrkdwn', text: `*Área Interesse:*\n${data.area_interesse || 'N/A'}` });
     if (data.job_id) {
@@ -82,4 +89,24 @@ export function formatSlackMessage(data: WebhookData) {
       }
     ]
   };
+}
+
+export async function sendSlackNotification(
+  payload: ReturnType<typeof formatSlackMessage>,
+  options: { fetcher?: typeof fetch; webhookUrl?: string; timeoutMs?: number } = {},
+): Promise<'sent' | 'failed' | 'uncertain'> {
+  const url = options.webhookUrl ?? WEBHOOK_URL;
+  if (!url) return 'failed';
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), options.timeoutMs ?? 5000);
+  try {
+    const response = await (options.fetcher ?? fetch)(url, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload), signal: controller.signal,
+    });
+    const body = await response.text();
+    return response.ok && body.trim() === 'ok' ? 'sent' : 'failed';
+  } catch {
+    return 'uncertain';
+  } finally { clearTimeout(timeout); }
 }

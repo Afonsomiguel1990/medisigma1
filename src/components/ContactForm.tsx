@@ -1,94 +1,49 @@
 'use client';
+import { useRef, useState } from 'react';
+import { submitContactIntent, serviceKeyFromLabel, type SubmissionIntent } from '@/lib/leads/client-submission';
 
 interface ContactFormProps {
   pagina?: string;
   fonte?: string;
   servicoDefault?: string;
+  serviceKey?: string;
 }
 
-interface ContactFormData {
-  empresa: string;
-  telefone: string;
-  email: string;
-  servico: string;
-  mensagem: string;
-  pagina: string;
-  url: string;
-  fonte: string;
-}
-
-export default function ContactForm({ pagina, fonte, servicoDefault }: ContactFormProps) {
+export default function ContactForm({ pagina, fonte, servicoDefault, serviceKey }: ContactFormProps) {
+  const busy = useRef(false);
+  const intent = useRef<SubmissionIntent>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.target as HTMLFormElement;
+    if (busy.current) return;
+    const form = e.currentTarget;
     const formData = new FormData(form);
-
-    const empresa = formData.get('empresa')?.toString().trim() || '';
-    const telefone = formData.get('telefone')?.toString().trim() || '';
-    const email = formData.get('email')?.toString().trim() || '';
-    const servico = formData.get('servico')?.toString().trim() || '';
-    const mensagem = formData.get('mensagem')?.toString().trim() || '';
-
+    const read = (name: string) => formData.get(name)?.toString().trim() || '';
+    const empresa = read('empresa');
+    const email = read('email');
     if (!empresa || !email) {
       alert('Por favor, preencha os campos obrigatórios (Empresa e Email).');
       return;
     }
-
+    busy.current = true;
+    setIsSubmitting(true);
     const paginaLabel = pagina || 'Formulário de Contacto';
-    const fonteLabel = fonte || paginaLabel;
-
-    const data: ContactFormData = {
-      empresa,
-      telefone,
-      email,
-      servico: servico || servicoDefault || 'Não especificado',
-      mensagem: mensagem || '',
-      pagina: paginaLabel,
-      fonte: fonteLabel,
-      url: typeof window !== 'undefined' ? window.location.href : '',
-    };
-
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        // GA4: Track form submission as conversion
-        try {
-          if (typeof window !== "undefined" && typeof window.gtag === "function") {
-            window.gtag("event", "generate_lead", {
-              currency: "EUR",
-              value: 0,
-              lead_source: "contact_form",
-              page_title: paginaLabel,
-            });
-            window.gtag("event", "form_submit", {
-              event_category: "contact",
-              form_type: "contact_form",
-              service_type: servico || servicoDefault || "Não especificado",
-              page_title: paginaLabel,
-            });
-          }
-        } catch (gaError) {
-          console.error("GA4 tracking error:", gaError);
-        }
-
-        alert('Mensagem recebida. Obrigado!');
-        form.reset();
-      } else {
-        const err = await response.json().catch(() => ({}));
-        console.error('Erro na API /api/contact:', err);
-        throw new Error(err?.error || 'Falha ao enviar');
-      }
-    } catch (error) {
-      console.error('Erro ao enviar contacto:', error);
+      await submitContactIntent({
+        empresa, email, telefone: read('telefone'), mensagem: read('mensagem'),
+        servico: servicoDefault || 'Não especificado',
+        service_key: serviceKey || serviceKeyFromLabel(servicoDefault || '', window.location.pathname),
+        company_sector: read('servico'), lead_kind: 'service_request',
+        pagina: paginaLabel, fonte: fonte || paginaLabel,
+        url: window.location.href, confirm_mail: read('confirm_mail'),
+      }, intent.current);
+      alert('Mensagem recebida. Obrigado!');
+      form.reset();
+      intent.current = {};
+    } catch {
       alert('Erro ao enviar mensagem. Tente novamente ou contacte-nos pelo 241 331 504.');
-    }
+    } finally { busy.current = false; setIsSubmitting(false); }
   };
-
   return (
     <div className="bg-white p-8 rounded-xl shadow-2xl">
       <h3 className="text-2xl font-semibold text-gray-900 mb-6">Contacto Rápido</h3>
@@ -101,6 +56,7 @@ export default function ContactForm({ pagina, fonte, servicoDefault }: ContactFo
             type="text"
             id="empresa"
             name="empresa"
+            maxLength={200}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
             placeholder="A sua empresa"
             required
@@ -115,6 +71,7 @@ export default function ContactForm({ pagina, fonte, servicoDefault }: ContactFo
             type="email"
             id="email"
             name="email"
+            maxLength={254}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
             placeholder="empresa@exemplo.pt"
             required
@@ -129,6 +86,7 @@ export default function ContactForm({ pagina, fonte, servicoDefault }: ContactFo
             type="tel"
             id="telefone"
             name="telefone"
+            maxLength={40}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
             placeholder="Ex: 912 345 678"
           />
@@ -141,7 +99,7 @@ export default function ContactForm({ pagina, fonte, servicoDefault }: ContactFo
           <select
             id="servico"
             name="servico"
-            defaultValue={servicoDefault || ''}
+            defaultValue={''}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
           >
             <option value="">Selecione...</option>
@@ -160,6 +118,7 @@ export default function ContactForm({ pagina, fonte, servicoDefault }: ContactFo
           <textarea
             id="mensagem"
             name="mensagem"
+            maxLength={2500}
             rows={4}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
             placeholder="Descreva brevemente as suas necessidades..."
@@ -180,9 +139,11 @@ export default function ContactForm({ pagina, fonte, servicoDefault }: ContactFo
 
         <button
           type="submit"
+          disabled={isSubmitting}
+          aria-busy={isSubmitting}
           className="w-full bg-secondary text-white py-3 px-6 rounded-lg font-semibold hover:bg-secondary/90 transition-colors"
         >
-          Enviar Mensagem
+          {isSubmitting ? 'A enviar...' : 'Enviar Mensagem'}
         </button>
 
         <p className="text-xs text-gray-500 text-center">
@@ -191,4 +152,4 @@ export default function ContactForm({ pagina, fonte, servicoDefault }: ContactFo
       </form>
     </div>
   );
-} 
+}

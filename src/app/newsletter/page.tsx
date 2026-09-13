@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { CheckCircle, Mail } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Newsletter | MediSigma",
+  title: "Newsletter",
   description: "Subscreva a newsletter da MediSigma e receba as últimas novidades sobre medicina do trabalho, segurança e saúde ocupacional.",
   robots: {
     index: true,

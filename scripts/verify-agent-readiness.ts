@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { MEDISIGMA } from "../src/lib/organization";
+import { RESOURCES } from '../src/lib/resources/catalog';
 
 type HtmlAnalysis = {
   textCharacters: number;
@@ -159,12 +160,27 @@ async function verifyLive(baseUrlInput: string) {
     return new URL(`${parsed.pathname}${parsed.search}`, baseUrl).toString();
   });
   assert.ok(urls.length > 0, "sitemap.xml must contain URLs");
+  assert.equal(new Set(canonicalUrls).size, canonicalUrls.length, 'sitemap URLs must be unique');
+  for (const canonical of canonicalUrls) {
+    const u = new URL(canonical);
+    assert.equal(u.origin, 'https://www.medisigma.pt', 'sitemap canonical origin');
+    assert.equal(u.search, '', 'sitemap must not contain queries');
+    assert.ok(!/^\/(recursos|admin|estatisticas|api)(\/|$)/.test(u.pathname), 'noindex/private pages must stay outside sitemap');
+  }
 
   await inBatches(urls, 6, async (url) => {
     const html = await fetchChecked(url, { headers: { Accept: "text/html" } });
     assert.equal(html.status, 200, `${url}: HTML status`);
     assert.match(html.headers.get("Content-Type") || "", /^text\/html/i, `${url}: HTML type`);
     assertVaryAccept(html, `${url} HTML`);
+    const htmlBody = await html.text();
+    const canonicalTag = htmlBody.match(/<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/i)?.[0];
+    const canonicalHref = canonicalTag?.match(/\bhref=["']([^"']+)["']/i)?.[1];
+    assert.ok(canonicalHref, `${url}: canonical is missing`);
+    assert.equal(new URL(decodeEntities(canonicalHref!)).pathname, new URL(url).pathname, `${url}: canonical path must match sitemap`);
+    assert.equal(new URL(decodeEntities(canonicalHref!)).origin, 'https://www.medisigma.pt', `${url}: canonical origin`);
+    const title = decodeEntities(htmlBody.match(/<title>([\s\S]*?)<\/title>/i)?.[1] || '');
+    assert.ok((title.match(/medisigma/gi) || []).length <= 1, `${url}: duplicate brand in title`);
 
     const markdown = await fetchChecked(url, { headers: { Accept: "text/markdown" } });
     assert.equal(markdown.status, 200, `${url}: Markdown status`);
@@ -178,6 +194,23 @@ async function verifyLive(baseUrlInput: string) {
     assert.match(edgeCache, /(?:s-maxage|max-age)=/i, `${url}: Markdown cache`);
     assert.ok((await markdown.text()).trim().length > 80, `${url}: Markdown content is unexpectedly short`);
   });
+
+  for (const resourcePath of ['/recursos/', ...RESOURCES.map(({ slug }) => `/recursos/${slug}/`)]) {
+    const response = await fetchChecked(new URL(resourcePath, baseUrl).toString(), { headers: { Accept: 'text/html' } });
+    assert.equal(response.status, 200, `${resourcePath}: resource status`);
+    const html = await response.text();
+    assert.match(html, /<meta\b(?=[^>]*name=["']robots["'])(?=[^>]*content=["'][^"']*noindex)[^>]*>/i, `${resourcePath}: resource must remain noindex`);
+    assert.ok(!canonicalUrls.some(url => new URL(url).pathname === resourcePath), `${resourcePath}: resource must not be in sitemap`);
+  }
+  const contactGet = await fetchChecked(new URL('/api/contact', baseUrl).toString(), { headers: { Accept: 'text/markdown' } });
+  assert.equal(contactGet.status, 405, 'contact API GET must remain method-not-allowed');
+  assert.doesNotMatch(contactGet.headers.get('Content-Type') || '', /^text\/markdown/i, 'API must bypass public representation negotiation');
+  for (const missing of ['/recursos/agent-readiness-missing/', '/blog/agent-readiness-missing/']) {
+    for (const accept of ['text/html', 'text/markdown']) {
+      const response = await fetchChecked(new URL(missing, baseUrl).toString(), { headers: { Accept: accept } });
+      assert.equal(response.status, 404, `${missing}: ${accept} must have coherent 404 status`);
+    }
+  }
 
   for (const machinePath of ["/robots.txt", "/llms.txt", "/sitemap.xml"]) {
     const response = await fetchChecked(new URL(machinePath, baseUrl).toString());

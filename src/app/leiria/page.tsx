@@ -23,12 +23,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
-    title: "Medicina do Trabalho em Leiria | Segurança na Indústria | Grupo Medisigma",
+    title: "Medicina do Trabalho em Leiria | Segurança na Indústria",
     description: "Serviços HST para as indústrias de moldes, plásticos e vidro em Leiria e Marinha Grande. Exames laborais, controlo de ruído e poeiras.",
     keywords: "medicina no trabalho leiria, hst leiria, segurança no trabalho marinha grande, medicina ocupacional leiria, exames medicos moldes indústria",
     openGraph: {
         title: "Medicina do Trabalho em Leiria | Grupo Medisigma",
-        description: "Apoiamos as operações fabris e serviços de Leiria com medicina e segurança ocupacional contínua, prevenindo as coimas do ACT no eixo Leiria-Pombal-Batalha.",
+        description: "Apoiamos as operações fabris e serviços de Leiria com medicina e segurança ocupacional contínua, com acompanhamento das necessidades identificadas no eixo Leiria-Pombal-Batalha.",
         type: "website",
         locale: "pt_PT",
         url: "https://www.medisigma.pt/leiria/",
@@ -90,7 +90,7 @@ const services = [
     },
     {
         title: "Manobradores Certificados",
-        description: "Registo e condução pedagógica e habilitária obrigatória aos controlos de guindastes industriais e porta-cargas entre pisos no local de trabalho.",
+        description: "Formação para as tarefas e equipamentos utilizados, com programa e registos ajustados às necessidades da empresa.",
         icon: GraduationCap,
         href: "/servicos/formacao-certificada"
     },
@@ -114,13 +114,13 @@ const services = [
     },
     {
         title: "Vistorias Técnicas Avac (Legionella)",
-        description: "Avaliação da rede de frios do concelho e certificações em análises de choque biológico para os permutadores de ar/água perigosos.",
+        description: "Avaliação dos sistemas de água e apoio à prevenção de Legionella, com medidas e análises definidas segundo o risco.",
         icon: Droplets,
         href: "/servicos/legionella"
     },
     {
         title: "Sinalização e Extintores (NP)",
-        description: "Alinhamento das guias iluminativas e das pesagens normativas dos CO2 para suster origens técnicas precoces.",
+        description: "Verificação e manutenção de extintores, com registo das intervenções e identificação de necessidades de acompanhamento.",
         icon: FireExtinguisher,
         href: "/servicos/manutencao-extintores"
     }
@@ -288,7 +288,7 @@ export default function LeiriaPage() {
                                     Gira o Maior Capital da Indústria
                                 </h2>
                                 <p className="text-blue-100 text-lg mb-8 leading-relaxed">
-                                    Estamos presentes para garantir aos gestores e equipas laborais os melhores resultados na eficiência perante a lei e minimização dos perigos nos turnos sem paragens. Registe o vosso contacto interno:
+                                    Indique a atividade, os estabelecimentos e os turnos da empresa para avaliarmos as necessidades de acompanhamento. Partilhe um contacto profissional:
                                 </p>
 
                                 <div className="space-y-4 mb-10">
@@ -358,7 +358,7 @@ export default function LeiriaPage() {
                                     </span>
                                 </summary>
                                 <div className="mt-4 text-gray-600 leading-relaxed">
-                                    Absolutamente! A base dos Técnicos Avançados executa um levantamento certificado por luxímetros calibrados ou sonómetros que atestam perante os regulamentos (ACT) se o pavilhão ou fábrica exige alterações preventivas face às perturbações das máquinas rotativas dos processos de transformação de molde ou chapa metálica.
+                                    A avaliação de riscos permite identificar a necessidade de medições de iluminação ou ruído. O relatório deve apresentar as condições observadas, os resultados e as medidas de prevenção propostas.
                                 </div>
                             </details>
 
@@ -370,7 +370,7 @@ export default function LeiriaPage() {
                                     </span>
                                 </summary>
                                 <div className="mt-4 text-gray-600 leading-relaxed">
-                                    É essencial realizar as análises laboratoriais nos sistemas dispersores de condensação local (Torres de Arrefecimento, balneários gerais das fábricas de turno). Promovemos recolhas seguras, geramos laudos com certificações acreditadas nacionalmente das Análises, implementando medidas rápidas contra surtos patológicos desta tipologia de bactéria mortal nos meses propensos nas águas municipais quentes paradas em pontos da rede interior de forma incisiva.
+                                    Os equipamentos e redes existentes determinam o enquadramento da prevenção de Legionella. O plano ou programa aplicável deve definir intervenções, análises e registos; o laboratório e o âmbito dos ensaios são confirmados na proposta.
                                 </div>
                             </details>
                         </div>

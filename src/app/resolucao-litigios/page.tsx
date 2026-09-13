@@ -2,7 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Resolução Amigável de Litígios | Medisigma',
+  title: 'Resolução Amigável de Litígios',
   description: 'Informações sobre a Resolução Alternativa de Litígios de Consumo (RAL) e as entidades competentes em Portugal.',
   alternates: {
     canonical: 'https://www.medisigma.pt/resolucao-litigios/',

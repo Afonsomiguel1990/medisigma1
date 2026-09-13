@@ -1,12 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { selectRelatedArticles } from '@/lib/blog-editorial';
 
 interface Article {
   slug: string;
   title: string;
   description: string;
   date: string;
+  status: 'draft' | 'scheduled' | 'published';
   imagem_destaque?: string;
 }
 
@@ -16,11 +18,7 @@ interface RelatedArticlesProps {
 }
 
 export default function RelatedArticles({ currentSlug, allArticles }: RelatedArticlesProps) {
-  // Filtrar artigos excluindo o atual e pegar os 3 mais recentes
-  const relatedArticles = allArticles
-    .filter(article => article.slug !== currentSlug)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 3);
+  const relatedArticles = selectRelatedArticles(currentSlug, allArticles);
 
   if (relatedArticles.length === 0) {
     return null;
@@ -37,7 +35,7 @@ export default function RelatedArticles({ currentSlug, allArticles }: RelatedArt
           {relatedArticles.map((article) => (
             <Link 
               key={article.slug} 
-              href={`/blog/${article.slug}`}
+              href={`/blog/${article.slug}/`}
               className="group block bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700 related-article-card"
             >
               {/* Imagem de destaque */}

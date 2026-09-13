@@ -24,6 +24,16 @@ import {
   REPRESENTATION_SOURCE_HEADER,
 } from "../src/lib/public-routes";
 import { middleware } from "../src/middleware";
+import { RESOURCES } from '../src/lib/resources/catalog';
+
+test('resource routes normalize only known slugs and stay outside the sitemap', async () => {
+  assert.equal(canonicalTrailingSlashPath('/recursos'), '/recursos/');
+  for (const { slug } of RESOURCES) assert.equal(canonicalTrailingSlashPath(`/recursos/${slug}`), `/recursos/${slug}/`);
+  assert.equal(canonicalTrailingSlashPath('/recursos/unknown'), null);
+  const sitemapSource = await readFile('src/app/sitemap.ts', 'utf8');
+  assert.ok(!sitemapSource.includes('/recursos'));
+  for (const file of ['src/app/recursos/page.tsx', 'src/app/recursos/[slug]/page.tsx']) assert.match(await readFile(file, 'utf8'), /index:\s*false/);
+});
 
 test("Accept negotiation respects defaults, weights, wildcards and exclusions", () => {
   const cases: Array<[string | null, string | null]> = [

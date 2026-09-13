@@ -1,3 +1,4 @@
+import { RESOURCES } from './resources/catalog';
 export const INTERNAL_HTML_PREFIX = "/api/agent-html";
 export const INTERNAL_MARKDOWN_PREFIX = "/api/agent-markdown";
 export const REPRESENTATION_SOURCE_HEADER = "x-medisigma-content-source";
@@ -39,6 +40,8 @@ const CANONICAL_PUBLIC_ROUTES = new Set([
   "/politica-de-privacidade",
   "/portalegre",
   "/recrutamento",
+  "/recursos",
+  ...RESOURCES.map(({ slug }) => `/recursos/${slug}`),
   "/resolucao-litigios",
   "/rio-maior",
   "/santarem",

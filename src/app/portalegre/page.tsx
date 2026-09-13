@@ -22,12 +22,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
-    title: "Medicina do Trabalho em Portalegre | HST e HACCP | Grupo Medisigma",
-    description: "Referência em Medicina e Segurança no Trabalho no Alto Alentejo. Apoio certificado ao setor agroalimentar e serviços em Portalegre e arredores.",
+    title: "Medicina do Trabalho em Portalegre | HST e HACCP",
+    description: "Referência em Medicina e Segurança no Trabalho no Alto Alentejo. Apoio ao setor agroalimentar e serviços em Portalegre e arredores.",
     keywords: "medicina no trabalho portalegre, segurança no trabalho portalegre, alto alentejo segurança, haccp portalegre, empresas portalegre hst, exames medicina trabalho",
     openGraph: {
         title: "Medicina do Trabalho em Portalegre | Grupo Medisigma",
-        description: "Garantimos todos os serviços de HST, Controlo de Pragas e HACCP para empresas no Alto Alentejo, focados na proximidade a Portalegre e concelhos vizinhos.",
+        description: "Serviços de HST, Controlo de Pragas e HACCP para empresas no Alto Alentejo, focados na proximidade a Portalegre e concelhos vizinhos.",
         type: "website",
         locale: "pt_PT",
         url: "https://www.medisigma.pt/portalegre/",
@@ -77,7 +77,7 @@ const services = [
     },
     {
         title: "Segurança Laboral",
-        description: "Desenvolvimento do manual deHST, registo de riscos no local físico (exposições ao campo e químicos industriais).",
+        description: "Avaliação de riscos no local de trabalho e organização das medidas de prevenção, incluindo exposições profissionais a produtos químicos.",
         icon: Shield,
         href: "/servicos/seguranca-no-trabalho"
     },
@@ -89,7 +89,7 @@ const services = [
     },
     {
         title: "Formação Técnica Setorial",
-        description: "Promoveção da segurança entre manobradores rurais, motoristas, pessoal fabril e comercial via formações de exigência legal.",
+        description: "Formação ajustada às tarefas, riscos e equipamentos utilizados por equipas agrícolas, industriais e comerciais.",
         icon: GraduationCap,
         href: "/servicos/formacao-certificada"
     },
@@ -113,13 +113,13 @@ const services = [
     },
     {
         title: "Análises de Águas e Legionella",
-        description: "Gestão das caldeiras e aquecimentos de zonas hoteleiras ou spas assegurando relatórios que protegem a qualidade do sistema hídrico.",
+        description: "Avaliação de sistemas de água e organização dos planos ou programas de prevenção de Legionella aplicáveis.",
         icon: Droplets,
         href: "/servicos/legionella"
     },
     {
         title: "Extintores e Manutenção",
-        description: "Cumprimento obrigatório da NP 4413 com revisões frequentes pela salvaguarda humana e dos edifícios no combate às chamas.",
+        description: "Verificação e manutenção dos extintores, com registo das intervenções e acompanhamento dos equipamentos.",
         icon: FireExtinguisher,
         href: "/servicos/manutencao-extintores"
     }
@@ -287,7 +287,7 @@ export default function PortalegrePage() {
                                     Dê O Salto Para Uma Equipa Segura
                                 </h2>
                                 <p className="text-blue-100 text-lg mb-8 leading-relaxed">
-                                    Estamos presentes para garantir que as exigências da ACT e ASAE não põem em causa o dia a dia da vida comercial ou de faturação. Contacte agora mesmo!
+                                    Indique a atividade e as instalações da empresa para avaliarmos as necessidades de prevenção e acompanhamento.
                                 </p>
 
                                 <div className="space-y-4 mb-10">
@@ -369,7 +369,7 @@ export default function PortalegrePage() {
                                     </span>
                                 </summary>
                                 <div className="mt-4 text-gray-600 leading-relaxed">
-                                    Como especialistas HACCP e no Extermínio legal de pragas na zona em restaurantes exigentes e tradicionais do Alentejo e Elvas o sigilo e segurança, operamos no local apenas em épocas ajustadas e com biológicos de cheiro diluído aprovados pela Saúde Governamental de modo a garantir o turismo forte sem medos.
+                                    O controlo de pragas deve ser integrado nos procedimentos de higiene e HACCP. As medidas são definidas após avaliação do estabelecimento, com identificação dos produtos utilizados e registo das intervenções.
                                 </div>
                             </details>
                         </div>

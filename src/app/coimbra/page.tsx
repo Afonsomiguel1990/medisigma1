@@ -23,7 +23,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
-    title: "Medicina do Trabalho em Coimbra | Segurança e Higiene | Grupo Medisigma",
+    title: "Medicina do Trabalho em Coimbra | Segurança e Higiene",
     description: "Serviços de Medicina e Segurança no Trabalho em Coimbra. Parceiros de laboratórios, startups e serviços de saúde. Unidades móveis e rede de parceiros.",
     keywords: "medicina no trabalho coimbra, segurança no trabalho coimbra, haccp coimbra, exames médicos coimbra, formação certificada coimbra",
     openGraph: {
@@ -72,7 +72,7 @@ const jsonLd = {
 const services = [
     {
         title: "Medicina no Trabalho",
-        description: "Exames de admissão, periódicos e de aptidão para garantir a saúde e segurança da sua equipa.",
+        description: "Exames de admissão, periódicos e ocasionais, definidos em função das tarefas e riscos profissionais.",
         icon: Stethoscope,
         href: "/servicos/medicina-no-trabalho"
     },
@@ -84,13 +84,13 @@ const services = [
     },
     {
         title: "Segurança Alimentar",
-        description: "Implementação de sistemas HACCP e auditorias para garantir a higiene e segurança alimentar.",
+        description: "Apoio na implementação de HACCP, procedimentos de higiene e acompanhamento de medidas corretivas.",
         icon: Utensils,
         href: "/servicos/seguranca-alimentar"
     },
     {
         title: "Formação Certificada",
-        description: "Cursos certificados pela DGERT com planos de formação à medida das necessidades da sua empresa.",
+        description: "Planos de formação ajustados às funções, riscos e necessidades identificadas na empresa.",
         icon: GraduationCap,
         href: "/servicos/formacao-certificada"
     },
@@ -102,7 +102,7 @@ const services = [
     },
     {
         title: "Controlo de Pragas",
-        description: "Sistema integrado de controlo de pragas com medidas preventivas e corretivas certificadas.",
+        description: "Controlo de pragas com medidas preventivas, intervenções e registos de acompanhamento.",
         icon: Bug,
         href: "/servicos/controlo-pragas"
     },
@@ -120,7 +120,7 @@ const services = [
     },
     {
         title: "Manutenção de Extintores",
-        description: "Manutenção certificada pela NP 4413 para garantir a total operacionalidade dos seus equipamentos.",
+        description: "Verificação e manutenção de extintores, com registo das intervenções e necessidades identificadas.",
         icon: FireExtinguisher,
         href: "/servicos/manutencao-extintores"
     }

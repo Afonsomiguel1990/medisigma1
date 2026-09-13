@@ -22,7 +22,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
-    title: "Medicina do Trabalho no Entroncamento | Segurança e Saúde | Grupo Medisigma",
+    title: "Medicina do Trabalho no Entroncamento | Segurança e Saúde",
     description: "Medicina e Segurança no Trabalho adaptada à zona do Entroncamento. Exames Médicos, HACCP e serviços de HST para ferrovia, serviços e comércio.",
     keywords: "medicina no trabalho entroncamento, segurança no trabalho entroncamento, sst estroncamento, exames médicos empresas, segurança industrial, haccp",
     openGraph: {

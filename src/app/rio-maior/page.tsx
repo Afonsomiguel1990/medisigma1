@@ -22,7 +22,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
-    title: "Medicina do Trabalho em Rio Maior | Grupo Medisigma",
+    title: "Medicina do Trabalho em Rio Maior",
     description: "Serviços de SST e Medicina no Trabalho em Rio Maior. Parceria com empresas da indústria extrativa, desporto e comércio local.",
     keywords: "medicina no trabalho rio maior, segurança no trabalho rio maior, exames médicos desporto, haccp rio maior, formação segurança",
     openGraph: {
@@ -71,7 +71,7 @@ const jsonLd = {
 const services = [
     {
         title: "Medicina no Trabalho",
-        description: "Exames de admissão, periódicos e de aptidão para garantir a saúde e segurança da sua equipa.",
+        description: "Exames de admissão, periódicos e ocasionais, definidos em função das tarefas e riscos profissionais.",
         icon: Stethoscope,
         href: "/servicos/medicina-no-trabalho"
     },
@@ -83,13 +83,13 @@ const services = [
     },
     {
         title: "Segurança Alimentar",
-        description: "Implementação de sistemas HACCP e auditorias para garantir a higiene e segurança alimentar.",
+        description: "Apoio na implementação de HACCP, procedimentos de higiene e acompanhamento de medidas corretivas.",
         icon: Utensils,
         href: "/servicos/seguranca-alimentar"
     },
     {
         title: "Formação Certificada",
-        description: "Cursos certificados pela DGERT com planos de formação à medida das necessidades da sua empresa.",
+        description: "Planos de formação ajustados às funções, riscos e necessidades identificadas na empresa.",
         icon: GraduationCap,
         href: "/servicos/formacao-certificada"
     },
@@ -101,7 +101,7 @@ const services = [
     },
     {
         title: "Controlo de Pragas",
-        description: "Sistema integrado de controlo de pragas com medidas preventivas e corretivas certificadas.",
+        description: "Controlo de pragas com medidas preventivas, intervenções e registos de acompanhamento.",
         icon: Bug,
         href: "/servicos/controlo-pragas"
     },
@@ -119,7 +119,7 @@ const services = [
     },
     {
         title: "Manutenção de Extintores",
-        description: "Manutenção certificada pela NP 4413 para garantir a total operacionalidade dos seus equipamentos.",
+        description: "Verificação e manutenção de extintores, com registo das intervenções e necessidades identificadas.",
         icon: FireExtinguisher,
         href: "/servicos/manutencao-extintores"
     }
@@ -196,7 +196,7 @@ export default function RioMaiorPage() {
                         <div className="text-center max-w-3xl mx-auto mb-16">
                             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Serviços para Empresas Locais</h2>
                             <p className="text-gray-600 text-lg">
-                                Oferecemos um serviço de proximidade para garantir a segurança dos seus trabalhadores em Rio Maior.
+                                Acompanhamos as necessidades de prevenção e saúde dos trabalhadores da empresa em Rio Maior.
                             </p>
                         </div>
 

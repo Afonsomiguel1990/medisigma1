@@ -2,7 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Livro de Reclamações | Medisigma',
+  title: 'Livro de Reclamações',
   description: 'Aceda ao Livro de Reclamações Eletrónico.',
   alternates: {
     canonical: 'https://www.medisigma.pt/livro-reclamacoes/',

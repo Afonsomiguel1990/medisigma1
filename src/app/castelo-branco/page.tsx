@@ -23,7 +23,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
-    title: "Medicina no Trabalho em Castelo Branco | Grupo Medisigma",
+    title: "Medicina no Trabalho em Castelo Branco",
     description: "Serviços de SST e Medicina no Trabalho em Castelo Branco. Apoio ao setor agroalimentar, queijarias e indústria da Beira Baixa.",
     keywords: "medicina trabalho castelo branco, segurança trabalho beira baixa, haccp queijarias, formação castelo branco, sst castelo branco",
     openGraph: {
@@ -72,7 +72,7 @@ const jsonLd = {
 const services = [
     {
         title: "Medicina no Trabalho",
-        description: "Exames de admissão, periódicos e de aptidão para garantir a saúde e segurança da sua equipa.",
+        description: "Exames de admissão, periódicos e ocasionais, definidos em função das tarefas e riscos profissionais.",
         icon: Stethoscope,
         href: "/servicos/medicina-no-trabalho"
     },
@@ -84,13 +84,13 @@ const services = [
     },
     {
         title: "Segurança Alimentar",
-        description: "Implementação de sistemas HACCP e auditorias para garantir a higiene e segurança alimentar.",
+        description: "Apoio na implementação de HACCP, procedimentos de higiene e acompanhamento de medidas corretivas.",
         icon: Utensils,
         href: "/servicos/seguranca-alimentar"
     },
     {
         title: "Formação Certificada",
-        description: "Cursos certificados pela DGERT com planos de formação à medida das necessidades da sua empresa.",
+        description: "Planos de formação ajustados às funções, riscos e necessidades identificadas na empresa.",
         icon: GraduationCap,
         href: "/servicos/formacao-certificada"
     },
@@ -102,7 +102,7 @@ const services = [
     },
     {
         title: "Controlo de Pragas",
-        description: "Sistema integrado de controlo de pragas com medidas preventivas e corretivas certificadas.",
+        description: "Controlo de pragas com medidas preventivas, intervenções e registos de acompanhamento.",
         icon: Bug,
         href: "/servicos/controlo-pragas"
     },
@@ -120,7 +120,7 @@ const services = [
     },
     {
         title: "Manutenção de Extintores",
-        description: "Manutenção certificada pela NP 4413 para garantir a total operacionalidade dos seus equipamentos.",
+        description: "Verificação e manutenção de extintores, com registo das intervenções e necessidades identificadas.",
         icon: FireExtinguisher,
         href: "/servicos/manutencao-extintores"
     }
@@ -231,7 +231,7 @@ export default function CasteloBrancoPage() {
                                     Valorizamos os Produtos da Terra
                                 </h2>
                                 <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                                    A região de Castelo Branco é rica em produtos endógenos de qualidade. O Grupo Medisigma ajuda a certificar
+                                    A região de Castelo Branco é rica em produtos endógenos de qualidade. O Grupo Medisigma apoia a organização da segurança alimentar de
                                     a segurança alimentar e a proteger quem trabalha a terra e transforma os seus frutos.
                                 </p>
 
@@ -242,7 +242,7 @@ export default function CasteloBrancoPage() {
                                         </div>
                                         <div>
                                             <h4 className="font-bold text-gray-900 mb-1">Queijarias e Agroalimentar</h4>
-                                            <p className="text-sm text-gray-600">Implementação rigorosa de HACCP para certificação de qualidade.</p>
+                                            <p className="text-sm text-gray-600">Implementação de HACCP e acompanhamento de medidas de segurança alimentar.</p>
                                         </div>
                                     </div>
 

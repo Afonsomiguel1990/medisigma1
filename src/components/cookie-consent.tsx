@@ -1,5 +1,6 @@
 "use client";
 
+import { setAnalyticsConsent } from "@/lib/analytics/client";
 import { useEffect } from "react";
 import "vanilla-cookieconsent/dist/cookieconsent.css";
 import * as CookieConsent from "vanilla-cookieconsent";
@@ -7,6 +8,8 @@ import * as CookieConsent from "vanilla-cookieconsent";
 export const CookieConsentComponent = () => {
   useEffect(() => {
     CookieConsent.run({
+      onConsent: () => setAnalyticsConsent(CookieConsent.acceptedCategory("analytics")),
+      onChange: () => setAnalyticsConsent(CookieConsent.acceptedCategory("analytics")),
       guiOptions: {
         consentModal: {
           layout: "box",

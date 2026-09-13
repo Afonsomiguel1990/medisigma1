@@ -7,7 +7,7 @@ import { ContactLink } from "@/components/custom/contact-link";
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
-  title: "Medicina no Trabalho | Exames Médicos Profissionais | MediSigma",
+  title: "Medicina no Trabalho | Exames Médicos Profissionais",
   description: "Serviços especializados de medicina no trabalho em Portugal. Exames médicos admissionais, periódicos e ocasionais. Vigilância da saúde dos trabalhadores conforme legislação.",
   keywords: "medicina no trabalho, exames médicos profissionais, vigilância saúde trabalhadores, exames admissionais, exames periódicos, medicina ocupacional, saúde ocupacional, médico do trabalho",
   openGraph: {
@@ -65,7 +65,7 @@ export default function MedicinaNoTrabalhoPage() {
                   Medicina no Trabalho
                 </h1>
                 <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
-                  A Medicina do Trabalho avalia, através de exames, as condições de saúde dos trabalhadores, determinando a sua aptidão para desempenhar determinadas funções. O nosso objetivo é prevenir doenças profissionais e garantir que as condições de trabalho não prejudicam a saúde da sua equipa.
+                  A Medicina do Trabalho avalia, através de exames, as condições de saúde dos trabalhadores, determinando a sua aptidão para desempenhar determinadas funções. A avaliação relaciona a saúde com as tarefas e os riscos do posto, para orientar a prevenção e o acompanhamento da equipa.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a
@@ -98,7 +98,7 @@ export default function MedicinaNoTrabalhoPage() {
                 Exames Médicos: O Que Diz a Lei
               </h2>
               <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-                Realizamos todos os exames médicos previstos na Lei n.º 102/2009, de 10 de Setembro, para assegurar a conformidade legal da sua empresa e o bem-estar dos seus colaboradores.
+                Organizamos exames de admissão, periódicos e ocasionais. Para preparar a marcação, indique as funções, os locais de trabalho e os riscos profissionais identificados. Consulte a <Link href="/recursos/preparacao-exames" className="text-secondary underline">lista de preparação para a empresa</Link>.
               </p>
             </div>
 
@@ -121,7 +121,7 @@ export default function MedicinaNoTrabalhoPage() {
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-4">Exames Periódicos</h3>
                 <p className="text-gray-600">
-                  Anuais para trabalhadores com menos de 18 ou mais de 50 anos, e de dois em dois anos para os restantes trabalhadores.
+                  A regra geral prevê exames anuais para menores e trabalhadores com mais de 50 anos, e bienais para os restantes. O médico do trabalho pode ajustar a periodicidade ao estado de saúde e aos riscos.
                 </p>
               </div>
 
@@ -144,10 +144,10 @@ export default function MedicinaNoTrabalhoPage() {
           <div className="container mx-auto px-6 md:px-8 max-w-6xl">
             <div className="text-center mb-12 md:mb-16">
               <h2 className="text-2xl md:text-4xl font-bold text-gray-900 mb-4 md:mb-6">
-                Exames Complementares Incluídos
+                Exames complementares conforme avaliação
               </h2>
               <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-                Os nossos exames médicos incluem um conjunto de análises e testes complementares para uma avaliação completa e rigorosa.
+                Os exames complementares são definidos pelo médico do trabalho em função das tarefas, riscos e avaliação clínica. Confirme na proposta o âmbito do serviço.
               </p>
             </div>
 
@@ -181,7 +181,7 @@ export default function MedicinaNoTrabalhoPage() {
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Teste Optométrico</h3>
                 <p className="text-gray-600 text-sm">
-                  Avaliação da acuidade visual para garantir uma visão adequada às tarefas a desempenhar.
+                  Avaliação da acuidade visual em relação às exigências das tarefas a desempenhar.
                 </p>
               </div>
 
@@ -192,7 +192,7 @@ export default function MedicinaNoTrabalhoPage() {
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Audiogramas</h3>
                 <p className="text-gray-600 text-sm">
-                  Realizados a trabalhadores expostos a ruído superior a 80 dB(A) para prevenir perdas auditivas.
+                  Avaliação auditiva quando indicada pela exposição profissional a ruído e pelo programa de vigilância da saúde.
                 </p>
               </div>
 
@@ -492,7 +492,7 @@ export default function MedicinaNoTrabalhoPage() {
                   </div>
                   <div className="flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-white" />
-                    <span>Resposta em 24 horas úteis</span>
+                    <span>Contacto para avaliar o pedido</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-white" />
@@ -501,7 +501,7 @@ export default function MedicinaNoTrabalhoPage() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <a
+                  <ContactLink type="whatsapp"
                     href={`https://wa.me/${siteConfig.links.whatsapp}?text=Olá%2C%20estava%20no%20vosso%20website%20e%20gostaria%20de%20ter%20mais%20informações%20sobre%20Medicina%20no%20Trabalho.`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -511,7 +511,7 @@ export default function MedicinaNoTrabalhoPage() {
                       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.515z" />
                     </svg>
                     WhatsApp
-                  </a>
+                  </ContactLink>
                   <ContactLink href="tel:241331504" type="phone" pagina="Serviço Medicina no Trabalho" className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-secondary transition-colors text-center">
                     241 331 504
                   </ContactLink>

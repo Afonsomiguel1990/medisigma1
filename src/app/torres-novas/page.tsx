@@ -23,7 +23,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
-    title: "Medicina do Trabalho em Torres Novas | Segurança Industrial | Grupo Medisigma",
+    title: "Medicina do Trabalho em Torres Novas | Segurança Industrial",
     description: "Medicina e Segurança no Trabalho adaptada à zona industrial de Torres Novas e Riachos. Serviços rápidos de Exames Médicos, HACCP e Prevenção de Riscos.",
     keywords: "medicina no trabalho torres novas, segurança no trabalho torres novas, sst torres novas rincão, serviços sst logística, segurança industrial torres novas, haccp",
     openGraph: {
@@ -90,7 +90,7 @@ const services = [
     },
     {
         title: "Formação de Empilhadores",
-        description: "Cursos certificados presencialmente focados em manobradores de máquinas e veículos industriais.",
+        description: "Formação para tarefas com máquinas e veículos industriais, ajustada às necessidades identificadas.",
         icon: GraduationCap,
         href: "/servicos/formacao-certificada"
     },
@@ -194,7 +194,7 @@ export default function TorresNovasPage() {
                         <div className="text-center max-w-3xl mx-auto mb-16">
                             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Garantia de Legalidade (Lei n.º 102/2009)</h2>
                             <p className="text-gray-600 text-lg">
-                                Os nossos clientes de Torres Novas podem descansar com a certeza de que a Medisigma organiza atempadamente as fichas de aptidão, documentação de segurança e resposta a imprevistos laborais, prevenindo coimas.
+                                A organização das marcações, fichas de aptidão e documentação de segurança permite identificar o que está disponível e o que precisa de acompanhamento. O calendário é definido com a empresa.
                             </p>
                         </div>
 

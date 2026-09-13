@@ -7,12 +7,12 @@ import { ContactLink } from "@/components/custom/contact-link";
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
-  title: 'Legionella: PPCL Obrigatório (Lei 52/2018) | Análise de Água',
-  description: 'PPCL é obrigatório (Lei 52/2018, Port. 25/2021). Criamos o plano e fazemos análise de água (acreditada). Cumpra o DL 69/2023. Orçamento 24h.',
+  title: 'Legionella: avaliação de risco e prevenção',
+  description: 'Avaliação de risco, organização de planos e acompanhamento de Legionella conforme os equipamentos e redes da instalação. Peça uma proposta.',
   keywords: 'legionella, controlo legionella, prevenção legionella, análise de água legionella, lei 52/2018, doença dos legionários, planos de prevenção, DL 69/2023, despacho 1547/2022',
   openGraph: {
-    title: 'Legionella: PPCL Obrigatório (Lei 52/2018) | Análise de Água',
-    description: 'PPCL é obrigatório (Lei 52/2018). Evite coimas e garanta a saúde pública. Fazemos o plano e análises de água certificadas. Orçamento grátis em 24h.',
+    title: 'Legionella: avaliação de risco e prevenção',
+    description: 'Identificação dos sistemas, avaliação de risco e acompanhamento de medidas de prevenção de Legionella. O âmbito depende da instalação.',
     type: 'website',
     locale: 'pt_PT',
   },
@@ -36,7 +36,7 @@ const jsonLd = [
       'url': 'https://www.medisigma.pt'
     },
     'name': 'Serviço de Prevenção de Legionella (PPCL)',
-    'description': 'Elaboração e implementação de Planos de Prevenção e Controlo de Legionella (PPCL) conforme Lei n.º 52/2018 e DL 69/2023. Análises de água em laboratório acreditado.',
+    'description': 'Avaliação de risco e apoio à prevenção de Legionella, com plano ou programa de manutenção conforme o enquadramento da instalação.',
     'url': 'https://www.medisigma.pt/servicos/legionella',
     'areaServed': {
       '@type': 'Country',
@@ -52,7 +52,7 @@ const jsonLd = [
         'name': 'Quem está obrigado a ter um Plano de Prevenção de Legionella?',
         'acceptedAnswer': {
           '@type': 'Answer',
-          'text': 'Todas as entidades com edifícios de acesso ao público que possuam sistemas de risco, como hotéis, centros comerciais, hospitais, termas, complexos desportivos e estruturas residenciais para pessoas idosas. A Lei n.º 52/2018 torna o PPCL obrigatório para estas entidades.'
+          'text': 'A obrigação depende dos equipamentos, redes e sistemas abrangidos pela Lei n.º 52/2018. É necessário distinguir o plano de prevenção e controlo dos programas de manutenção e limpeza aplicáveis a outras situações.'
         }
       },
       {
@@ -60,7 +60,7 @@ const jsonLd = [
         'name': 'Com que frequência devem ser feitas as análises à água?',
         'acceptedAnswer': {
           '@type': 'Answer',
-          'text': 'A frequência das análises depende da avaliação de risco. Para redes prediais, a periodicidade é, no mínimo, anual. Para torres de arrefecimento e sistemas de maior risco, a frequência é trimestral ou definida de acordo com o plano específico.'
+          'text': 'A frequência depende da tipologia do sistema, avaliação de risco e regime aplicável. Os pontos, parâmetros e frequências devem constar do plano ou programa definido para a instalação.'
         }
       },
       {
@@ -68,7 +68,7 @@ const jsonLd = [
         'name': 'O que acontece se for detetada Legionella na água?',
         'acceptedAnswer': {
           '@type': 'Answer',
-          'text': 'Em caso de deteção (especialmente acima de 1000 UFC/L conforme DL 69/2023), devem ser implementadas medidas corretivas imediatas, que podem incluir um choque térmico ou químico (desinfeção) no sistema. A situação deve ser comunicada às autoridades de saúde competentes.'
+          'text': 'O resultado deve ser avaliado pelo responsável técnico segundo a classificação de risco e o regime aplicável. As medidas corretivas e comunicações dependem da instalação e dos resultados; devem ficar registadas.'
         }
       },
       {
@@ -76,7 +76,7 @@ const jsonLd = [
         'name': 'Qual a importância de trabalhar com um laboratório acreditado?',
         'acceptedAnswer': {
           '@type': 'Answer',
-          'text': 'Trabalhar com um laboratório acreditado (ISO 17025) garante que as análises são realizadas segundo normas de qualidade rigorosas e reconhecidas, assegurando a fiabilidade legal e técnica dos resultados.'
+          'text': 'Ao selecionar o laboratório, confirme se o âmbito de acreditação cobre o ensaio e método necessários. A escolha deve corresponder aos requisitos aplicáveis à análise.'
         }
       }
     ]
@@ -179,7 +179,7 @@ export default function LegionellaPage() {
               </h2>
               <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
                 Elaboramos e implementamos o Plano de Prevenção e Controlo de Legionella (PPCL),
-                em conformidade com a Lei n.º 52/2018, para garantir a segurança e o cumprimento legal da sua organização.
+                com âmbito definido a partir dos equipamentos e redes existentes e das obrigações aplicáveis à instalação.
               </p>
             </div>
 
@@ -190,7 +190,7 @@ export default function LegionellaPage() {
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Elaboração do PPCL</h3>
                 <p className="text-gray-600 text-sm">
-                  Desenvolvemos um Plano de Prevenção e Controlo de Legionella obrigatório e personalizado para a sua empresa.
+                  Avaliamos o enquadramento da instalação para definir o plano de prevenção e controlo ou programa de manutenção aplicável.
                 </p>
               </div>
               <div className="group bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
@@ -208,7 +208,7 @@ export default function LegionellaPage() {
                 </div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-3">Colheita e Análise de Água</h3>
                 <p className="text-gray-600 text-sm">
-                  Efetuamos colheitas e análises de amostras (método cultural ou PCR) em parceria com laboratório acreditado.
+                  Organizamos a recolha e análise de amostras conforme o programa definido. O método, laboratório e âmbito dos ensaios devem ser confirmados na proposta.
                 </p>
               </div>
               <div className="group bg-white rounded-xl p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:border-indigo-200">
@@ -252,7 +252,7 @@ export default function LegionellaPage() {
                 </h2>
                 <p className="text-base md:text-lg text-gray-600 mb-6">
                   A legislação portuguesa estabelece um regime rigoroso para a prevenção e controlo da Legionella,
-                  sendo crucial para as empresas cumprirem todas as diretivas para evitar coimas e garantir a saúde pública.
+                  devendo o responsável confirmar quais as obrigações aplicáveis aos equipamentos e redes da sua instalação.
                 </p>
 
                 <div className="space-y-4 mb-6">
@@ -278,7 +278,7 @@ export default function LegionellaPage() {
 
                 <div className="bg-secondary p-4 rounded-lg border-l-4 border-secondary">
                   <p className="text-sm text-white">
-                    <strong>Nota Importante:</strong> Desde 8 de maio de 2022, o Plano de Prevenção e Controlo de Legionella (PPCL) é obrigatório para todas as entidades abrangidas pela lei.
+                    <strong>Nota Importante:</strong> As obrigações variam com os equipamentos, redes e sistemas. Confirme o enquadramento antes de definir o plano ou programa de manutenção.
                   </p>
                 </div>
               </div>
@@ -307,7 +307,7 @@ export default function LegionellaPage() {
                   Pedido de Proposta
                 </h2>
                 <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-                  Garanta a conformidade legal e a segurança das suas instalações. Peça já uma proposta para a implementação do Plano de Prevenção e Controlo de Legionella.
+                  Indique o tipo de edifício e os sistemas de água existentes. A informação permite definir a avaliação e a documentação necessárias. Use o <Link href="/recursos/dossier-legionella" className="underline">índice para organizar o dossier</Link>.
                 </p>
 
                 <div className="space-y-4 mb-8 text-blue-100">
@@ -317,7 +317,7 @@ export default function LegionellaPage() {
                   </div>
                   <div className="flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-white" />
-                    <span>Resposta rápida em 24 horas úteis</span>
+                    <span>Contacto para avaliar a instalação</span>
                   </div>
                   <div className="flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-white" />
@@ -326,7 +326,7 @@ export default function LegionellaPage() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <a
+                  <ContactLink type="whatsapp"
                     href={`https://wa.me/${siteConfig.links.whatsapp}?text=Olá%2C%20estava%20no%20vosso%20website%20e%20gostaria%20de%20ter%20mais%20informações%20sobre%20Controlo%20e%20Prevenção%20de%20Legionella.`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -336,7 +336,7 @@ export default function LegionellaPage() {
                       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.515z" />
                     </svg>
                     WhatsApp
-                  </a>
+                  </ContactLink>
                   <ContactLink href="tel:241331504" type="phone" pagina="Serviço Legionella" className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-secondary transition-colors text-center">
                     241 331 504
                   </ContactLink>
@@ -365,7 +365,7 @@ export default function LegionellaPage() {
                   Quem está obrigado a ter um Plano de Prevenção de Legionella?
                 </summary>
                 <p className="mt-4 text-gray-600">
-                  Todas as entidades com edifícios de acesso ao público que possuam sistemas de risco, como hotéis, centros comerciais, hospitais, termas, complexos desportivos e estruturas residenciais para pessoas idosas. Consulte a <Link href="/#enquadramento-legal" className="text-secondary hover:underline">Lei n.º 52/2018</Link> para mais detalhes.
+                  A obrigação depende dos equipamentos, redes e sistemas abrangidos. O plano de prevenção e controlo e os programas de manutenção não têm o mesmo âmbito. Consulte a <Link href="/#enquadramento-legal" className="text-secondary hover:underline">Lei n.º 52/2018</Link> para mais detalhes.
                 </p>
               </details>
 
@@ -374,7 +374,7 @@ export default function LegionellaPage() {
                   Com que frequência devem ser feitas as análises à água?
                 </summary>
                 <p className="mt-4 text-gray-600">
-                  A frequência das análises depende da avaliação de risco. Para redes prediais, a periodicidade é, no mínimo, anual. Para torres de arrefecimento e sistemas de maior risco, a frequência é trimestral ou definida de acordo com o plano específico.
+                  A frequência depende da tipologia do sistema, avaliação de risco e regime aplicável. Os pontos, parâmetros e frequências devem constar do plano ou programa definido para a instalação.
                 </p>
               </details>
 
@@ -383,7 +383,7 @@ export default function LegionellaPage() {
                   O que acontece se for detetada Legionella na água?
                 </summary>
                 <p className="mt-4 text-gray-600">
-                  Em caso de deteção, devem ser implementadas medidas corretivas imediatas, que podem incluir um choque térmico ou químico (desinfeção) no sistema. A situação deve ser comunicada às autoridades de saúde competentes.
+                  O resultado deve ser avaliado pelo responsável técnico segundo a classificação de risco e o regime aplicável. As medidas corretivas e comunicações dependem da instalação e dos resultados; devem ficar registadas.
                 </p>
               </details>
 
@@ -392,7 +392,7 @@ export default function LegionellaPage() {
                   Qual a importância de trabalhar com um laboratório acreditado?
                 </summary>
                 <p className="mt-4 text-gray-600">
-                  Trabalhar com um laboratório acreditado, como o Laboratório Tomaz, garante que as análises são realizadas segundo normas de qualidade rigorosas e reconhecidas, assegurando a fiabilidade e validade dos resultados, aspeto fundamental para o cumprimento legal e para a eficácia das medidas de controlo. A nossa parceria está alinhada com os serviços de <Link href="/servicos/seguranca-alimentar" className="text-secondary hover:underline">Segurança Alimentar</Link>.
+                  Confirme se o âmbito de acreditação do laboratório cobre o ensaio e o método necessários. A avaliação pode articular-se com outros serviços, como a <Link href="/servicos/seguranca-alimentar" className="text-secondary hover:underline">Segurança Alimentar</Link>.
                 </p>
               </details>
             </div>

@@ -21,12 +21,12 @@ import { Card, CardContent } from "@/components/ui/card";
 import ContactForm from '@/components/ContactForm';
 
 export const metadata: Metadata = {
-    title: "Medicina do Trabalho em Fátima | HACCP e SST | Grupo Medisigma",
+    title: "Medicina do Trabalho em Fátima | HACCP e SST",
     description: "Serviços especializados de Medicina no Trabalho, HACCP, Legionella e SST para Hotéis, Restauração e Comércio no Santuário e cidade de Fátima e Ourém.",
     keywords: "medicina no trabalho fátima, haccp fátima, segurança no trabalho ourém, legionella hotelaria fátima, HST hotéis, exames médicos comércio",
     openGraph: {
         title: "Medicina do Trabalho e Serviços HST em Fátima | Grupo Medisigma",
-        description: "Asseguramos toda a documentação legal e visitas da Medicina Laboral essenciais à dinâmica comercial Hoteleira de Serviços presentes em Fátima.",
+        description: "Apoio em medicina do trabalho, prevenção e organização documental para empresas de hotelaria, comércio e serviços em Fátima.",
         type: "website",
         locale: "pt_PT",
         url: "https://www.medisigma.pt/fatima/",
@@ -70,13 +70,13 @@ const jsonLd = {
 const services = [
     {
         title: "Avaliação Médica Diária",
-        description: "Fichas anuais cruciais a novos turnos em épocas intensas para que os empregados se mantenham qualificados ao atendimento ao balcão.",
+        description: "Exames de admissão, periódicos e ocasionais de acordo com as funções, riscos e avaliação do médico do trabalho.",
         icon: Stethoscope,
         href: "/servicos/medicina-no-trabalho"
     },
     {
         title: "Peritagens Laborais de Espaço",
-        description: "Relatórios formais com registos perfeitamente assentes na lei face às limpezas profundas, e manuseio de químicos na manutenção das alas dos quatros que evitam sanções punitivas pesadas.",
+        description: "Avaliação de riscos nas tarefas de limpeza, manutenção e utilização de produtos químicos, com registo de medidas preventivas.",
         icon: Shield,
         href: "/servicos/seguranca-no-trabalho"
     },
@@ -88,13 +88,13 @@ const services = [
     },
     {
         title: "Manuseadores de Maquinaria",
-        description: "Certificado de controlo interno associado na lei a todos aqueles associados à gestão dos empilhadores de aprovisionar nas prateleiras dos bastidores.",
+        description: "Formação ajustada às tarefas, aos equipamentos utilizados e às necessidades identificadas na empresa.",
         icon: GraduationCap,
         href: "/servicos/formacao-certificada"
     },
     {
         title: "Respostas Físico-Mental Crónica",
-        description: "Damos valiosas ajudas corporativos que diminuíram problemas ortopédicos e atritos pela constante lida hoteleira das gerências às equipas subordinadas perante quadros contínuos prolongados de serviço noturno.",
+        description: "Avaliação de fatores psicossociais, incluindo organização de turnos, carga de trabalho e relações entre equipas.",
         icon: Activity,
         href: "/servicos/psicologia"
     },
@@ -112,13 +112,13 @@ const services = [
     },
     {
         title: "Controlo Oficial Bactericida à (Legionella)",
-        description: "Testes rigorosos às amostras, ajustados ao que o cliente precisar, com relatórios às Torres Evaporativas dos aparelhos térmicos para atestar livre de riscos pneumónicos perante a grande rotação civil constante.",
+        description: "Avaliação dos sistemas de água e apoio à prevenção de Legionella, com análises e registos definidos segundo o enquadramento da instalação.",
         icon: Droplets,
         href: "/servicos/legionella"
     },
     {
         title: "Manobrar Seguro dos Extintores (NP)",
-        description: "Selos homologadores e recálculo base na carga dos extintores instalados nas centenas de corredores, oficinas base de comércio religioso que garanta segurança global anti chamas inesperadas ou pânicos iminentes ao povoação circundante.",
+        description: "Verificação e manutenção dos extintores, com identificação das intervenções e dos equipamentos que precisam de acompanhamento.",
         icon: FireExtinguisher,
         href: "/servicos/manutencao-extintores"
     }
@@ -350,25 +350,25 @@ export default function FatimaPage() {
 
                             <details className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 group">
                                 <summary className="font-semibold text-lg text-gray-900 cursor-pointer flex justify-between items-center">
-                                    <span>Oferecem formação certificada requerida via a inspeções do trabalho em Higiene ao Comércio ou Cozinhas?</span>
+                                    <span>Que formação pode ser organizada para comércio e cozinhas?</span>
                                     <span className="text-secondary group-open:rotate-180 transition-transform">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
                                     </span>
                                 </summary>
                                 <div className="mt-4 text-gray-600 leading-relaxed">
-                                    Lógico. Organizámos as sessões essenciais orientadas base nas necessidades locais focadas perante cozinheiros e atendimento hoteleiro sobre boas práticas em segurança do trabalho aplicadas. Efetuamos os respetivos ensinos no próprio edifício (hotel, residencial etc.) atestando no currículo corporativo atestado da Certificação para a entidade patronal prever as perigos normativos dos alimentos contínuos (DGERT).
+                                    Organizamos formação em segurança no trabalho e segurança alimentar ajustada às funções. O programa, a duração, o local e a documentação emitida devem ficar definidos na proposta.
                                 </div>
                             </details>
 
                             <details className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 group">
                                 <summary className="font-semibold text-lg text-gray-900 cursor-pointer flex justify-between items-center">
-                                    <span>Gerem o acompanhamento vital e a colheita técnica de água das Termas ou Chuveiros dos Alojamentos, vulgo, Legionella para Análises?</span>
+                                    <span>Como é definido o acompanhamento de Legionella em alojamentos?</span>
                                     <span className="text-secondary group-open:rotate-180 transition-transform">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6" /></svg>
                                     </span>
                                 </summary>
                                 <div className="mt-4 text-gray-600 leading-relaxed">
-                                    Sim! Realizamos avaliações obrigatórias ao risco ambiental, ajustadas ao que o cliente precisar, através de um acompanhamento regular via Planos Autorizados de Mitigação da Legionella, executando análises técnicas precisatórias no campo dos circuitos hídricos hoteleiros que reduzem infrações, controlando os riscos que as bactérias letais criam onde a condensação sanitária civil local predomine sobre grande número de turistas na cidade de Fátima.
+                                    O acompanhamento começa pela identificação dos equipamentos e redes de água. A avaliação define o plano ou programa aplicável, os registos e as análises necessárias, de acordo com o risco da instalação.
                                 </div>
                             </details>
                         </div>

@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import { MEDISIGMA, MEDISIGMA_POSTAL_ADDRESS } from '@/lib/organization';
 
 export const metadata: Metadata = {
-  title: 'Política de Privacidade | Medisigma',
+  title: 'Política de Privacidade',
   description: 'Consulte a nossa Política de Privacidade para saber como tratamos os seus dados pessoais em conformidade com o RGPD.',
   alternates: {
     canonical: 'https://www.medisigma.pt/politica-de-privacidade/',

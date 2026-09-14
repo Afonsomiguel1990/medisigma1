@@ -14,11 +14,12 @@ const services = {
 type Topic = 'medicine' | 'sst' | 'training' | 'food' | 'legionella' | 'pests' | 'fire' | 'institutional';
 type EditorialEntry = { topic: Topic; service: keyof typeof services | null };
 
-// Explicit editorial choices for the 27 published articles audited in September 2026.
+// Explicit editorial choices for reviewed articles, including subsequent publications.
 // New articles receive no commercial CTA until their destination is reviewed.
 export const BLOG_EDITORIAL: Record<string, EditorialEntry> = {
   '40-horas-formacao-obrigatoria-empresas': { topic: 'training', service: 'training' },
   'medicina-trabalho-exames-obrigatorios': { topic: 'medicine', service: 'medicine' },
+  'ficha-aptidao-trabalho-validade': { topic: 'medicine', service: 'medicine' },
   'kit-primeiros-socorros-empresa': { topic: 'sst', service: 'kit' },
   'tipos-extintores-classes-fogo-portugal': { topic: 'fire', service: 'extinguishers' },
   'inspecoes-act-2025-guia-empresas': { topic: 'sst', service: 'sst' },

@@ -29,7 +29,7 @@ async function get(url: string) {
 async function main() {
   const base = new URL(argument('--base-url', 'https://www.medisigma.pt'));
   const inventory = new URL(argument('--inventory-url', 'https://www.medisigma.pt/sitemap.xml'));
-  const expected = Number(argument('--expected', '27'));
+  const expected = Number(argument('--expected', '28'));
   assert.ok(Number.isInteger(expected) && expected > 0, '--expected must be a positive integer');
   const response = await get(inventory.href);
   assert.equal(response.status, 200, 'Public inventory must return HTTP 200');

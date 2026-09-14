@@ -5,6 +5,7 @@ import { BLOG_EDITORIAL, getServiceCta, getBlogAuthor, getBlogTitle, getBlogCano
 test('commercial destinations follow the subject instead of incidental words in article text', () => {
   const expected = {
     'medicina-trabalho-exames-obrigatorios': '/servicos/medicina-no-trabalho/',
+    'ficha-aptidao-trabalho-validade': '/servicos/medicina-no-trabalho/',
     'kit-primeiros-socorros-empresa': '/ferramentas/simulador-caixas-primeiros-socorros/',
     'tipos-extintores-classes-fogo-portugal': '/servicos/manutencao-extintores/',
     'inspecoes-act-2025-guia-empresas': '/servicos/seguranca-no-trabalho/',
@@ -14,7 +15,7 @@ test('commercial destinations follow the subject instead of incidental words in 
     'controlo-pragas-obrigatorio-legislacao-haccp': '/servicos/controlo-pragas/',
   };
   for (const [slug, url] of Object.entries(expected)) assert.equal(getServiceCta(slug)?.url, url);
-  assert.equal(Object.keys(BLOG_EDITORIAL).length, 27);
+  assert.equal(Object.keys(BLOG_EDITORIAL).length, 28);
   assert.equal(getServiceCta('unreviewed-new-article'), null);
   assert.equal(getServiceCta('sistema-volta-cobrar-devolver-deposito-estabelecimento'), null);
 });

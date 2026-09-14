@@ -307,7 +307,7 @@ export default function LegionellaPage() {
                   Pedido de Proposta
                 </h2>
                 <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-                  Indique o tipo de edifício e os sistemas de água existentes. A informação permite definir a avaliação e a documentação necessárias. Use o <Link href="/recursos/dossier-legionella" className="underline">índice para organizar o dossier</Link>.
+                  Indique o tipo de edifício e os sistemas de água existentes. A informação permite definir a avaliação e a documentação necessárias.
                 </p>
 
                 <div className="space-y-4 mb-8 text-blue-100">

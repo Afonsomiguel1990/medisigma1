@@ -7,9 +7,4 @@ if (missing.length) throw new Error(`Required server configuration missing: ${mi
 const client = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE, { auth: { persistSession: false } });
 const {error} = await client.schema('web').rpc('get_lead_analytics', {p_from:'2000-01-01T00:00:00Z',p_to:'2000-01-02T00:00:00Z'});
 if (error) throw new Error('Private lead RPC is unavailable. Apply the reviewed migrations before publishing.');
-const {data:bucket,error:bucketError} = await client.storage.getBucket('web-resources');
-if (bucketError || !bucket || bucket.public) throw new Error('A private web-resources bucket is required.');
-const {data:files,error:listError} = await client.storage.from('web-resources').list('');
-const expected = ['preparacao-exames.pdf','dossier-legionella.pdf','preparacao-act.pdf','matriz-formacao.xlsx','inventario-primeiros-socorros.xlsx','controlo-incendios.xlsx'];
-if(listError || expected.some(name=>!files?.some(file=>file.name===name))) throw new Error('One or more approved private resources are missing.');
-console.log('Server configuration, private lead RPC and six private resources verified. No notifications sent.');
+console.log('Server configuration and private lead RPC verified. No notifications sent.');

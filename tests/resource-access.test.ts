@@ -2,6 +2,14 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { createResourceAccess, RESOURCE_ACCESS_WINDOW_MS } from '../src/lib/resources/access';
 import { RESOURCES, getResource } from '../src/lib/resources/catalog';
+import { POST as requestResource } from '../src/app/api/resources/[slug]/access/route';
+
+test('withdrawn resource endpoint refuses requests without creating receipts or download links', async () => {
+  const response = await requestResource();
+  assert.equal(response.status, 410);
+  assert.equal(response.headers.get('cache-control'), 'no-store');
+  assert.deepEqual(await response.json(), { ok: false, error: 'Este recurso não está disponível.' });
+});
 const now = Date.parse('2026-09-14T12:00:00Z');
 test('every signed link lasts exactly 600 seconds including last second of recovery window', async () => {
   for (const age of [0, RESOURCE_ACCESS_WINDOW_MS-1000]) {

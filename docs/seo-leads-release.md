@@ -2,6 +2,12 @@
 
 Implementação de 14 de setembro de 2026. Frentes executadas por subagentes GPT-6 Astra com raciocínio médio, com revisão e integração pelo coordenador.
 
+## Recursos retirados por decisão da equipa
+
+Em 14 de setembro, o utilizador determinou que os recursos têm de ser produzidos pela equipa. A disponibilização destes seis materiais foi suspensa: catálogo e páginas individuais passam a 404, o endpoint devolve 410 sem guardar pedidos, notificar o Slack ou emitir ligações. Foram removidas as chamadas aos recursos nos artigos e nos seis serviços. Os ficheiros privados, recibos e contactos anteriores são preservados. Não voltar a publicar materiais sem preparação e aprovação da equipa.
+
+O prebuild mantém a validação da configuração e da RPC dos pedidos, mas já não exige os ficheiros suspensos. O registo abaixo descreve o lote inicial e os respetivos testes; as referências à disponibilidade dos recursos foram substituídas por esta decisão.
+
 ## Comportamento entregue
 
 - Contactos guardados antes da notificação, no circuito Supabase e Slack existente. O formatter mantém os campos comerciais e não altera a apresentação das candidaturas. O cabeçalho dos recursos é `PEDIDO DE RECURSO`.

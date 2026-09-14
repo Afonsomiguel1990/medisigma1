@@ -283,7 +283,7 @@ export default function SegurancaNoTrabalhoPage() {
                   Garanta um Local de Trabalho Seguro
                 </h2>
                 <p className="text-base md:text-lg text-primary-foreground/90 max-w-3xl mx-auto mb-8">
-                  Indique a atividade, o número de trabalhadores e os estabelecimentos. Estes dados ajudam a definir a avaliação e o acompanhamento adequados à empresa. Consulte a <Link href="/recursos/preparacao-act" className="underline">lista de organização documental</Link>.
+                  Indique a atividade, o número de trabalhadores e os estabelecimentos. Estes dados ajudam a definir a avaliação e o acompanhamento adequados à empresa.
                 </p>
 
                 <div className="space-y-4 mb-8 text-blue-100">

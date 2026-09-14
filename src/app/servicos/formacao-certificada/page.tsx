@@ -244,7 +244,7 @@ export default function FormacaoCertificadaPage() {
                   Vamos Criar o Seu Plano de Formação?
                 </h2>
                 <p className="text-base md:text-lg text-primary-foreground/90 max-w-3xl mx-auto mb-8">
-                  Com base no nosso plano ou em necessidades específicas, apresentamos uma proposta concreta que inclui programa, duração e custos para qualificar a sua equipa. Organize as necessidades com a <Link href="/recursos/matriz-formacao" className="underline">matriz de formação editável</Link>.
+                  Com base no nosso plano ou em necessidades específicas, apresentamos uma proposta concreta que inclui programa, duração e custos para qualificar a sua equipa.
                 </p>
 
                 <div className="space-y-4 mb-8 text-blue-100">

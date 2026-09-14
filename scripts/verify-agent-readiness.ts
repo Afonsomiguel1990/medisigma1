@@ -181,6 +181,7 @@ async function verifyLive(baseUrlInput: string) {
     assert.equal(new URL(decodeEntities(canonicalHref!)).origin, 'https://www.medisigma.pt', `${url}: canonical origin`);
     const title = decodeEntities(htmlBody.match(/<title>([\s\S]*?)<\/title>/i)?.[1] || '');
     assert.ok((title.match(/medisigma/gi) || []).length <= 1, `${url}: duplicate brand in title`);
+    assert.doesNotMatch(htmlBody, /href=["'](?:https:\/\/www\.medisigma\.pt)?\/recursos(?:\/|["'])/i, `${url}: withdrawn resources must not be promoted`);
 
     const markdown = await fetchChecked(url, { headers: { Accept: "text/markdown" } });
     assert.equal(markdown.status, 200, `${url}: Markdown status`);
@@ -196,10 +197,11 @@ async function verifyLive(baseUrlInput: string) {
   });
 
   for (const resourcePath of ['/recursos/', ...RESOURCES.map(({ slug }) => `/recursos/${slug}/`)]) {
-    const response = await fetchChecked(new URL(resourcePath, baseUrl).toString(), { headers: { Accept: 'text/html' } });
-    assert.equal(response.status, 200, `${resourcePath}: resource status`);
-    const html = await response.text();
-    assert.match(html, /<meta\b(?=[^>]*name=["']robots["'])(?=[^>]*content=["'][^"']*noindex)[^>]*>/i, `${resourcePath}: resource must remain noindex`);
+    for (const accept of ['text/html', 'text/markdown']) {
+      const response = await fetchChecked(new URL(resourcePath, baseUrl).toString(), { headers: { Accept: accept } });
+      assert.equal(response.status, 404, `${resourcePath}: withdrawn resource ${accept} status`);
+      assert.match(response.headers.get('X-Robots-Tag') || '', /noindex/i, `${resourcePath}: withdrawn resource must remain noindex`);
+    }
     assert.ok(!canonicalUrls.some(url => new URL(url).pathname === resourcePath), `${resourcePath}: resource must not be in sitemap`);
   }
   const contactGet = await fetchChecked(new URL('/api/contact', baseUrl).toString(), { headers: { Accept: 'text/markdown' } });

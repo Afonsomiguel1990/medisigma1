@@ -1,7 +1,7 @@
 import React from 'react';
 import { getPostBySlug, getAllPublishedPosts } from '@/lib/posts';
 import { notFound, permanentRedirect } from 'next/navigation';
-import { BLOG_ALIASES, BLOG_RESOURCES, getServiceCta, getBlogAuthor, getBlogTitle, getBlogCanonical } from '@/lib/blog-editorial';
+import { BLOG_ALIASES, getServiceCta, getBlogAuthor, getBlogTitle, getBlogCanonical } from '@/lib/blog-editorial';
 import { Metadata } from 'next';
 import RelatedArticles from '@/components/sections/RelatedArticles';
 import Image from 'next/image';
@@ -49,7 +49,6 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
 
   // Determinar serviço relacionado
   const relatedService = getServiceCta(post.slug);
-  const resource = BLOG_RESOURCES[post.slug];
 
   // Obter todos os artigos para a secção de relacionados
   const allArticles = await getAllPublishedPosts();
@@ -203,7 +202,6 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
                 >
                   {relatedService.action}
                 </Link>
-                {resource && <p className="mt-4 text-sm"><Link className="text-primary underline underline-offset-4" href={`/recursos/${resource.slug}/`}>{resource.label}</Link></p>}
               </div>
             )}
 

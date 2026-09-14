@@ -99,7 +99,7 @@ export default function MedicinaNoTrabalhoPage() {
                 Exames Médicos: O Que Diz a Lei
               </h2>
               <p className="text-base md:text-lg text-gray-600 max-w-3xl mx-auto">
-                Organizamos exames de admissão, periódicos e ocasionais. Para preparar a marcação, indique as funções, os locais de trabalho e os riscos profissionais identificados. Consulte a <Link href="/recursos/preparacao-exames" className="text-secondary underline">lista de preparação para a empresa</Link>.
+                Organizamos exames de admissão, periódicos e ocasionais. Para preparar a marcação, indique as funções, os locais de trabalho e os riscos profissionais identificados.
               </p>
             </div>
 

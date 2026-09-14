@@ -174,7 +174,7 @@ export default function ManutencaoExtintoresPage() {
                                     Agende a Manutenção Hoje
                                 </h2>
                                 <p className="text-base md:text-lg text-primary-foreground/90 max-w-3xl mx-auto mb-8">
-                                    Indique o número e o tipo de equipamentos para preparar a proposta. Pode reunir os dados no <Link href="/recursos/controlo-incendios" className="underline">registo de acompanhamento</Link>.
+                                    Indique o número e o tipo de equipamentos para preparar a proposta.
                                 </p>
 
                                 <div className="space-y-4 mb-8 text-blue-100">

@@ -206,7 +206,7 @@ export default function SegurancaIncendiosPage() {
                   Comércio e Manutenção de Extintores e Carretéis
                 </h2>
                 <p className="text-muted-foreground mb-6 leading-relaxed">
-                  Os extintores são equipamentos de primeira intervenção, essenciais no combate a incêndios na sua fase inicial. O fornecimento e a manutenção devem corresponder aos equipamentos e riscos identificados. Use o <Link href="/recursos/controlo-incendios" className="text-secondary underline">registo de acompanhamento</Link> para organizar as intervenções.
+                  Os extintores são equipamentos de primeira intervenção, essenciais no combate a incêndios na sua fase inicial. O fornecimento e a manutenção devem corresponder aos equipamentos e riscos identificados.
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="bg-white p-6 rounded-xl shadow-lg border border-border">

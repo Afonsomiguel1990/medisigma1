@@ -51,16 +51,6 @@ export const BLOG_ALIASES: Record<string, string> = {
   'perigo-lagarta-do-pinheiro-caes': 'perigo-lagarta-do-pinheiro',
 };
 
-export const BLOG_RESOURCES: Record<string, { slug: string; label: string }> = {
-  'medicina-trabalho-exames-obrigatorios': { slug: 'preparacao-exames', label: 'Descarregar a checklist de preparação para os exames' },
-  'plano-prevencao-controlo-legionella-empresas': { slug: 'dossier-legionella', label: 'Descarregar o modelo de organização do dossier' },
-  'inspecoes-act-2025-guia-empresas': { slug: 'preparacao-act', label: 'Descarregar a checklist de preparação documental' },
-  '40-horas-formacao-obrigatoria-empresas': { slug: 'matriz-formacao', label: 'Descarregar a matriz de formação em Excel' },
-  'kit-primeiros-socorros-empresa': { slug: 'inventario-primeiros-socorros', label: 'Descarregar o inventário de primeiros socorros em Excel' },
-  'tipos-extintores-classes-fogo-portugal': { slug: 'controlo-incendios', label: 'Descarregar a folha de controlo dos equipamentos' },
-  'simulacros-de-emergencia-em-portugal-guia-completo': { slug: 'controlo-incendios', label: 'Descarregar a folha de controlo dos equipamentos' },
-};
-
 export function getServiceCta(slug: string) {
   if (slug === 'seguranca-restauracao-testemunho-restaurante-o-ramiro') return {
     url: '/contact/', label: 'Segurança na Restauração',

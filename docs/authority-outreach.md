@@ -1,5 +1,7 @@
 # Propostas de divulgação
 
+Suspenso em 14 de setembro de 2026 por decisão do utilizador: os recursos têm de ser feitos pela equipa. Não divulgar os materiais gerados nem contactar estas entidades com esses materiais. A lista abaixo fica apenas como pesquisa preliminar para eventual trabalho com recursos preparados e aprovados pela equipa.
+
 Pesquisa de 14 setembro 2026. Nenhum contacto realizado, acordo ou publicação. A presença nesta lista não indica parceria.
 
 Dois materiais preparados: preparacao-act.pdf, para organizar documentos com responsáveis e ações; inventario-primeiros-socorros.xlsx, para registar material não medicamentoso, localização, quantidades e validade. Incluem fontes e limites de âmbito. A divulgação deve apontar à página de acesso, conservando os esclarecimentos e o controlo do ficheiro privado.

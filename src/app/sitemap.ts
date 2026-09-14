@@ -7,6 +7,13 @@ const baseUrl = 'https://www.medisigma.pt';
 const staticLastModified = new Date('2026-05-13T00:00:00.000Z');
 const controloPragasLastModified = new Date('2026-05-13T22:58:43.000Z');
 const restaurantTestimonialLastModified = new Date('2026-09-08T00:00:00.000Z');
+const editorialLastModified = new Date('2026-09-14T00:00:00.000Z');
+const editorialPaths = new Set([
+  '/servicos/medicina-no-trabalho/', '/servicos/legionella/', '/servicos/seguranca-no-trabalho/',
+  '/servicos/formacao-certificada/', '/servicos/manutencao-extintores/', '/servicos/seguranca-incendios/',
+  '/lisboa/', '/santarem/', '/abrantes/', '/tomar/', '/torres-novas/', '/entroncamento/', '/rio-maior/',
+  '/coimbra/', '/castelo-branco/', '/covilha/', '/fatima/', '/leiria/', '/portalegre/', '/cookies/',
+]);
 
 function route(
   path: string,
@@ -16,7 +23,7 @@ function route(
 ): MetadataRoute.Sitemap[number] {
   return {
     url: `${baseUrl}${path}`,
-    lastModified,
+    lastModified: editorialPaths.has(path) ? editorialLastModified : lastModified,
     changeFrequency,
     priority,
   };

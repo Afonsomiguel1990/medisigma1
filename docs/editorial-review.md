@@ -1,6 +1,6 @@
 # Revisão editorial e recursos
 
-14 setembro 2026. Alterações locais, sem publicação ou CMS.
+14 setembro 2026. Revisão integrada no lote de aquisição. As quatro correções pontuais abaixo já foram aplicadas no CMS após validação da versão anterior; a publicação do código segue o fluxo Git para Vercel.
 
 Foram feitas 67 substituições localizadas em Medicina do Trabalho, Legionella, Segurança no Trabalho e Lisboa, Santarém, Abrantes, Tomar, Torres Novas, Entroncamento e Rio Maior. O registo antes/depois está em resources/qc/editorial-changes.json. Preservaram-se classes, imagens, menus e ordem dos blocos.
 
@@ -26,15 +26,15 @@ Os três PDFs têm duas páginas cada, todas renderizadas com Poppler e inspecio
 
 Os modelos não recolhem diagnósticos, não certificam conformidade e não substituem avaliação técnica. Não foram incluídos dados fictícios como resultados reais. tsc --noEmit e git diff --check passaram após a revisão.
 
-## Revisão adicional identificada
+## Limites da revisão operacional
 
-Coimbra, Castelo Branco, Covilhã, Leiria, Fátima e Portalegre foram inspecionadas para alegações e formulações problemáticas. Exigem revisão localizada adicional, incluindo certificações e texto pouco claro. Depoimentos, moradas, cobertura e relações comerciais existentes não foram validados nesta frente. Não usar estas páginas como prova de presença física ou de autorização.
+Coimbra, Castelo Branco, Covilhã, Leiria, Fátima e Portalegre tiveram uma segunda revisão localizada, descrita no final deste documento. Depoimentos, moradas, cobertura e relações comerciais existentes não foram validados nesta frente. Não usar estas páginas como prova de presença física ou de autorização.
 
-## Propostas pontuais para o CMS
+## Correções pontuais aplicadas no CMS
 
 O snapshot read-only atual contém 27 artigos publicados. Foram triados todos os textos e metadados; a verificação de fontes foi focada nos prioritários e não constitui auditoria técnica de cada alegação dos 27 artigos.
 
-Quatro propostas, sem aplicação, constam de output/cms-editorial-proposals.json. Cada entrada contém identificação, updated_at esperado, hash do conteúdo original, campo novo e operações exatas. O ficheiro e o snapshot ficam fora do Git público.
+As quatro alterações de output/cms-editorial-proposals.json foram aplicadas em 14 de setembro de 2026, hora de Lisboa. Cada entrada contém identificação, updated_at esperado, hash do conteúdo original, campo novo e operações exatas. O snapshot anterior, verificado por SHA-256, e o registo de aplicação ficam fora do Git público. Não foram alterados títulos, slugs ou outros campos do CMS neste lote.
 
 - Kit: corrigir a lista atribuída à DGS para os 11 grupos do documento2021, distinguindo os dois materiais desejáveis; retirar a afirmação absoluta de ausência de medicamentos porque a fonte inclui soluções antissépticas.
 - Exames e extintores: mantêm-se os conteúdos CMS. A correção das tabelas é feita no renderizador com remarkGfm, incluindo os restantes artigos com tabelas.

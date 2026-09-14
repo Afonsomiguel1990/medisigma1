@@ -3,7 +3,7 @@ import SimuladorCaixasPrimeirosSocorrosClient from "./SimuladorCaixasPrimeirosSo
 import { COPY, PAGE_METADATA } from "./copy";
 
 export const metadata: Metadata = {
-  title: PAGE_METADATA.title,
+  title: { absolute: PAGE_METADATA.title },
   description: PAGE_METADATA.description,
   keywords:
     "simulador caixas primeiros socorros, caixa primeiros socorros empresa, mala primeiros socorros, kit primeiros socorros, DGS primeiros socorros trabalho, segurança no trabalho",

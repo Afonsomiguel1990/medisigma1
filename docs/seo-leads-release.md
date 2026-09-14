@@ -23,7 +23,9 @@ Os 27 artigos foram compilados com GFM e verificados por HTTP quanto a conteúdo
 
 A verificação HTTP da versão candidata passou nas 70 páginas do sitemap, tanto em HTML como em Markdown, incluindo aliases, páginas inexistentes, exclusão dos recursos do sitemap e respostas das APIs. O painel e a API administrativa recusaram acesso sem autenticação; com as credenciais de teste do processo local, devolveram agregados e `Cache-Control: no-store`.
 
-O prebuild verifica, sem enviar notificações, a configuração de servidor, a RPC privada e a presença dos seis ficheiros no bucket privado. Uma configuração incompleta impede a publicação de uma versão sem capacidade para guardar os novos pedidos.
+O prebuild verifica, sem enviar notificações, a configuração de servidor, as credenciais necessárias ao acesso administrativo, a RPC privada e a presença dos seis ficheiros no bucket privado. Uma configuração incompleta impede a publicação de uma versão sem capacidade para guardar os novos pedidos ou abrir o painel autorizado.
+
+Na retoma, o comando completo `npm run build`, incluindo o prebuild, voltou a passar localmente. A primeira tentativa de publicação foi bloqueada por ausência de `SUPABASE_SERVICE_ROLE` na Vercel, antes de substituir a versão pública. A inspeção autorizada do ambiente também identificou a ausência de `ADMIN_USERNAME` e `ADMIN_PASSWORD`; o controlo passou a exigir os três nomes em falta. A introdução dos valores na Vercel ficou a cargo do utilizador.
 
 No browser, a API de submissão e os fornecedores de analytics foram substituídos por respostas simuladas. Foram exercitados duplo envio, perda de resposta e repetição com o mesmo identificador, consentimento tardio, revogação, contribuição de artigo, renovação de recurso e expiração 410. A assinatura e descarga dos seis ficheiros foram verificadas separadamente no Storage real, comparando SHA-256; os endereços públicos diretos foram recusados.
 

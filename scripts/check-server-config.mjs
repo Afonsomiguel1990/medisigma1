@@ -1,7 +1,7 @@
 import nextEnv from '@next/env';
 import { createClient } from '@supabase/supabase-js';
 nextEnv.loadEnvConfig(process.cwd());
-const required = ['NEXT_PUBLIC_SUPABASE_URL', 'SUPABASE_SERVICE_ROLE', 'SLACK_WEBHOOK_URL'];
+const required = ['NEXT_PUBLIC_SUPABASE_URL', 'SUPABASE_SERVICE_ROLE', 'SLACK_WEBHOOK_URL', 'ADMIN_USERNAME', 'ADMIN_PASSWORD'];
 const missing = required.filter(name => !process.env[name]);
 if (missing.length) throw new Error(`Required server configuration missing: ${missing.join(', ')}`);
 const client = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE, { auth: { persistSession: false } });

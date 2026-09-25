@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import { serviceMedia, locationMedia } from '../src/lib/service-media';
+import publication from '../src/content/service-media-publication.json';
 const origin = process.argv[2] || 'http://127.0.0.1:3075';
 async function main() {
 const pages = [...new Set([...Object.values(serviceMedia).map(entry => entry.servicePath), ...Object.keys(locationMedia).map(city => `/${city}/`), '/abrantes/'])];
@@ -7,8 +8,21 @@ for (const path of pages) {
   const response = await fetch(new URL(path, origin), { headers: { Accept: 'text/html' } });
   assert.equal(response.status, 200, path);
   const html = await response.text();
+  assert.ok(html.includes(`rel="canonical" href="https://www.medisigma.pt${path}"`), `Wrong canonical: ${path}`);
+  assert.doesNotMatch(response.headers.get('x-robots-tag') || '', /noindex/i, path);
+  assert.doesNotMatch(html, /<meta[^>]+name="robots"[^>]+content="[^"]*noindex/i, path);
   assert.ok(html.includes('data-service-media=') || html.includes('trabalho-em-abrantes'), `Missing block: ${path}`);
   const videos = [...html.matchAll(/<video\b[^>]*>/g)];
+  const schemas = [...html.matchAll(/<script type="application\/ld\+json">([^]*?)<\/script>/g)]
+    .map(match => JSON.parse(match[1])).filter(schema => schema['@type'] === 'VideoObject');
+  assert.equal(schemas.length, publication.publishedAt ? videos.length : 0, `Missing VideoObject: ${path}`);
+  for (const schema of schemas) {
+    assert.equal(schema.uploadDate, publication.publishedAt);
+    assert.ok(schema.name && schema.description && schema.transcript);
+    assert.match(schema.duration, /^PT/);
+    assert.match(schema.contentUrl, /^https:\/\/www\.medisigma\.pt\/media\/servicos\/.+\.mp4$/);
+    assert.match(schema.thumbnailUrl, /^https:\/\/www\.medisigma\.pt\/media\/servicos\/.+\.webp$/);
+  }
   for (const [tag] of videos) {
     assert.match(tag, /preload="none"/); assert.match(tag, /controls=""/);
     assert.doesNotMatch(tag, /autoplay/i); assert.match(tag, /width="720"/); assert.match(tag, /height="1280"/);

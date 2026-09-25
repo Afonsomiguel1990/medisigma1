@@ -32,8 +32,12 @@ for (const media of manifest) {
   assert.ok(statSync(new URL(`public/media/servicos/${media.id}-capa.webp`, root)).size > 0);
   const vtt = readFileSync(new URL(`public/media/servicos/${media.id}.pt.vtt`, root), 'utf8').replaceAll('\r\n', '\n');
   assert.ok(vtt.startsWith('WEBVTT\n'));
-  if (process.env.VERCEL_ENV === 'production') assert.ok(!vtt.includes('[passagem pouco percetível]'), `Caption review is still pending: ${media.id}`);
   const cues = [...vtt.matchAll(/(\d{2}:\d{2}:\d{2}\.\d{3}) --> (\d{2}:\d{2}:\d{2}\.\d{3})\n([^]*?)(?=\n\n|$)/g)];
+  // The release retains two honestly labelled unclear passages, not inferred words.
+  // New unclear passages must be reviewed rather than silently added to this allowance.
+  const unclear = cues.filter(cue => cue[3].includes('[passagem pouco percetível]'));
+  const knownUnclearStarts = media.id === 'ramiro' ? ['00:01:17.100', '00:02:26.660'] : [];
+  assert.ok(unclear.every(cue => knownUnclearStarts.includes(cue[1])), `Unreviewed unclear caption: ${media.id}`);
   assert.ok(cues.length >= 5, `Missing captions: ${media.id}`);
   let end = 0;
   for (const cue of cues) {

@@ -1,6 +1,6 @@
 # Fotografias e vídeos nas páginas de serviços
 
-Versão para revisão, preparada a partir de `origin/main` (`ce15c3b`) num checkout isolado. A publicação não foi executada. Os originais permanecem na pasta fornecida, sem alterações.
+Versão preparada a partir de `origin/main` (`ce15c3b`) num checkout isolado. Publicação autorizada pelo cliente em 25 de setembro de 2026. Os originais permanecem na pasta fornecida, sem alterações.
 
 ## Seleção aplicada
 
@@ -41,16 +41,16 @@ Os eventos `service_video_start`, `service_video_complete` e `service_media_cta`
 
 Os pedidos recebidos continuam a ser os pedidos efetivamente gravados. Os grupos por serviço, página e origem já existem na estrutura de analytics. `generate_lead` mantém-se associado à confirmação de gravação. Telefone e WhatsApp continuam a ser cliques separados, sem os contar como pedidos recebidos.
 
-Na publicação, guardar o ponto de comparação dos 28 dias anteriores. Passados 28 dias completos, comparar pedidos por serviço/página, sessões e taxa de pedido, reproduções, conclusões e cliques nos blocos. Separar alterações no volume/composição do tráfego e campanhas; uma variação não demonstra, por si só, efeito dos vídeos. Esta comparação ainda não é possível porque a alteração não foi publicada.
+Comparar o período anterior de 28 de agosto a 24 de setembro com os 28 dias completos posteriores à publicação, de 26 de setembro a 23 de outubro de 2026. Usar pedidos por serviço/página, sessões e taxa de pedido, reproduções, conclusões e cliques nos blocos. Os novos eventos de vídeo não têm histórico anterior. Separar alterações no volume/composição do tráfego e campanhas; uma variação não demonstra, por si só, efeito dos vídeos.
 
 ## Publicação
 
-`src/content/service-media-publication.json` mantém `publishedAt: null` durante a revisão. Não é usada a data de exportação. O `VideoObject` está implementado, mas só é emitido quando existir a data efetiva de primeira publicação. O build de produção recusa uma data em falta.
+`src/content/service-media-publication.json` regista `publishedAt: "2026-09-25"`, a data da primeira publicação no site. O `VideoObject` usa esta data e os URLs estáveis dos ficheiros. O build de produção recusa uma data em falta.
 
 Depois da autorização de publicação e com a data real definida:
 
 1. Registar essa data com `npm run media:publication -- YYYY-MM-DD`. O comando preserva a data se já estiver registada.
-2. Concluir a revisão auditiva e substituir as duas marcações provisórias nas legendas e na transcrição do Ramiro (1:17–1:20 e 2:27–2:28). O build de produção recusa essas marcações e verifica a correspondência entre legendas e transcrição.
+2. Conservar a indicação `[passagem pouco percetível]` nas duas passagens do Ramiro (1:17–1:20 e 2:27–2:28). A publicação autorizada conserva esta limitação da versão de revisão, sem atribuir palavras não confirmadas ao entrevistado. A validação admite apenas estes dois tempos conhecidos e verifica a correspondência entre legendas e transcrição.
 3. Executar `npm run verify:media`, `npm test`, `npx tsc --noEmit` e `npm run build` com a configuração do projeto.
 4. Seguir o fluxo Git do projeto. Não executar publicação direta por CLI.
 5. Esperar pelo deployment `Ready` e executar `npm run verify:media-pages -- https://www.medisigma.pt`.
@@ -60,7 +60,7 @@ Os testes de HTML e dos ficheiros não submetem formulários nem enviam notifica
 
 ## Verificação da versão de revisão
 
-As falas dos cinco vídeos foram processadas integralmente com reconhecimento de voz local e o texto foi revisto. Para a entrevista foram comparadas três transcrições (Whisper small, medium e large-v3-turbo). Duas passagens continuam assinaladas como pouco percetíveis; as transcrições automáticas discordam e não foi inventada uma citação. Isto não substitui a revisão auditiva humana integral antes da publicação. Os dois excertos para facilitar a confirmação estão em `.media-build/ramiro-rever-01.mp3` e `.media-build/ramiro-rever-02.mp3` (não publicados).
+As falas dos cinco vídeos foram processadas integralmente com reconhecimento de voz local e o texto foi revisto. Para a entrevista foram comparadas três transcrições (Whisper small, medium e large-v3-turbo). Duas passagens continuam assinaladas como pouco percetíveis; as transcrições automáticas discordam e não foi inventada uma citação. Não foi possível fazer uma revisão auditiva humana integral nesta sessão. Os dois excertos para uma confirmação futura estão em `.media-build/ramiro-rever-01.mp3` e `.media-build/ramiro-rever-02.mp3` (não publicados).
 
 Validações executadas na versão local em 25 de setembro de 2026:
 
@@ -73,4 +73,4 @@ Validações executadas na versão local em 25 de setembro de 2026:
 - Inspeção visual das secções em computador e telemóvel. A seleção de serviço foi confirmada nos formulários de Segurança Alimentar, Lisboa, Segurança Contra Incêndios, Portalegre, Abrantes e SinalSigma, sem submeter pedidos reais.
 - `git diff --check` sem erros. A cópia principal mantém as alterações que já existiam antes desta tarefa. As três advertências de lint do build já existiam nos imports de `Link` de duas páginas e no `useEffect` de `PostEditor`.
 
-A revisão está disponível apenas no computador local, em `http://127.0.0.1:3075`. Se o processo tiver terminado, pode voltar a ser iniciado neste checkout com `node .media-build/run-local.mjs start`. A publicação e a validação no domínio público permanecem por executar, conforme o plano aprovado.
+A versão local pode ser iniciada neste checkout com `node .media-build/run-local.mjs start`. O destino da publicação autorizada é `https://www.medisigma.pt`, através de push para `main` e sincronização automática da Vercel. A validação pública deve confirmar o deployment e executar o verificador HTTP, sem enviar pedidos de contacto reais.

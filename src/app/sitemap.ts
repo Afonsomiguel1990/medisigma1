@@ -1,5 +1,7 @@
 import { MetadataRoute } from 'next';
 import { getAllPublishedPosts } from '@/lib/posts';
+import { serviceMedia, locationMedia } from '@/lib/service-media';
+import mediaPublication from '@/content/service-media-publication.json';
 
 export const dynamic = 'force-dynamic';
 
@@ -8,6 +10,12 @@ const staticLastModified = new Date('2026-05-13T00:00:00.000Z');
 const controloPragasLastModified = new Date('2026-05-13T22:58:43.000Z');
 const restaurantTestimonialLastModified = new Date('2026-09-08T00:00:00.000Z');
 const editorialLastModified = new Date('2026-09-14T00:00:00.000Z');
+const mediaLastModified = mediaPublication.publishedAt ? new Date(mediaPublication.publishedAt) : null;
+const mediaPaths = new Set([
+  ...Object.values(serviceMedia).map(entry => entry.servicePath),
+  ...Object.keys(locationMedia).map(city => `/${city}/`),
+  '/abrantes/',
+]);
 const editorialPaths = new Set([
   '/servicos/medicina-no-trabalho/', '/servicos/legionella/', '/servicos/seguranca-no-trabalho/',
   '/servicos/formacao-certificada/', '/servicos/manutencao-extintores/', '/servicos/seguranca-incendios/',
@@ -21,9 +29,10 @@ function route(
   priority: number,
   lastModified: Date = staticLastModified,
 ): MetadataRoute.Sitemap[number] {
+  const modified = editorialPaths.has(path) ? editorialLastModified : lastModified;
   return {
     url: `${baseUrl}${path}`,
-    lastModified: editorialPaths.has(path) ? editorialLastModified : lastModified,
+    lastModified: mediaPaths.has(path) && mediaLastModified && mediaLastModified > modified ? mediaLastModified : modified,
     changeFrequency,
     priority,
   };

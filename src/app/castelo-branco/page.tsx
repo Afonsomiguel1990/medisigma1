@@ -1,3 +1,4 @@
+import { LocationServiceMedia } from "@/components/service-media/section";
 import React from "react";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -278,6 +279,8 @@ export default function CasteloBrancoPage() {
                 </section>
 
                 {/* CTA Section */}
+                <LocationServiceMedia location="castelo-branco" />
+
                 <section id="contact-form" className="py-20 bg-secondary relative overflow-hidden">
                     <div className="absolute inset-0 opacity-10 pointer-events-none">
                         <svg className="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -328,6 +331,7 @@ export default function CasteloBrancoPage() {
 
                             <div className="lg:w-full">
                                 <ContactForm
+                                    acceptMediaIntent
                                     pagina="Página Castelo Branco"
                                     fonte="Landing Page Castelo Branco"
                                     servicoDefault="Medicina do Trabalho"

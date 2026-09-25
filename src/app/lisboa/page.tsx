@@ -1,3 +1,4 @@
+import { LocationServiceMedia } from "@/components/service-media/section";
 import React from "react";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -293,6 +294,8 @@ export default function LisboaPage() {
                 </section>
 
                 {/* CTA Section with Contact Form */}
+                <LocationServiceMedia location="lisboa" />
+
                 <section id="contact-form" className="py-20 bg-secondary relative overflow-hidden">
                     {/* Background pattern */}
                     <div className="absolute inset-0 opacity-10 pointer-events-none">
@@ -344,6 +347,7 @@ export default function LisboaPage() {
 
                             <div className="lg:w-full">
                                 <ContactForm
+                                    acceptMediaIntent
                                     pagina="Página Lisboa"
                                     fonte="Landing Page Lisboa"
                                     servicoDefault="Medicina do Trabalho"

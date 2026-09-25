@@ -1,18 +1,29 @@
 'use client';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { submitContactIntent, serviceKeyFromLabel, type SubmissionIntent } from '@/lib/leads/client-submission';
+import { mediaContactIntent } from '@/lib/media-contact';
 
 interface ContactFormProps {
   pagina?: string;
   fonte?: string;
   servicoDefault?: string;
   serviceKey?: string;
+  acceptMediaIntent?: boolean;
 }
 
-export default function ContactForm({ pagina, fonte, servicoDefault, serviceKey }: ContactFormProps) {
+export default function ContactForm({ pagina, fonte, servicoDefault, serviceKey, acceptMediaIntent = false }: ContactFormProps) {
   const busy = useRef(false);
   const intent = useRef<SubmissionIntent>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [mediaIntent, setMediaIntent] = useState<ReturnType<typeof mediaContactIntent>>();
+  useEffect(() => {
+    if (!acceptMediaIntent) return;
+    const selectService = (event: Event) => {
+      if (!busy.current) setMediaIntent(mediaContactIntent((event as CustomEvent).detail?.mediaId));
+    };
+    window.addEventListener('medisigma:media-contact', selectService);
+    return () => window.removeEventListener('medisigma:media-contact', selectService);
+  }, [acceptMediaIntent]);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (busy.current) return;
@@ -31,15 +42,16 @@ export default function ContactForm({ pagina, fonte, servicoDefault, serviceKey 
     try {
       await submitContactIntent({
         empresa, email, telefone: read('telefone'), mensagem: read('mensagem'),
-        servico: servicoDefault || 'Não especificado',
-        service_key: serviceKey || serviceKeyFromLabel(servicoDefault || '', window.location.pathname),
+        servico: mediaIntent?.serviceLabel || servicoDefault || 'Não especificado',
+        service_key: mediaIntent?.serviceKey || serviceKey || serviceKeyFromLabel(servicoDefault || '', window.location.pathname),
         company_sector: read('servico'), lead_kind: 'service_request',
-        pagina: paginaLabel, fonte: fonte || paginaLabel,
+        pagina: paginaLabel, fonte: mediaIntent ? `${fonte || paginaLabel}:media:${mediaIntent.mediaId}` : fonte || paginaLabel,
         url: window.location.href, confirm_mail: read('confirm_mail'),
       }, intent.current);
       alert('Mensagem recebida. Obrigado!');
       form.reset();
       intent.current = {};
+      setMediaIntent(undefined);
     } catch {
       alert('Erro ao enviar mensagem. Tente novamente ou contacte-nos pelo 241 331 504.');
     } finally { busy.current = false; setIsSubmitting(false); }
@@ -47,6 +59,10 @@ export default function ContactForm({ pagina, fonte, servicoDefault, serviceKey 
   return (
     <div className="bg-white p-8 rounded-xl shadow-2xl">
       <h3 className="text-2xl font-semibold text-gray-900 mb-6">Contacto Rápido</h3>
+      {mediaIntent && <div className="mb-5 rounded-lg bg-blue-50 p-3 text-sm text-slate-800" role="status">
+        <p>Pedido sobre <strong>{mediaIntent.serviceLabel}</strong></p>
+        <button type="button" disabled={isSubmitting} onClick={() => setMediaIntent(undefined)} className="mt-1 underline underline-offset-4">Retirar seleção</button>
+      </div>}
       <form className="space-y-4" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="empresa" className="block text-sm font-medium text-gray-700 mb-2">

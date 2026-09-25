@@ -70,3 +70,9 @@ export function trackContactClick(channel: 'phone' | 'email' | 'whatsapp', servi
   ga('event', `${channel}_click`, { contact_method: channel, page_location: window.location.origin + path });
   try { void fetch(`/api/track-${channel}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, keepalive: true, body: JSON.stringify({ event_id: crypto.randomUUID(), consent: true, pagina: path, url: path, service_key: serviceKey, attribution }) }).catch(() => {}); } catch { /* Contact navigation must continue. */ }
 }
+
+export function trackServiceMedia(event: 'service_video_start' | 'service_video_complete' | 'service_media_cta', mediaId: string, serviceKey: string): boolean {
+  if (!canTrack() || !ready || !/^[a-z0-9-]{1,80}$/.test(mediaId) || !/^[a-z0-9-]{1,80}$/.test(serviceKey)) return false;
+  ga('event', event, { media_id: mediaId, service_key: serviceKey, page_location: window.location.origin + publicPath(window.location.pathname) });
+  return true;
+}

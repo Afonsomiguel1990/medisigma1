@@ -1,3 +1,4 @@
+import { ServiceMediaSection } from "@/components/service-media/section";
 import Link from 'next/link';
 import React from 'react';
 import { Metadata } from 'next';
@@ -274,6 +275,8 @@ export default function SegurancaIncendiosPage() {
         </section>
 
         {/* CTA Section */}
+        <ServiceMediaSection id="herdade-amarela" />
+
         <section id="cta-section" className="relative z-10 bg-secondary py-16 md:py-20 mx-4 md:mx-8 rounded-3xl mb-8">
           <div className="container mx-auto px-6 md:px-8 max-w-5xl">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -319,6 +322,7 @@ export default function SegurancaIncendiosPage() {
               </div>
 
               <ContactForm
+                acceptMediaIntent
                 pagina="Serviço Segurança Contra Incêndios"
                 fonte="servicos/seguranca-incendios"
                 servicoDefault="Segurança Contra Incêndios"

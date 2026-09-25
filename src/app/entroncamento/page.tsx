@@ -1,3 +1,4 @@
+import { LocationServiceMedia } from "@/components/service-media/section";
 import React from "react";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -273,6 +274,8 @@ export default function EntroncamentoPage() {
                 </section>
 
                 {/* CTA Section */}
+                <LocationServiceMedia location="entroncamento" />
+
                 <section id="contact-form" className="py-20 bg-secondary relative overflow-hidden">
                     <div className="absolute inset-0 opacity-10 pointer-events-none">
                         <svg className="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -323,6 +326,7 @@ export default function EntroncamentoPage() {
 
                             <div className="lg:w-full">
                                 <ContactForm
+                                    acceptMediaIntent
                                     pagina="Página Entroncamento"
                                     fonte="Landing Page Entroncamento"
                                     servicoDefault="HST Integrada"

@@ -1,3 +1,4 @@
+import { ServiceMediaSection } from "@/components/service-media/section";
 import { Metadata } from "next";
 import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
@@ -220,6 +221,8 @@ export default function SignalSigmaPage() {
                 </section>
 
                 {/* CTA Section */}
+        <ServiceMediaSection id="sinaletica" />
+
                 <section id="cta-section" className="relative z-10 bg-secondary py-16 md:py-20 mx-4 md:mx-8 rounded-3xl mb-8">
                     <div className="container mx-auto px-6 md:px-8 max-w-5xl">
                         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -265,6 +268,7 @@ export default function SignalSigmaPage() {
                             </div>
 
                             <ContactForm
+                acceptMediaIntent
                                 pagina="SinalSigma"
                                 fonte="signalsigma"
                                 servicoDefault="Sinalética"

@@ -4,11 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "prebuild": "node scripts/check-server-config.mjs",
+    "prebuild": "node scripts/check-service-media.mjs && node scripts/service-media-publication.mjs --check && node scripts/check-server-config.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "tsx --test tests/agent-readiness.test.ts tests/analytics-consent.test.ts tests/blog-editorial.test.ts tests/lead-submission.test.ts tests/leads-repository.test.ts tests/resource-access.test.ts tests/resource-expiry-client.test.ts",
+    "test": "tsx --test tests/agent-readiness.test.ts tests/analytics-consent.test.ts tests/blog-editorial.test.ts tests/lead-submission.test.ts tests/leads-repository.test.ts tests/resource-access.test.ts tests/resource-expiry-client.test.ts tests/service-media.test.ts",
+    "media:publication": "node scripts/service-media-publication.mjs",
+    "verify:media": "node scripts/check-service-media.mjs",
+    "verify:media-pages": "tsx scripts/verify-service-media-pages.ts",
     "verify:agent": "tsx scripts/verify-agent-readiness.ts",
     "verify:blog": "tsx scripts/verify-blog-pages.ts"
   },

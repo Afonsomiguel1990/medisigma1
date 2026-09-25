@@ -1,3 +1,4 @@
+import { ServiceMediaSection } from "@/components/service-media/section";
 import Image from 'next/image'
 import { Metadata } from 'next'
 import { FileText, BookOpen, ClipboardCheck, AlertTriangle, FileWarning, Search, Wrench, ShieldCheck, Award, CheckCircle, Monitor, CheckSquare, Archive } from 'lucide-react'
@@ -5,7 +6,6 @@ import Link from 'next/link'
 import { siteConfig } from "@/lib/config";
 import { ContactLink } from "@/components/custom/contact-link";
 import ContactForm from '@/components/ContactForm'
-import { RestaurantTestimonial } from '@/components/sections/restaurant-testimonial';
 
 export const metadata: Metadata = {
   title: "Segurança Alimentar | Sistemas HACCP e Consultoria",
@@ -246,7 +246,8 @@ export default function SegurancaAlimentarPage() {
           </div>
         </section>
 
-        <RestaurantTestimonial />
+        <ServiceMediaSection id="seguranca-alimentar" />
+        <ServiceMediaSection id="ramiro" />
 
         {/* CTA Section */}
         <section id="cta-section" className="relative z-10 bg-secondary py-16 md:py-20 mx-4 md:mx-8 rounded-3xl mb-8">
@@ -294,6 +295,7 @@ export default function SegurancaAlimentarPage() {
               </div>
 
               <ContactForm
+                acceptMediaIntent
                 pagina="Serviço Segurança Alimentar"
                 fonte="servicos/seguranca-alimentar"
                 servicoDefault="Segurança Alimentar"

@@ -44,3 +44,6 @@ next-env.d.ts
 /resources/
 /output/
 /.playwright-cli/
+
+# Local media preparation and review
+/.media-build/

@@ -1,0 +1,205 @@
+[
+  {
+    "id": "sofalca-ruido",
+    "source": "Sofalca - Medição de Ruido.mp4",
+    "sourceSha256": "2ecade8a275d3595a9e318157ce42eab841cc2bef31625767e11881807d5615a",
+    "output": "sofalca-ruido.mp4",
+    "bytes": 6924693,
+    "sha256": "bc8861216eaa5bc44ba33b466c51e342886993fc19ed395ce5df773d62219f86",
+    "posterTimestamp": 17.6,
+    "duration": 32.09,
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac"
+      }
+    ]
+  },
+  {
+    "id": "herdade-amarela",
+    "source": "ST - Herdade Amarela.mp4",
+    "sourceSha256": "9f666c39c63583edb74ba297aa8dd9bd4027f66043c9e90b4248b74f58ff3abc",
+    "output": "herdade-amarela.mp4",
+    "bytes": 3616945,
+    "sha256": "58e0482637235b852d14b1962803d67dce2ff12810b1025fa0fda2aaae4803cd",
+    "posterTimestamp": 1.5,
+    "duration": 18.22,
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac"
+      }
+    ]
+  },
+  {
+    "id": "seguranca-alimentar",
+    "source": "SA - O que não vez .mp4",
+    "sourceSha256": "19e8c685fd66f1346567848c8223cce85681bef7798d976756bdccef65933d66",
+    "output": "seguranca-alimentar.mp4",
+    "bytes": 4726139,
+    "sha256": "be00b503cf6a596a5cef3c98189e01bb88c9571fb011b0942ba63b5cc603b9fc",
+    "posterTimestamp": 6.7,
+    "duration": 22.29,
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac"
+      }
+    ]
+  },
+  {
+    "id": "benfica-abrantes",
+    "source": "Medicina Desportiva - Benfica de Abrantes.mp4",
+    "sourceSha256": "2a8cdac20b3d3fd4afc12d237d90543636fa932a1d5a058731946bd5d2061c49",
+    "output": "benfica-abrantes.mp4",
+    "bytes": 5619097,
+    "sha256": "99278e55db992bc3b67bdfa6dc9b6aa8a4627855ac5018badf15bd1537d1d71a",
+    "posterTimestamp": 9.2,
+    "duration": 30.51,
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac"
+      }
+    ]
+  },
+  {
+    "id": "ramiro",
+    "source": "RamIro - Entrevista.mp4",
+    "sourceSha256": "3088fa797defdbedbac5a7d071e23c088797d90053791010326e5708f834bc2d",
+    "output": "ramiro.mp4",
+    "bytes": 22313837,
+    "sha256": "fcb926dd00c0b78b16e1da50388dfbed49ccb71d95664d2a76d66b540d6a954f",
+    "posterTimestamp": 143.2,
+    "duration": 150.76,
+    "streams": [
+      {
+        "codec_type": "video",
+        "codec_name": "h264",
+        "width": 720,
+        "height": 1280
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac"
+      }
+    ]
+  },
+  {
+    "id": "avaliacao-ruido-sofalca",
+    "source": "FOTOS/IMG_2932.heic",
+    "sourceSha256": "9f68470603ffdb330a64a3d38a2da722970f6ad584b036e8dcb75a7580cfd623",
+    "output": "avaliacao-ruido-sofalca.webp",
+    "bytes": 342304,
+    "sha256": "824b7ec0c858feb4f021d66810937a5a1642b4e7d90414a63f56bc07cfd09aab",
+    "width": 900,
+    "height": 1600,
+    "crop": null
+  },
+  {
+    "id": "medicao-ruido-industria",
+    "source": "FOTOS/WhatsApp Image 2026-08-17 at 13.47.37 (1).jpeg",
+    "sourceSha256": "9427d5a0d5b83854816c2da3f264670d4cbc5b7cc4102708becc5b71700a253f",
+    "output": "medicao-ruido-industria.webp",
+    "bytes": 270794,
+    "sha256": "f0ebc642afe665a6a918a89282c251d8271aa81e63d96000148607febbd1dbef",
+    "width": 1200,
+    "height": 1600,
+    "crop": null
+  },
+  {
+    "id": "tecnica-seguranca-alimentar",
+    "source": "FOTOS/Captura de ecrã 2026-09-08, às 11.49.27.png",
+    "sourceSha256": "6f94845e0f49bb5e382dd6a8df25d5f9ae9635790c5a4951c461e6029fefaf34",
+    "output": "tecnica-seguranca-alimentar.webp",
+    "bytes": 73394,
+    "sha256": "32c0894686664a76f27346dd43e31703fec1f99d2cd7e329097ea96d86151061",
+    "width": 904,
+    "height": 1600,
+    "crop": null
+  },
+  {
+    "id": "avaliacao-medicina-desportiva",
+    "source": "FOTOS/Captura de ecrã 2026-09-08, às 11.50.21.png",
+    "sourceSha256": "7757fa81c3bbb1be1aa551543b4030dfdf3fc14a55938855873acc96508079d4",
+    "output": "avaliacao-medicina-desportiva.webp",
+    "bytes": 68710,
+    "sha256": "bb88505f15a16256727b6d416e148f89804de173d8f79c0945e9c27230cd0c01",
+    "width": 893,
+    "height": 1600,
+    "crop": null
+  },
+  {
+    "id": "manutencao-extintores-viatura",
+    "source": "FOTOS/IMG_2962.heic",
+    "sourceSha256": "9743dc4c51f42a686240746010ea0c79c4fcaa28f63688912664f3fc099baed8",
+    "output": "manutencao-extintores-viatura.webp",
+    "bytes": 245776,
+    "sha256": "5fc45f9e8ceb993f660f9e25875bb54f6ee75d7ac17b1c75c020be97bfd0f042",
+    "width": 900,
+    "height": 1600,
+    "crop": null
+  },
+  {
+    "id": "equipamento-manutencao-extintores",
+    "source": "FOTOS/IMG_2958.heic",
+    "sourceSha256": "5f1389be7945059fbef341c47b8fb8b5a9c68f45aeeee9955829961ba698e8d3",
+    "output": "equipamento-manutencao-extintores.webp",
+    "bytes": 147870,
+    "sha256": "6e5a3063e8dced66bb9ad00903d6a060526e4e0efd807c770a653f2194e85934",
+    "width": 1200,
+    "height": 1511,
+    "crop": [
+      1671,
+      2970,
+      3213,
+      4912
+    ]
+  },
+  {
+    "id": "instalacao-sinaletica",
+    "source": "FOTOS/IMG_2979.heic",
+    "sourceSha256": "384c03fb6b79cd81b22be13cd16ea885ff3d1fd56829b7dfaf48b6e45f75b581",
+    "output": "instalacao-sinaletica.webp",
+    "bytes": 138624,
+    "sha256": "b320914972048efcf53cb84a0768af73150290f3e7db7b552ddff0cf7cebfe8b",
+    "width": 900,
+    "height": 1600,
+    "crop": null
+  },
+  {
+    "id": "tecnico-controlo-pragas",
+    "source": "FOTOS/Captura de ecrã 2026-09-08, às 11.46.59.png",
+    "sourceSha256": "fecf7dfadeabd92beaa5a612dacc613a1207a30d120729ba354c446a0ac3b0ae",
+    "output": "tecnico-controlo-pragas.webp",
+    "bytes": 98922,
+    "sha256": "b2ce1cfdeb02a02ad664181680a20f07a191051197a4a00df6f5a051270edef9",
+    "width": 903,
+    "height": 1600,
+    "crop": null
+  }
+]

@@ -1,3 +1,4 @@
+import { LocationServiceMedia } from "@/components/service-media/section";
 import React from "react";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -275,6 +276,8 @@ export default function TomarPage() {
                 </section>
 
                 {/* CTA Section */}
+                <LocationServiceMedia location="tomar" />
+
                 <section id="contact-form" className="py-20 bg-secondary relative overflow-hidden">
                     <div className="absolute inset-0 opacity-10 pointer-events-none">
                         <svg className="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -325,6 +328,7 @@ export default function TomarPage() {
 
                             <div className="lg:w-full">
                                 <ContactForm
+                                    acceptMediaIntent
                                     pagina="Página Tomar"
                                     fonte="Landing Page Tomar"
                                     servicoDefault="Medicina no Trabalho"

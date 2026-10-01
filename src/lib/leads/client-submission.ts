@@ -5,7 +5,7 @@ export interface SavedLeadReceipt {
   lead_kind?: 'service_request' | 'resource_request'; notification_status?: string;
   download_expired?: boolean;
 }
-const intentKeys = ['empresa', 'nome', 'localidade', 'tipo_instalacao', 'telefone', 'email', 'servico', 'mensagem', 'pagina', 'url', 'fonte', 'lead_kind', 'service_key', 'company_sector', 'resource_id'];
+const intentKeys = ['empresa', 'nome', 'localidade', 'tipo_instalacao', 'concelho', 'nif', 'numero_trabalhadores', 'numero_estabelecimentos', 'numero_extintores', 'telefone', 'email', 'servico', 'mensagem', 'pagina', 'url', 'fonte', 'lead_kind', 'service_key', 'company_sector', 'resource_id'];
 export async function submitContactIntent(
   payload: Record<string, unknown>, intent: SubmissionIntent,
   onSaved?: (receipt: SavedLeadReceipt) => void,

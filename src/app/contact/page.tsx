@@ -4,7 +4,7 @@ import { CheckCircle, Mail, MapPin, Phone } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { ContactLink } from "@/components/custom/contact-link";
-import { MEDISIGMA, MEDISIGMA_POSTAL_ADDRESS } from "@/lib/organization";
+import { MEDISIGMA, MEDISIGMA_POSTAL_ADDRESS, serializeJsonLd } from "@/lib/organization";
 import { CONTACT_SUCCESS_MESSAGE } from "@/lib/contact";
 import { ContactApiDetails } from "@/components/ContactApiDetails";
 
@@ -25,6 +25,13 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
   const { enviado } = await searchParams;
   return (
     <main className="min-h-screen bg-white flex flex-col divide-y divide-border">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd({
+        '@context': 'https://schema.org', '@type': 'ContactPage',
+        '@id': 'https://www.medisigma.pt/contact/#webpage', url: 'https://www.medisigma.pt/contact/',
+        name: 'Contacto', inLanguage: 'pt-PT',
+        about: { '@id': 'https://www.medisigma.pt/#organization' },
+        isPartOf: { '@id': 'https://www.medisigma.pt/#website' },
+      }) }} />
       {/* Hero / CTA Section */}
       <section className="relative py-12 md:py-24 mx-3 sm:mx-6 md:mx-8 rounded-3xl mb-8">
         <div className="absolute inset-0 -z-10 pointer-events-none">

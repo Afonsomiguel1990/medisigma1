@@ -8,8 +8,8 @@ if (missing.length) throw new Error(`Required server configuration missing: ${mi
 const client = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE, { auth: { persistSession: false } });
 const {error} = await client.schema('web').rpc('get_lead_analytics', {p_from:'2000-01-01T00:00:00Z',p_to:'2000-01-02T00:00:00Z'});
 if (error) throw new Error('Private lead RPC is unavailable. Apply the reviewed migrations before publishing.');
-const { error: contactError } = await client.schema('web').from('contacts').select('nome,localidade,tipo_instalacao').limit(0);
-if (contactError) throw new Error('Contact detail columns are unavailable. Apply contact-details.sql before publishing.');
+const { error: contactError } = await client.schema('web').from('contacts').select('nome,localidade,tipo_instalacao,concelho,nif,numero_trabalhadores,numero_estabelecimentos,numero_extintores').limit(0);
+if (contactError) throw new Error('Contact detail columns are unavailable. Apply contact-details.sql and proposal-details.sql before publishing.');
 const { data: posts, error: copyError } = await client.schema('web').from('posts')
   .select('slug,title,excerpt,description,content_mdx,content_rich,author,meta_title,meta_description');
 if (copyError) throw new Error('Could not verify blog punctuation before publishing.');

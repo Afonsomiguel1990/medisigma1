@@ -25,6 +25,7 @@ const CANONICAL_PUBLIC_ROUTES = new Set([
   "/castelo-branco",
   "/coimbra",
   "/contact",
+  "/pedir-proposta",
   "/cookies",
   "/covilha",
   "/entroncamento",

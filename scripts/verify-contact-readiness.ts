@@ -13,7 +13,7 @@ async function main() {
   const sitemap = await fetch(origin + '/sitemap.xml');
   assert.equal(sitemap.status, 200);
   const paths = [...(await sitemap.text()).matchAll(/<loc>(.*?)<\/loc>/g)].map(match => new URL(match[1]).pathname);
-  paths.push('/pagina-inexistente-contacto/', '/zootopia', '/contact/?enviado=1');
+  paths.push('/pagina-inexistente-contacto/', '/zootopia', '/contact/?enviado=1', '/pedir-proposta/?servico=manutencao-extintores');
   for (let start = 0; start < paths.length; start += 4) {
     await Promise.all(paths.slice(start, start + 4).map(async path => {
       const [htmlResponse, markdownResponse] = await Promise.all([
@@ -42,11 +42,19 @@ async function main() {
       }
       if (path === '/contact/') for (const field of ['nome', 'localidade', 'tipo_instalacao', 'servico']) assert.ok(html.includes('name="' + field + '"'), field);
       if (path === '/contact/?enviado=1') assert.ok(html.includes('Mensagem recebida. Obrigado! Respondemos em até 48 horas úteis.'));
+      if (path.startsWith('/pedir-proposta/')) {
+        for (const field of ['concelho', 'nif', 'numero_trabalhadores', 'numero_estabelecimentos', 'numero_extintores']) {
+          assert.ok(html.includes('name="' + field + '"'), path + ': campo ' + field);
+          assert.ok(markdown.includes(field), path + ': documentação ' + field);
+        }
+        assert.ok(html.includes('action="/api/contact"')); assert.ok(html.includes('method="post"'));
+        if (path.includes('servico=')) assert.match(html, /value="Manutenção de Extintores" selected=""/);
+      }
       results.push({ path, status: htmlResponse.status, markdownStatus: markdownResponse.status });
     }));
     console.log('Verificadas ' + Math.min(start + 4, paths.length) + '/' + paths.length + ' páginas.');
   }
-  for (const alias of ['/contacto', '/contacto/', '/contactos', '/contactos/']) {
+  for (const alias of ['/contacto', '/contacto/', '/contactos', '/contactos/', '/fale-connosco', '/fale-connosco/']) {
     for (const accept of ['text/html', 'text/markdown']) {
       const response = await fetch(origin + alias + '?origem=teste', { redirect: 'manual', headers: { Accept: accept } });
       assert.equal(response.status, 301);

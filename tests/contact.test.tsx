@@ -16,6 +16,9 @@ import { formatSlackMessage } from '../src/lib/webhook';
 import { htmlToMarkdown } from '../src/lib/markdown';
 import { middleware } from '../src/middleware';
 import { hasEmDash } from '../scripts/check-public-copy.mjs';
+import { proposalService, proposalQuestions } from '../src/lib/proposal';
+import { submitContactIntent } from '../src/lib/leads/client-submission';
+import ProposalPage from '../src/app/pedir-proposta/page';
 
 const payload = { empresa: 'Empresa de Teste', nome: 'Ana', email: 'contacto@example.invalid', servico: 'Medicina do Trabalho', localidade: 'Abrantes', tipo_instalacao: 'Indústria' };
 const noLimit = () => null;
@@ -130,7 +133,7 @@ test('form HTML supports native submission, all service defaults and separate op
 });
 
 test('contact aliases preserve query parameters for HTML, Markdown, GET and HEAD', () => {
-  for (const path of ['/contacto', '/contacto/', '/contactos', '/contactos/']) for (const accept of ['text/html', 'text/markdown']) for (const method of ['GET', 'HEAD']) {
+  for (const path of ['/contacto', '/contacto/', '/contactos', '/contactos/', '/fale-connosco', '/fale-connosco/']) for (const accept of ['text/html', 'text/markdown']) for (const method of ['GET', 'HEAD']) {
     const response = middleware(new NextRequest('https://www.medisigma.pt' + path + '?origem=teste', { method, headers: { Accept: accept } }));
     assert.equal(response.status, 301);
     assert.equal(response.headers.get('Location'), 'https://www.medisigma.pt/contact/?origem=teste');
@@ -161,4 +164,76 @@ test('Slack includes personal contact details without exceeding ten fields per b
 test('public-copy guard catches literal and encoded m-dashes while retaining ordinary hyphens', () => {
   for (const value of [String.fromCodePoint(8212), '&mdash;', '&#8212;', '&#x2014;', String.raw`\u2014`, String.raw`\u{2014}`]) assert.ok(hasEmDash(value), value);
   assert.equal(hasEmDash('pt-PT e segunda-feira'), false);
+});
+
+test('proposal details survive JSON, native and multipart submission and reach notification', async () => {
+  const details = { concelho: 'Tomar', nif: '500000000', numero_trabalhadores: '12', numero_estabelecimentos: '2', numero_extintores: '8', fonte: 'pedido-proposta' };
+  for (const format of ['json', 'urlencoded', 'multipart']) {
+    const repo = repository(); let notification = '';
+    let body: BodyInit;
+    const headers: Record<string, string> = { Accept: format === 'json' ? 'application/json' : 'text/html' };
+    if (format === 'json') { headers['Content-Type'] = 'application/json'; body = JSON.stringify({ ...payload, ...details, numero_trabalhadores: 12 }); }
+    else if (format === 'urlencoded') body = new URLSearchParams({ ...payload, ...details });
+    else { const data = new FormData(); for (const [key, value] of Object.entries({ ...payload, ...details })) data.set(key, value); body = data; }
+    const response = await handleContactRequest(new Request('https://www.medisigma.pt/api/contact', { method: 'POST', headers, body }),
+      value => submitLead(value, repo, async value => { notification = JSON.stringify(value); return 'sent'; }), noLimit);
+    assert.equal(response.status, format === 'json' ? 200 : 303);
+    const lead = repo.rows[0];
+    assert.equal(lead.concelho, 'Tomar'); assert.equal(lead.nif, '500000000');
+    assert.equal(lead.numero_trabalhadores, 12); assert.equal(lead.numero_estabelecimentos, 2); assert.equal(lead.numero_extintores, 8);
+    for (const value of ['Tomar', '500000000', 'Trabalhadores', 'Estabelecimentos', 'Extintores']) assert.ok(notification.includes(value));
+  }
+});
+
+test('optional proposal validation rejects malformed data without creating leads', async () => {
+  for (const invalid of [{ nif: 'abc123456' }, { nif: '123' }, { concelho: 'x'.repeat(201) },
+    ...['numero_trabalhadores', 'numero_estabelecimentos', 'numero_extintores'].flatMap(key => [-1, 0, 1.5, 1000001, true, [], {}, '1e2'].map(value => ({ [key]: value })))]) {
+    const repo = repository();
+    const result = await submitLead({ ...payload, ...invalid }, repo, async () => { throw Error('Must not notify'); });
+    assert.equal(result.status, 400); assert.equal(repo.rows.length, 0);
+  }
+  const minimal = validateLeadSubmission({ empresa: 'Teste', email: 'test@example.invalid', servico: 'Outros' });
+  assert.equal(minimal?.numero_trabalhadores, null);
+  assert.equal(minimal?.nif, '');
+});
+
+test('proposal changes rotate client intent and server hash, while equivalent quantities keep server hash', async () => {
+  const initial = { ...payload, nif: '500000000', concelho: 'Tomar', numero_trabalhadores: '12', numero_estabelecimentos: '2', numero_extintores: '8' };
+  const originalHash = validateLeadSubmission(initial)?.payloadHash;
+  assert.equal(validateLeadSubmission({ ...initial, numero_trabalhadores: 12 })?.payloadHash, originalHash);
+  const ids: string[] = [];
+  const fetcher = (async (_url: unknown, options: RequestInit) => {
+    const body = JSON.parse(String(options.body)); ids.push(body.submission_id);
+    return Response.json({ ok: true, saved: true, submission_id: body.submission_id });
+  }) as typeof fetch;
+  for (const [key, value] of Object.entries({ nif: '500000001', concelho: 'Abrantes', numero_trabalhadores: '13', numero_estabelecimentos: '3', numero_extintores: '9' })) {
+    const changed = { ...initial, [key]: value };
+    assert.notEqual(validateLeadSubmission(changed)?.payloadHash, originalHash);
+    const intent = {};
+    await submitContactIntent(initial, intent, undefined, fetcher);
+    await submitContactIntent(initial, intent, undefined, fetcher);
+    await submitContactIntent(changed, intent, undefined, fetcher);
+    assert.equal(ids.at(-3), ids.at(-2)); assert.notEqual(ids.at(-2), ids.at(-1));
+  }
+});
+
+test('proposal page preselects known services only and exposes every optional field without JavaScript', async () => {
+  for (const service of CONTACT_SERVICES) assert.equal(proposalService(service.key), service.value);
+  assert.equal(proposalService('<script>'), '');
+  assert.equal(proposalQuestions('Medicina no Trabalho').workers, true);
+  assert.equal(proposalQuestions('SST integrada').workers, true);
+  assert.equal(proposalQuestions('HACCP').sites, true);
+  assert.equal(proposalQuestions('SCIE').sites, true);
+  assert.equal(proposalQuestions('Controlo de Pragas').sites, true);
+  assert.equal(proposalQuestions('Manutenção de Extintores').extinguishers, true);
+  const markup = renderToStaticMarkup(await ProposalPage({ searchParams: Promise.resolve({ servico: 'manutencao-extintores' }) }));
+  assert.match(markup, /value="Manutenção de Extintores" selected=""/);
+  assert.match(markup, /method="post"/); assert.match(markup, /action="\/api\/contact"/);
+  assert.doesNotMatch(markup, /name="localidade"/);
+  for (const field of ['concelho', 'nif', 'numero_trabalhadores', 'numero_estabelecimentos', 'numero_extintores']) {
+    const input = markup.match(new RegExp('<input[^>]*name="' + field + '"[^>]*>'))?.[0] || '';
+    assert.ok(input); assert.doesNotMatch(input, /required|disabled/);
+  }
+  const markdown = htmlToMarkdown(markup);
+  for (const field of ['concelho', 'nif', 'numero_trabalhadores', 'numero_estabelecimentos', 'numero_extintores']) assert.ok(markdown.includes(field));
 });

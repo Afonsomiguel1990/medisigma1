@@ -126,6 +126,7 @@ export default function AdminFormsPage() {
                     <TableHead>Email</TableHead>
                     <TableHead>Telefone</TableHead>
                     <TableHead>Serviço</TableHead>
+                    <TableHead>Dados da proposta</TableHead>
                     <TableHead>Página</TableHead>
                     <TableHead className="text-right">Mensagem</TableHead>
                   </TableRow>
@@ -163,6 +164,14 @@ export default function AdminFormsPage() {
                         )}
                       </TableCell>
                       <TableCell>{contact.servico || '-'}</TableCell>
+                      <TableCell className="text-sm">
+                        {contact.concelho && <p>Concelho: {contact.concelho}</p>}
+                        {contact.nif && <p>NIF indicado: {contact.nif}</p>}
+                        {contact.numero_trabalhadores != null && <p>Trabalhadores: {contact.numero_trabalhadores}</p>}
+                        {contact.numero_estabelecimentos != null && <p>Estabelecimentos: {contact.numero_estabelecimentos}</p>}
+                        {contact.numero_extintores != null && <p>Extintores: {contact.numero_extintores}</p>}
+                        {!contact.concelho && !contact.nif && contact.numero_trabalhadores == null && contact.numero_estabelecimentos == null && contact.numero_extintores == null && '-'}
+                      </TableCell>
                       <TableCell className="text-sm">
                         {contact.pagina || '-'}
                       </TableCell>

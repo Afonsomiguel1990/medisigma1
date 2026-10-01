@@ -24,6 +24,8 @@ Este website não é um serviço de emergência, não realiza diagnóstico clín
 
 ## Como encaminhar pedidos
 
+- [Pedir proposta](https://www.medisigma.pt/pedir-proposta/): Pedido comercial com empresa, email e servico obrigatórios. Dados opcionais: concelho, até 200 caracteres, nif português com 9 algarismos, numero_trabalhadores para Medicina do Trabalho e SST, numero_estabelecimentos para HACCP, Pragas e SCIE, numero_extintores para Manutenção de Extintores. Quantidades inteiras de 1 a 1000000, como número ou texto. Usa POST /api/contact com fonte pedido-proposta. O formulário funciona sem JavaScript.
+
 - [Submissão de contactos](https://www.medisigma.pt/contact/#contact-form): POST /api/contact aceita application/json, application/x-www-form-urlencoded e multipart/form-data sem ficheiros. O formulário funciona sem JavaScript. Este endpoint recebe pedidos comerciais e não realiza marcações.
 - [Campos do pedido](https://www.medisigma.pt/contact/#contact-form): Obrigatórios: empresa, email válido e servico. Opcionais: nome, localidade, telefone, tipo_instalacao e mensagem. Deixar confirm_mail vazio. Empresa, nome, localidade, servico e tipo_instalacao admitem 200 caracteres; email 254; telefone 40; mensagem 2500.
 - [Serviço pretendido](https://www.medisigma.pt/contact/#contact-form): Usar Medicina do Trabalho, Segurança no Trabalho, Segurança Alimentar, Formação Certificada, Psicologia, Controlo de Pragas, Legionella, Segurança Contra Incêndios, Manutenção de Extintores, Medicina Desportiva, Nutrição, Sinalética, SST integrada, Caixas de Primeiros Socorros ou Outros.

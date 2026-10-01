@@ -9,6 +9,11 @@ export interface Contact {
   nome: string | null;
   localidade: string | null;
   tipo_instalacao: string | null;
+  concelho: string | null;
+  nif: string | null;
+  numero_trabalhadores: number | null;
+  numero_estabelecimentos: number | null;
+  numero_extintores: number | null;
   email: string | null;
   telefone: string | null;
   servico: string | null;

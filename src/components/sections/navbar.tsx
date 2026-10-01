@@ -11,7 +11,7 @@ import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 
 const INITIAL_WIDTH = "70rem";
-const MAX_WIDTH = "800px";
+const MAX_WIDTH = "1120px";
 
 // Animation variants
 const overlayVariants = {
@@ -165,47 +165,49 @@ export function Navbar() {
               <Icons.logo className="h-48 w-auto md:h-64 lg:h-80" />
             </Link>
 
-            <div className="hidden md:flex flex-1 justify-center min-w-0">
+            <div className="hidden xl:flex flex-1 justify-center min-w-0">
               <NavMenu />
             </div>
 
             <div className="flex items-center gap-4 flex-shrink-0">
-              <div className="hidden md:flex items-center space-x-2 md:space-x-4">
+              <div className="hidden xl:flex items-center space-x-2 md:space-x-4">
                 <div className="relative" ref={loginRef}>
                   <button
                     type="button"
                     onClick={() => setShowLoginDropdown((v) => !v)}
                     className="nav-css-chevron h-8 flex items-center gap-2 justify-center text-sm font-normal tracking-wide rounded-full w-fit px-4 bg-background border border-border hover:bg-accent active:scale-95 transition-colors"
                     data-open={showLoginDropdown}
+                    aria-expanded={showLoginDropdown}
+                    aria-controls="client-area-links"
                   >
                     {siteConfig.hero.cta.secondary.text}
                   </button>
                   {showLoginDropdown && (
-                    <div className="absolute right-0 mt-1 min-w-[160px] rounded-md border border-border bg-background shadow-md overflow-hidden z-50">
+                    <div id="client-area-links" className="absolute right-0 mt-1 min-w-[180px] rounded-md border border-border bg-background shadow-md overflow-hidden z-50">
                       <a
                         href={siteConfig.hero.cta.secondary.href}
                         className="block px-3 py-2 text-sm text-primary/80 hover:bg-accent/40 hover:text-primary"
                       >
-                        Careview
+                        Portal Careview
                       </a>
                       <a
                         href={siteConfig.links.moodle}
                         className="block px-3 py-2 text-sm text-primary/80 hover:bg-accent/40 hover:text-primary"
                       >
-                        Moodle
+                        Formação Moodle
                       </a>
                     </div>
                   )}
                 </div>
                 <Link
                   className="bg-secondary h-8 flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-fit px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12]"
-                  href="/contact"
+                  href="/pedir-proposta/"
                 >
-                  Fale connosco
+                  Pedir proposta
                 </Link>
               </div>
               <button
-                className="mobile-menu-css-icon md:hidden border border-border size-8 rounded-md cursor-pointer flex items-center justify-center mr-4"
+                className="mobile-menu-css-icon xl:hidden border border-border size-8 rounded-md cursor-pointer flex items-center justify-center mr-4"
                 onClick={toggleDrawer}
                 data-open={isDrawerOpen}
                 aria-label={isDrawerOpen ? "Fechar menu" : "Abrir menu"}
@@ -231,7 +233,7 @@ export function Navbar() {
             />
 
             <motion.div
-              className="fixed inset-x-0 w-[95%] mx-auto bottom-3 bg-background border border-border p-4 rounded-xl shadow-lg"
+              className="fixed inset-x-0 w-[95%] max-h-[85dvh] overflow-y-auto mx-auto bottom-3 bg-background border border-border p-4 rounded-xl shadow-lg"
               initial="hidden"
               animate="visible"
               exit="exit"
@@ -368,20 +370,21 @@ export function Navbar() {
                       href={siteConfig.hero.cta.secondary.href}
                       className="flex items-center justify-center p-2 text-sm border border-border rounded-md hover:bg-accent/40 transition-colors"
                     >
-                      Careview
+                      Portal Careview
                     </a>
                     <a
                       href={siteConfig.links.moodle}
                       className="flex items-center justify-center p-2 text-sm border border-border rounded-md hover:bg-accent/40 transition-colors"
                     >
-                      Moodle
+                      Formação Moodle
                     </a>
                   </div>
                   <Link
-                    href="/contact"
+                    href="/pedir-proposta/"
+                    onClick={() => setIsDrawerOpen(false)}
                     className="bg-secondary h-10 flex items-center justify-center text-sm font-normal tracking-wide rounded-full text-primary-foreground dark:text-secondary-foreground w-full px-4 shadow-[inset_0_1px_2px_rgba(255,255,255,0.25),0_3px_3px_-1.5px_rgba(16,24,40,0.06),0_1px_1px_rgba(16,24,40,0.08)] border border-white/[0.12] hover:bg-secondary/80 transition-all ease-out active:scale-95"
                   >
-                    Fale connosco
+                    Pedir proposta
                   </Link>
                 </div>
               </div>

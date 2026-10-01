@@ -10,6 +10,11 @@ interface WebhookData {
   empresa?: string;
   localidade?: string;
   tipo_instalacao?: string;
+  concelho?: string;
+  nif?: string;
+  numero_trabalhadores?: number | null;
+  numero_estabelecimentos?: number | null;
+  numero_extintores?: number | null;
   servico?: string;
   pagina?: string;
   url?: string;
@@ -44,6 +49,11 @@ export function formatSlackMessage(data: WebhookData) {
     fields.push({ type: 'mrkdwn', text: `*Origem:*\n${data.fonte || data.pagina || 'N/A'}` });
     if (data.tipo_instalacao || data.company_sector) fields.push({ type: 'mrkdwn', text: `*Tipo de instalação:*\n${data.tipo_instalacao || data.company_sector}` });
     if (data.localidade) fields.push({ type: 'mrkdwn', text: `*Localidade:*\n${data.localidade}` });
+    if (data.concelho) fields.push({ type: 'mrkdwn', text: `*Concelho:*\n${data.concelho}` });
+    if (data.nif) fields.push({ type: 'mrkdwn', text: `*NIF indicado:*\n${data.nif}` });
+    if (data.numero_trabalhadores) fields.push({ type: 'mrkdwn', text: `*Trabalhadores:*\n${data.numero_trabalhadores}` });
+    if (data.numero_estabelecimentos) fields.push({ type: 'mrkdwn', text: `*Estabelecimentos:*\n${data.numero_estabelecimentos}` });
+    if (data.numero_extintores) fields.push({ type: 'mrkdwn', text: `*Extintores:*\n${data.numero_extintores}` });
     if (data.resource_id) fields.push({ type: 'mrkdwn', text: `*Recurso:*\n${data.resource_id}` });
     if (data.pagina) fields.push({ type: 'mrkdwn', text: `*Página:*\n${data.pagina}` });
     if (data.url) fields.push({ type: 'mrkdwn', text: `*URL:*\n${data.url}` });

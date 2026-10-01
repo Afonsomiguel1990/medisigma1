@@ -115,7 +115,7 @@ function isNextRouterRequest(request: NextRequest) {
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  if (/^\/contactos?\/?$/.test(pathname)) {
+  if (/^\/(?:contactos?|fale-connosco)\/?$/.test(pathname)) {
     return redirect(request, "/contact/", 301);
   }
   const isStaticAsset =

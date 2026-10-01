@@ -9,6 +9,7 @@ export function ContactApiDetails() {
         <p>Este formulário funciona sem JavaScript. Também pode enviar um pedido comercial por <code>POST /api/contact</code>. Este endpoint não realiza marcações nem aceita dados clínicos.</p>
         <p>Formatos aceites: <code>application/json</code>, <code>application/x-www-form-urlencoded</code> e <code>multipart/form-data</code>, sem ficheiros.</p>
         <p>Campos obrigatórios: <code>empresa</code>, <code>email</code> e <code>servico</code>. Campos opcionais: <code>nome</code>, <code>localidade</code>, <code>telefone</code>, <code>tipo_instalacao</code> e <code>mensagem</code>.</p>
+        <p>Para <a href="/pedir-proposta/" className="underline">pedidos de proposta</a>, pode acrescentar <code>concelho</code>, até 200 caracteres, <code>nif</code>, com 9 algarismos, e <code>numero_trabalhadores</code>, <code>numero_estabelecimentos</code> ou <code>numero_extintores</code>. As quantidades são inteiros entre 1 e 1000000, enviados como número ou texto. Todos estes campos são opcionais. Use <code>fonte: pedido-proposta</code> para identificar a origem.</p>
         <p>Serviços: {CONTACT_SERVICES.map(service => service.value).join('; ')}.</p>
         <p>Limites: empresa, nome, localidade, serviço e tipo de instalação até 200 caracteres; email até 254; telefone até 40; mensagem até 2500. Deixe <code>confirm_mail</code> vazio.</p>
         <p>Para repetir uma tentativa sem duplicar o pedido, envie o mesmo <code>submission_id</code>, um UUID, com os mesmos dados. Para um novo pedido, use outro UUID.</p>

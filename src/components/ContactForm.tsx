@@ -4,6 +4,8 @@ import React, { useEffect, useId, useRef, useState } from 'react';
 import { submitContactIntent, type SubmissionIntent } from '@/lib/leads/client-submission';
 import { mediaContactIntent } from '@/lib/media-contact';
 import { CONTACT_SERVICES, CONTACT_SUCCESS_MESSAGE, contactServiceKey, normalizeContactService } from '@/lib/contact';
+import Link from 'next/link';
+import { ProposalFields } from './ProposalFields';
 
 interface ContactFormProps {
   pagina?: string;
@@ -11,6 +13,7 @@ interface ContactFormProps {
   servicoDefault?: string;
   serviceKey?: string;
   acceptMediaIntent?: boolean;
+  proposal?: boolean;
 }
 
 const inputClass = 'w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent';
@@ -22,7 +25,7 @@ const fields = [
   { name: 'localidade', label: 'Localidade (opcional)', type: 'text', autoComplete: 'address-level2', maxLength: 200 },
 ];
 
-export default function ContactForm({ pagina, fonte, servicoDefault, acceptMediaIntent = false }: ContactFormProps) {
+export default function ContactForm({ pagina, fonte, servicoDefault, acceptMediaIntent = false, proposal = false }: ContactFormProps) {
   const id = useId();
   const busy = useRef(false);
   const intent = useRef<SubmissionIntent>({});
@@ -61,6 +64,7 @@ export default function ContactForm({ pagina, fonte, servicoDefault, acceptMedia
         empresa: read('empresa'), nome: read('nome'), email: read('email'),
         telefone: read('telefone'), localidade: read('localidade'),
         mensagem: read('mensagem'), tipo_instalacao: read('tipo_instalacao'),
+        ...(proposal ? { concelho: read('concelho'), nif: read('nif'), numero_trabalhadores: read('numero_trabalhadores'), numero_estabelecimentos: read('numero_estabelecimentos'), numero_extintores: read('numero_extintores') } : {}),
         servico: read('servico'), service_key: contactServiceKey(read('servico')),
         lead_kind: 'service_request', pagina: paginaLabel,
         fonte: mediaIntent ? `${fonteLabel}:media:${mediaIntent.mediaId}` : fonteLabel,
@@ -83,7 +87,7 @@ export default function ContactForm({ pagina, fonte, servicoDefault, acceptMedia
 
   return (
     <div className="bg-white p-6 sm:p-8 rounded-xl shadow-2xl">
-      <h3 className="text-2xl font-semibold text-gray-900 mb-6">Contacto Rápido</h3>
+      <h3 className="text-2xl font-semibold text-gray-900 mb-6">{proposal ? 'Dados do pedido' : 'Contacto Rápido'}</h3>
       {mediaIntent && <div className="mb-5 rounded-lg bg-blue-50 p-3 text-sm text-slate-800" role="status">
         <p>Pedido sobre <strong>{mediaIntent.serviceLabel}</strong></p>
         <button type="button" disabled={isSubmitting} onClick={() => { setMediaIntent(undefined); setService(initialService); }} className="mt-1 underline underline-offset-4">Retirar seleção</button>
@@ -91,7 +95,7 @@ export default function ContactForm({ pagina, fonte, servicoDefault, acceptMedia
       <form className="space-y-4" method="post" action="/api/contact" onSubmit={handleSubmit} aria-busy={isSubmitting}>
         <input type="hidden" name="pagina" value={paginaLabel} />
         <input type="hidden" name="fonte" value={mediaIntent ? `${fonteLabel}:media:${mediaIntent.mediaId}` : fonteLabel} />
-        {fields.map(({ label, ...field }) => <div key={field.name}>
+        {fields.filter(field => !proposal || field.name !== 'localidade').map(({ label, ...field }) => <div key={field.name}>
           <label htmlFor={`${id}-${field.name}`} className="block text-sm font-medium text-gray-700 mb-2">{label}</label>
           <input {...field} id={`${id}-${field.name}`} className={inputClass} />
         </div>)}
@@ -103,6 +107,7 @@ export default function ContactForm({ pagina, fonte, servicoDefault, acceptMedia
             {CONTACT_SERVICES.map(option => <option key={option.value} value={option.value}>{'label' in option ? option.label : option.value}</option>)}
           </select>
         </div>
+        {proposal && <ProposalFields id={id} service={service} inputClass={inputClass} />}
         <div>
           <label htmlFor={`${id}-tipo_instalacao`} className="block text-sm font-medium text-gray-700 mb-2">Tipo de Instalação (opcional)</label>
           <select id={`${id}-tipo_instalacao`} name="tipo_instalacao" defaultValue="" className={inputClass}>
@@ -119,13 +124,14 @@ export default function ContactForm({ pagina, fonte, servicoDefault, acceptMedia
           <input type="text" id={`${id}-confirm_mail`} name="confirm_mail" tabIndex={-1} autoComplete="off" />
         </div>
         <button type="submit" disabled={isSubmitting} className="w-full bg-secondary text-white py-3 px-6 rounded-lg font-semibold hover:bg-secondary/90 transition-colors disabled:opacity-60">
-          {isSubmitting ? 'A enviar...' : 'Enviar Mensagem'}
+          {isSubmitting ? 'A enviar...' : proposal ? 'Pedir proposta' : 'Enviar Mensagem'}
         </button>
         <div aria-live="polite" aria-atomic="true">
           {status === 'success' && <p role="status" className="rounded-lg bg-green-50 p-4 text-green-900">{CONTACT_SUCCESS_MESSAGE}</p>}
           {status === 'error' && <p role="alert" className="rounded-lg bg-red-50 p-4 text-red-900">{errorMessage}</p>}
         </div>
         <p className="text-xs text-gray-500 text-center">* Campos obrigatórios. Os seus dados serão tratados com confidencialidade.</p>
+        {!proposal && <p className="text-sm text-center"><Link className="text-secondary underline underline-offset-4" href={`/pedir-proposta/${contactServiceKey(service) ? '?servico=' + contactServiceKey(service) : ''}`}>Pedir proposta com mais detalhes</Link></p>}
       </form>
     </div>
   );

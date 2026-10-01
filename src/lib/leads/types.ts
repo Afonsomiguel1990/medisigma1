@@ -8,6 +8,11 @@ export interface LeadSubmission {
   nome?: string;
   localidade?: string;
   tipo_instalacao?: string;
+  concelho?: string;
+  nif?: string;
+  numero_trabalhadores?: number | null;
+  numero_estabelecimentos?: number | null;
+  numero_extintores?: number | null;
   telefone: string;
   email: string;
   servico: string;

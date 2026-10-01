@@ -57,6 +57,7 @@ export const siteConfig = {
       { id: 5, name: "Empresas", href: "#" },
       { id: 2, name: "Serviços", href: "/servicos" },
       { id: 4, name: "Recrutamento", href: "/recrutamento" },
+      { id: 6, name: "Contactos", href: "/contact/" },
     ],
   },
   companies: [
@@ -101,7 +102,7 @@ export const siteConfig = {
         href: "/contact",
       },
       secondary: {
-        text: "Entrar",
+        text: "Área de cliente",
         href: "https://careview.medisigma.pt/ext/default.asp",
       },
     },
@@ -990,6 +991,7 @@ export const siteConfig = {
         { id: 4, title: "Testemunhos", url: "/testemunhos" },
         { id: 5, title: "Blog", url: "/blog" },
         { id: 6, title: "Contactos", url: "/contact" },
+        { id: 7, title: "Pedir proposta", url: "/pedir-proposta/" },
       ],
     },
     {

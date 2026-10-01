@@ -12,6 +12,7 @@ export function CTASection() {
   if (
     pathname?.startsWith("/ferramentas/simulador-medicina-no-trabalho") ||
     pathname?.startsWith("/ferramentas/simulador-caixas-primeiros-socorros")
+    || pathname?.startsWith("/pedir-proposta")
   ) {
     return null;
   }

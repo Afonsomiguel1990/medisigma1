@@ -228,7 +228,7 @@ export default function FAQLegionellaPage() {
                                 <article className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
                                     <h3 className="text-xl font-semibold text-gray-900 mb-3">Como posso pedir um orçamento à Medisigma para o controlo de Legionella?</h3>
                                     <p className="text-gray-700 leading-relaxed">
-                                        Pode <Link href="#cta-section" className="text-secondary hover:underline font-medium">preencher o formulário no final desta página</Link>, ligar diretamente para o nosso número de contacto permanente ou enviar mensagem via WhatsApp. Garantimos uma resposta de qualificação comercial em menos de 24 horas úteis.
+                                        Pode <Link href="#cta-section" className="text-secondary hover:underline font-medium">preencher o formulário no final desta página</Link>, ligar diretamente para o nosso número de contacto permanente ou enviar mensagem via WhatsApp. Respondemos ao seu pedido comercial em até 48 horas úteis.
                                     </p>
                                 </article>
 
@@ -272,7 +272,7 @@ export default function FAQLegionellaPage() {
                                 <div className="space-y-4 mb-8 text-blue-100">
                                     <div className="flex items-center space-x-3">
                                         <CheckCircle className="w-5 h-5 text-white flex-shrink-0" />
-                                        <span>Orçamento personalizado num prazo de 24 horas</span>
+                                        <span>Resposta ao pedido de orçamento em até 48 horas úteis</span>
                                     </div>
                                     <div className="flex items-center space-x-3">
                                         <CheckCircle className="w-5 h-5 text-white flex-shrink-0" />

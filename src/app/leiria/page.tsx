@@ -329,7 +329,7 @@ export default function LeiriaPage() {
                                     acceptMediaIntent
                                     pagina="Página Leiria"
                                     fonte="Landing Page Leiria"
-                                    servicoDefault="Medicina no Trabalho"
+                                    servicoDefault="Medicina do Trabalho"
                                 />
                             </div>
                         </div>

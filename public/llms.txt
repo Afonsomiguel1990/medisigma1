@@ -24,6 +24,12 @@ Este website não é um serviço de emergência, não realiza diagnóstico clín
 
 ## Como encaminhar pedidos
 
+- [Submissão de contactos](https://www.medisigma.pt/contact/#contact-form): POST /api/contact aceita application/json, application/x-www-form-urlencoded e multipart/form-data sem ficheiros. O formulário funciona sem JavaScript. Este endpoint recebe pedidos comerciais e não realiza marcações.
+- [Campos do pedido](https://www.medisigma.pt/contact/#contact-form): Obrigatórios: empresa, email válido e servico. Opcionais: nome, localidade, telefone, tipo_instalacao e mensagem. Deixar confirm_mail vazio. Empresa, nome, localidade, servico e tipo_instalacao admitem 200 caracteres; email 254; telefone 40; mensagem 2500.
+- [Serviço pretendido](https://www.medisigma.pt/contact/#contact-form): Usar Medicina do Trabalho, Segurança no Trabalho, Segurança Alimentar, Formação Certificada, Psicologia, Controlo de Pragas, Legionella, Segurança Contra Incêndios, Manutenção de Extintores, Medicina Desportiva, Nutrição, Sinalética, SST integrada, Caixas de Primeiros Socorros ou Outros.
+- [Confirmação e novas tentativas](https://www.medisigma.pt/contact/#contact-form): HTTP 200 com saved: true confirma que o pedido JSON ficou guardado. saved: false não confirma a gravação. Para repetir a mesma tentativa, usar o mesmo submission_id em formato UUID e os mesmos dados; num novo pedido, usar outro UUID. O formulário com Accept: text/html redireciona com HTTP 303 após gravação. Confirmação no ecrã e resposta em até 48 horas úteis.
+- [Erros e limites de contacto](https://www.medisigma.pt/contact/#contact-form): HTTP 400 para validação, 409 para submission_id reutilizado com dados diferentes, 413 para corpo superior a 64000 bytes, 415 para formato não suportado, 429 para excesso de pedidos com Retry-After e 503 para falha de gravação. Limite atual de 5 pedidos por 10 minutos por IP.
+
 - [Contacto](https://www.medisigma.pt/contact/): Encaminhar pedidos de proposta, cobertura geográfica, disponibilidade ou contratação; indicar empresa, localização, serviço pretendido e um contacto profissional, sem dados clínicos.
 - [Serviços](https://www.medisigma.pt/servicos/): Consultar primeiro o catálogo para escolher a equipa adequada antes de encaminhar um pedido.
 - [Perguntas Frequentes](https://www.medisigma.pt/faqs/): Consultar para respostas gerais antes de pedir esclarecimento à equipa.

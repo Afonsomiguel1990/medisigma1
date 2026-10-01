@@ -183,7 +183,7 @@ export default function ManutencaoExtintoresPage() {
                                 <div className="space-y-4 mb-8 text-blue-100">
                                     <div className="flex items-center space-x-3">
                                         <CheckCircle className="w-5 h-5 text-white" />
-                                        <span>Orçamento em 24h</span>
+                                        <span>Resposta em até 48 horas úteis</span>
                                     </div>
                                     <div className="flex items-center space-x-3">
                                         <CheckCircle className="w-5 h-5 text-white" />
@@ -218,7 +218,7 @@ export default function ManutencaoExtintoresPage() {
                                 pagina="Manutenção de Extintores"
                                 serviceKey="manutencao-extintores"
                                 fonte="servicos/manutencao-extintores"
-                                servicoDefault="Segurança Contra Incêndios"
+                                servicoDefault="Manutenção de Extintores"
                             />
                         </div>
                     </div>

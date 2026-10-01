@@ -5,7 +5,7 @@ export interface SavedLeadReceipt {
   lead_kind?: 'service_request' | 'resource_request'; notification_status?: string;
   download_expired?: boolean;
 }
-const intentKeys = ['empresa', 'telefone', 'email', 'servico', 'mensagem', 'pagina', 'url', 'fonte', 'lead_kind', 'service_key', 'company_sector', 'resource_id'];
+const intentKeys = ['empresa', 'nome', 'localidade', 'tipo_instalacao', 'telefone', 'email', 'servico', 'mensagem', 'pagina', 'url', 'fonte', 'lead_kind', 'service_key', 'company_sector', 'resource_id'];
 export async function submitContactIntent(
   payload: Record<string, unknown>, intent: SubmissionIntent,
   onSaved?: (receipt: SavedLeadReceipt) => void,
@@ -22,8 +22,9 @@ export async function submitContactIntent(
     method: 'POST', headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ ...payload, attribution, submission_id: intent.submissionId }),
   });
-  const receipt = await response.json().catch(() => null) as SavedLeadReceipt | null;
+  const receipt = await response.json().catch(() => null) as (SavedLeadReceipt & { error?: string }) | null;
   const expiredSavedResource = response.status === 410 && payload.lead_kind === 'resource_request' && receipt?.saved === true && receipt.download_expired === true && receipt.lead_kind === 'resource_request';
+  if (!response.ok && !expiredSavedResource && typeof receipt?.error === 'string') throw new Error(receipt.error);
   if ((!response.ok && !expiredSavedResource) || !receipt || receipt.ok !== true || typeof receipt.saved !== 'boolean') throw new Error('Não foi possível confirmar o pedido.');
   if (receipt.saved && receipt.submission_id !== intent.submissionId) throw new Error('Não foi possível confirmar o pedido.');
   // Analytics must never change a successful submission into a user-facing error.

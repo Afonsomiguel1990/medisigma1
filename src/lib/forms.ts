@@ -6,6 +6,9 @@ import { getSupabaseServer } from './supabase';
 export interface Contact {
   id: string;
   empresa: string | null;
+  nome: string | null;
+  localidade: string | null;
+  tipo_instalacao: string | null;
   email: string | null;
   telefone: string | null;
   servico: string | null;

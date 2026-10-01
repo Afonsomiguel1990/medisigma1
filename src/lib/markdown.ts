@@ -1,4 +1,5 @@
 import TurndownService from "turndown";
+import { MEDISIGMA } from "./organization";
 
 const REMOVED_ELEMENTS = [
   "button",
@@ -45,7 +46,9 @@ export function htmlToMarkdown(html: string) {
     filter: (node) =>
       node.nodeName.toLowerCase() === "svg" ||
       (node.nodeType === 1 &&
-        (node as Element).hasAttribute("data-agent-ignore")),
+        ((node as Element).hasAttribute("data-agent-ignore") ||
+          (node as Element).getAttribute("aria-hidden") === "true" ||
+          (node as Element).hasAttribute("hidden"))),
     replacement: () => "",
   });
 
@@ -56,5 +59,8 @@ export function htmlToMarkdown(html: string) {
     markdown = `# ${title}\n\n${markdown}`.trim();
   }
 
+  if (html.includes('data-contact-details')) {
+    markdown += `\n\n## Contactos Medisigma\n\nEmail: [${MEDISIGMA.email}](mailto:${MEDISIGMA.email})\n\nTelefone: [${MEDISIGMA.telephone}](tel:${MEDISIGMA.telephoneHref})`;
+  }
   return `${markdown.replace(/\n{3,}/g, "\n\n")}\n`;
 }

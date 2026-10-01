@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import React from "react";
 import { Marquee } from "@/components/ui/marquee";
 import { cn } from "@/lib/utils";
 
@@ -20,6 +21,7 @@ export const TestimonialCard = ({
   ...props
 }: TestimonialCardProps) => (
   <div
+    data-testimonial={name}
     className={cn(
       "flex w-full cursor-pointer break-inside-avoid flex-col items-center justify-between gap-6 rounded-xl p-4",
       // light styles
@@ -60,13 +62,14 @@ export function SocialProofTestimonials({
   return (
     <div className="h-full">
       <div className="px-10">
-        <div className="relative max-h-[750px] overflow-hidden">
+        <div className="relative max-h-[750px] overflow-y-auto motion-reduce:max-h-none">
           <div className="gap-0 md:columns-2 xl:columns-3">
             {Array(Math.ceil(testimonials.length / 3))
               .fill(0)
               .map((_, i) => (
                 <Marquee
                   vertical
+                  pauseOnHover
                   key={i}
                   className={cn({
                     "[--duration:60s]": i === 1,
@@ -74,8 +77,8 @@ export function SocialProofTestimonials({
                     "[--duration:70s]": i === 3,
                   })}
                 >
-                  {testimonials.slice(i * 3, (i + 1) * 3).map((card, idx) => (
-                    <TestimonialCard {...card} key={idx} />
+                  {testimonials.slice(i * 3, (i + 1) * 3).map(({ id, ...card }) => (
+                    <TestimonialCard {...card} key={id} />
                   ))}
                 </Marquee>
               ))}

@@ -4,16 +4,18 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "prebuild": "node scripts/check-service-media.mjs && node scripts/service-media-publication.mjs --check && node scripts/check-server-config.mjs",
+    "prebuild": "npm run check:copy && node scripts/check-service-media.mjs && node scripts/service-media-publication.mjs --check && node scripts/check-server-config.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "tsx --test tests/agent-readiness.test.ts tests/analytics-consent.test.ts tests/blog-editorial.test.ts tests/lead-submission.test.ts tests/leads-repository.test.ts tests/resource-access.test.ts tests/resource-expiry-client.test.ts tests/service-media.test.ts",
+    "test": "tsx --test tests/agent-readiness.test.ts tests/analytics-consent.test.ts tests/blog-editorial.test.ts tests/lead-submission.test.ts tests/leads-repository.test.ts tests/resource-access.test.ts tests/resource-expiry-client.test.ts tests/service-media.test.ts tests/contact.test.tsx",
     "media:publication": "node scripts/service-media-publication.mjs",
     "verify:media": "node scripts/check-service-media.mjs",
     "verify:media-pages": "tsx scripts/verify-service-media-pages.ts",
     "verify:agent": "tsx scripts/verify-agent-readiness.ts",
-    "verify:blog": "tsx scripts/verify-blog-pages.ts"
+    "verify:blog": "tsx scripts/verify-blog-pages.ts",
+    "check:copy": "node scripts/check-public-copy.mjs",
+    "verify:contact": "tsx scripts/verify-contact-readiness.ts"
   },
   "dependencies": {
     "@number-flow/react": "^0.5.7",

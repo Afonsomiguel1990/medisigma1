@@ -8,6 +8,8 @@ interface WebhookData {
   mensagem: string;
   // Campos de Cliente
   empresa?: string;
+  localidade?: string;
+  tipo_instalacao?: string;
   servico?: string;
   pagina?: string;
   url?: string;
@@ -40,7 +42,8 @@ export function formatSlackMessage(data: WebhookData) {
     }
     fields.push({ type: 'mrkdwn', text: `*Serviço:*\n${data.servico || 'N/A'}` });
     fields.push({ type: 'mrkdwn', text: `*Origem:*\n${data.fonte || data.pagina || 'N/A'}` });
-    if (data.company_sector) fields.push({ type: 'mrkdwn', text: `*Tipo de instalação:*\n${data.company_sector}` });
+    if (data.tipo_instalacao || data.company_sector) fields.push({ type: 'mrkdwn', text: `*Tipo de instalação:*\n${data.tipo_instalacao || data.company_sector}` });
+    if (data.localidade) fields.push({ type: 'mrkdwn', text: `*Localidade:*\n${data.localidade}` });
     if (data.resource_id) fields.push({ type: 'mrkdwn', text: `*Recurso:*\n${data.resource_id}` });
     if (data.pagina) fields.push({ type: 'mrkdwn', text: `*Página:*\n${data.pagina}` });
     if (data.url) fields.push({ type: 'mrkdwn', text: `*URL:*\n${data.url}` });
@@ -66,10 +69,10 @@ export function formatSlackMessage(data: WebhookData) {
           emoji: true
         }
       },
-      {
+      ...Array.from({ length: Math.ceil(fields.length / 10) }, (_, index) => ({
         type: 'section',
-        fields: fields
-      },
+        fields: fields.slice(index * 10, (index + 1) * 10),
+      })),
       {
         type: 'section',
         text: {

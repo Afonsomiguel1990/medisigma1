@@ -241,7 +241,7 @@ export default function SignalSigmaPage() {
                                     </div>
                                     <div className="flex items-center space-x-3">
                                         <CheckCircle className="w-5 h-5 text-white" />
-                                        <span>Resposta rápida em 24 horas úteis</span>
+                                        <span>Resposta em até 48 horas úteis</span>
                                     </div>
                                     <div className="flex items-center space-x-3">
                                         <CheckCircle className="w-5 h-5 text-white" />

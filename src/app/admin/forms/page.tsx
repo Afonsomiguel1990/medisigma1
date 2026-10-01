@@ -120,6 +120,9 @@ export default function AdminFormsPage() {
                   <TableRow>
                     <TableHead>Data</TableHead>
                     <TableHead>Empresa</TableHead>
+                    <TableHead>Nome</TableHead>
+                    <TableHead>Localidade</TableHead>
+                    <TableHead>Tipo de instalação</TableHead>
                     <TableHead>Email</TableHead>
                     <TableHead>Telefone</TableHead>
                     <TableHead>Serviço</TableHead>
@@ -136,6 +139,9 @@ export default function AdminFormsPage() {
                       <TableCell className="font-medium">
                         {contact.empresa || '-'}
                       </TableCell>
+                      <TableCell>{contact.nome || '-'}</TableCell>
+                      <TableCell>{contact.localidade || '-'}</TableCell>
+                      <TableCell>{contact.tipo_instalacao || '-'}</TableCell>
                       <TableCell>
                         <a
                           href={`mailto:${contact.email}`}

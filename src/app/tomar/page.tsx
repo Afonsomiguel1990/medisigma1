@@ -331,7 +331,7 @@ export default function TomarPage() {
                                     acceptMediaIntent
                                     pagina="Página Tomar"
                                     fonte="Landing Page Tomar"
-                                    servicoDefault="Medicina no Trabalho"
+                                    servicoDefault="Medicina do Trabalho"
                                 />
                             </div>
                         </div>

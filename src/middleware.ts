@@ -67,7 +67,7 @@ function directNotFound(request: NextRequest) {
   );
   const origin = request.nextUrl.origin;
   const markdown = representation === MARKDOWN_MEDIA_TYPE;
-  const html = `<!doctype html><html lang="pt"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>404 — Página não encontrada</title></head><body><main><h1>404 — Página não encontrada</h1><p>A página pedida não existe ou foi movida.</p><ul><li><a href="/sitemap.xml">Mapa do site</a></li><li><a href="/llms.txt">Instruções para agentes</a></li><li><a href="/servicos/">Serviços</a></li><li><a href="/blog/">Blog</a></li><li><a href="/contact/">Contactos</a></li></ul></main></body></html>`;
+  const html = `<!doctype html><html lang="pt"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>404: Página não encontrada</title></head><body><main><h1>404: Página não encontrada</h1><p>A página pedida não existe ou foi movida.</p><ul><li><a href="/sitemap.xml">Mapa do site</a></li><li><a href="/llms.txt">Instruções para agentes</a></li><li><a href="/servicos/">Serviços</a></li><li><a href="/blog/">Blog</a></li><li><a href="/contact/">Contactos</a></li></ul></main></body></html>`;
   const body =
     request.method === "HEAD"
       ? null
@@ -115,6 +115,9 @@ function isNextRouterRequest(request: NextRequest) {
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  if (/^\/contactos?\/?$/.test(pathname)) {
+    return redirect(request, "/contact/", 301);
+  }
   const isStaticAsset =
     pathname.startsWith("/_next") ||
     pathname.startsWith("/favicon.ico") ||

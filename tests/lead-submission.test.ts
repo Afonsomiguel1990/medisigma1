@@ -70,7 +70,8 @@ test('notification timeout and completion failure cannot fail saved lead or trig
   await submitLead(payload, repository, notify); assert.equal(sends, 1);
 });
 test('validates fields, UUID and resource; attribution excluded from hash', () => {
-  assert.ok(validateLeadSubmission({ empresa: '', telefone: '', email: 'legacy@example.invalid', servico: '', mensagem: '', pagina: '', url: '', fonte: '' })?.submissionId);
+  assert.throws(() => validateLeadSubmission({ empresa: '', email: 'legacy@example.invalid', servico: '' }), /empresa e o serviço/);
+  assert.ok(validateLeadSubmission({ empresa: 'Teste', email: 'legacy@example.invalid', servico: 'Outros' })?.submissionId);
   assert.throws(() => validateLeadSubmission({ ...payload, email: 'nope' }));
   assert.throws(() => validateLeadSubmission({ ...payload, mensagem: 'x'.repeat(2501) }));
   assert.throws(() => validateLeadSubmission({ ...payload, submission_id: 'x' }));

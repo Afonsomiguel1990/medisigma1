@@ -482,7 +482,7 @@ export const siteConfig = {
   growthSection: {
     title: "Crescimento Seguro e Sustentado",
     description:
-      "Onde a segurança avançada encontra escalabilidade perfeita—projetado para proteger os seus dados e potenciar o seu crescimento.",
+      "Segurança e capacidade para proteger os seus dados e acompanhar o crescimento da sua empresa.",
     items: [
       {
         id: 1,

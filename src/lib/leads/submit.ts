@@ -20,7 +20,7 @@ export async function submitLead(body: unknown, repository: Repository, notify =
     if (claim) {
       let delivery: 'sent' | 'failed' | 'uncertain' = 'uncertain';
       try {
-        delivery = await notify(formatSlackMessage({ tipo: lead.leadKind === 'resource_request' ? 'recurso' : 'cliente', nome: lead.empresa || 'N/A', ...lead, resource_id: lead.resourceId, company_sector: lead.companySector, service_key: lead.serviceKey }));
+        delivery = await notify(formatSlackMessage({ tipo: lead.leadKind === 'resource_request' ? 'recurso' : 'cliente', ...lead, nome: lead.nome || lead.empresa || 'N/A', resource_id: lead.resourceId, company_sector: lead.companySector, service_key: lead.serviceKey }));
       } catch { /* Delivery may have happened. Never retry automatically. */ }
       notificationStatus = delivery;
       await repository.completeNotification(lead.submissionId, claim.attemptId, delivery);

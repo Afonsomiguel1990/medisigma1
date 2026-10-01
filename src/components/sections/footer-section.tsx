@@ -7,6 +7,7 @@ import { useMediaQuery } from "@/hooks/use-media-query";
 import { siteConfig } from "@/lib/config";
 import Link from "next/link";
 import { ContactLink } from "@/components/custom/contact-link";
+import { MEDISIGMA } from "@/lib/organization";
 
 export function FooterSection() {
   const tablet = useMediaQuery("(max-width: 1024px)");
@@ -19,10 +20,14 @@ export function FooterSection() {
           {/* Logo e Links */}
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12 lg:items-center">
             {/* Coluna do Logo */}
-            <div className="lg:col-span-1 flex items-start">
+            <div className="lg:col-span-1 flex flex-col items-start">
               <Link href="/" className="inline-block">
                 <Icons.logo className="h-[32rem] w-auto" />
               </Link>
+              <div className="flex flex-col gap-3 text-sm" data-contact-details>
+                <ContactLink href={`mailto:${MEDISIGMA.email}`} type="email" className="hover:underline">{MEDISIGMA.email}</ContactLink>
+                <ContactLink href={`tel:${MEDISIGMA.telephoneHref}`} type="phone" className="hover:underline">{MEDISIGMA.telephone}</ContactLink>
+              </div>
             </div>
 
             {/* Colunas de Links */}

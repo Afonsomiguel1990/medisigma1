@@ -5,6 +5,9 @@ export interface LeadSubmission {
   payloadHash: string;
   leadKind: LeadKind;
   empresa: string;
+  nome?: string;
+  localidade?: string;
+  tipo_instalacao?: string;
   telefone: string;
   email: string;
   servico: string;

@@ -269,7 +269,7 @@ export default function FAQExtintoresPage() {
                                     </div>
                                     <div className="flex items-center space-x-3">
                                         <CheckCircle className="w-5 h-5 text-white flex-shrink-0" />
-                                        <span>Orçamento focado em menos de 24 horas</span>
+                                        <span>Resposta ao pedido de orçamento em até 48 horas úteis</span>
                                     </div>
                                     <div className="flex items-center space-x-3">
                                         <CheckCircle className="w-5 h-5 text-white flex-shrink-0" />
@@ -298,7 +298,7 @@ export default function FAQExtintoresPage() {
                             <ContactForm
                                 pagina="FAQ Extintores"
                                 fonte="faqs/manutencao-extintores"
-                                servicoDefault="Segurança Contra Incêndios"
+                                servicoDefault="Manutenção de Extintores"
                             />
                         </div>
                     </div>

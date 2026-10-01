@@ -1,5 +1,7 @@
+"use client";
+
 import { cn } from "@/lib/utils";
-import { ComponentPropsWithoutRef } from "react";
+import React, { ComponentPropsWithoutRef, useEffect, useRef, useState } from "react";
 
 interface MarqueeProps extends ComponentPropsWithoutRef<"div"> {
   /**
@@ -41,9 +43,22 @@ export function Marquee({
   repeat = 4,
   ...props
 }: MarqueeProps) {
+  const root = useRef<HTMLDivElement>(null);
+  const [animated, setAnimated] = useState(false);
+  useEffect(() => {
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setAnimated(!preference.matches);
+    update();
+    preference.addEventListener("change", update);
+    return () => preference.removeEventListener("change", update);
+  }, []);
+  useEffect(() => {
+    root.current?.querySelectorAll('[data-marquee-copy] [id]').forEach(element => element.removeAttribute('id'));
+  }, [animated, children, repeat]);
   return (
     <div
       {...props}
+      ref={root}
       className={cn(
         "group flex overflow-hidden p-2 [--duration:40s] [--gap:1rem] [gap:var(--gap)]",
         {
@@ -53,16 +68,20 @@ export function Marquee({
         className
       )}
     >
-      {Array(repeat)
+      {Array(animated ? repeat : 1)
         .fill(0)
         .map((_, i) => (
           <div
             key={i}
             aria-hidden={i > 0}
+            inert={i > 0}
+            data-marquee-copy={i > 0 ? "" : undefined}
             data-nosnippet={i > 0 ? "" : undefined}
             className={cn("flex shrink-0 justify-around [gap:var(--gap)]", {
-              "animate-marquee flex-row": !vertical,
-              "animate-marquee-vertical flex-col": vertical,
+              "animate-marquee motion-reduce:animate-none flex-row": animated && !vertical,
+              "animate-marquee-vertical motion-reduce:animate-none flex-col": animated && vertical,
+              "flex-row": !vertical,
+              "flex-col": vertical,
               "group-hover:[animation-play-state:paused]": pauseOnHover,
               "[animation-direction:reverse]": reverse,
             })}

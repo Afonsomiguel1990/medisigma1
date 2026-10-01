@@ -329,7 +329,7 @@ export default function EntroncamentoPage() {
                                     acceptMediaIntent
                                     pagina="Página Entroncamento"
                                     fonte="Landing Page Entroncamento"
-                                    servicoDefault="HST Integrada"
+                                    servicoDefault="SST integrada"
                                 />
                             </div>
                         </div>

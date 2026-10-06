@@ -35,7 +35,7 @@ test('resource routes normalize only known slugs and stay outside the sitemap', 
   for (const file of ['src/app/recursos/page.tsx', 'src/app/recursos/[slug]/page.tsx']) assert.match(await readFile(file, 'utf8'), /index:\s*false/);
 });
 
-test("Accept negotiation respects defaults, weights, wildcards and exclusions", () => {
+test("Accept negotiation respects defaults, weights, wildcards and exclusions", async () => {
   const cases: Array<[string | null, string | null]> = [
     [null, HTML_MEDIA_TYPE],
     ["*/*", HTML_MEDIA_TYPE],
@@ -56,7 +56,7 @@ test("Accept negotiation respects defaults, weights, wildcards and exclusions", 
   }
 });
 
-test("Vary preserves existing values and adds Accept only once", () => {
+test("Vary preserves existing values and adds Accept only once", async () => {
   const headers = new Headers({
     Vary: "RSC, Next-Router-State-Tree, Accept-Encoding",
   });
@@ -69,7 +69,7 @@ test("Vary preserves existing values and adds Accept only once", () => {
   );
 });
 
-test("public route classification only normalizes known pages", () => {
+test("public route classification only normalizes known pages", async () => {
   assert.equal(canonicalTrailingSlashPath("/contact"), "/contact/");
   assert.equal(canonicalTrailingSlashPath("/servicos/legionella"), "/servicos/legionella/");
   assert.equal(canonicalTrailingSlashPath("/does-not-exist"), null);
@@ -86,7 +86,7 @@ test("public route classification only normalizes known pages", () => {
   assert.equal(isSafeBlogPath("/blog/../admin"), false);
 });
 
-test("HTML transformation removes executable and navigation chrome", () => {
+test("HTML transformation removes executable and navigation chrome", async () => {
   const markdown = htmlToMarkdown(`<!doctype html>
     <html><head><title>Página de Teste</title><style>.hidden{}</style><script>alert(1)</script></head>
     <body><header>Navegação global</header><nav>Menu</nav><main>
@@ -101,7 +101,7 @@ test("HTML transformation removes executable and navigation chrome", () => {
 });
 
 test("middleware exposes the negotiated HTTP contract without redirecting unknown paths", async () => {
-  const html = middleware(
+  const html = await middleware(
     new NextRequest("https://www.medisigma.pt/caminho-inexistente", {
       headers: { Accept: "text/html" },
     }),
@@ -110,7 +110,7 @@ test("middleware exposes the negotiated HTTP contract without redirecting unknow
   assert.equal(html.headers.get("Location"), null);
   assert.match(html.headers.get("Vary") || "", /(?:^|,\s*)Accept(?:,|$)/i);
 
-  const markdown = middleware(
+  const markdown = await middleware(
     new NextRequest("https://www.medisigma.pt/contact/", {
       headers: { Accept: "text/markdown" },
     }),
@@ -121,7 +121,7 @@ test("middleware exposes the negotiated HTTP contract without redirecting unknow
   );
   assert.match(markdown.headers.get("Vary") || "", /Accept/i);
 
-  const incompatible = middleware(
+  const incompatible = await middleware(
     new NextRequest("https://www.medisigma.pt/", {
       headers: { Accept: "application/json" },
     }),
@@ -129,7 +129,7 @@ test("middleware exposes the negotiated HTTP contract without redirecting unknow
   assert.equal(incompatible.status, 406);
   assert.match(incompatible.headers.get("Vary") || "", /Accept/i);
 
-  const canonical = middleware(
+  const canonical = await middleware(
     new NextRequest("https://www.medisigma.pt/contact", {
       headers: { Accept: "text/html" },
     }),
@@ -137,7 +137,7 @@ test("middleware exposes the negotiated HTTP contract without redirecting unknow
   assert.equal(canonical.status, 308);
   assert.equal(canonical.headers.get("Location"), "https://www.medisigma.pt/contact/");
 
-  const canonicalWithQuery = middleware(
+  const canonicalWithQuery = await middleware(
     new NextRequest("https://www.medisigma.pt/contact?utm_source=agent", {
       headers: { Accept: "text/html" },
     }),
@@ -147,7 +147,7 @@ test("middleware exposes the negotiated HTTP contract without redirecting unknow
     "https://www.medisigma.pt/contact/?utm_source=agent",
   );
 
-  const blocked = middleware(
+  const blocked = await middleware(
     new NextRequest("https://www.medisigma.pt/wp-admin", {
       headers: { Accept: "text/markdown" },
     }),
@@ -157,7 +157,7 @@ test("middleware exposes the negotiated HTTP contract without redirecting unknow
   assert.match(blocked.headers.get("X-Robots-Tag") || "", /noindex/);
   assert.match(await blocked.text(), /sitemap\.xml/);
 
-  const rsc = middleware(
+  const rsc = await middleware(
     new NextRequest("https://www.medisigma.pt/contact/", {
       headers: { Accept: "*/*", RSC: "1" },
     }),
@@ -165,7 +165,7 @@ test("middleware exposes the negotiated HTTP contract without redirecting unknow
   assert.equal(rsc.headers.get("x-middleware-rewrite"), null);
   assert.equal(rsc.headers.get("x-middleware-next"), "1");
 
-  const api = middleware(
+  const api = await middleware(
     new NextRequest("https://www.medisigma.pt/api/contact", {
       headers: { Accept: "text/markdown" },
     }),
@@ -247,7 +247,7 @@ test("representation handlers preserve status and emit recoverable Markdown 404s
   }
 });
 
-test("Organization and WebSite JSON-LD expose the complete public NAP", () => {
+test("Organization and WebSite JSON-LD expose the complete public NAP", async () => {
   const graph = organizationAndWebsiteJsonLd["@graph"];
   const organization = graph.find((item) => item["@type"] === "Organization");
   const website = graph.find((item) => item["@type"] === "WebSite");

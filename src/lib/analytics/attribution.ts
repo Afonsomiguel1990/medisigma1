@@ -5,7 +5,7 @@ export function publicPath(value: unknown): string | undefined {
     const url = new URL(value, PUBLIC_ORIGIN);
     if (!['medisigma.pt', 'www.medisigma.pt'].includes(url.hostname)) return;
     const path = decodeURIComponent(url.pathname).replace(/\/{2,}/g, '/').replace(/\/$/, '') || '/';
-    if (!/^\/[a-zA-Z0-9/_-]*$/.test(path) || /^\/(admin|estatisticas|api|test|preview)(\/|$)/i.test(path)) return;
+    if (!/^\/[a-zA-Z0-9/_-]*$/.test(path) || /^\/(admin|estatisticas|api|test|preview|cv)(\/|$)/i.test(path)) return;
     return path.slice(0, 240);
   } catch { return; }
 }

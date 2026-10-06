@@ -1,4 +1,5 @@
 'use client';
+import { adminFetch } from '@/lib/admin-client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -15,7 +16,7 @@ export default function NewPostPage() {
     setError(null);
 
     try {
-      const response = await fetch('/api/admin/posts', {
+      const response = await adminFetch('/api/admin/posts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

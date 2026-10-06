@@ -1,7 +1,10 @@
 'use client';
+import { remarkSafeEditorial } from '@/lib/security/mdx';
+import { adminFetch } from '@/lib/admin-client';
 
 import { useEffect, useState } from 'react';
 import { PostWithTags } from '@/lib/posts';
+import { FacebookVideo } from '@/components/facebook-video';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -23,7 +26,7 @@ export default function PreviewPostPage({ params }: { params: Promise<{ id: stri
       if (!resolvedParams) return;
 
       try {
-        const response = await fetch(`/api/admin/posts/${resolvedParams.id}`);
+        const response = await adminFetch(`/api/admin/posts/${resolvedParams.id}`);
         if (!response.ok) throw new Error('Erro ao carregar post');
         const data = await response.json();
         setPost(data.post);
@@ -32,8 +35,10 @@ export default function PreviewPostPage({ params }: { params: Promise<{ id: stri
         if (data.post.content_mdx) {
           const { content: compiledContent } = await compileMDX({
             source: data.post.content_mdx,
+            components: { FacebookVideo },
             options: {
               parseFrontmatter: false,
+              mdxOptions: { remarkPlugins: [remarkSafeEditorial] },
             },
           });
           setContent(compiledContent);

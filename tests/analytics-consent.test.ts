@@ -52,7 +52,7 @@ test('consent has no queued events, SPA views deduplicate, revocation clears sto
 });
 test('contact API rejects admin/origin/no-consent and uses the idempotent repository with sanitized payload', async () => {
   const inputs: unknown[] = [];
-  const post = createContactClickHandler('phone', { async recordContactClick(input) { inputs.push(input); return { status: inputs.length > 1 ? 'duplicate' : 'accepted', eventId: input.eventId }; } });
+  const post = createContactClickHandler('phone', { async recordContactClick(input) { inputs.push(input); return { status: inputs.length > 1 ? 'duplicate' : 'accepted', eventId: input.eventId }; } }, async () => null);
   const body = { event_id:'e9f67d67-0982-4c88-9823-870611ac6222', consent:true, url:'/contact?email=secret', attribution: {status:'unknown'} };
   const req = (data=body, origin='https://www.medisigma.pt', referer='https://www.medisigma.pt/contact')=>new Request('https://www.medisigma.pt/api/track-phone',{method:'POST',headers:{origin,referer},body:JSON.stringify(data)});
   assert.equal((await post(req(body,'https://preview.vercel.app'))).status,403);

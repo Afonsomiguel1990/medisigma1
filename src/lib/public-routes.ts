@@ -61,6 +61,7 @@ const EXCLUDED_PREFIXES = [
   "/_vercel",
   "/admin",
   "/api",
+  "/cv",
   "/estatisticas",
   "/images",
   "/public",
@@ -77,7 +78,9 @@ const EXCLUDED_EXACT_PATHS = new Set([
 ]);
 
 export function isNegotiablePublicPath(pathname: string) {
-  const normalized = pathname.toLowerCase();
+  let normalized: string;
+  try { normalized = decodeURIComponent(pathname).toLowerCase(); }
+  catch { return false; }
 
   if (EXCLUDED_EXACT_PATHS.has(normalized)) return false;
   if (

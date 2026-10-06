@@ -2,6 +2,8 @@ User-agent: *
 Allow: /
 Disallow: /admin
 Disallow: /estatisticas
+Disallow: /cv/
+Disallow: /api/cv/
 
 Sitemap: https://www.medisigma.pt/sitemap.xml
 LLMs: https://www.medisigma.pt/llms.txt

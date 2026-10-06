@@ -35,41 +35,34 @@ export function formatSlackMessage(data: WebhookData) {
   const title = data.tipo === 'recurso' ? 'PEDIDO DE RECURSO' : isCliente ? '🔔 NOVO CONTACTO' : '📝 NOVA CANDIDATURA';
   const timestamp = new Date().toLocaleString('pt-PT', { timeZone: 'Europe/Lisbon' });
 
-  const fields = [
-    { type: 'mrkdwn', text: `*Nome:*\n${data.nome || 'N/A'}` },
-    { type: 'mrkdwn', text: `*Email:*\n${data.email || 'N/A'}` },
-    { type: 'mrkdwn', text: `*Telefone:*\n${data.telefone || 'N/A'}` }
-  ];
-
+  const field = (label: string, value: unknown) => ({ type: 'plain_text', text: `${label}:\n${String(value || 'N/A').slice(0, 1900)}`, emoji: false } as { type: string; text: string; emoji?: boolean });
+  const fields = [field('Nome',data.nome),field('Email',data.email),field('Telefone',data.telefone)];
   if (isCliente) {
-    if (data.empresa && data.empresa !== data.nome) {
-      fields.push({ type: 'mrkdwn', text: `*Empresa:*\n${data.empresa}` });
+    for (const [label,value] of Object.entries({ Empresa:data.empresa, Serviço:data.servico, Origem:data.fonte || data.pagina,
+      'Tipo de instalação':data.tipo_instalacao || data.company_sector, Localidade:data.localidade, Concelho:data.concelho,
+      'NIF indicado':data.nif, Trabalhadores:data.numero_trabalhadores, Estabelecimentos:data.numero_estabelecimentos,
+      Extintores:data.numero_extintores, Recurso:data.resource_id, Página:data.pagina, URL:data.url })) {
+      if (value) fields.push(field(label,value));
     }
-    fields.push({ type: 'mrkdwn', text: `*Serviço:*\n${data.servico || 'N/A'}` });
-    fields.push({ type: 'mrkdwn', text: `*Origem:*\n${data.fonte || data.pagina || 'N/A'}` });
-    if (data.tipo_instalacao || data.company_sector) fields.push({ type: 'mrkdwn', text: `*Tipo de instalação:*\n${data.tipo_instalacao || data.company_sector}` });
-    if (data.localidade) fields.push({ type: 'mrkdwn', text: `*Localidade:*\n${data.localidade}` });
-    if (data.concelho) fields.push({ type: 'mrkdwn', text: `*Concelho:*\n${data.concelho}` });
-    if (data.nif) fields.push({ type: 'mrkdwn', text: `*NIF indicado:*\n${data.nif}` });
-    if (data.numero_trabalhadores) fields.push({ type: 'mrkdwn', text: `*Trabalhadores:*\n${data.numero_trabalhadores}` });
-    if (data.numero_estabelecimentos) fields.push({ type: 'mrkdwn', text: `*Estabelecimentos:*\n${data.numero_estabelecimentos}` });
-    if (data.numero_extintores) fields.push({ type: 'mrkdwn', text: `*Extintores:*\n${data.numero_extintores}` });
-    if (data.resource_id) fields.push({ type: 'mrkdwn', text: `*Recurso:*\n${data.resource_id}` });
-    if (data.pagina) fields.push({ type: 'mrkdwn', text: `*Página:*\n${data.pagina}` });
-    if (data.url) fields.push({ type: 'mrkdwn', text: `*URL:*\n${data.url}` });
   } else {
-    fields.push({ type: 'mrkdwn', text: `*Área Interesse:*\n${data.area_interesse || 'N/A'}` });
-    if (data.job_id) {
-      fields.push({ type: 'mrkdwn', text: `*Vaga ID:*\n${data.job_id}` });
-    }
+    fields.push(field('Área de Interesse',data.area_interesse),field('Origem',data.origem || data.pagina));
+    if (data.job_id) fields.push(field('Vaga ID',data.job_id));
     if (data.cv_link) {
-      fields.push({ type: 'mrkdwn', text: `*CV:*\n<${data.cv_link}|Ver CV>` });
+      try {
+        const url = new URL(data.cv_link);
+        if (!['https:','http:'].includes(url.protocol) || /[<>|\s]/.test(data.cv_link)) throw new Error();
+        const privateCv = url.pathname.startsWith('/cv/');
+        const label = privateCv ? 'Ver CV (ligação válida por 90 dias)' : `Ver CV: ${url.hostname} (Ligação externa não verificada)`;
+        fields.push({ type:'mrkdwn', text:`<${data.cv_link.replace(/&/g,'&amp;')}|${label}>` });
+      } catch { fields.push(field('CV','Ligação indisponível')); }
     }
-    fields.push({ type: 'mrkdwn', text: `*Origem:*\n${data.origem || data.pagina || 'N/A'}` });
   }
 
   return {
-    text: `${title} - ${data.nome}`,
+    text: title,
+    unfurl_links: false,
+    unfurl_media: false,
+    parse: 'none',
     blocks: [
       {
         type: 'header',
@@ -86,8 +79,8 @@ export function formatSlackMessage(data: WebhookData) {
       {
         type: 'section',
         text: {
-          type: 'mrkdwn',
-          text: `*Mensagem:*\n${data.mensagem || 'Sem mensagem'}`
+          type: 'plain_text',
+          text: `Mensagem:\n${(data.mensagem || 'Sem mensagem').slice(0, 2800)}`
         }
       },
       {
@@ -118,7 +111,7 @@ export async function sendSlackNotification(
       body: JSON.stringify(payload), signal: controller.signal,
     });
     const body = await response.text();
-    return response.ok && body.trim() === 'ok' ? 'sent' : 'failed';
+    return response.ok && body.trim() === 'ok' ? 'sent' : response.status >= 500 ? 'uncertain' : 'failed';
   } catch {
     return 'uncertain';
   } finally { clearTimeout(timeout); }

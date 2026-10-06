@@ -113,7 +113,7 @@ function isNextRouterRequest(request: NextRequest) {
   );
 }
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   if (/^\/(?:contactos?|fale-connosco)\/?$/.test(pathname)) {
     return redirect(request, "/contact/", 301);
@@ -132,7 +132,7 @@ export function middleware(request: NextRequest) {
   }
 
   if (pathname.startsWith("/admin") && !isStaticAsset) {
-    const authError = requireAdminAuth(request);
+    const authError = await requireAdminAuth(request);
     if (authError) return authError;
   }
 

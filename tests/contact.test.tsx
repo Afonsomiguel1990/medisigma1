@@ -111,7 +111,7 @@ test('storage errors never report success; notification errors cannot lose a sav
   }
 });
 
-test('new contact details affect idempotency, while old payload hashes remain compatible', () => {
+test('new contact details affect idempotency, while old payload hashes remain compatible', async () => {
   const legacy = { empresa: 'Teste', email: 'test@example.invalid', servico: 'Medicina no Trabalho' };
   const expected = createHash('sha256').update(JSON.stringify(['Teste', '', legacy.email, legacy.servico, '', '', '', '', 'service_request', '', '', ''])).digest('hex');
   assert.equal(validateLeadSubmission(legacy)?.payloadHash, expected);
@@ -120,7 +120,7 @@ test('new contact details affect idempotency, while old payload hashes remain co
   for (const field of ['nome', 'localidade', 'tipo_instalacao']) assert.notEqual(validateLeadSubmission({ ...payload, [field]: 'Outro valor' })?.payloadHash, original);
 });
 
-test('form HTML supports native submission, all service defaults and separate optional fields', () => {
+test('form HTML supports native submission, all service defaults and separate optional fields', async () => {
   for (const service of CONTACT_SERVICES) {
     const markup = renderToStaticMarkup(<ContactForm servicoDefault={service.value} />);
     assert.match(markup, /method="post"/); assert.match(markup, /action="\/api\/contact"/);
@@ -132,15 +132,15 @@ test('form HTML supports native submission, all service defaults and separate op
   assert.match(markup, /value="Medicina do Trabalho" selected=""/);
 });
 
-test('contact aliases preserve query parameters for HTML, Markdown, GET and HEAD', () => {
+test('contact aliases preserve query parameters for HTML, Markdown, GET and HEAD', async () => {
   for (const path of ['/contacto', '/contacto/', '/contactos', '/contactos/', '/fale-connosco', '/fale-connosco/']) for (const accept of ['text/html', 'text/markdown']) for (const method of ['GET', 'HEAD']) {
-    const response = middleware(new NextRequest('https://www.medisigma.pt' + path + '?origem=teste', { method, headers: { Accept: accept } }));
+    const response = await middleware(new NextRequest('https://www.medisigma.pt' + path + '?origem=teste', { method, headers: { Accept: accept } }));
     assert.equal(response.status, 301);
     assert.equal(response.headers.get('Location'), 'https://www.medisigma.pt/contact/?origem=teste');
   }
 });
 
-test('testimonials occur once in server HTML and hidden copies do not enter Markdown', () => {
+test('testimonials occur once in server HTML and hidden copies do not enter Markdown', async () => {
   const markup = renderToStaticMarkup(<SocialProofTestimonials testimonials={[{ id: 'unique', name: 'Cliente único', role: 'Empresa', img: '/image.png', description: 'Testemunho único.' }]} />);
   assert.equal(markup.split('Testemunho único.').length - 1, 1);
   const markdown = htmlToMarkdown('<main>' + markup + '<div aria-hidden="true">Cópia oculta</div><div hidden>Também oculta</div></main>');
@@ -148,20 +148,20 @@ test('testimonials occur once in server HTML and hidden copies do not enter Mark
   assert.doesNotMatch(markdown, /Cópia oculta|Também oculta/);
 });
 
-test('Markdown includes API instructions and compact global contact information', () => {
+test('Markdown includes API instructions and compact global contact information', async () => {
   const markdown = htmlToMarkdown('<main>' + renderToStaticMarkup(<ContactApiDetails />) + '</main><footer><div data-contact-details>Contactos</div></footer>');
   for (const text of ['POST /api/contact', 'application/json', 'submission_id', 'saved: true', 'info@medisigma.pt', '+351 241 331 504', '48 horas úteis']) assert.ok(markdown.includes(text), text);
   assert.ok(CONTACT_SUCCESS_MESSAGE.endsWith('48 horas úteis.'));
 });
 
-test('Slack includes personal contact details without exceeding ten fields per block', () => {
+test('Slack includes personal contact details without exceeding ten fields per block', async () => {
   const message = formatSlackMessage({ tipo: 'cliente', ...payload, telefone: '123', mensagem: 'Teste', fonte: 'contacto', pagina: 'Contacto', url: 'https://example.invalid', resource_id: 'resource' });
   const text = JSON.stringify(message);
   for (const value of ['Ana', 'Abrantes', 'Indústria', 'Empresa de Teste', 'Medicina do Trabalho']) assert.ok(text.includes(value));
   for (const block of message.blocks) if ('fields' in block) assert.ok(block.fields.length <= 10);
 });
 
-test('public-copy guard catches literal and encoded m-dashes while retaining ordinary hyphens', () => {
+test('public-copy guard catches literal and encoded m-dashes while retaining ordinary hyphens', async () => {
   for (const value of [String.fromCodePoint(8212), '&mdash;', '&#8212;', '&#x2014;', String.raw`\u2014`, String.raw`\u{2014}`]) assert.ok(hasEmDash(value), value);
   assert.equal(hasEmDash('pt-PT e segunda-feira'), false);
 });

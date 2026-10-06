@@ -1,4 +1,6 @@
 'use client';
+import { remarkSafeEditorial } from '@/lib/security/mdx';
+import { adminFetch } from '@/lib/admin-client';
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
@@ -14,6 +16,7 @@ import {
 } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PostWithTags, CreatePostData, UpdatePostData, generateSlug } from '@/lib/posts';
+import { FacebookVideo } from '@/components/facebook-video';
 import { compileMDX } from 'next-mdx-remote/rsc';
 import Image from 'next/image';
 
@@ -52,24 +55,25 @@ export default function PostEditor({ post, onSave, saving }: PostEditorProps) {
 
   // Atualizar preview quando o conteúdo mudar
   useEffect(() => {
-    if (contentMdx) {
-      updatePreview();
-    }
-  }, [contentMdx]);
-
-  const updatePreview = async () => {
+    let cancelled = false;
+    const updatePreview = async () => {
     try {
       const { content } = await compileMDX({
         source: contentMdx,
+            components: { FacebookVideo },
         options: {
           parseFrontmatter: false,
+              mdxOptions: { remarkPlugins: [remarkSafeEditorial] },
         },
       });
-      setPreviewContent(content);
-    } catch (error) {
-      console.error('Erro ao compilar preview:', error);
+      if (!cancelled) setPreviewContent(content);
+    } catch {
+      if (!cancelled) setPreviewContent(null);
     }
-  };
+    };
+    void updatePreview();
+    return () => { cancelled = true; };
+  }, [contentMdx]);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -81,7 +85,7 @@ export default function PostEditor({ post, onSave, saving }: PostEditorProps) {
       const formData = new FormData();
       formData.append('file', file);
 
-      const response = await fetch('/api/admin/upload', {
+      const response = await adminFetch('/api/admin/upload', {
         method: 'POST',
         body: formData,
       });

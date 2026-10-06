@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { IntakeReview } from '@/components/admin/IntakeReview';
+import { CvAccess } from '@/components/admin/CvAccess';
 import { Contact, Candidatura, Application } from '@/lib/forms';
 import { Button } from '@/components/ui/button';
 import {
@@ -105,7 +107,9 @@ export default function AdminFormsPage() {
           <TabsTrigger value="applications">
             Candidaturas ({applications.length})
           </TabsTrigger>
+          <TabsTrigger value="suspects">Suspeitos</TabsTrigger>
         </TabsList>
+        <TabsContent value="suspects"><IntakeReview /></TabsContent>
 
         {/* Tab Contactos */}
         <TabsContent value="contacts" className="space-y-4">
@@ -247,14 +251,7 @@ export default function AdminFormsPage() {
                       <TableCell>{candidatura.area_interesse || '-'}</TableCell>
                       <TableCell>
                         {candidatura.cv_link ? (
-                          <a
-                            href={candidatura.cv_link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-600 hover:underline"
-                          >
-                            Ver CV
-                          </a>
+                          <CvAccess value={candidatura.cv_link} />
                         ) : (
                           '-'
                         )}
@@ -337,14 +334,7 @@ export default function AdminFormsPage() {
                       </TableCell>
                       <TableCell>
                         {application.cv_url ? (
-                          <a
-                            href={application.cv_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-blue-600 hover:underline"
-                          >
-                            Ver CV
-                          </a>
+                          <CvAccess value={application.cv_url} />
                         ) : (
                           '-'
                         )}

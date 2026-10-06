@@ -1,4 +1,4 @@
-import { getSupabaseServer } from './supabase';
+import { getSupabaseAdmin } from './supabase';
 
 /**
  * Interface para Contacto
@@ -61,7 +61,7 @@ export interface Application {
  * Requer SUPABASE_SERVICE_ROLE devido às políticas RLS
  */
 export async function getAllContacts(): Promise<Contact[]> {
-  const supabase = getSupabaseServer();
+  const supabase = getSupabaseAdmin();
   
   const { data, error } = await supabase
     .schema('web')
@@ -70,7 +70,7 @@ export async function getAllContacts(): Promise<Contact[]> {
     .order('created_at', { ascending: false });
 
   if (error) {
-    console.error('Erro ao obter contactos:', error);
+    console.error('forms_read_failed');
     throw error;
   }
 
@@ -82,7 +82,7 @@ export async function getAllContacts(): Promise<Contact[]> {
  * Requer SUPABASE_SERVICE_ROLE devido às políticas RLS
  */
 export async function getAllCandidaturas(): Promise<Candidatura[]> {
-  const supabase = getSupabaseServer();
+  const supabase = getSupabaseAdmin();
   
   const { data, error } = await supabase
     .schema('web')
@@ -91,7 +91,7 @@ export async function getAllCandidaturas(): Promise<Candidatura[]> {
     .order('created_at', { ascending: false });
 
   if (error) {
-    console.error('Erro ao obter candidaturas:', error);
+    console.error('forms_read_failed');
     throw error;
   }
 
@@ -103,7 +103,7 @@ export async function getAllCandidaturas(): Promise<Candidatura[]> {
  * Requer SUPABASE_SERVICE_ROLE devido às políticas RLS
  */
 export async function getAllApplications(): Promise<Application[]> {
-  const supabase = getSupabaseServer();
+  const supabase = getSupabaseAdmin();
   
   const { data, error } = await supabase
     .schema('web')
@@ -112,7 +112,7 @@ export async function getAllApplications(): Promise<Application[]> {
     .order('created_at', { ascending: false });
 
   if (error) {
-    console.error('Erro ao obter candidaturas:', error);
+    console.error('forms_read_failed');
     throw error;
   }
 

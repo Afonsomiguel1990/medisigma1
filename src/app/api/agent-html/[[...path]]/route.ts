@@ -1,9 +1,10 @@
+import { siteOrigin } from '@/lib/security/origin';
+import { representationUrl, fetchRepresentation } from '@/lib/security/representation';
 import type { NextRequest } from "next/server";
 import { appendVaryAccept } from "@/lib/content-negotiation";
 import {
   isNegotiablePublicPath,
   ORIGINAL_PATH_HEADER,
-  REPRESENTATION_SOURCE_HEADER,
 } from "@/lib/public-routes";
 
 export const runtime = "nodejs";
@@ -78,7 +79,7 @@ async function htmlResponse(
   }
 
   const path = await originalPath(request, context);
-  const origin = request.nextUrl.origin;
+  const origin = siteOrigin();
 
   if (!path.startsWith("/") || path.startsWith("//")) {
     return new Response(includeBody ? "Invalid source path.\n" : null, {
@@ -87,7 +88,8 @@ async function htmlResponse(
     });
   }
 
-  const sourceUrl = new URL(path, origin);
+  let sourceUrl: URL;
+  try { sourceUrl = representationUrl(path); } catch { return new Response(null, { status:404 }); }
   if (
     sourceUrl.origin !== origin ||
     !isNegotiablePublicPath(sourceUrl.pathname)
@@ -102,17 +104,7 @@ async function htmlResponse(
   }
 
   try {
-    const source = await fetch(sourceUrl, {
-      method: "GET",
-      redirect: "manual",
-      cache: "no-store",
-      headers: {
-        Accept: "text/html",
-        [REPRESENTATION_SOURCE_HEADER]: "1",
-        "User-Agent":
-          request.headers.get("user-agent") || "Medisigma-HTML-Renderer/1.0",
-      },
-    });
+    const source = await fetchRepresentation(sourceUrl);
     const headers = responseHeaders(source, source.status);
 
     if (source.status >= 300 && source.status < 400) {
@@ -123,8 +115,8 @@ async function htmlResponse(
 
     const body = includeBody ? await source.arrayBuffer() : null;
     return new Response(body, { status: source.status, headers });
-  } catch (error) {
-    console.error("HTML representation failed", error);
+  } catch {
+    console.error("HTML_representation_failed");
     return new Response(
       includeBody ? "HTML representation temporarily unavailable.\n" : null,
       {

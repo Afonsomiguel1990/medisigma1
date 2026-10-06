@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { sendCandidate, type CandidateAttempt } from '@/lib/cv/client-upload';
 import { Job } from '@/app/recrutamento/JobsList';
 
 interface FormState {
@@ -35,6 +36,7 @@ export default function SpontaneousApplicationForm({ jobs = [], preSelectedJobId
   const [applicationType, setApplicationType] = useState<'spontanea' | 'vaga'>('spontanea');
   const [selectedJobId, setSelectedJobId] = useState<string>('');
 
+  const attempt = useRef<CandidateAttempt | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -115,46 +117,15 @@ export default function SpontaneousApplicationForm({ jobs = [], preSelectedJobId
     setIsSubmitting(true);
 
     try {
-      let body;
-      let headers = {};
-
-      const areaInteresseFinal = applicationType === 'vaga' ? state.area_interesse : (state.area_interesse || 'Candidatura Espontânea');
-
-      if (cvMode === 'file' && cvFile) {
-        const formData = new FormData();
-        formData.append('nome', nome);
-        formData.append('email', email);
-        formData.append('telefone', telefone);
-        formData.append('area_interesse', areaInteresseFinal);
-        formData.append('mensagem', state.mensagem || '');
-        formData.append('pagina', applicationType === 'vaga' ? 'Candidatura a Vaga' : 'Candidatura Espontânea');
-        formData.append('url', typeof window !== 'undefined' ? window.location.href : '');
-        formData.append('cv', cvFile);
-        body = formData;
-      } else {
-        body = JSON.stringify({
-          nome,
-          email,
-          telefone,
-          area_interesse: areaInteresseFinal,
-          cv_link: state.cv_link || '',
-          mensagem: state.mensagem || '',
-          pagina: applicationType === 'vaga' ? 'Candidatura a Vaga' : 'Candidatura Espontânea',
-          url: typeof window !== 'undefined' ? window.location.href : '',
-        });
-        headers = { 'Content-Type': 'application/json' };
-      }
-
-      const response = await fetch('/api/spontaneous-applications', {
-        method: 'POST',
-        headers: headers,
-        body: body,
-      });
-
-      if (!response.ok) {
-        const err = await response.json().catch(() => ({}));
-        throw new Error(err?.error || 'Falha ao enviar candidatura.');
-      }
+      await sendCandidate('spontaneous', {
+        nome, email, telefone,
+        area_interesse: state.area_interesse || 'Candidatura Espontânea',
+        cv_link: cvMode === 'link' ? state.cv_link : '',
+        mensagem: state.mensagem,
+        pagina: applicationType === 'vaga' ? 'Candidatura a Vaga' : 'Candidatura Espontânea',
+        url: window.location.href,
+        confirm_mail: new FormData(e.currentTarget).get('confirm_mail') || '',
+      }, cvMode === 'file' ? cvFile : null, attempt);
 
       alert('Candidatura enviada com sucesso! Obrigado.');
       setState(initialState);
@@ -196,7 +167,9 @@ export default function SpontaneousApplicationForm({ jobs = [], preSelectedJobId
         </button>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form action="/api/spontaneous-applications" method="post" encType="multipart/form-data" onSubmit={handleSubmit} className="space-y-4">
+        <label hidden aria-hidden="true">Deixar vazio<input name="confirm_mail" tabIndex={-1} autoComplete="off" /></label>
+        <noscript><p>Sem JavaScript, pode enviar ficheiros até 4 MB ou partilhar uma ligação ao CV.</p><label>Ligação alternativa ao CV<input name="cv_link" type="url" /></label></noscript>
         {/* Job Selector for Vaga mode */}
         {applicationType === 'vaga' && (
           <div className="p-4 bg-primary/5 rounded-lg border border-primary/10 mb-6">
@@ -331,7 +304,7 @@ export default function SpontaneousApplicationForm({ jobs = [], preSelectedJobId
               <input
                 ref={fileInputRef}
                 id="cv_file"
-                name="cv_file"
+                name="cv"
                 type="file"
                 accept=".pdf,.doc,.docx"
                 onChange={handleFileChange}

@@ -1,3 +1,5 @@
+import { readPostBody } from '@/lib/security/admin-body';
+import { HttpError } from '@/lib/security/body';
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 import { getAllPosts, createPost, CreatePostData } from '@/lib/posts';
@@ -11,14 +13,15 @@ export const dynamic = 'force-dynamic';
  * Retorna todos os posts (incluindo drafts)
  */
 export async function GET(req: NextRequest) {
-  const authError = requireAdminAuth(req);
+  const authError = await requireAdminAuth(req);
   if (authError) return authError;
 
   try {
     const posts = await getAllPosts();
     return NextResponse.json({ posts }, { status: 200 });
   } catch (error) {
-    console.error('Erro ao obter posts:', error);
+    if (error instanceof HttpError) return NextResponse.json({error:error.message},{status:error.status});
+    console.error('Erro ao obter posts:');
     return NextResponse.json(
       { error: 'Erro ao obter posts' },
       { status: 500 }
@@ -31,11 +34,11 @@ export async function GET(req: NextRequest) {
  * Cria um novo post
  */
 export async function POST(req: NextRequest) {
-  const authError = requireAdminAuth(req);
+  const authError = await requireAdminAuth(req);
   if (authError) return authError;
 
   try {
-    const body = await req.json();
+    const body = await readPostBody(req);
 
     // Validação básica
     if (!body.title || !body.slug || !body.content_mdx) {
@@ -70,7 +73,8 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ post }, { status: 201 });
   } catch (error) {
-    console.error('Erro ao criar post:', error);
+    if (error instanceof HttpError) return NextResponse.json({error:error.message},{status:error.status});
+    console.error('Erro ao criar post:');
     return NextResponse.json(
       { error: 'Erro ao criar post' },
       { status: 500 }

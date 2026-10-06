@@ -1,3 +1,4 @@
+import { readBoundedBytes, HttpError } from '@/lib/security/body';
 import { NextRequest, NextResponse } from 'next/server';
 import { getSupabaseAdmin } from '@/lib/supabase';
 import { requireAdminAuth } from '@/lib/admin-auth';
@@ -10,11 +11,12 @@ export const runtime = 'nodejs';
  * Faz upload de imagem para o bucket web-media
  */
 export async function POST(req: NextRequest) {
-  const authError = requireAdminAuth(req);
+  const authError = await requireAdminAuth(req);
   if (authError) return authError;
 
   try {
-    const formData = await req.formData();
+    const bytes = await readBoundedBytes(req, 4_400_000);
+    const formData = await new Request(req.url,{method:'POST',headers:{'Content-Type':req.headers.get('content-type') || ''},body:bytes}).formData();
     const file = formData.get('file') as File;
     
     if (!file) {
@@ -73,7 +75,7 @@ export async function POST(req: NextRequest) {
       });
 
     if (error) {
-      console.error('Erro ao fazer upload:', error);
+      console.error('Erro ao fazer upload:');
       return NextResponse.json(
         { error: 'Erro ao fazer upload da imagem' },
         { status: 500 }
@@ -90,7 +92,8 @@ export async function POST(req: NextRequest) {
       path: data.path,
     }, { status: 200 });
   } catch (error) {
-    console.error('Erro no upload:', error);
+    if (error instanceof HttpError) return NextResponse.json({error:error.message},{status:error.status});
+    console.error('Erro no upload:');
     return NextResponse.json(
       { error: 'Erro ao processar upload' },
       { status: 500 }

@@ -3,7 +3,7 @@ import { requireAdminAuth } from '@/lib/admin-auth';
 import { createLeadRepository } from '@/lib/leads/repository';
 export const dynamic = 'force-dynamic';
 export async function GET(request: Request) {
-  const denied = requireAdminAuth(request);
+  const denied = await requireAdminAuth(request);
   if (denied) return denied;
   const query = new URL(request.url).searchParams;
   const to = query.get('to') || new Date().toISOString();

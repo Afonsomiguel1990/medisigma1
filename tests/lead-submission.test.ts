@@ -80,7 +80,7 @@ test('validates fields, UUID and resource; attribution excluded from hash', () =
 });
 test('Slack requires HTTP success and plain ok; network errors are uncertain', async () => {
   const message = formatSlackMessage({ tipo: 'cliente', nome: 'Teste', email: '', telefone: '', mensagem: '' });
-  for (const [status, body, expected] of [[200, 'ok', 'sent'], [200, 'invalid_payload', 'failed'], [500, 'ok', 'failed']] as const) {
+  for (const [status, body, expected] of [[200, 'ok', 'sent'], [200, 'invalid_payload', 'failed'], [500, 'ok', 'uncertain']] as const) {
     const fetcher = (async () => new Response(body, { status })) as typeof fetch;
     assert.equal(await sendSlackNotification(message, { webhookUrl: 'https://example.invalid', fetcher }), expected);
   }

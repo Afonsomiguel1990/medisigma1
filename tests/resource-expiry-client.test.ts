@@ -23,7 +23,14 @@ test('generic errors and mismatched expiry receipts never count as successful re
   }
   await assert.rejects(submitContactIntent({ ...payload,lead_kind:'service_request' },{},undefined,async () => Response.json({ok:true,saved:true,download_expired:true,lead_kind:'resource_request'},{status:410})));
 });
-test('contact endpoint rejects resource kind and forged resource identifier before persistence', async () => {
+test('contact endpoint rejects resource kind and forged resource identifier before persistence', async (context) => {
+  const previous={...process.env};
+  process.env.NEXT_PUBLIC_SUPABASE_URL='https://test.supabase.co';process.env.SUPABASE_SERVICE_ROLE='synthetic-test-key';process.env.SECURITY_LOCAL_TEST='1';
+  context.after(()=>{process.env=previous;});
+  context.mock.method(globalThis,'fetch',async (url:string)=>{
+    assert.equal(url,'https://test.supabase.co/rest/v1/rpc/increment_intake_counter');
+    return Response.json({count:1,retryAfter:600});
+  });
   for (const body of [{lead_kind:'resource_request'}, {resource_id:'preparacao-exames'}, {lead_kind:'service_request',resource_id:'forged'}]) {
     const response = await POST(new Request('https://www.medisigma.pt/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}));
     assert.equal(response.status,400);

@@ -1,3 +1,5 @@
+import { readPostBody } from '@/lib/security/admin-body';
+import { HttpError } from '@/lib/security/body';
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 import { getPostById, updatePost, deletePost, UpdatePostData } from '@/lib/posts';
@@ -13,7 +15,7 @@ export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const authError = requireAdminAuth(req);
+  const authError = await requireAdminAuth(req);
   if (authError) return authError;
 
   try {
@@ -29,7 +31,8 @@ export async function GET(
 
     return NextResponse.json({ post }, { status: 200 });
   } catch (error) {
-    console.error('Erro ao obter post:', error);
+    if (error instanceof HttpError) return NextResponse.json({error:error.message},{status:error.status});
+    console.error('Erro ao obter post:');
     return NextResponse.json(
       { error: 'Erro ao obter post' },
       { status: 500 }
@@ -45,12 +48,12 @@ export async function PUT(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const authError = requireAdminAuth(req);
+  const authError = await requireAdminAuth(req);
   if (authError) return authError;
 
   try {
     const { id } = await params;
-    const body = await req.json();
+    const body = await readPostBody(req);
 
     const updateData: UpdatePostData = {
       id,
@@ -78,7 +81,8 @@ export async function PUT(
 
     return NextResponse.json({ post }, { status: 200 });
   } catch (error) {
-    console.error('Erro ao atualizar post:', error);
+    if (error instanceof HttpError) return NextResponse.json({error:error.message},{status:error.status});
+    console.error('Erro ao atualizar post:');
     return NextResponse.json(
       { error: error instanceof Error ? error.message : 'Erro ao atualizar post' },
       { status: 500 }
@@ -94,7 +98,7 @@ export async function DELETE(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const authError = requireAdminAuth(req);
+  const authError = await requireAdminAuth(req);
   if (authError) return authError;
 
   try {
@@ -106,7 +110,8 @@ export async function DELETE(
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
-    console.error('Erro ao eliminar post:', error);
+    if (error instanceof HttpError) return NextResponse.json({error:error.message},{status:error.status});
+    console.error('Erro ao eliminar post:');
     return NextResponse.json(
       { error: 'Erro ao eliminar post' },
       { status: 500 }

@@ -10,7 +10,7 @@ export const runtime = 'nodejs';
  * Query params: ?type=contacts|candidaturas|applications
  */
 export async function GET(req: NextRequest) {
-  const authError = requireAdminAuth(req);
+  const authError = await requireAdminAuth(req);
   if (authError) return authError;
 
   try {
@@ -47,7 +47,7 @@ export async function GET(req: NextRequest) {
     const forms = await getAllForms();
     return NextResponse.json(forms, { status: 200 });
   } catch (error) {
-    console.error('Erro ao obter formulários:', error);
+    console.error('Erro ao obter formulários:');
     const errorMessage = error instanceof Error ? error.message : 'Erro ao obter formulários';
     
     // Mensagem mais útil se for erro de autenticação

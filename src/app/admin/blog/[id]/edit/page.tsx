@@ -1,4 +1,5 @@
 'use client';
+import { adminFetch } from '@/lib/admin-client';
 
 import { useEffect, useState } from 'react';
 import PostEditor from '@/components/admin/PostEditor';
@@ -20,7 +21,7 @@ export default function EditPostPage({ params }: { params: Promise<{ id: string 
       if (!resolvedParams) return;
 
       try {
-        const response = await fetch(`/api/admin/posts/${resolvedParams.id}`);
+        const response = await adminFetch(`/api/admin/posts/${resolvedParams.id}`);
         if (!response.ok) throw new Error('Erro ao carregar post');
         const data = await response.json();
         setPost(data.post);
@@ -43,7 +44,7 @@ export default function EditPostPage({ params }: { params: Promise<{ id: string 
     setError(null);
 
     try {
-      const response = await fetch(`/api/admin/posts/${resolvedParams.id}`, {
+      const response = await adminFetch(`/api/admin/posts/${resolvedParams.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

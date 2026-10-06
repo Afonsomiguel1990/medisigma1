@@ -1,4 +1,6 @@
 import { NextResponse } from 'next/server';
+import { rateLimitRequest } from './rate-limit';
+import { validCsrf } from './security/csrf';
 
 const ADMIN_REALM = 'Medisigma Admin';
 
@@ -90,6 +92,16 @@ export function isAdminAuthenticated(request: Request) {
   );
 }
 
-export function requireAdminAuth(request: Request) {
-  return isAdminAuthenticated(request) ? null : unauthorized();
+export async function requireAdminAuth(request: Request) {
+  if (!isAdminAuthenticated(request)) {
+    if (request.headers.has('authorization')) {
+      const limited = await rateLimitRequest(request, { key:'admin-failed', limit:10, windowMs:900000 });
+      if (limited) return limited;
+    }
+    return unauthorized();
+  }
+  if (!['GET','HEAD','OPTIONS'].includes(request.method) && !await validCsrf(request)) {
+    return NextResponse.json({ error:'Pedido administrativo inválido. Atualize a página.' }, { status:403, headers:{ 'Cache-Control':'no-store' } });
+  }
+  return null;
 }

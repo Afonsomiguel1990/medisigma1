@@ -1,10 +1,12 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import { sendCandidate, type CandidateAttempt } from '@/lib/cv/client-upload';
 
 export default function ApplicationForm({ jobId, jobTitle }: { jobId?: string, jobTitle?: string }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [cvMode, setCvMode] = useState<'file' | 'link'>('file');
+  const attempt = useRef<CandidateAttempt | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -42,14 +44,8 @@ export default function ApplicationForm({ jobId, jobTitle }: { jobId?: string, j
 
     setIsSubmitting(true);
     try {
-      const res = await fetch('/api/applications', {
-        method: 'POST',
-        body: formData,
-      });
-      if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        throw new Error(err?.error || 'Falha ao enviar candidatura');
-      }
+      const fields = Object.fromEntries([...formData].filter(([, value]) => typeof value === 'string'));
+      await sendCandidate('application', fields, cvMode === 'file' ? cvFile : null, attempt);
       alert('Candidatura enviada com sucesso. Obrigado!');
       form.reset();
       if (fileInputRef.current) fileInputRef.current.value = '';
@@ -63,7 +59,9 @@ export default function ApplicationForm({ jobId, jobTitle }: { jobId?: string, j
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form action="/api/applications" method="post" encType="multipart/form-data" onSubmit={handleSubmit} className="space-y-4">
+      <label hidden aria-hidden="true">Deixar vazio<input name="confirm_mail" tabIndex={-1} autoComplete="off" /></label>
+      <noscript><p>Sem JavaScript, pode enviar ficheiros até 4 MB ou partilhar uma ligação ao CV.</p><label>Ligação alternativa ao CV<input name="cv_link" type="url" /></label></noscript>
       <input type="hidden" name="job_id" value={jobId || ''} />
       {jobTitle && (
         <div className="mb-4 p-3 bg-muted rounded-lg border">
@@ -125,7 +123,7 @@ export default function ApplicationForm({ jobId, jobTitle }: { jobId?: string, j
               accept=".pdf,.doc,.docx"
               className="w-full px-4 py-3 border rounded-lg file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-secondary/10 file:text-secondary hover:file:bg-secondary/20"
             />
-            <p className="text-xs text-gray-500 mt-1">Formatos: PDF, DOC. Máx: 5MB.</p>
+            <p className="text-xs text-gray-500 mt-1">Formatos: PDF, DOC, DOCX. Máx: 5MB.</p>
           </div>
         ) : (
           <div>

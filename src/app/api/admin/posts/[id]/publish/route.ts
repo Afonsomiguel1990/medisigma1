@@ -1,3 +1,5 @@
+import { readPostBody } from '@/lib/security/admin-body';
+import { HttpError } from '@/lib/security/body';
 import { NextRequest, NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
 import { publishPost } from '@/lib/posts';
@@ -13,12 +15,12 @@ export async function POST(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  const authError = requireAdminAuth(req);
+  const authError = await requireAdminAuth(req);
   if (authError) return authError;
 
   try {
     const { id } = await params;
-    const body = await req.json();
+    const body = await readPostBody(req);
     
     const publishedAt = body.published_at || new Date().toISOString();
     const post = await publishPost(id, publishedAt);
@@ -29,7 +31,8 @@ export async function POST(
     
     return NextResponse.json({ post }, { status: 200 });
   } catch (error) {
-    console.error('Erro ao publicar post:', error);
+    if (error instanceof HttpError) return NextResponse.json({error:error.message},{status:error.status});
+    console.error('Erro ao publicar post:');
     return NextResponse.json(
       { error: 'Erro ao publicar post' },
       { status: 500 }

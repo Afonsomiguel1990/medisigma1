@@ -1,3 +1,5 @@
+import { siteOrigin } from '@/lib/security/origin';
+import { representationUrl, fetchRepresentation } from '@/lib/security/representation';
 import type { NextRequest } from "next/server";
 import { agentFriendlyNotFoundMarkdown } from "@/lib/agent-recovery";
 import { appendVaryAccept } from "@/lib/content-negotiation";
@@ -5,7 +7,6 @@ import { htmlToMarkdown } from "@/lib/markdown";
 import {
   isNegotiablePublicPath,
   ORIGINAL_PATH_HEADER,
-  REPRESENTATION_SOURCE_HEADER,
 } from "@/lib/public-routes";
 
 export const runtime = "nodejs";
@@ -68,7 +69,7 @@ async function markdownResponse(
   }
 
   const path = await originalPath(request, context);
-  const origin = request.nextUrl.origin;
+  const origin = siteOrigin();
 
   if (!path.startsWith("/") || path.startsWith("//")) {
     return new Response(includeBody ? "Invalid source path.\n" : null, {
@@ -77,7 +78,8 @@ async function markdownResponse(
     });
   }
 
-  const sourceUrl = new URL(path, origin);
+  let sourceUrl: URL;
+  try { sourceUrl = representationUrl(path); } catch { return new Response(null, { status:404 }); }
   if (
     sourceUrl.origin !== origin ||
     !isNegotiablePublicPath(sourceUrl.pathname)
@@ -89,17 +91,7 @@ async function markdownResponse(
   }
 
   try {
-    const source = await fetch(sourceUrl, {
-      method: "GET",
-      redirect: "manual",
-      cache: "no-store",
-      headers: {
-        Accept: "text/html",
-        [REPRESENTATION_SOURCE_HEADER]: "1",
-        "User-Agent":
-          request.headers.get("user-agent") || "Medisigma-Markdown-Renderer/1.0",
-      },
-    });
+    const source = await fetchRepresentation(sourceUrl);
 
     const headers = responseHeaders(source, source.status);
     headers.set("Content-Location", sourceUrl.toString());
@@ -127,8 +119,8 @@ async function markdownResponse(
       status: source.status,
       headers,
     });
-  } catch (error) {
-    console.error("Markdown representation failed", error);
+  } catch {
+    console.error("Markdown_representation_failed");
     return new Response(
       includeBody ? "# Representação temporariamente indisponível\n" : null,
       { status: 502, headers: responseHeaders(null, 502) },

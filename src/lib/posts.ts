@@ -1,4 +1,4 @@
-import { getSupabaseServer, getSupabaseAnon } from './supabase';
+import { getSupabaseAdmin, getSupabaseAnon } from './supabase';
 
 export interface Post {
   id: string;
@@ -60,7 +60,7 @@ export async function getAllPublishedPosts(): Promise<Post[]> {
     .order('published_at', { ascending: false });
 
   if (error) {
-    console.error('Erro ao obter posts publicados:', error);
+    console.error('Erro ao obter posts publicados:');
     throw error;
   }
 
@@ -71,7 +71,7 @@ export async function getAllPublishedPosts(): Promise<Post[]> {
  * Obtém todos os posts (incluindo drafts) - apenas para utilizadores autenticados
  */
 export async function getAllPosts(): Promise<Post[]> {
-  const supabase = getSupabaseServer();
+  const supabase = getSupabaseAdmin();
 
   const { data, error } = await supabase
     .schema('web')
@@ -80,7 +80,7 @@ export async function getAllPosts(): Promise<Post[]> {
     .order('created_at', { ascending: false });
 
   if (error) {
-    console.error('Erro ao obter todos os posts:', error);
+    console.error('Erro ao obter todos os posts:');
     throw error;
   }
 
@@ -103,7 +103,7 @@ export async function getPostBySlug(slug: string): Promise<PostWithTags | null> 
 
   if (postError) {
     if (postError.code !== 'PGRST116') {
-      console.error('Erro ao obter post por slug:', postError);
+      console.error('Erro ao obter post por slug:');
     }
     return null;
   }
@@ -116,7 +116,7 @@ export async function getPostBySlug(slug: string): Promise<PostWithTags | null> 
     .eq('post_id', post.id);
 
   if (tagsError) {
-    console.error('Erro ao obter tags do post:', tagsError);
+    console.error('Erro ao obter tags do post:');
   }
 
   type PostTagRecord = { tag_id: string; tags: { id: string; name: string } | { id: string; name: string }[] | null };
@@ -135,7 +135,7 @@ export async function getPostBySlug(slug: string): Promise<PostWithTags | null> 
  * Obtém um post pelo ID (autenticado)
  */
 export async function getPostById(id: string): Promise<PostWithTags | null> {
-  const supabase = getSupabaseServer();
+  const supabase = getSupabaseAdmin();
 
   const { data: post, error: postError } = await supabase
     .schema('web')
@@ -145,7 +145,7 @@ export async function getPostById(id: string): Promise<PostWithTags | null> {
     .single();
 
   if (postError) {
-    console.error('Erro ao obter post por ID:', postError);
+    console.error('Erro ao obter post por ID:');
     return null;
   }
 
@@ -157,7 +157,7 @@ export async function getPostById(id: string): Promise<PostWithTags | null> {
     .eq('post_id', post.id);
 
   if (tagsError) {
-    console.error('Erro ao obter tags do post:', tagsError);
+    console.error('Erro ao obter tags do post:');
   }
 
   type PostTagRecord = { tag_id: string; tags: { id: string; name: string } | { id: string; name: string }[] | null };
@@ -176,7 +176,7 @@ export async function getPostById(id: string): Promise<PostWithTags | null> {
  * Cria um novo post
  */
 export async function createPost(data: CreatePostData): Promise<Post> {
-  const supabase = getSupabaseServer();
+  const supabase = getSupabaseAdmin();
 
   const { tags, ...postData } = data;
 
@@ -193,7 +193,7 @@ export async function createPost(data: CreatePostData): Promise<Post> {
     .single();
 
   if (postError) {
-    console.error('Erro ao criar post:', postError);
+    console.error('Erro ao criar post:');
     throw postError;
   }
 
@@ -209,7 +209,7 @@ export async function createPost(data: CreatePostData): Promise<Post> {
  * Atualiza um post existente
  */
 export async function updatePost(data: UpdatePostData): Promise<Post> {
-  const supabase = getSupabaseServer();
+  const supabase = getSupabaseAdmin();
 
   const { id, tags, ...postData } = data;
 
@@ -226,7 +226,7 @@ export async function updatePost(data: UpdatePostData): Promise<Post> {
     .single();
 
   if (postError) {
-    console.error('Erro ao atualizar post:', postError);
+    console.error('Erro ao atualizar post:');
     throw postError;
   }
 
@@ -252,7 +252,7 @@ export async function updatePost(data: UpdatePostData): Promise<Post> {
  * Elimina um post
  */
 export async function deletePost(id: string): Promise<void> {
-  const supabase = getSupabaseServer();
+  const supabase = getSupabaseAdmin();
 
   const { error } = await supabase
     .schema('web')
@@ -261,7 +261,7 @@ export async function deletePost(id: string): Promise<void> {
     .eq('id', id);
 
   if (error) {
-    console.error('Erro ao eliminar post:', error);
+    console.error('Erro ao eliminar post:');
     throw error;
   }
 }
@@ -270,7 +270,7 @@ export async function deletePost(id: string): Promise<void> {
  * Publica um post (altera status para published)
  */
 export async function publishPost(id: string, publishedAt?: string): Promise<Post> {
-  const supabase = getSupabaseServer();
+  const supabase = getSupabaseAdmin();
 
   const { data: post, error } = await supabase
     .schema('web')
@@ -285,7 +285,7 @@ export async function publishPost(id: string, publishedAt?: string): Promise<Pos
     .single();
 
   if (error) {
-    console.error('Erro ao publicar post:', error);
+    console.error('Erro ao publicar post:');
     throw error;
   }
 
@@ -296,7 +296,7 @@ export async function publishPost(id: string, publishedAt?: string): Promise<Pos
  * Agenda um post para publicação futura
  */
 export async function schedulePost(id: string, scheduledFor: string): Promise<Post> {
-  const supabase = getSupabaseServer();
+  const supabase = getSupabaseAdmin();
 
   const { data: post, error } = await supabase
     .schema('web')
@@ -311,7 +311,7 @@ export async function schedulePost(id: string, scheduledFor: string): Promise<Po
     .single();
 
   if (error) {
-    console.error('Erro ao agendar post:', error);
+    console.error('Erro ao agendar post:');
     throw error;
   }
 
@@ -331,7 +331,7 @@ export async function getAllTags(): Promise<{ id: string; name: string }[]> {
     .order('name');
 
   if (error) {
-    console.error('Erro ao obter tags:', error);
+    console.error('Erro ao obter tags:');
     throw error;
   }
 
@@ -342,7 +342,7 @@ export async function getAllTags(): Promise<{ id: string; name: string }[]> {
  * Cria uma nova tag ou retorna existente
  */
 export async function createOrGetTag(name: string): Promise<{ id: string; name: string }> {
-  const supabase = getSupabaseServer();
+  const supabase = getSupabaseAdmin();
 
   // Tentar obter tag existente
   const { data: existing } = await supabase
@@ -365,7 +365,7 @@ export async function createOrGetTag(name: string): Promise<{ id: string; name: 
     .single();
 
   if (error) {
-    console.error('Erro ao criar tag:', error);
+    console.error('Erro ao criar tag:');
     throw error;
   }
 
@@ -376,7 +376,7 @@ export async function createOrGetTag(name: string): Promise<{ id: string; name: 
  * Associa tags a um post (helper interno)
  */
 async function associateTags(postId: string, tagNames: string[]): Promise<void> {
-  const supabase = getSupabaseServer();
+  const supabase = getSupabaseAdmin();
 
   // Criar ou obter tags
   const tagPromises = tagNames.map(name => createOrGetTag(name));
@@ -394,7 +394,7 @@ async function associateTags(postId: string, tagNames: string[]): Promise<void> 
     .insert(associations);
 
   if (error) {
-    console.error('Erro ao associar tags:', error);
+    console.error('Erro ao associar tags:');
     throw error;
   }
 }
@@ -432,7 +432,7 @@ export async function isSlugUnique(slug: string, excludeId?: string): Promise<bo
   const { data, error } = await query;
 
   if (error) {
-    console.error('Erro ao verificar unicidade do slug:', error);
+    console.error('Erro ao verificar unicidade do slug:');
     return false;
   }
 

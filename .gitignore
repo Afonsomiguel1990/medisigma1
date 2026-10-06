@@ -47,3 +47,4 @@ next-env.d.ts
 
 # Local media preparation and review
 /.media-build/
+/supabase/.temp/

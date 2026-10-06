@@ -1,0 +1,20 @@
+-- Local PostgreSQL harness. No live credentials, network notifications or CV data.
+create schema web;
+create schema storage;
+create role anon;
+create role authenticated;
+create role service_role bypassrls;
+grant usage on schema web,storage to service_role,anon,authenticated;
+create table web.contacts(id uuid primary key default gen_random_uuid(),created_at timestamptz default now(),empresa text,telefone text,email text,servico text,mensagem text,pagina text,url text,fonte text,nome text,localidade text,tipo_instalacao text);
+create table web.candidaturas(id uuid primary key default gen_random_uuid(),created_at timestamptz default now(),nome text,email text,telefone text,area_interesse text,cv_link text,mensagem text,pagina text,url text,origem text);
+create table web.lead_submissions(submission_id uuid primary key,payload_hash text,lead_kind text,service_key text,company_sector text,resource_id text,source text,page text,attribution jsonb,created_at timestamptz default now(),contact_id uuid,notification_status text default 'pending',notification_completed_at timestamptz);
+create table storage.buckets(id text primary key,name text,public boolean,file_size_limit bigint,allowed_mime_types text[]);
+insert into storage.buckets(id,name,public) values('os-cv','os-cv',true);
+create table storage.objects(id uuid primary key default gen_random_uuid(),bucket_id text,name text);
+alter table storage.objects enable row level security;
+create table web.trigger_events(kind text);
+create function web.notify_contact() returns trigger language plpgsql as $$begin insert into web.trigger_events values('contact');return new;end$$;
+create function web.notify_candidatura() returns trigger language plpgsql as $$begin insert into web.trigger_events values('candidate');return new;end$$;
+create trigger trg_notify_contact after insert on web.contacts for each row execute function web.notify_contact();
+create trigger trg_notify_candidatura after insert on web.candidaturas for each row execute function web.notify_candidatura();
+grant all on all tables in schema web to service_role;

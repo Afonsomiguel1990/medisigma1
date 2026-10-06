@@ -1,6 +1,7 @@
+import { remarkSafeEditorial } from '@/lib/security/mdx';
 import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
+import matter from './frontmatter';
 import { compileMDX } from 'next-mdx-remote/rsc';
 
 // Define o caminho para a pasta de conteúdo do blog
@@ -107,6 +108,7 @@ export async function getPostData(slug: string) {
     source: fileContents,
     options: {
       parseFrontmatter: true,
+      mdxOptions: { remarkPlugins: [remarkSafeEditorial] },
     },
   });
 

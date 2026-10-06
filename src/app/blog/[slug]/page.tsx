@@ -1,3 +1,4 @@
+import { remarkSafeEditorial } from '@/lib/security/mdx';
 import React from 'react';
 import { getPostBySlug, getAllPublishedPosts } from '@/lib/posts';
 import { notFound, permanentRedirect } from 'next/navigation';
@@ -32,12 +33,12 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
         components: { FacebookVideo },
         options: {
           parseFrontmatter: false,
-          mdxOptions: { remarkPlugins: [remarkGfm] },
+          mdxOptions: { remarkPlugins: [remarkGfm, remarkSafeEditorial] },
         },
       });
       compiledContent = content;
     } catch (error) {
-      console.error(`Erro ao compilar MDX para o post ${post.slug}:`, error);
+      console.error('blog_mdx_rejected', { postId: post.id });
       // Se houver erro na compilação, mostrar mensagem de erro
       compiledContent = (
         <div className="bg-red-50 border border-red-200 rounded-lg p-4">

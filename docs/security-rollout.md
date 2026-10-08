@@ -11,8 +11,8 @@ Implementação numa worktree separada. Não alterar os documentos, URLs, visibi
 - [x] Testar receção, revisão, notificações e novos CV privados com base e storage reais e destino local de notificações.
 - [x] Publicar por Git e verificar o deployment habitual.
 - [x] Fechar apenas as entradas anónimas abrangidas após validar o novo percurso.
-- [ ] Observar durante 48 horas, registar resultados e validar recuperação manual.
-- [ ] Ativar retenção apenas depois desses critérios.
+- [x] Rever a observação e validar recuperação manual; prazo antecipado por autorização expressa do utilizador em 8 de outubro.
+- [x] Ativar e verificar a retenção em produção.
 
 ## Invariantes
 
@@ -51,3 +51,15 @@ Verificações públicas: 76 páginas de contacto/navegação e 72 URLs do sitem
 Observação iniciada em **6 de outubro de 2026 às 13:52:19 Europe/Lisbon** (12:52:19 UTC). A retenção não pode ser ativada antes de **8 de outubro de 2026 às 13:52:19 Europe/Lisbon**. Automação deste chat: `medisigma-validar-48h-e-ativar-reten-o-de-spam`, verificação diária às 14:00. Confirmar o tempo na Supabase antes da ativação, independentemente do horário do agendamento.
 
 Durante observe, os sinais são registados mas os pedidos válidos continuam a ser entregues; ficheiros inválidos/suspeitos ficam sempre isolados e os limites duros já vigoram. A ativação deve verificar a observação, o benchmark 12/19, a recuperação manual e os estados de entrega, e executar uma atualização condicionada a `observation_started_at <= now()-interval '48 hours'`. Preservar o snapshot histórico original; não voltar a criá-lo com novos registos.
+
+## Incidente de spam e ativação em 8 de outubro
+
+Estado atual: **enforce**, ativado em **8 de outubro de 2026 às 08:11:10 Europe/Lisbon** (07:11:10 UTC). O utilizador autorizou expressamente antecipar a retenção neste chat, substituindo o limite temporal anterior. A automação de ativação foi desativada após a verificação.
+
+Entre o início da observação e a investigação entraram 9 pedidos de contacto: 7 assinalados pelo honeypot e 2 sem sinais. Todos receberam uma notificação. Não houve contactos ou candidaturas que contornassem a receção privada. A causa foi o modo observe promover também os pedidos assinalados pelo honeypot, que o percurso anterior descartava. Esse comportamento agravou o spam durante a observação.
+
+A ativação altera apenas a decisão sobre novos pedidos. Os 9 registos recebidos ficaram intactos; não foram apagados, classificados como spam ou reenviados. As permissões anónimas continuam fechadas e os buckets mantêm a visibilidade aprovada.
+
+Verificação posterior: três pedidos sintéticos enviados aos endpoints públicos (contacto e ambas as candidaturas) ficaram em held, sem registo operacional, sem tentativa de notificação e com recibo idempotente. As fixtures foram removidas. O teste integrado foi repetido com enforce e passou os 12 grupos, incluindo pedidos normais por JSON e HTML nativo, uploads PDF de 5 MB/DOC/DOCX, tokens, consulta histórica e recuperação manual com uma notificação única. As sete notificações deste teste foram capturadas localmente, sem envio à equipa.
+
+Mantêm-se 123 referências de CV históricos e 108 objetos em os-cv. O benchmark continua a sinalizar os 12 casos conhecidos e a preservar os outros 19. Evidência privada: output/security/enforcement-results.json, e2e-results.json e observation-report.json. Nenhum anexo histórico ou destino externo submetido foi aberto.

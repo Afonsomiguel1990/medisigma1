@@ -74,6 +74,8 @@ async function main() {
   const files=await fixtures();
   let cvId='';let token='';
   for(const extension of ['pdf','doc','docx'] as const){
+    // Independent valid fixtures must not trip shared frequency signals in enforce mode.
+    await clearLocalCounters();
     const id=randomUUID();ids.push(id);const bytes=files[extension];
     const submission={submission_id:id,nome:`TESTE TECNICO ${extension.toUpperCase()}`,email:`${id}@example.org`,telefone:'000000000',mensagem:'Teste técnico de segurança. Sem candidato real.'};
     const auth=await json('/api/cv/uploads',{kind:'spontaneous',submission,file:{name:`cv.${extension}`,size:bytes.length,sha256:sha256(bytes)}});assert.equal(auth.response.status,200,JSON.stringify(auth.data));
@@ -105,12 +107,18 @@ async function main() {
   assert.equal((await fetch(forgedAuth.data.signed_url,{method:'PUT',headers:{'Content-Type':'application/pdf'},body:forged as BodyInit})).status,200);
   const beforeInvalid=messages.length;assert.equal((await json('/api/spontaneous-applications',{...forgedFields,upload_id:forgedAuth.data.upload_id})).response.status,422);assert.equal(messages.length,beforeInvalid);results.push('oversize-forged-file-isolation');
   for(const native of [false,true]){
+    await clearLocalCounters();
+    const beforeContact=messages.length;
     const id=randomUUID();ids.push(id);const fields={submission_id:id,empresa:'TESTE TECNICO',nome:'Inês São João',email:`${id}@example.org`,servico:'Medicina do Trabalho'};
     if(native){const response=await fetch(base+'/api/contact',{method:'POST',redirect:'manual',headers:{'Content-Type':'application/x-www-form-urlencoded',Accept:'text/html'},body:new URLSearchParams(fields)});assert.equal(response.status,303);}
     else {const response=await json('/api/contact',fields,{'User-Agent':'TestAgent/1.0'});assert.equal(response.response.status,200);assert.equal(response.data.saved,true);const repeated=await json('/api/contact',fields);assert.equal(repeated.data.duplicate,true);}
+    assert.equal(messages.length,beforeContact+1);
   }results.push('contact-json-agent-native-optional-fields-idempotency');
+  await clearLocalCounters();
+  const beforeLegacy=messages.length;
   const legacyId=randomUUID();ids.push(legacyId);const form=new FormData();form.set('submission_id',legacyId);form.set('name','TESTE MULTIPART');form.set('email',`${legacyId}@example.org`);form.set('cv',new Blob([files.small as BlobPart],{type:'application/pdf'}),'cv.pdf');
   const legacy=await fetch(base+'/api/applications',{method:'POST',headers:{Accept:'text/html'},body:form});assert.equal(legacy.status,200);assert.match(await legacy.text(),/Candidatura recebida/);results.push('legacy-multipart-native-confirmation');
+  assert.equal(messages.length,beforeLegacy+1);
   // Synthetic held record exercises authenticated recovery while real traffic stays in observation.
   const heldId=randomUUID();ids.push(heldId);const held=validateCandidate({submission_id:heldId,nome:'TESTE REVISAO',email:`${heldId}@example.org`,telefone:'0'},'spontaneous');
   const stored=await client.schema('web').from('public_intake').insert({submission_id:heldId,kind:held.kind,payload_hash:held.payloadHash,payload:held.payload,state:'held',suspected:true,reasons:['honeypot'],rules_version:'test-fixture',mode_at_receipt:'enforce'});assert.equal(stored.error,null);

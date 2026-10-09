@@ -159,6 +159,11 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
                   </span>
                 </span>
               </div>
+              {post.slug === 'o-que-e-o-radao' && post.updated_at && (
+                <p className="mt-3 text-sm text-gray-600">
+                  Atualizado em <time dateTime={post.updated_at}>{new Date(post.updated_at).toLocaleDateString('pt-PT', { year: 'numeric', month: 'long', day: 'numeric' })}</time>
+                </p>
+              )}
               {post.description && (
                 <p className="mt-4 text-lg text-gray-700 dark:text-gray-300 leading-relaxed break-words">
                   {post.description}
@@ -182,7 +187,7 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
                             prose-td:border prose-td:border-gray-300 prose-td:p-2
                             [&_table_th:first-child]:whitespace-nowrap [&_table_td:first-child]:whitespace-nowrap
                             [&_table_th:first-child]:min-w-12 [&_table_td:first-child]:min-w-12">
-              <div className={post.slug === 'ruido-no-trabalho-avaliacao-medicao'
+              <div className={['ruido-no-trabalho-avaliacao-medicao', 'o-que-e-o-radao'].includes(post.slug)
                 ? "overflow-x-auto [&>p]:mb-6 [&>p]:leading-7 [&>ul]:my-6 [&>ul>li]:mb-3 [&_a]:text-secondary [&_a]:underline [&_a]:underline-offset-4"
                 : post.slug === ramiroTestimonial.slug
                 ? "overflow-x-auto [&>p]:mb-6 [&>p]:leading-relaxed [&_a]:text-secondary [&_a]:underline [&_a]:underline-offset-4"

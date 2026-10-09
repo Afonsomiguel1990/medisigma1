@@ -54,6 +54,12 @@ export const BLOG_ALIASES: Record<string, string> = {
 };
 
 export function getServiceCta(slug: string) {
+  if (slug === 'o-que-e-o-radao') return {
+    url: '/contact/', label: 'Avaliação do risco de radão',
+    heading: 'Precisa de apoio para avaliar o risco de radão?',
+    description: 'Partilhe a localização das instalações, os pisos ocupados e as avaliações que já realizou. A equipa Medisigma ajuda a enquadrar o apoio de que a empresa precisa.',
+    action: 'Falar com a equipa Medisigma',
+  };
   if (slug === 'ruido-no-trabalho-avaliacao-medicao') return {
     url: '/contact/', label: 'Avaliação de Ruído',
     heading: 'Precisa de avaliar o ruído na sua empresa?',

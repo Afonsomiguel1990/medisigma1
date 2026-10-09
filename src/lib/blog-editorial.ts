@@ -17,6 +17,7 @@ type EditorialEntry = { topic: Topic; service: keyof typeof services | null };
 // Explicit editorial choices for reviewed articles, including subsequent publications.
 // New articles receive no commercial CTA until their destination is reviewed.
 export const BLOG_EDITORIAL: Record<string, EditorialEntry> = {
+  'ruido-no-trabalho-avaliacao-medicao': { topic: 'sst', service: 'sst' },
   '40-horas-formacao-obrigatoria-empresas': { topic: 'training', service: 'training' },
   'medicina-trabalho-exames-obrigatorios': { topic: 'medicine', service: 'medicine' },
   'ficha-aptidao-trabalho-validade': { topic: 'medicine', service: 'medicine' },
@@ -53,6 +54,12 @@ export const BLOG_ALIASES: Record<string, string> = {
 };
 
 export function getServiceCta(slug: string) {
+  if (slug === 'ruido-no-trabalho-avaliacao-medicao') return {
+    url: '/contact/', label: 'Avaliação de Ruído',
+    heading: 'Precisa de avaliar o ruído na sua empresa?',
+    description: 'Indique a atividade, a localização e as tarefas a avaliar. A equipa Medisigma ajuda a preparar a visita e a definir o acompanhamento necessário.',
+    action: 'Pedir avaliação de ruído',
+  };
   if (slug === 'seguranca-restauracao-testemunho-restaurante-o-ramiro') return {
     url: '/contact/', label: 'Segurança na Restauração',
     heading: 'Precisa de ajuda profissional com Segurança na Restauração?',

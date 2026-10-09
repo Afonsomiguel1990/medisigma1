@@ -98,4 +98,8 @@ test('MDX AST rejects executable elements, events, unsafe links and unknown comp
     await assert.rejects(compileMDX({source,options:{mdxOptions:{remarkPlugins:[remarkSafeEditorial]}}}),source);
   }
   await compileMDX({source:'# Título\n\n**Texto** e [ligação](https://example.org).\n\n<FacebookVideo />',components:{FacebookVideo:()=>null},options:{mdxOptions:{remarkPlugins:[remarkSafeEditorial]}}});
+  await compileMDX({source:'<NoiseAssessmentMedia />',components:{NoiseAssessmentMedia:()=>null},options:{mdxOptions:{remarkPlugins:[remarkSafeEditorial]}}});
+  for (const source of ['<NoiseAssessmentMedia src="https://example.org/video.mp4" />', '<NoiseAssessmentMedia {...props} />', '<NoiseAssessmentMedia onClick="evil" />', '<NoiseAssessmentMedia><script>alert(1)</script></NoiseAssessmentMedia>']) {
+    await assert.rejects(compileMDX({source,options:{mdxOptions:{remarkPlugins:[remarkSafeEditorial]}}}),source);
+  }
 });

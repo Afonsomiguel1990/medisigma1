@@ -27,6 +27,7 @@ export const serviceMedia: Record<ServiceMediaId, ServiceMediaEntry> = {
     serviceKey: 'seguranca-no-trabalho', serviceLabel: 'Segurança no Trabalho', servicePath: '/servicos/seguranca-no-trabalho/', cta: 'Pedir avaliação de ruído',
     photos: [photo('avaliacao-ruido-sofalca', 'Equipa Medisigma junto do equipamento de medição na Sofalca', 'Preparação do equipamento na Sofalca.'), photo('medicao-ruido-industria', 'Técnica Medisigma com equipamento de medição num espaço industrial', 'Medição em ambiente industrial.', 1200, 1600)],
     video: video('sofalca-ruido', 'Avaliação de ruído na Sofalca', 'A equipa Medisigma apresenta o trabalho de avaliação de ruído na Sofalca, em Abrantes.', 'PT32.07S', '32 s'),
+    article: { href: '/blog/ruido-no-trabalho-avaliacao-medicao/', label: 'Ruído no trabalho: quando avaliar e medir' },
   },
   'herdade-amarela': {
     id: 'herdade-amarela', anchor: 'seguranca-no-alojamento', eyebrow: 'Herdade Amarela', title: 'Medidas de autoproteção num alojamento.',

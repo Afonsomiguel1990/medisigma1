@@ -10,6 +10,7 @@ import { compileMDX } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 import remarkGfm from 'remark-gfm';
 import { FacebookVideo } from '@/components/facebook-video';
+import { NoiseAssessmentMedia } from '@/components/noise-assessment-media';
 import { ramiroTestimonial } from '@/lib/testimonials';
 
 export default async function PostPage(props: { params: Promise<{ slug: string }> }) {
@@ -30,7 +31,7 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
     try {
       const { content } = await compileMDX({
         source: post.content_mdx,
-        components: { FacebookVideo },
+        components: { FacebookVideo, NoiseAssessmentMedia },
         options: {
           parseFrontmatter: false,
           mdxOptions: { remarkPlugins: [remarkGfm, remarkSafeEditorial] },
@@ -118,7 +119,7 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
 
           <article className="max-w-4xl mx-auto py-8">
             {/* Imagem de Destaque */}
-            {post.imagem_destaque && post.slug !== ramiroTestimonial.slug && (
+            {post.imagem_destaque && post.slug !== ramiroTestimonial.slug && post.slug !== 'ruido-no-trabalho-avaliacao-medicao' && (
               <div className="mb-8">
                 <Image
                   src={post.imagem_destaque}
@@ -262,7 +263,7 @@ export async function generateMetadata(props: { params: Promise<{ slug: string }
         {
           url: ogImage.startsWith('http') ? ogImage : `https://www.medisigma.pt${ogImage}`,
           width: post.slug === ramiroTestimonial.slug ? 360 : 1200,
-          height: post.slug === ramiroTestimonial.slug ? 640 : 630,
+          height: post.slug === ramiroTestimonial.slug ? 640 : post.slug === 'ruido-no-trabalho-avaliacao-medicao' ? 1600 : 630,
           alt: post.title,
         },
       ] : undefined,

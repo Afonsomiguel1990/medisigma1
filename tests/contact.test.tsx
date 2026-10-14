@@ -19,9 +19,26 @@ import { hasEmDash } from '../scripts/check-public-copy.mjs';
 import { proposalService, proposalQuestions } from '../src/lib/proposal';
 import { submitContactIntent } from '../src/lib/leads/client-submission';
 import ProposalPage from '../src/app/pedir-proposta/page';
+import { LEGACY_REDIRECTS } from '../src/lib/legacy-redirects';
 
 const payload = { empresa: 'Empresa de Teste', nome: 'Ana', email: 'contacto@example.invalid', servico: 'Medicina do Trabalho', localidade: 'Abrantes', tipo_instalacao: 'Indústria' };
 const noLimit = () => null;
+
+test('retired public URLs redirect directly and retain query strings across representations', async () => {
+  for (const [source,destination] of Object.entries(LEGACY_REDIRECTS)) for (const accept of ['text/html','text/markdown']) for (const method of ['GET','HEAD']) {
+    const response=await middleware(new NextRequest(`https://www.medisigma.pt${source}?utm_source=example`,{method,headers:{Accept:accept}}));
+    assert.equal(response.status,301);
+    assert.equal(response.headers.get('Location'),`https://www.medisigma.pt${destination}?utm_source=example`);
+  }
+});
+
+test('new technical services work in proposal preselection and native submissions without attribution', async () => {
+  for (const [key,label] of [['radao','Radão'],['ruido-ocupacional','Ruído Ocupacional'],['qualidade-do-ar-interior','Qualidade do Ar Interior']]) {
+    assert.equal(proposalService(key),label);
+    const lead=validateLeadSubmission({...payload,servico:label});
+    assert.equal(lead?.serviceKey,key); assert.deepEqual(lead?.attribution,{status:'unknown'});
+  }
+});
 function repository() {
   const rows: LeadSubmission[] = [];
   return {

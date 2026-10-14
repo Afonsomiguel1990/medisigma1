@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { acquisition, gaAcquisition, publicPath, publicOrigin, sanitizeAttribution } from '../src/lib/analytics/attribution';
-import { canTrack, getCurrentAttribution, initializeGA, observePath, setAnalyticsConsent, trackSavedLead } from '../src/lib/analytics/client';
+import { canTrack, getCurrentAttribution, initializeGA, observePath, setAnalyticsConsent, trackSavedLead, suspendAnalytics, GA_ID } from '../src/lib/analytics/client';
 import { createContactClickHandler } from '../src/lib/analytics/contact-route';
 test('attribution strips queries, PII-shaped campaign values, private paths and unbounded history', () => {
   assert.equal(publicPath('/admin/forms'), undefined);
@@ -62,4 +62,44 @@ test('contact API rejects admin/origin/no-consent and uses the idempotent reposi
   assert.equal((await post(req())).status,200); assert.equal((await (await post(req({ ...body, attribution: { status: 'partial' } }))).json()).duplicate,true);
   assert.equal(inputs.length,2); const saved=inputs[0] as {url:string; payloadHash:string}; assert.equal(saved.url,'/contact'); assert.match(saved.payloadHash,/^[a-f0-9]{64}$/);
   assert.equal(saved.payloadHash, (inputs[1] as {payloadHash:string}).payloadHash, 'attribution changes must not conflict with an identical click intent');
+});
+
+test('Google commands use Arguments and retain the loaded consumer through suspension and consent changes', () => {
+  const memory = new Map<string,string>();
+  const location = { origin: 'https://www.medisigma.pt', pathname: '/servicos/radao/', search: '' };
+  const layer: unknown[] = [];
+  const delivered: unknown[][] = [];
+  const win = { location, dataLayer: layer } as typeof window & { dataLayer: unknown[] };
+  Object.assign(globalThis, { window: win, document: { referrer: '' }, sessionStorage: { getItem:(k:string)=>memory.get(k),setItem:(k:string,v:string)=>memory.set(k,v),removeItem:(k:string)=>memory.delete(k) } });
+  try {
+    setAnalyticsConsent(true); initializeGA();
+    assert.ok(layer.length >= 3);
+    for (const command of layer) assert.equal(Object.prototype.toString.call(command), '[object Arguments]');
+    // Model the handler installed by the downloaded Google tag.
+    const consume = (...commands: unknown[]) => {
+      if (!(win as unknown as Record<string,unknown>)[`ga-disable-${GA_ID}`]) {
+        for (const command of commands) {
+          assert.equal(Object.prototype.toString.call(command), '[object Arguments]');
+          delivered.push(Array.from(command as IArguments));
+        }
+      }
+      return Array.prototype.push.apply(layer, commands);
+    };
+    layer.push = consume;
+    initializeGA(); assert.equal(delivered.length, 0, 'onReady must not repeat initial configuration or view');
+    location.pathname = '/admin/forms'; suspendAnalytics(); observePath(location.pathname);
+    assert.equal(delivered.length,0); assert.equal(win.dataLayer,layer); assert.equal(layer.push,consume);
+    location.pathname = '/servicos/qualidade-do-ar-interior/'; initializeGA(); observePath(location.pathname);
+    assert.equal(delivered.filter(e=>e[0]==='event'&&e[1]==='page_view').length,1);
+    trackSavedLead('confirmed','service_request','qualidade-do-ar-interior');
+    trackSavedLead('confirmed','service_request','qualidade-do-ar-interior');
+    const leads=delivered.filter(e=>e[1]==='generate_lead');
+    assert.equal(leads.length,1); assert.deepEqual(leads[0][2],{lead_kind:'service_request',service_key:'qualidade-do-ar-interior'});
+    setAnalyticsConsent(false); const count=delivered.length;
+    trackSavedLead('denied','service_request','radao'); assert.equal(delivered.length,count);
+    setAnalyticsConsent(true); initializeGA();
+    assert.equal(win.dataLayer,layer); assert.equal(layer.push,consume);
+    trackSavedLead('invalid-service','service_request','private@example.invalid');
+    assert.deepEqual(delivered.at(-1)?.[2],{lead_kind:'service_request'});
+  } finally { setAnalyticsConsent(false); for(const key of ['window','document','sessionStorage']) Reflect.deleteProperty(globalThis,key); }
 });

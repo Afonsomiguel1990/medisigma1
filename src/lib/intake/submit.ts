@@ -14,9 +14,9 @@ function checkReceipt(receipt: IntakeReceipt) {
   if (!receipt.submissionId) throw new Error('Missing receipt');
   return receipt;
 }
-export async function receiveIntake(req: Request, input: { payload: { email: string }; [key: string]: unknown }) {
+export async function receiveIntake(req: Request, input: { payload: { email: string }; [key: string]: unknown }, nativeContact = false) {
   const ids = await requestIdentifiers(req, input.payload.email);
-  return checkReceipt(await intakeRpc<IntakeReceipt>('receive_public_submission', { p_input: input, p_ip_key: ids.ip, p_email_key: ids.email }));
+  return checkReceipt(await intakeRpc<IntakeReceipt>(nativeContact ? 'receive_native_contact' : 'receive_public_submission', { p_input: input, p_ip_key: ids.ip, p_email_key: ids.email }));
 }
 export async function finishReceipt(receipt: IntakeReceipt) {
   console.info('intake_receipt', { submissionId:receipt.submissionId,state:receipt.state,duplicate:Boolean(receipt.duplicate) });
@@ -28,6 +28,7 @@ export async function finishReceipt(receipt: IntakeReceipt) {
     throw new HttpError(422, 'O ficheiro ficou isolado para revisão. Envie um PDF, DOC ou DOCX válido, sem conteúdo ativo.');
   }
   return { status: 200, body: { ok: true, saved: true, duplicate: Boolean(receipt.duplicate), submission_id: receipt.submissionId,
+    analytics_eligible: receipt.state === 'accepted',
     created_at: receipt.createdAt, status: 'received' } };
 }
 export async function submitPublicContact(req: Request, body: unknown) {
@@ -39,7 +40,7 @@ export async function submitPublicContact(req: Request, body: unknown) {
   if (!payload) throw new HttpError(400, 'Pedido inválido.');
   const input = { kind: 'contact', submissionId: payload.submissionId, payloadHash: payload.payloadHash, payload,
     ...triage('contact', { ...payload }, typeof raw.confirm_mail === 'string' && Boolean(raw.confirm_mail.trim())) };
-  return finishReceipt(await receiveIntake(req, input));
+  return finishReceipt(await receiveIntake(req, input, !raw.submission_id));
 }
 
 export async function prepareCv(req: Request, body: Record<string, unknown>, kind: CandidateKind, file: FileIntent) {

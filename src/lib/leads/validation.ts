@@ -1,7 +1,7 @@
 import { sanitizeAttribution } from '../analytics/attribution';
 import { createHash, randomUUID } from 'node:crypto';
 import type { LeadSubmission } from './types';
-import { contactServiceKey, normalizeContactService } from '../contact';
+import { CONTACT_SERVICES, contactServiceKey, normalizeContactService } from '../contact';
 export class LeadValidationError extends Error {}
 export const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const limits = { empresa: 200, nome: 200, localidade: 200, tipo_instalacao: 200, concelho: 200, nif: 9, telefone: 40, email: 254, servico: 200, mensagem: 2500, pagina: 200, url: 1500, fonte: 200 };
@@ -32,7 +32,7 @@ export function validateLeadSubmission(body: unknown): LeadSubmission | null {
   if (leadKind !== 'service_request' && leadKind !== 'resource_request') throw new LeadValidationError('Tipo de pedido inválido.');
   if (leadKind === 'service_request' && (!fields.empresa || !fields.servico)) throw new LeadValidationError('Indique a empresa e o serviço pretendido.');
   const suppliedServiceKey = read('service_key', 120);
-  const serviceKey = contactServiceKey(fields.servico) || suppliedServiceKey;
+  const serviceKey = contactServiceKey(fields.servico) || (CONTACT_SERVICES.some(service => service.key === suppliedServiceKey) ? suppliedServiceKey : '');
   const companySector = fields.tipo_instalacao || read('company_sector', 200);
   const resourceId = read('resource_id', 120);
   if (leadKind === 'resource_request' && !resourceId) throw new LeadValidationError('Recurso inválido.');

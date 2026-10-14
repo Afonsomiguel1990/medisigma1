@@ -20,8 +20,22 @@ before(async()=>{
   await db.exec(await readFile('supabase/review/proposal-details.sql','utf8'));
   await db.exec(await readFile('supabase/migrations/20261006120140_public_intake_private_cv.sql','utf8'));
   await db.exec(await readFile('supabase/migrations/20261006123346_intake_legacy_retry_guard.sql','utf8'));
+  await db.exec(await readFile('supabase/migrations/20261014091000_native_contact_retry.sql','utf8'));
 });
 after(async()=>{await db.close();});
+test('native retries with new UUIDs reuse one intake record, while changed content creates a new request',async()=>{
+  const first=contact();
+  const retryId=randomUUID();
+  const retry={...first,submissionId:retryId,payload:{...first.payload,submissionId:retryId}};
+  const one=await rpc('receive_native_contact',[first,randomUUID(),randomUUID()]);
+  const two=await rpc('receive_native_contact',[retry,randomUUID(),randomUUID()]);
+  assert.equal(two.submissionId,one.submissionId); assert.equal(two.duplicate,true);
+  const changed=contact();
+  const three=await rpc('receive_native_contact',[changed,randomUUID(),randomUUID()]);
+  assert.notEqual(three.submissionId,one.submissionId);
+  const count=await db.query<{count:number}>('select count(*)::int as count from web.public_intake where payload_hash=$1',[first.payloadHash]);
+  assert.equal(count.rows[0].count,1);
+});
 test('additive migration keeps historical CV public and new intake private',async()=>{
   const result=await db.query<{public:boolean}>('select public from storage.buckets where id=$1',['os-cv']);assert.equal(result.rows[0].public,true);
   for(const role of ['anon','authenticated']) {

@@ -13,8 +13,9 @@ export function ContactApiDetails() {
         <p>Serviços: {CONTACT_SERVICES.map(service => service.value).join('; ')}.</p>
         <p>Limites: empresa, nome, localidade, serviço e tipo de instalação até 200 caracteres; email até 254; telefone até 40; mensagem até 2500. Deixe <code>confirm_mail</code> vazio.</p>
         <p>Para repetir uma tentativa sem duplicar o pedido, envie o mesmo <code>submission_id</code>, um UUID, com os mesmos dados. Para um novo pedido, use outro UUID.</p>
+        <p>Sem <code>submission_id</code>, pedidos com os mesmos dados reutilizam a receção existente durante 30 minutos. A confirmação de gravação não equivale a qualificação comercial. O campo <code>analytics_eligible</code> indica se a receção pode originar o evento de captação, sempre dependente de consentimento.</p>
         <p>Com JSON, uma resposta HTTP 200 com <code>saved: true</code> confirma a gravação. <code>saved: false</code> não confirma a receção. Com formulário HTML e <code>Accept: text/html</code>, a confirmação usa um redirecionamento HTTP 303.</p>
-        <p>Erros: 400 para campos inválidos; 409 para um identificador reutilizado com dados diferentes; 413 para corpo demasiado longo; 415 para formato não suportado; 429 para excesso de pedidos, com <code>Retry-After</code>; 503 quando não foi possível guardar. O limite atual é de 5 pedidos por 10 minutos por endereço IP.</p>
+        <p>Erros: 400 para campos inválidos; 409 para um identificador reutilizado com dados diferentes; 413 para corpo demasiado longo; 415 para formato não suportado; 429 para excesso de pedidos, com <code>Retry-After</code>; 503 quando não foi possível guardar. Aplicam-se limites antispam partilhados. Respeite o tempo indicado em <code>Retry-After</code>.</p>
         <pre className="overflow-x-auto rounded-lg bg-gray-100 p-4"><code>{JSON.stringify({ empresa: 'Empresa Exemplo', email: 'contacto@example.com', servico: 'Medicina do Trabalho', mensagem: 'Pretendemos uma proposta para a nossa empresa.' }, null, 2)}</code></pre>
         <p>A confirmação é apresentada no ecrã. Respondemos em até 48 horas úteis.</p>
       </div>

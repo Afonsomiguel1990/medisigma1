@@ -7,6 +7,7 @@ import {
   negotiatePublicRepresentation,
 } from "@/lib/content-negotiation";
 import { agentFriendlyNotFoundMarkdown } from "@/lib/agent-recovery";
+import { LEGACY_REDIRECTS } from "@/lib/legacy-redirects";
 import {
   canonicalTrailingSlashPath,
   INTERNAL_HTML_PREFIX,
@@ -115,6 +116,8 @@ function isNextRouterRequest(request: NextRequest) {
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const legacyDestination = LEGACY_REDIRECTS[pathname.replace(/\/$/, '')];
+  if (legacyDestination) return redirect(request, legacyDestination, 301);
   if (/^\/(?:contactos?|fale-connosco)\/?$/.test(pathname)) {
     return redirect(request, "/contact/", 301);
   }

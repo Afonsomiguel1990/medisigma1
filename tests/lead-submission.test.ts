@@ -6,14 +6,37 @@ import { serviceKeyFromLabel, submitContactIntent, type SubmissionIntent } from 
 import { formatSlackMessage, sendSlackNotification } from '../src/lib/webhook';
 import type { LeadSubmission, NotificationStatus, SubmissionReceipt } from '../src/lib/leads/types';
 import { initializeGA, setAnalyticsConsent } from '../src/lib/analytics/client';
+import { finishReceipt } from '../src/lib/intake/submit';
 const payload = { submission_id: 'e9f67d67-0982-4c88-9823-870611ac6222', empresa: 'Teste', email: 'test@example.invalid', servico: 'Medicina', company_sector: 'Hotelaria' };
+test('held and spam receipts never become Analytics leads, while accepted receipts count once', async () => {
+  for (const state of ['held','spam'] as const) {
+    const receipt = await finishReceipt({submissionId:crypto.randomUUID(),state});
+    assert.equal(receipt.body.analytics_eligible,false);
+  }
+  const layer: unknown[][]=[];
+  Object.assign(globalThis,{window:{location:{origin:'https://www.medisigma.pt',pathname:'/pedir-proposta/',search:''},dataLayer:layer},document:{referrer:'https://example.org/?email=private@example.invalid'},sessionStorage:{getItem:()=>null,setItem:()=>{},removeItem:()=>{}}});
+  try {
+    setAnalyticsConsent(true);initializeGA();
+    assert.equal((layer.find(command=>command[0]==='config')?.[2] as Record<string,unknown>).page_referrer,'https://example.org/');
+    let eligible=false; const intent:SubmissionIntent={};
+    const fetcher=(async (_url,init)=>{const sent=JSON.parse(String(init?.body));return new Response(JSON.stringify({ok:true,saved:true,submission_id:sent.submission_id,analytics_eligible:eligible}));}) as typeof fetch;
+    await submitContactIntent({servico:'Radão'},intent,undefined,fetcher);
+    assert.equal(layer.filter(command=>command[1]==='generate_lead').length,0);
+    eligible=true;
+    await submitContactIntent({servico:'Radão'},intent,undefined,fetcher);
+    await submitContactIntent({servico:'Radão'},intent,undefined,fetcher);
+    assert.equal(layer.filter(command=>command[1]==='generate_lead').length,1);
+    assert.ok(!JSON.stringify(layer).includes('private@example.invalid'));
+  } finally {setAnalyticsConsent(false);for(const key of ['window','document','sessionStorage'])Reflect.deleteProperty(globalThis,key);}
+});
 test('service keys match the canonical catalog and generic contact stays unknown', () => {
   for (const [label,key] of [['Medicina do Trabalho','medicina-no-trabalho'],['Medicina no Trabalho','medicina-no-trabalho'],['Legionella','legionella'],['Segurança no Trabalho','seguranca-no-trabalho'],['Controlo de Pragas','controlo-pragas'],['Segurança Contra Incêndios','seguranca-incendios'],['Manutenção de Extintores','manutencao-extintores']]) assert.equal(serviceKeyFromLabel(label),key);
   assert.equal(serviceKeyFromLabel('Exames médicos','/servicos/medicina-no-trabalho/'),'medicina-no-trabalho');
   assert.equal(serviceKeyFromLabel('Segurança Contra Incêndios','/servicos/manutencao-extintores/'),'manutencao-extintores');
   assert.equal(serviceKeyFromLabel('', '/servicos/legionella/'),'legionella');
   assert.equal(serviceKeyFromLabel('', '/contact/'),'');
-  assert.equal(serviceKeyFromLabel('HST Integrada','/entroncamento/'),'');
+  assert.equal(serviceKeyFromLabel('HST Integrada','/entroncamento/'),'sst-integrada');
+  assert.equal(serviceKeyFromLabel('Categoria desconhecida','/entroncamento/'),'');
   assert.equal(serviceKeyFromLabel('', '/servicos/nao-existe/'),'');
 });
 test('throwing analytics and corrupt storage cannot prevent a saved POST', async () => {

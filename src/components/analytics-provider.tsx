@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useSyncExternalStore } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import { usePathname } from 'next/navigation';
 import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/next';
@@ -9,9 +9,14 @@ import { publicPath } from '@/lib/analytics/attribution';
 export function AnalyticsProvider() {
   const consent = useSyncExternalStore(subscribeConsent, hasConsent, () => false);
   const path = usePathname();
+  const [prepared, setPrepared] = useState(false);
   const enabled = consent && canTrack() && !!publicPath(path);
-  useEffect(() => { if (enabled) observePath(path); else suspendAnalytics(); }, [enabled, path]);
-  if (!enabled) return null;
+  useEffect(() => {
+    if (enabled) { initializeGA(); observePath(path); setPrepared(true); }
+    else { suspendAnalytics(); setPrepared(false); }
+  }, [enabled, path]);
+  // Prepare the command queue before downloading the Google tag.
+  if (!enabled || !prepared) return null;
   const beforeSend = <T extends { url: string }>(event: T): T | null => {
     const safePath = publicPath(event.url);
     return canTrack() && safePath ? { ...event, url: window.location.origin + safePath } : null;

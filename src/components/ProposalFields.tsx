@@ -1,11 +1,9 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { proposalQuestions } from '@/lib/proposal';
 
 export function ProposalFields({ id, service, inputClass }: { id: string; service: string; inputClass: string }) {
-  const [enhanced, setEnhanced] = useState(false);
-  useEffect(() => setEnhanced(true), []);
   const questions = proposalQuestions(service);
   const counts = [
     { name: 'numero_trabalhadores', label: 'Número de trabalhadores', hint: 'Para Medicina do Trabalho e Segurança no Trabalho.', show: questions.workers },
@@ -23,10 +21,13 @@ export function ProposalFields({ id, service, inputClass }: { id: string; servic
       <input id={`${id}-nif`} name="nif" inputMode="numeric" pattern="[0-9]{9}" maxLength={9} aria-describedby={`${id}-nif-help`} className={inputClass} />
       <p id={`${id}-nif-help`} className="mt-1 text-xs text-gray-600">Se indicar um NIF português, use os 9 algarismos.</p>
     </div>
-    {counts.map(field => <div key={field.name} hidden={enhanced && !field.show}>
+    {counts.map(field => {
+      const input = <div>
       <label htmlFor={`${id}-${field.name}`} className="mb-2 block text-sm font-medium">{field.label}</label>
-      <input id={`${id}-${field.name}`} name={field.name} type="number" inputMode="numeric" min={1} max={1000000} step={1} disabled={enhanced && !field.show} aria-describedby={`${id}-${field.name}-help`} className={inputClass} />
+      <input id={`${id}-${field.name}`} name={field.name} type="number" inputMode="numeric" min={1} max={1000000} step={1} aria-describedby={`${id}-${field.name}-help`} className={inputClass} />
       <p id={`${id}-${field.name}-help`} className="mt-1 text-xs text-gray-600">{field.hint} Pode indicar uma estimativa.</p>
-    </div>)}
+      </div>;
+      return field.show ? <React.Fragment key={field.name}>{input}</React.Fragment> : <noscript key={field.name}>{input}</noscript>;
+    })}
   </fieldset>;
 }

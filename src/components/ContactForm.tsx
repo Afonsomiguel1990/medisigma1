@@ -6,6 +6,8 @@ import { mediaContactIntent } from '@/lib/media-contact';
 import { CONTACT_SERVICES, CONTACT_SUCCESS_MESSAGE, contactServiceKey, normalizeContactService } from '@/lib/contact';
 import Link from 'next/link';
 import { ProposalFields } from './ProposalFields';
+import { proposalHelp } from '@/lib/proposal';
+import { trackContactFormStart } from '@/lib/analytics/client';
 
 interface ContactFormProps {
   pagina?: string;
@@ -28,6 +30,7 @@ const fields = [
 export default function ContactForm({ pagina, fonte, servicoDefault, acceptMediaIntent = false, proposal = false }: ContactFormProps) {
   const id = useId();
   const busy = useRef(false);
+  const started = useRef(false);
   const intent = useRef<SubmissionIntent>({});
   const initialService = normalizeContactService(servicoDefault);
   const [service, setService] = useState(initialService);
@@ -92,7 +95,9 @@ export default function ContactForm({ pagina, fonte, servicoDefault, acceptMedia
         <p>Pedido sobre <strong>{mediaIntent.serviceLabel}</strong></p>
         <button type="button" disabled={isSubmitting} onClick={() => { setMediaIntent(undefined); setService(initialService); }} className="mt-1 underline underline-offset-4">Retirar seleção</button>
       </div>}
-      <form className="space-y-4" method="post" action="/api/contact" onSubmit={handleSubmit} aria-busy={isSubmitting}>
+      <form className="space-y-4" method="post" action="/api/contact" onSubmit={handleSubmit} aria-busy={isSubmitting} onFocusCapture={() => {
+        if (!started.current) started.current = trackContactFormStart(contactServiceKey(service));
+      }}>
         <input type="hidden" name="pagina" value={paginaLabel} />
         <input type="hidden" name="fonte" value={mediaIntent ? `${fonteLabel}:media:${mediaIntent.mediaId}` : fonteLabel} />
         {fields.filter(field => !proposal || field.name !== 'localidade').map(({ label, ...field }) => <div key={field.name}>
@@ -117,7 +122,8 @@ export default function ContactForm({ pagina, fonte, servicoDefault, acceptMedia
         </div>
         <div>
           <label htmlFor={`${id}-mensagem`} className="block text-sm font-medium text-gray-700 mb-2">Mensagem (opcional)</label>
-          <textarea id={`${id}-mensagem`} name="mensagem" maxLength={2500} rows={4} className={inputClass} placeholder="Descreva brevemente as suas necessidades..." />
+          <p id={`${id}-mensagem-help`} className="mb-2 text-sm leading-6 text-gray-600">{proposalHelp(service)}</p>
+          <textarea id={`${id}-mensagem`} name="mensagem" maxLength={2500} rows={4} className={inputClass} aria-describedby={`${id}-mensagem-help`} placeholder="Descreva brevemente as suas necessidades..." />
         </div>
         <div aria-hidden="true" hidden>
           <label htmlFor={`${id}-confirm_mail`}>Não preencha este campo</label>

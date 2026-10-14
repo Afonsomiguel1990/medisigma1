@@ -28,9 +28,10 @@ Este website não é um serviço de emergência, não realiza diagnóstico clín
 
 - [Submissão de contactos](https://www.medisigma.pt/contact/#contact-form): POST /api/contact aceita application/json, application/x-www-form-urlencoded e multipart/form-data sem ficheiros. O formulário funciona sem JavaScript. Este endpoint recebe pedidos comerciais e não realiza marcações.
 - [Campos do pedido](https://www.medisigma.pt/contact/#contact-form): Obrigatórios: empresa, email válido e servico. Opcionais: nome, localidade, telefone, tipo_instalacao e mensagem. Deixar confirm_mail vazio. Empresa, nome, localidade, servico e tipo_instalacao admitem 200 caracteres; email 254; telefone 40; mensagem 2500.
-- [Serviço pretendido](https://www.medisigma.pt/contact/#contact-form): Usar Medicina do Trabalho, Segurança no Trabalho, Segurança Alimentar, Formação Certificada, Psicologia, Controlo de Pragas, Legionella, Segurança Contra Incêndios, Manutenção de Extintores, Medicina Desportiva, Nutrição, Sinalética, SST integrada, Caixas de Primeiros Socorros ou Outros.
+- [Serviço pretendido](https://www.medisigma.pt/contact/#contact-form): Usar Medicina do Trabalho, Segurança no Trabalho, Segurança Alimentar, Formação Certificada, Psicologia, Controlo de Pragas, Legionella, Radão, Ruído Ocupacional, Qualidade do Ar Interior, Segurança Contra Incêndios, Manutenção de Extintores, Medicina Desportiva, Nutrição, Sinalética, SST integrada, Caixas de Primeiros Socorros ou Outros.
 - [Confirmação e novas tentativas](https://www.medisigma.pt/contact/#contact-form): HTTP 200 com saved: true confirma que o pedido JSON ficou guardado. saved: false não confirma a gravação. Para repetir a mesma tentativa, usar o mesmo submission_id em formato UUID e os mesmos dados; num novo pedido, usar outro UUID. O formulário com Accept: text/html redireciona com HTTP 303 após gravação. Confirmação no ecrã e resposta em até 48 horas úteis.
-- [Erros e limites de contacto](https://www.medisigma.pt/contact/#contact-form): HTTP 400 para validação, 409 para submission_id reutilizado com dados diferentes, 413 para corpo superior a 64000 bytes, 415 para formato não suportado, 429 para excesso de pedidos com Retry-After e 503 para falha de gravação. Limite atual de 5 pedidos por 10 minutos por IP.
+- [Erros e limites de contacto](https://www.medisigma.pt/contact/#contact-form): HTTP 400 para validação, 409 para submission_id reutilizado com dados diferentes, 413 para corpo superior a 64000 bytes, 415 para formato não suportado, 429 para excesso de pedidos com Retry-After e 503 para falha de gravação. Aplicam-se limites antispam partilhados; respeitar Retry-After.
+- [Repetições sem identificador](https://www.medisigma.pt/pedir-proposta/): Sem submission_id, os mesmos dados reutilizam a receção existente durante 30 minutos. A confirmação de gravação não equivale a qualificação comercial. analytics_eligible identifica a elegibilidade para medição de captação, que continua dependente de consentimento.
 
 - [Contacto](https://www.medisigma.pt/contact/): Encaminhar pedidos de proposta, cobertura geográfica, disponibilidade ou contratação; indicar empresa, localização, serviço pretendido e um contacto profissional, sem dados clínicos.
 - [Serviços](https://www.medisigma.pt/servicos/): Consultar primeiro o catálogo para escolher a equipa adequada antes de encaminhar um pedido.
@@ -55,6 +56,12 @@ Este website não é um serviço de emergência, não realiza diagnóstico clín
 - [LinkedIn](https://pt.linkedin.com/company/medisigma): Perfil empresarial externo da Medisigma.
 
 ## Serviços
+
+- [Radão](https://www.medisigma.pt/servicos/radao/): Avaliação e medição de radão em instalações de empresas. Contactar a Medisigma indicando localização, pisos ocupados e avaliações anteriores. Chave do pedido: radao.
+- [Ruído Ocupacional](https://www.medisigma.pt/servicos/ruido-ocupacional/): Avaliação da exposição dos trabalhadores ao ruído pela Medisigma. Indicar atividade, localização e tarefas. Chave do pedido: ruido-ocupacional.
+- [Qualidade do Ar Interior](https://www.medisigma.pt/servicos/qualidade-do-ar-interior/): Avaliação e medições pela Medisigma, com âmbito definido para o edifício e a utilização. Radão tem avaliação própria. Chave do pedido: qualidade-do-ar-interior.
+- [Indústria](https://www.medisigma.pt/setores/industria/): Escolha de serviços e preparação de pedidos para unidades industriais.
+- [Hotelaria e alojamento](https://www.medisigma.pt/setores/hotelaria-alojamento/): Serviços para sistemas de água, ar interior, restauração e segurança contra incêndios.
 
 - [Catálogo de Serviços](https://www.medisigma.pt/servicos/): Índice geral das áreas de serviço.
 - [Medicina do Trabalho](https://www.medisigma.pt/servicos/medicina-no-trabalho/): Saúde ocupacional e vigilância médica dos trabalhadores.

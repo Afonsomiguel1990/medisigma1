@@ -1,3 +1,4 @@
+import { ServiceRequestGuide } from '@/components/service-request-guide';
 import { ServiceMediaSection } from "@/components/service-media/section";
 import Image from 'next/image'
 import { Metadata } from 'next'
@@ -9,7 +10,7 @@ import ContactForm from '@/components/ContactForm'
 
 export const metadata: Metadata = {
   title: "Segurança Alimentar | Sistemas HACCP e Consultoria",
-  description: "Serviços especializados de Segurança Alimentar com implementação de sistemas HACCP, auditorias, formação e análises laboratoriais. Cumprimento da legislação obrigatória desde 2006.",
+  description: "Implementação e acompanhamento de HACCP para restaurantes e empresas do setor alimentar. Documentação, procedimentos e visitas técnicas. Peça uma proposta.",
   keywords: "segurança alimentar, HACCP, sistema segurança alimentar, auditoria alimentar, análises microbiológicas, higiene alimentar, controlo qualidade alimentar, formação HACCP, consultoria alimentar",
   openGraph: {
     title: "Segurança Alimentar | Sistemas HACCP e Consultoria | MediSigma",
@@ -64,10 +65,10 @@ export default function SegurancaAlimentarPage() {
             <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
               <div>
                 <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                  Segurança Alimentar
+                  Segurança alimentar e HACCP
                 </h1>
                 <p className="text-lg md:text-xl text-gray-700 mb-8 leading-relaxed">
-                  Implementamos o sistema HACCP (Análise de Perigos e Pontos Críticos de Controlo), um sistema preventivo que dota a sua empresa dos meios e procedimentos adequados para garantir a total segurança e higiene dos produtos alimentares que comercializa.
+                  Implementamos e acompanhamos sistemas HACCP (Análise de Perigos e Pontos Críticos de Controlo). Apoiamos a documentação, os procedimentos e os registos de segurança alimentar de acordo com a atividade do seu estabelecimento.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a
@@ -91,6 +92,7 @@ export default function SegurancaAlimentarPage() {
             </div>
           </div>
         </section>
+<ServiceRequestGuide serviceKey="seguranca-alimentar" />
 
         {/* Principles Section */}
         <section className="py-16 md:py-20 mx-4 md:mx-0">
@@ -294,7 +296,7 @@ export default function SegurancaAlimentarPage() {
                 </div>
               </div>
 
-              <ContactForm
+              <ContactForm proposal
                 acceptMediaIntent
                 pagina="Serviço Segurança Alimentar"
                 fonte="servicos/seguranca-alimentar"

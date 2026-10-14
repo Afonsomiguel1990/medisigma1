@@ -11,13 +11,19 @@ import {
     GraduationCap,
     Bug,
     ArrowRight,
-    FireExtinguisher
+    FireExtinguisher,
+    Wind,
+    AudioLines,
+    Scan
 } from "lucide-react";
 import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function ServicosClient() {
     const services = [
+        { id: 10, title: 'Radão', description: 'Avaliação e medição nos espaços de trabalho. Fale connosco.', icon: Scan, href: '/servicos/radao/' },
+        { id: 11, title: 'Ruído Ocupacional', description: 'Medições e avaliação da exposição dos trabalhadores ao ruído.', icon: AudioLines, href: '/servicos/ruido-ocupacional/' },
+        { id: 12, title: 'Qualidade do Ar Interior', description: 'Avaliação das condições do ar nos edifícios e espaços ocupados.', icon: Wind, href: '/servicos/qualidade-do-ar-interior/' },
         {
             id: 1,
             title: "Medicina no Trabalho",

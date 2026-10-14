@@ -12,6 +12,7 @@ import remarkGfm from 'remark-gfm';
 import { FacebookVideo } from '@/components/facebook-video';
 import { NoiseAssessmentMedia } from '@/components/noise-assessment-media';
 import { ramiroTestimonial } from '@/lib/testimonials';
+import { ArticleTable } from '@/components/article-table';
 
 export default async function PostPage(props: { params: Promise<{ slug: string }> }) {
   const params = await props.params;
@@ -31,14 +32,14 @@ export default async function PostPage(props: { params: Promise<{ slug: string }
     try {
       const { content } = await compileMDX({
         source: post.content_mdx,
-        components: { FacebookVideo, NoiseAssessmentMedia },
+        components: { FacebookVideo, NoiseAssessmentMedia, table: ArticleTable },
         options: {
           parseFrontmatter: false,
           mdxOptions: { remarkPlugins: [remarkGfm, remarkSafeEditorial] },
         },
       });
       compiledContent = content;
-    } catch (error) {
+    } catch {
       console.error('blog_mdx_rejected', { postId: post.id });
       // Se houver erro na compilação, mostrar mensagem de erro
       compiledContent = (

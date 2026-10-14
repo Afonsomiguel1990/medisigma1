@@ -4,6 +4,9 @@ const services = {
   training: { url: '/servicos/formacao-certificada/', label: 'Formação Certificada' },
   food: { url: '/servicos/seguranca-alimentar/', label: 'Segurança Alimentar' },
   legionella: { url: '/servicos/legionella/', label: 'Prevenção de Legionella' },
+  radon: { url: '/servicos/radao/', label: 'Avaliação de Radão' },
+  noise: { url: '/servicos/ruido-ocupacional/', label: 'Ruído Ocupacional' },
+  air: { url: '/servicos/qualidade-do-ar-interior/', label: 'Qualidade do Ar Interior' },
   pests: { url: '/servicos/controlo-pragas/', label: 'Controlo de Pragas' },
   fire: { url: '/servicos/seguranca-incendios/', label: 'Segurança Contra Incêndios' },
   extinguishers: { url: '/servicos/manutencao-extintores/', label: 'Manutenção de Extintores' },
@@ -17,7 +20,7 @@ type EditorialEntry = { topic: Topic; service: keyof typeof services | null };
 // Explicit editorial choices for reviewed articles, including subsequent publications.
 // New articles receive no commercial CTA until their destination is reviewed.
 export const BLOG_EDITORIAL: Record<string, EditorialEntry> = {
-  'ruido-no-trabalho-avaliacao-medicao': { topic: 'sst', service: 'sst' },
+  'ruido-no-trabalho-avaliacao-medicao': { topic: 'sst', service: 'noise' },
   '40-horas-formacao-obrigatoria-empresas': { topic: 'training', service: 'training' },
   'medicina-trabalho-exames-obrigatorios': { topic: 'medicine', service: 'medicine' },
   'ficha-aptidao-trabalho-validade': { topic: 'medicine', service: 'medicine' },
@@ -37,8 +40,8 @@ export const BLOG_EDITORIAL: Record<string, EditorialEntry> = {
   'investir-sst-lucro-empresas': { topic: 'sst', service: 'sst' },
   'prevenir-quedas-tropecoes-trabalho-portugal': { topic: 'sst', service: 'sst' },
   'lesoes-musculoesqueleticas-trabalho-prevencao': { topic: 'sst', service: 'sst' },
-  'o-que-e-o-radao': { topic: 'sst', service: 'sst' },
-  'qualidade-do-ar-interior-como-avaliar': { topic: 'sst', service: 'sst' },
+  'o-que-e-o-radao': { topic: 'sst', service: 'radon' },
+  'qualidade-do-ar-interior-como-avaliar': { topic: 'sst', service: 'air' },
   'guia-teletrabalho-2025': { topic: 'sst', service: 'sst' },
   'bem-estar-empresas-retencao-talento': { topic: 'medicine', service: 'medicine' },
   'perigo-lagarta-do-pinheiro': { topic: 'pests', service: 'pests' },
@@ -55,19 +58,19 @@ export const BLOG_ALIASES: Record<string, string> = {
 
 export function getServiceCta(slug: string) {
   if (slug === 'o-que-e-o-radao') return {
-    url: '/contact/', label: 'Avaliação do risco de radão',
+    url: '/servicos/radao/', label: 'Avaliação do risco de radão',
     heading: 'Precisa de apoio para avaliar o risco de radão?',
     description: 'Partilhe a localização das instalações, os pisos ocupados e as avaliações que já realizou. A equipa Medisigma ajuda a enquadrar o apoio de que a empresa precisa.',
     action: 'Falar com a equipa Medisigma',
   };
   if (slug === 'ruido-no-trabalho-avaliacao-medicao') return {
-    url: '/contact/', label: 'Avaliação de Ruído',
+    url: '/servicos/ruido-ocupacional/', label: 'Avaliação de Ruído',
     heading: 'Precisa de avaliar o ruído na sua empresa?',
     description: 'Indique a atividade, a localização e as tarefas a avaliar. A equipa Medisigma ajuda a preparar a visita e a definir o acompanhamento necessário.',
     action: 'Pedir avaliação de ruído',
   };
   if (slug === 'seguranca-restauracao-testemunho-restaurante-o-ramiro') return {
-    url: '/contact/', label: 'Segurança na Restauração',
+    url: '/pedir-proposta/?servico=seguranca-alimentar', label: 'Segurança na Restauração',
     heading: 'Precisa de ajuda profissional com Segurança na Restauração?',
     description: 'Diga-nos que apoio procura para a sua equipa e para o seu restaurante. A Medisigma ajuda a definir o acompanhamento adequado.',
     action: 'Pedir proposta para o meu restaurante',

@@ -1008,6 +1008,9 @@ export const siteConfig = {
         { id: 9, title: "Medicina Desportiva", url: "/servicos/medicina-desportiva" },
         { id: 10, title: "Nutrição", url: "/servicos/nutricao" },
         { id: 11, title: "Manutenção de Extintores", url: "/servicos/manutencao-extintores" },
+        { id: 12, title: "Radão", url: "/servicos/radao/" },
+        { id: 13, title: "Ruído Ocupacional", url: "/servicos/ruido-ocupacional/" },
+        { id: 14, title: "Qualidade do Ar Interior", url: "/servicos/qualidade-do-ar-interior/" },
       ],
     },
     {

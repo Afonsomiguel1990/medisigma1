@@ -24,7 +24,7 @@ export const serviceMedia: Record<ServiceMediaId, ServiceMediaEntry> = {
     id: 'sofalca-ruido', anchor: 'avaliacao-ruido-no-terreno', eyebrow: 'Avaliação de ruído',
     title: 'O ruído avalia-se no local de trabalho.',
     paragraphs: ['Na Sofalca, em Bemposta, Abrantes, a equipa Medisigma mostra o trabalho de avaliação de ruído e os equipamentos utilizados.', 'As medições ajudam a conhecer a exposição dos trabalhadores e a orientar as medidas de prevenção adequadas a cada atividade.'],
-    serviceKey: 'seguranca-no-trabalho', serviceLabel: 'Segurança no Trabalho', servicePath: '/servicos/seguranca-no-trabalho/', cta: 'Pedir avaliação de ruído',
+    serviceKey: 'ruido-ocupacional', serviceLabel: 'Ruído Ocupacional', servicePath: '/servicos/ruido-ocupacional/', cta: 'Pedir avaliação de ruído',
     photos: [photo('avaliacao-ruido-sofalca', 'Equipa Medisigma junto do equipamento de medição na Sofalca', 'Preparação do equipamento na Sofalca.'), photo('medicao-ruido-industria', 'Técnica Medisigma com equipamento de medição num espaço industrial', 'Medição em ambiente industrial.', 1200, 1600)],
     video: video('sofalca-ruido', 'Avaliação de ruído na Sofalca', 'A equipa Medisigma apresenta o trabalho de avaliação de ruído na Sofalca, em Abrantes.', 'PT32.07S', '32 s'),
     article: { href: '/blog/ruido-no-trabalho-avaliacao-medicao/', label: 'Ruído no trabalho: quando avaliar e medir' },

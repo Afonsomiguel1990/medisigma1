@@ -2,10 +2,18 @@ import { MetadataRoute } from 'next';
 import { getAllPublishedPosts } from '@/lib/posts';
 import { serviceMedia, locationMedia } from '@/lib/service-media';
 import mediaPublication from '@/content/service-media-publication.json';
+import { serviceAreas } from '@/lib/service-areas';
+import { priorityServices } from '@/lib/technical-services';
 
 export const dynamic = 'force-dynamic';
 
 const baseUrl = 'https://www.medisigma.pt';
+const acquisitionLastModified = new Date('2026-10-14T00:00:00.000Z');
+const acquisitionPaths = new Set([
+  ...Object.keys(serviceAreas).map(key => `/${key}/`),
+  ...priorityServices.map(service => `/servicos/${service.key}/`),
+  '/servicos/', '/setores/industria/', '/setores/hotelaria-alojamento/', '/pedir-proposta/',
+]);
 const staticLastModified = new Date('2026-05-13T00:00:00.000Z');
 const controloPragasLastModified = new Date('2026-05-13T22:58:43.000Z');
 const restaurantTestimonialLastModified = new Date('2026-09-08T00:00:00.000Z');
@@ -29,7 +37,7 @@ function route(
   priority: number,
   lastModified: Date = staticLastModified,
 ): MetadataRoute.Sitemap[number] {
-  const modified = editorialPaths.has(path) ? editorialLastModified : lastModified;
+  const modified = acquisitionPaths.has(path) ? acquisitionLastModified : editorialPaths.has(path) ? editorialLastModified : lastModified;
   return {
     url: `${baseUrl}${path}`,
     lastModified: mediaPaths.has(path) && mediaLastModified && mediaLastModified > modified ? mediaLastModified : modified,
@@ -43,6 +51,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     route('/', 'monthly', 1.0),
     route('/sobre-nos/', 'monthly', 0.8),
     route('/servicos/', 'monthly', 0.9),
+    route('/setores/industria/', 'monthly', 0.8),
+    route('/setores/hotelaria-alojamento/', 'monthly', 0.8),
     route('/blog/', 'weekly', 0.8),
     route('/contact/', 'monthly', 0.7, new Date('2026-10-01T00:00:00.000Z')),
     route('/pedir-proposta/', 'monthly', 0.8, new Date('2026-10-01T00:00:00.000Z')),
@@ -61,6 +71,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     route('/servicos/controlo-pragas/', 'monthly', 0.8, controloPragasLastModified),
     route('/servicos/seguranca-incendios/', 'monthly', 0.8),
     route('/servicos/legionella/', 'monthly', 0.8),
+    route('/servicos/radao/', 'monthly', 0.8),
+    route('/servicos/ruido-ocupacional/', 'monthly', 0.8),
+    route('/servicos/qualidade-do-ar-interior/', 'monthly', 0.8),
     route('/servicos/medicina-desportiva/', 'monthly', 0.8),
     route('/servicos/nutricao/', 'monthly', 0.8),
     route('/servicos/manutencao-extintores/', 'monthly', 0.8),

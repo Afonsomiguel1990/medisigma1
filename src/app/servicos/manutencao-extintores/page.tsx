@@ -1,5 +1,5 @@
+import { ServiceRequestGuide } from '@/components/service-request-guide';
 import { ServiceMediaSection } from "@/components/service-media/section";
-import Link from 'next/link';
 import React from 'react';
 import { Metadata } from 'next';
 import { ShieldCheck, CheckCircle, FileText } from 'lucide-react';
@@ -81,6 +81,7 @@ export default function ManutencaoExtintoresPage() {
                         </div>
                     </div>
                 </section>
+<ServiceRequestGuide serviceKey="manutencao-extintores" />
 
                 {/* Content Section */}
                 <section className="py-16 md:py-20 mx-4 md:mx-0">
@@ -213,7 +214,7 @@ export default function ManutencaoExtintoresPage() {
                                 </div>
                             </div>
 
-                            <ContactForm
+                            <ContactForm proposal
                 acceptMediaIntent
                                 pagina="Manutenção de Extintores"
                                 serviceKey="manutencao-extintores"

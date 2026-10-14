@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { CheckCircle, Mail, Phone } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
 import { ContactApiDetails } from '@/components/ContactApiDetails';
 import { ContactLink } from '@/components/custom/contact-link';
@@ -29,11 +29,8 @@ export default async function ProposalPage({ searchParams }: { searchParams: Pro
       <div>
         <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-secondary">Serviços para empresas</p>
         <h1 className="mb-6 text-4xl font-bold tracking-tight text-gray-900 md:text-5xl">Peça uma proposta para a sua empresa</h1>
-        <p className="mb-7 text-lg leading-relaxed text-gray-700">Indique o serviço de que precisa. A nossa equipa analisa o pedido e responde em até 48 horas úteis.</p>
+        <p className="mb-7 text-lg leading-relaxed text-gray-700">Conte-nos o que procura para a sua empresa. Seja uma avaliação pontual ou acompanhamento regular, a nossa equipa ajuda a encontrar o apoio adequado. Respondemos em até 48 horas úteis.</p>
         <a href="#proposal-form" className="mb-7 inline-flex min-h-11 items-center justify-center rounded-lg bg-secondary px-5 py-3 font-semibold text-white lg:hidden">Preencher pedido</a>
-        <ul className="mb-8 space-y-4 text-gray-700">
-          {['Empresa, email e serviço são os únicos campos obrigatórios.', 'Os dados adicionais ajudam-nos a preparar a proposta.', 'Se faltar alguma informação, esclarecemos consigo no contacto seguinte.'].map(text => <li key={text} className="flex gap-3"><CheckCircle aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-secondary" /><span>{text}</span></li>)}
-        </ul>
         <div className="rounded-xl border border-slate-200 bg-slate-50 p-6">
           <h2 className="mb-3 text-lg font-semibold">Prefere falar connosco?</h2>
           <div className="flex flex-col gap-3 text-sm">

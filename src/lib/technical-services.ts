@@ -1,72 +1,87 @@
 import type { ServiceMediaId } from './service-media';
+import type { CommercialHeroImage } from '@/components/commercial-hero';
 
 export type TechnicalService = {
-  key: string; name: string; title: string; description: string; audience: string;
-  scope: string[]; deliverables: string[]; preparation: string[]; limitation: string;
+  key: string; name: string; title: string; description: string; intro: string;
+  image: CommercialHeroImage; action: string;
+  scopeTitle: string; scope: string[]; deliverables: string[]; preparation: string[];
+  contactTitle: string; contactText: string;
   questions: { question: string; answer: string }[];
   links: { href: string; label: string }[]; media: ServiceMediaId[];
 };
 
 export const technicalServices = {
   legionella: {
-    key: 'legionella', name: 'Legionella', title: 'Avaliação de risco e prevenção de Legionella',
-    description: 'Avaliação inicial, plano de prevenção, colheitas e acompanhamento dos sistemas de água da sua instalação. Fale com a Medisigma para definir o âmbito.',
-    audience: 'Para responsáveis por instalações industriais, alojamentos, edifícios de serviços e outros espaços com redes de água ou equipamentos que possam produzir aerossóis.',
-    scope: ['Identificar as redes, equipamentos e utilização da instalação, incluindo os documentos e resultados já disponíveis.', 'Avaliar o risco e definir o plano ou programa aplicável, os responsáveis, os pontos de controlo e os registos necessários.', 'Preparar as colheitas e o acompanhamento dos resultados, segundo o âmbito acordado para a instalação.', 'Acompanhar a execução das medidas e a revisão dos procedimentos quando existam alterações ou resultados que o justifiquem.'],
-    deliverables: ['Enquadramento da instalação e identificação das necessidades de prevenção.', 'Plano ou programa, procedimentos e registos definidos na proposta.', 'Resultados das análises contratadas e orientação para o acompanhamento das medidas.'],
-    preparation: ['Concelho e tipo de instalação: indústria, hotel, condomínio, unidade de saúde ou outro.', 'Equipamentos e redes existentes, como torres de arrefecimento, água quente sanitária ou chuveiros.', 'Plano atual, análises anteriores e intervenções recentes, se existirem. Não é necessário enviar estes documentos no primeiro pedido.'],
-    limitation: 'O enquadramento, a frequência das colheitas e as medidas dependem dos sistemas e do risco identificado. Nem todas as instalações estão sujeitas ao mesmo plano. O âmbito dos ensaios e os requisitos aplicáveis são confirmados antes da intervenção.',
+    key: 'legionella', name: 'Legionella', title: 'Prevenção e controlo de Legionella',
+    description: 'Avaliação de risco, plano de prevenção, análises e acompanhamento de Legionella. Fale com a Medisigma sobre os sistemas de água da sua empresa.',
+    intro: 'Sabe que cuidados precisam os sistemas de água da sua empresa? A Medisigma ajuda a avaliar o risco de Legionella e a organizar o plano de prevenção, as análises e o acompanhamento das instalações.',
+    image: { src: '/images/uploads/servicos/legionella-recolher-amostra.png', alt: 'Recolha de uma amostra de água para avaliação de Legionella' },
+    action: 'Pedir apoio para Legionella', scopeTitle: 'Uma prevenção ajustada à sua instalação',
+    scope: ['Começamos pelas redes de água, equipamentos e utilização do edifício. Analisamos também os planos e resultados que já tem.', 'Definimos o plano ou programa aplicável, com procedimentos, responsáveis e pontos de controlo.', 'Preparamos as colheitas e acompanhamos os resultados das análises previstas para a instalação.', 'Apoiamos a aplicação das medidas e a revisão dos procedimentos quando há alterações ou novos resultados.'],
+    deliverables: ['Avaliação das necessidades de prevenção dos sistemas de água.', 'Plano ou programa com os procedimentos e registos necessários.', 'Resultados das análises contratadas e orientação para os passos seguintes.'],
+    preparation: ['A localização e o tipo de instalação, como hotel, indústria, condomínio ou unidade de saúde.', 'Os sistemas de água que conhece, incluindo chuveiros, água quente sanitária ou torres de arrefecimento.', 'Se já existe um plano de prevenção ou se foram feitas análises.'],
+    contactTitle: 'Vamos cuidar da prevenção na sua empresa.',
+    contactText: 'Quer começar um plano ou perceber se o acompanhamento atual é suficiente? Conte-nos como funcionam as suas instalações. A nossa equipa ajuda a definir o apoio de que precisa e responde em até 48 horas úteis.',
     questions: [
-      { question: 'Posso pedir uma avaliação sem ter um plano anterior?', answer: 'Sim. Indique o tipo de instalação e os sistemas que conhece. A avaliação inicial permite identificar a informação em falta e preparar o acompanhamento.' },
-      { question: 'As análises substituem o plano de prevenção?', answer: 'Não. As análises fazem parte do acompanhamento definido para a instalação. Os procedimentos, a manutenção e os registos também devem ser considerados.' },
-      { question: 'O que fica incluído na proposta?', answer: 'A proposta identifica o âmbito, os entregáveis e as condições das colheitas e do acompanhamento. Os serviços necessários são definidos a partir das características da instalação.' },
+      { question: 'Posso pedir uma avaliação sem ter um plano anterior?', answer: 'Sim. Podemos começar pelo tipo de instalação e pelos sistemas de água que conhece. A avaliação inicial ajuda a perceber o que é necessário fazer.' },
+      { question: 'As análises substituem o plano de prevenção?', answer: 'As análises permitem acompanhar a situação da instalação. O plano reúne também os procedimentos de manutenção, as medidas de prevenção e os registos de controlo.' },
+      { question: 'Todas as instalações precisam do mesmo acompanhamento?', answer: 'O acompanhamento depende dos sistemas de água e do risco identificado. A proposta define o plano ou programa aplicável, as colheitas, os ensaios e as condições da intervenção.' },
     ],
-    links: [{ href: '/faqs/legionella/', label: 'Perguntas frequentes sobre Legionella' }, { href: '/blog/plano-prevencao-controlo-legionella-empresas/', label: 'Plano de prevenção e controlo: guia para empresas' }], media: [],
+    links: [{ href: '/faqs/legionella/', label: 'Perguntas frequentes sobre Legionella' }, { href: '/blog/plano-prevencao-controlo-legionella-empresas/', label: 'O que deve incluir um plano de prevenção de Legionella' }], media: [],
   },
   radao: {
-    key: 'radao', name: 'Radão', title: 'Avaliação e medição de radão em empresas',
-    description: 'Precisa de avaliar o radão nas instalações da sua empresa? Fale com a Medisigma sobre a localização, os pisos ocupados e as medições já realizadas.',
-    audience: 'Para empresas e responsáveis por edifícios que precisam de conhecer a exposição ao radão nos espaços de trabalho, incluindo caves, rés do chão e outros pisos ocupados.',
-    scope: ['Enquadrar o pedido a partir da localização, utilização do edifício e avaliações anteriores.', 'Preparar a avaliação e a medição adequadas aos espaços ocupados, com pontos e duração definidos antes do início.', 'Acompanhar o pedido e esclarecer os próximos passos após a disponibilização dos resultados.'],
-    deliverables: ['Proposta com o âmbito da medição e as condições de execução.', 'Resultados e relatório da avaliação contratada.', 'Indicação dos passos seguintes em função dos resultados e do enquadramento das instalações.'],
-    preparation: ['Concelho, localização do edifício e atividade da empresa.', 'Pisos ocupados, existência de caves e utilização habitual dos espaços.', 'Medições anteriores e alterações ao edifício ou à ventilação, caso existam.'],
-    limitation: 'Um mapa de suscetibilidade ajuda a enquadrar o risco, mas não substitui a medição no edifício. A duração, os pontos de medição e os requisitos técnicos são confirmados na proposta. Não é possível garantir um resultado antes de medir.',
+    key: 'radao', name: 'Radão', title: 'Medição de radão em empresas',
+    description: 'Saiba quanto radão existe no ar das suas instalações. Fale com a Medisigma sobre a medição de radão e os próximos passos para a sua empresa.',
+    intro: 'O radão é um gás radioativo natural, sem cor nem cheiro, que pode acumular-se dentro dos edifícios. Medir a sua concentração permite conhecer o ar que a sua equipa respira. Fale com a Medisigma sobre a avaliação das suas instalações.',
+    image: { src: '/images/servicos/radao-edificio.webp', alt: 'Ilustração em corte de um edifício, com o percurso do radão do solo para os espaços interiores' },
+    action: 'Quero avaliar o radão', scopeTitle: 'Saiba o que se passa no seu edifício',
+    scope: ['Conte-nos onde ficam as instalações e como são utilizadas. A localização e os pisos ocupados ajudam a preparar a avaliação.', 'Definimos consigo os espaços a avaliar e as condições da medição antes do início.', 'Acompanhamos o pedido até aos resultados e ajudamos a esclarecer os próximos passos.'],
+    deliverables: ['Proposta de medição para os espaços da sua empresa.', 'Resultados e relatório da avaliação contratada.', 'Orientação sobre os passos seguintes, de acordo com os resultados.'],
+    preparation: ['O concelho onde ficam as instalações.', 'Os pisos utilizados pela equipa e a existência de caves.', 'Se já foram feitas medições ou alterações à ventilação.'],
+    contactTitle: 'Comece por conhecer o radão nas suas instalações.',
+    contactText: 'Tem dúvidas sobre a medição ou quer avançar com uma avaliação? Conte-nos onde fica a sua empresa. Ajudamos a perceber o que é necessário e a preparar o próximo passo. Respondemos em até 48 horas úteis.',
     questions: [
-      { question: 'O mapa de radão permite saber o resultado da minha empresa?', answer: 'Não. As condições variam entre edifícios e espaços do mesmo edifício. A medição permite avaliar a situação concreta.' },
-      { question: 'É possível obter uma avaliação representativa numa visita rápida?', answer: 'A APA recomenda que a monitorização inicial com detetores passivos decorra durante pelo menos três meses, podendo ir até um ano. A estratégia deve ser adequada à instalação e ao objetivo da avaliação.' },
-      { question: 'Ainda não sei quantos pontos tenho de medir. Posso pedir proposta?', answer: 'Sim. Indique a localização, os pisos ocupados e a utilização dos espaços. A equipa esclarece a informação necessária para preparar o pedido.' },
+      { question: 'Como sei se existe radão no meu edifício?', answer: 'O radão está presente no ar, mas a concentração varia de edifício para edifício. A medição permite conhecer a situação das suas instalações. O mapa de suscetibilidade ajuda a enquadrar a zona, mas não substitui essa medição.' },
+      { question: 'Quanto tempo demora uma medição de radão?', answer: 'A APA recomenda que a monitorização inicial com detetores passivos decorra durante pelo menos três meses, podendo ir até um ano. A duração e os pontos de medição são definidos de acordo com o edifício e o objetivo da avaliação.' },
+      { question: 'Preciso de saber quantos detetores são necessários?', answer: 'Pode contactar-nos sem essa informação. Começamos pela localização, pelos pisos ocupados e pela utilização dos espaços para preparar a medição.' },
     ],
-    links: [{ href: '/blog/o-que-e-o-radao/', label: 'O que é o radão e como preparar uma avaliação' }, { href: 'https://apambiente.pt/prevencao-e-gestao-de-riscos/locais-de-trabalho', label: 'APA: radão nos locais de trabalho' }], media: [],
+    links: [{ href: '/blog/o-que-e-o-radao/', label: 'Radão no local de trabalho: o que precisa de saber' }, { href: 'https://apambiente.pt/prevencao-e-gestao-de-riscos/radao', label: 'Informação da APA sobre o radão' }], media: [],
   },
   'ruido-ocupacional': {
     key: 'ruido-ocupacional', name: 'Ruído Ocupacional', title: 'Avaliação de ruído ocupacional',
-    description: 'A Medisigma avalia o ruído nos locais de trabalho. Medições, análise da exposição e relatório para apoiar as medidas de prevenção da sua empresa.',
-    audience: 'Para empresas industriais, oficinas e outras atividades com máquinas, equipamentos ou tarefas que possam expor os trabalhadores ao ruído.',
-    scope: ['Conhecer as tarefas, fontes de ruído, horários e grupos de trabalhadores a avaliar.', 'Preparar e realizar medições representativas do trabalho, considerando os ciclos e condições de funcionamento.', 'Interpretar os resultados e identificar medidas de prevenção e necessidades de acompanhamento.'],
-    deliverables: ['Registo das condições e das tarefas avaliadas.', 'Relatório dos resultados da avaliação e do seu enquadramento.', 'Recomendações para apoiar a prevenção e a revisão das condições de trabalho.'],
-    preparation: ['Atividade, concelho e tarefas que pretende avaliar.', 'Máquinas utilizadas, turnos e duração aproximada das tarefas.', 'Avaliações anteriores ou alterações de equipamentos, se existirem. A visita deve permitir observar o trabalho habitual.'],
-    limitation: 'Esta avaliação trata da exposição dos trabalhadores. Pedidos de ruído de vizinhança ou de licenciamento acústico têm um âmbito diferente e devem ser identificados no contacto. O número de medições depende das tarefas e da variabilidade da exposição.',
+    description: 'Medição de ruído no trabalho, avaliação da exposição e relatório técnico. A Medisigma ajuda a definir as medidas de prevenção para a sua equipa.',
+    intro: 'Quanto ruído acompanha a sua equipa ao longo do dia? Medimos a exposição durante o trabalho e ajudamos a perceber onde é preciso atuar. Veja a nossa equipa numa avaliação na Sofalca, em Abrantes.',
+    image: { src: '/media/servicos/avaliacao-ruido-sofalca.webp', alt: 'Equipa Medisigma a realizar uma avaliação de ruído na Sofalca, em Abrantes', position: 'center 52%' },
+    action: 'Pedir avaliação de ruído', scopeTitle: 'Medir durante o trabalho faz a diferença',
+    scope: ['Conhecemos as tarefas, as máquinas e os turnos para perceber como varia a exposição ao ruído.', 'Realizamos medições em condições representativas da atividade, nos períodos combinados com a empresa.', 'Analisamos os resultados e identificamos medidas para apoiar a proteção dos trabalhadores.'],
+    deliverables: ['Registo das tarefas e das condições avaliadas.', 'Relatório com os resultados e o enquadramento da exposição.', 'Recomendações para orientar as medidas de prevenção.'],
+    preparation: ['A atividade da empresa e a localização das instalações.', 'As tarefas ou máquinas que pretende avaliar.', 'Os turnos e as alterações recentes a equipamentos ou processos.'],
+    contactTitle: 'Perceba onde o ruído exige atenção.',
+    contactText: 'Uma máquina nova, uma tarefa ruidosa ou uma avaliação por atualizar? Conte-nos o que se passa na sua empresa. Preparamos consigo a avaliação em condições reais de trabalho e respondemos em até 48 horas úteis.',
     questions: [
-      { question: 'A medição deve decorrer com as máquinas a funcionar?', answer: 'As condições devem representar o trabalho que se pretende avaliar. A equipa combina consigo os períodos e as tarefas a observar.' },
-      { question: 'Uma leitura junto de uma máquina representa todo o turno?', answer: 'Não necessariamente. A avaliação deve considerar as tarefas, a duração e as variações da exposição ao longo do trabalho.' },
-      { question: 'Posso ver um exemplo do trabalho da Medisigma?', answer: 'Sim. Nesta página apresentamos fotografias e um vídeo de uma avaliação na Sofalca, em Bemposta, Abrantes.' },
+      { question: 'A medição deve decorrer com as máquinas a funcionar?', answer: 'Sim, quando fazem parte do trabalho a avaliar. Combinamos consigo os períodos e as tarefas para que a medição represente a atividade habitual.' },
+      { question: 'Uma leitura junto de uma máquina representa todo o turno?', answer: 'A exposição depende das tarefas, da duração e das variações ao longo do dia. A avaliação tem em conta esse conjunto para interpretar os resultados.' },
+      { question: 'Este serviço abrange ruído de vizinhança?', answer: 'Este serviço avalia a exposição dos trabalhadores ao ruído. Se a sua questão é ruído de vizinhança ou licenciamento acústico, descreva-a no contacto para podermos orientar o pedido.' },
     ],
-    links: [{ href: '/blog/ruido-no-trabalho-avaliacao-medicao/', label: 'Ruído no trabalho: quando avaliar e medir' }, { href: '/servicos/seguranca-no-trabalho/', label: 'Acompanhamento em segurança no trabalho' }], media: ['sofalca-ruido'],
+    links: [{ href: '/blog/ruido-no-trabalho-avaliacao-medicao/', label: 'Quando avaliar e medir o ruído no trabalho' }, { href: '/servicos/seguranca-no-trabalho/', label: 'Acompanhamento em segurança no trabalho' }], media: ['sofalca-ruido'],
   },
   'qualidade-do-ar-interior': {
     key: 'qualidade-do-ar-interior', name: 'Qualidade do Ar Interior', title: 'Avaliação da qualidade do ar interior',
-    description: 'Avaliação e medições da qualidade do ar interior pela Medisigma. Conheça as condições do edifício e prepare as medidas de melhoria com apoio técnico.',
-    audience: 'Para responsáveis por escritórios, edifícios de comércio e serviços, alojamentos e outros espaços de trabalho que precisam de avaliar as condições do ar interior.',
-    scope: ['Recolher informação sobre a utilização, ocupação, ventilação e motivos do pedido.', 'Definir os espaços, as condições de medição e os parâmetros aplicáveis à avaliação.', 'Realizar a avaliação e apresentar os resultados, com recomendações de acompanhamento.'],
-    deliverables: ['Âmbito de avaliação acordado para o edifício e a sua utilização.', 'Relatório com os parâmetros avaliados, condições de medição e resultados.', 'Recomendações para orientar medidas de melhoria e verificações posteriores.'],
-    preparation: ['Tipo de edifício, concelho e utilização dos espaços.', 'Ocupação habitual, horários e informação disponível sobre ventilação.', 'Motivo do pedido, avaliações anteriores ou alterações recentes, sem incluir dados de saúde pessoais.'],
-    limitation: 'Os parâmetros e o tipo de avaliação dependem do edifício e do objetivo. Uma leitura isolada de CO₂ não caracteriza todos os fatores da qualidade do ar. A avaliação específica de radão deve ser identificada separadamente no pedido.',
+    description: 'Avaliação da qualidade do ar em escritórios, comércio e serviços. Medições, relatório e recomendações da Medisigma para as suas instalações.',
+    intro: 'O ar de um escritório faz parte das condições de trabalho de todos os dias. A Medisigma avalia os espaços, realiza as medições adequadas e ajuda a perceber o que pode melhorar no seu edifício.',
+    image: { src: '/images/servicos/qualidade-ar-interior.webp', alt: 'Ilustração de uma sala de trabalho com a circulação de ar a partir do sistema de ventilação' },
+    action: 'Pedir avaliação do ar interior', scopeTitle: 'Conhecer o ar para decidir o que melhorar',
+    scope: ['Começamos pela utilização do edifício, a ocupação e a ventilação, bem como pelo motivo do seu pedido.', 'Escolhemos os espaços e os parâmetros de medição adequados à avaliação.', 'Realizamos as medições e apresentamos os resultados com recomendações para a empresa.'],
+    deliverables: ['Avaliação ajustada ao edifício e à sua utilização.', 'Relatório com os parâmetros medidos, as condições e os resultados.', 'Recomendações para orientar melhorias e acompanhamento.'],
+    preparation: ['O tipo de edifício e a localização.', 'Como são utilizados os espaços e em que horários.', 'O motivo da avaliação e se existem medições anteriores.'],
+    contactTitle: 'Vamos conhecer melhor o ar do seu espaço.',
+    contactText: 'Quer avaliar um escritório, uma loja ou um alojamento? Fale-nos do edifício e do que o levou a procurar este serviço. A nossa equipa ajuda a definir a avaliação e responde em até 48 horas úteis.',
     questions: [
-      { question: 'Que parâmetros são medidos?', answer: 'São definidos em função do edifício, da utilização e do enquadramento aplicável. A proposta identifica o âmbito antes da intervenção.' },
-      { question: 'A avaliação inclui radão?', answer: 'O radão exige uma estratégia de medição própria. Se pretende avaliar este risco, escolha Radão no pedido ou indique que precisa de ambos os serviços.' },
-      { question: 'O edifício deve estar ocupado durante a medição?', answer: 'As condições devem ser adequadas ao objetivo da avaliação e representativas da utilização. A equipa confirma consigo os horários e a preparação necessária.' },
+      { question: 'Que parâmetros são medidos?', answer: 'Os parâmetros dependem do edifício, da utilização e do objetivo da avaliação. A proposta identifica as medições incluídas. Uma leitura de CO₂, por si só, não caracteriza todos os fatores da qualidade do ar.' },
+      { question: 'A avaliação inclui radão?', answer: 'O radão precisa de uma estratégia de medição própria. Se pretende avaliar este risco, escolha Radão no pedido ou diga-nos que precisa de ambos os serviços.' },
+      { question: 'O edifício deve estar ocupado durante a medição?', answer: 'As condições devem representar a utilização que se pretende avaliar. A equipa combina consigo os horários e a preparação necessária.' },
     ],
-    links: [{ href: '/blog/qualidade-do-ar-interior-como-avaliar/', label: 'Qualidade do ar interior: como avaliar' }, { href: '/servicos/radao/', label: 'Avaliação específica de radão' }, { href: 'https://apambiente.pt/ar-e-ruido/ar-interior', label: 'APA: qualidade do ar interior' }], media: [],
+    links: [{ href: '/blog/qualidade-do-ar-interior-como-avaliar/', label: 'Como se avalia a qualidade do ar interior' }, { href: '/servicos/radao/', label: 'Medição de radão nas instalações' }, { href: 'https://apambiente.pt/ar-e-ruido/ar-interior', label: 'Informação da APA sobre o ar interior' }], media: [],
   },
 } satisfies Record<string, TechnicalService>;
 

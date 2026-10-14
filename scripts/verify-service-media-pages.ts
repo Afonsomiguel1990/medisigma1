@@ -30,7 +30,7 @@ for (const path of pages) {
   const isLocal = Object.keys(locationMedia).includes(path.replaceAll('/', ''));
   if (isLocal) {
     assert.equal(videos.length, 1);
-    assert.ok(html.includes('Exemplo de trabalho realizado pela Medisigma em Portugal.'));
+    assert.ok(html.includes('Veja como trabalhamos'));
   }
   if (path === '/abrantes/') assert.equal(videos.length, 2);
   assert.equal([...html.matchAll(/<track\b[^>]*kind="captions"/g)].length, videos.length);

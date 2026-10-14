@@ -27,7 +27,6 @@ export function ServiceMediaSection({ id, contactHref = '#cta-section', national
       <div className="min-w-0 lg:pt-4">
         <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-secondary">{nationalExample ? 'Veja como trabalhamos' : entry.eyebrow}</p>
         <h2 id={`${nationalExample ? 'local-' : ''}${id}-title`} className="max-w-xl text-2xl font-semibold leading-tight tracking-tight text-foreground md:text-3xl">{entry.title}</h2>
-        {nationalExample && <p className="mt-4 border-l-2 border-secondary pl-4 text-sm font-medium leading-6 text-muted-foreground">Exemplo de trabalho realizado pela Medisigma em Portugal.</p>}
         <div className="mt-5 max-w-xl space-y-3 text-base leading-7 text-muted-foreground">{entry.paragraphs.map(text => <p key={text}>{text}</p>)}</div>
         <div className="mt-6"><MediaContactLink mediaId={id} serviceKey={entry.serviceKey} href={contactHref}>{entry.cta}</MediaContactLink></div>
         {entry.article && <Link href={entry.article.href} className="mt-4 block text-sm font-medium text-secondary underline underline-offset-4">{entry.article.label}</Link>}

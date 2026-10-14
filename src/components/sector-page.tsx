@@ -3,12 +3,17 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ServiceMediaSection } from './service-media/section';
 import { serializeJsonLd } from '@/lib/organization';
+import { CommercialHero } from './commercial-hero';
 
 const sectors = {
   industria: {
     name: 'Indústria', title: 'Segurança e avaliações técnicas para a indústria',
     description: 'Prepare as avaliações de ruído, qualidade do ar, radão, Legionella e segurança no trabalho da sua unidade industrial com a Medisigma.',
-    intro: 'Uma unidade industrial pode reunir riscos diferentes na produção, manutenção, armazém e escritórios. Identifique a necessidade de cada área para preparar uma intervenção com o âmbito adequado.',
+    intro: 'O ruído da produção, a qualidade do ar e os sistemas de água pedem cuidados diferentes. A Medisigma ajuda a organizar as avaliações da sua unidade industrial e a definir as medidas de prevenção para a equipa.',
+    image: { src: '/media/servicos/medicao-ruido-industria.webp', alt: 'Avaliação de ruído realizada pela Medisigma na Sofalca, em Abrantes', position: 'center 45%' },
+    action: 'Pedir apoio para a minha empresa',
+    contactTitle: 'Vamos olhar para as necessidades da sua fábrica.',
+    contactText: 'Quer avaliar um posto de trabalho ou reunir vários serviços? Conte-nos o que pretende melhorar. Ajudamos a escolher as avaliações e a preparar a intervenção.',
     preparation: ['Localização das instalações, atividade, turnos e contacto responsável pelo acesso.', 'Tarefas, máquinas e períodos representativos de funcionamento.', 'Pisos ocupados, sistemas de água e ventilação e avaliações anteriores, quando existam.'],
     services: [
       { key: 'ruido-ocupacional', name: 'Ruído ocupacional', need: 'Conhecer a exposição dos trabalhadores nas tarefas e nos turnos.' },
@@ -21,7 +26,11 @@ const sectors = {
   'hotelaria-alojamento': {
     name: 'Hotelaria e alojamento', title: 'Serviços técnicos para hotelaria e alojamento',
     description: 'Legionella, qualidade do ar, HACCP e segurança contra incêndios para hotéis e alojamentos. Prepare o pedido com a Medisigma.',
-    intro: 'Os sistemas de água, os quartos, a restauração e os equipamentos de segurança têm necessidades próprias. Reúna a informação do edifício e escolha o apoio pretendido para preparar o pedido.',
+    intro: 'Entre os quartos, a cozinha e as áreas técnicas, há muito para acompanhar. A Medisigma ajuda a organizar a prevenção da Legionella, o HACCP e a segurança do edifício, com apoio ajustado ao funcionamento do seu alojamento.',
+    image: { src: '/media/servicos/herdade-amarela-capa.webp', alt: 'Técnico Medisigma durante o acompanhamento da Herdade Amarela, em Abrantes', position: 'center 40%' },
+    action: 'Pedir apoio para o meu alojamento',
+    contactTitle: 'O seu alojamento merece um acompanhamento próximo.',
+    contactText: 'Está a preparar a abertura, a rever procedimentos ou à procura de apoio regular? Fale-nos do seu estabelecimento. A nossa equipa ajuda a perceber por onde começar.',
     preparation: ['Localização, tipo de alojamento, capacidade e períodos de abertura ou encerramento.', 'Sistemas de água, zonas comuns e utilização dos espaços; mencione piscinas ou outros equipamentos existentes.', 'Existência de cozinha ou restauração, plano de prevenção, registos de manutenção e avaliações anteriores.'],
     services: [
       { key: 'legionella', name: 'Legionella', need: 'Enquadrar as redes e equipamentos de água, o plano ou programa e o acompanhamento.' },
@@ -35,16 +44,17 @@ const sectors = {
 export type SectorKey = keyof typeof sectors;
 export function sectorMetadata(key: SectorKey): Metadata {
   const sector = sectors[key];
-  return { title: sector.title, description: sector.description, alternates: { canonical: `https://www.medisigma.pt/setores/${key}/` } };
+  const url = `https://www.medisigma.pt/setores/${key}/`;
+  return { title: sector.title, description: sector.description, alternates: { canonical: url }, openGraph: { title: sector.title, description: sector.description, url, images: [{ url: sector.image.src, alt: sector.image.alt }] } };
 }
 export function SectorPage({ sectorKey }: { sectorKey: SectorKey }) {
   const sector = sectors[sectorKey];
   return <main className="bg-white">
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd({ '@context': 'https://schema.org', '@type': 'CollectionPage', name: sector.title, description: sector.description, url: `https://www.medisigma.pt/setores/${sectorKey}/`, about: { '@id': 'https://www.medisigma.pt/#organization' }, mainEntity: { '@type': 'ItemList', itemListElement: sector.services.map((service, index) => ({ '@type': 'ListItem', position: index + 1, name: service.name, url: `https://www.medisigma.pt/servicos/${service.key}/` })) } }) }} />
-    <section className="mx-auto max-w-6xl px-6 py-14 md:py-20"><p className="text-sm font-semibold uppercase tracking-wider text-secondary">{sector.name}</p><h1 className="mt-5 max-w-4xl text-3xl font-bold leading-tight md:text-5xl">{sector.title}</h1><p className="mt-6 max-w-3xl text-lg leading-8 text-gray-700">{sector.intro}</p></section>
-    <section className="mx-auto max-w-6xl px-6 py-10"><h2 className="text-2xl font-semibold">Que apoio procura?</h2><div className="mt-6 grid gap-6 md:grid-cols-2">{sector.services.map(service => <article key={service.key} className="rounded-xl border p-6"><h3 className="text-xl font-semibold">{service.name}</h3><p className="my-4 leading-7 text-gray-700">{service.need}</p><div className="flex flex-wrap gap-5"><Link href={`/servicos/${service.key}/`} className="text-secondary underline underline-offset-4">Conhecer o serviço</Link><Link href={`/pedir-proposta/?servico=${service.key}`} className="font-semibold text-secondary underline underline-offset-4">Pedir proposta</Link></div></article>)}</div></section>
-    <section className="mx-auto max-w-6xl px-6 py-12"><h2 className="text-2xl font-semibold">Informação útil para preparar o pedido</h2><ul className="mt-6 max-w-3xl list-disc space-y-4 pl-5 leading-7">{sector.preparation.map(text => <li key={text}>{text}</li>)}</ul><p className="mt-5 max-w-3xl leading-7 text-gray-700">Se precisa de vários serviços, escolha o principal e indique os restantes na mensagem. Não precisa de repetir o pedido. A proposta confirma os serviços incluídos e as condições de execução.</p></section>
+    <CommercialHero title={sector.title} intro={sector.intro} image={sector.image} action={{ href: '/pedir-proposta/', label: sector.action }} />
+    <section className="mx-auto max-w-6xl px-8 py-10 md:py-14"><h2 className="text-2xl font-semibold text-slate-900 sm:text-3xl">O apoio certo para cada área</h2><div className="mt-8 divide-y divide-slate-200 border-y border-slate-200">{sector.services.map(service => <article key={service.key} className="grid gap-4 py-7 md:grid-cols-[1fr_1.6fr] md:gap-10"><h3 className="text-xl font-semibold text-slate-900"><Link href={`/servicos/${service.key}/`} className="hover:text-secondary hover:underline">{service.name}</Link></h3><div><p className="leading-7 text-slate-700">{service.need}</p><div className="mt-4 flex flex-wrap gap-6"><Link href={`/servicos/${service.key}/`} className="text-secondary underline underline-offset-4">Conhecer o serviço</Link><Link href={`/pedir-proposta/?servico=${service.key}`} className="font-semibold text-secondary underline underline-offset-4">Pedir proposta</Link></div></div></article>)}</div></section>
+    <section className="mx-auto max-w-6xl px-8 py-10"><h2 className="text-2xl font-semibold text-slate-900">Conte-nos como funciona o seu espaço</h2><ul className="mt-6 max-w-3xl list-disc space-y-4 pl-5 leading-7 text-slate-700">{sector.preparation.map(text => <li key={text}>{text}</li>)}</ul></section>
     <ServiceMediaSection id={sector.media} contactHref={`/pedir-proposta/?servico=${sectorKey === 'industria' ? 'ruido-ocupacional' : 'seguranca-incendios'}`} />
-    <section className="mx-auto max-w-6xl px-6 py-12"><h2 className="text-2xl font-semibold">Ainda não sabe que serviço selecionar?</h2><p className="mt-4 max-w-3xl leading-7 text-gray-700">Descreva a atividade, o edifício e a necessidade. A equipa ajuda a encaminhar o pedido e confirma a disponibilidade na sua localização.</p><Link href="/pedir-proposta/" className="mt-6 inline-flex min-h-12 items-center rounded-lg bg-secondary px-6 py-3 font-semibold text-white">Falar com a Medisigma</Link></section>
+    <section className="mx-4 mb-8 rounded-2xl bg-[#edf2f8] px-6 py-10 sm:mx-8 sm:px-9 md:py-14"><div className="mx-auto max-w-6xl"><h2 className="max-w-2xl text-3xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-4xl">{sector.contactTitle}</h2><p className="mt-6 max-w-2xl text-lg leading-8 text-slate-700">{sector.contactText}</p><Link href="/pedir-proposta/" className="mt-7 inline-flex min-h-12 items-center rounded-lg bg-secondary px-6 py-3 font-semibold text-white hover:bg-blue-800 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-secondary">{sector.action}</Link></div></section>
   </main>;
 }

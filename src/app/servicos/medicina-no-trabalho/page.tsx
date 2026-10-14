@@ -272,9 +272,9 @@ export default function MedicinaNoTrabalhoPage() {
                   </div>
                 </div>
 
-                <div className="bg-secondary p-4 rounded-lg border-l-4 border-secondary">
-                  <p className="text-sm text-white">
-                    <strong>Nota Legal:</strong> Se o resultado do exame revelar inaptidão,
+                <div className="mt-5">
+                  <p className="text-sm leading-relaxed text-gray-600">
+                    Se o resultado do exame revelar inaptidão,
                     o médico do trabalho deve indicar, se justificado, outras funções que
                     o trabalhador possa desempenhar.
                   </p>

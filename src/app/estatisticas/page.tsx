@@ -77,9 +77,9 @@ export default async function StatisticsPage() {
                     </div>
                 </div>
 
-                <div className="mt-12 p-6 bg-blue-50 rounded-2xl border border-blue-100 italic text-blue-800 text-sm">
-                    Nota: Estes dados representam os cliques nos botões de contacto em todo o site.
-                </div>
+                <p className="mt-12 text-sm text-gray-600">
+                    Estes dados representam os cliques nos botões de contacto em todo o site.
+                </p>
             </div>
         </main>
     );

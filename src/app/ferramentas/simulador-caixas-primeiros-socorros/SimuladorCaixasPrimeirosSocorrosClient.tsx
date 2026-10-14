@@ -8,7 +8,6 @@ import {
   ArrowRight,
   CheckCircle2,
   ChevronRight,
-  Info,
   Mail,
   MapPin,
   ShieldCheck,
@@ -403,13 +402,9 @@ function ResultsColumn({
             <ResultMetric label={COPY.result.extraRiskLabel} value={result.extraRisk} />
           </div>
 
-          <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-relaxed text-amber-950">
-            <div className="mb-2 flex items-center gap-2 font-semibold">
-              <Info className="h-4 w-4" aria-hidden />
-              Nota importante
-            </div>
+          <div className="space-y-2 text-sm leading-relaxed text-gray-600">
             <p>{COPY.result.legalNote}</p>
-            <p className="mt-2 text-xs text-amber-900">{COPY.result.method}</p>
+            <p className="text-xs">{COPY.result.method}</p>
           </div>
 
           <Button

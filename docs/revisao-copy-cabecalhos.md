@@ -15,6 +15,7 @@ Direção visual: páginas comerciais Medisigma, com imagens do serviço e texto
 - Convites ao contacto próprios para cada serviço e setor.
 - Retiradas as notas sobre campos obrigatórios e autoria editorial; removidos os blocos de ressalvas repetidos. As diferenças de âmbito que ajudam a contratar ficaram nas perguntas frequentes.
 - Removido o microtexto sobre campos obrigatórios na página de proposta e duas frases sobre a própria página nas localidades.
+- Removidas as caixas de nota legal em medicina do trabalho e de nota importante no simulador de primeiros socorros. A informação útil mantém-se em parágrafos normais. Retirados também os rótulos de nota nas estatísticas e nas duas cópias locais antigas do artigo de exames obrigatórios. A versão pública desse artigo já não apresentava esses rótulos.
 - Os formulários, consentimento, categorias e receção de pedidos mantêm os mecanismos já publicados.
 
 ## Fontes e imagens

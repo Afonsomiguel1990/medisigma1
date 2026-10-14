@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "tsx --test tests/agent-readiness.test.ts tests/analytics-consent.test.ts tests/blog-editorial.test.ts tests/lead-submission.test.ts tests/leads-repository.test.ts tests/resource-access.test.ts tests/resource-expiry-client.test.ts tests/service-media.test.ts tests/contact.test.tsx tests/intake-database.test.ts tests/security-boundaries.test.ts tests/intake-failures.test.ts",
+    "test": "tsx --test tests/acquisition-reporting.test.ts tests/agent-readiness.test.ts tests/analytics-consent.test.ts tests/blog-editorial.test.ts tests/lead-submission.test.ts tests/leads-repository.test.ts tests/resource-access.test.ts tests/resource-expiry-client.test.ts tests/service-media.test.ts tests/contact.test.tsx tests/intake-database.test.ts tests/security-boundaries.test.ts tests/intake-failures.test.ts",
     "media:publication": "node scripts/service-media-publication.mjs",
     "verify:media": "node scripts/check-service-media.mjs",
     "verify:media-pages": "tsx scripts/verify-service-media-pages.ts",

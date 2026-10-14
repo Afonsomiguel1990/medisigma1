@@ -45,6 +45,9 @@ export interface ContactClickInput {
 export interface ClickReceipt { status: 'accepted' | 'duplicate' | 'conflict'; eventId: string }
 export interface AnalyticsGroup { key: string; count: number }
 export interface LeadAnalytics {
+  measurementVersion?: number;
+  excludedRecords?: AnalyticsGroup[];
+  priorityByService?: AnalyticsGroup[];
   submissions: number;
   serviceRequests: number;
   resourceRequests: number;

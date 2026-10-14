@@ -1,0 +1,252 @@
+{
+  "version": 1,
+  "observedAt": "2026-10-14",
+  "property": "sc-domain:medisigma.pt",
+  "country": "prt",
+  "searchType": "web",
+  "period": {
+    "from": "2026-07-12",
+    "to": "2026-10-11"
+  },
+  "comparison": {
+    "from": "2026-04-12",
+    "to": "2026-07-11"
+  },
+  "source": "Authenticated Search Console browser UI; 500 of 699 filtered query rows, sorted by impressions",
+  "caveats": [
+    "Unobserved queries have null metrics, not zero demand. Search Console omits anonymized queries.",
+    "Query positions are averages over observed impressions, not a fixed local ranking.",
+    "Keep this list stable for the 90-day cycle. Track local-intent queries separately.",
+    "Business baseline begins with the first 28 complete days of verified measurement after release."
+  ],
+  "queries": [
+    {
+      "id": 1,
+      "serviceKey": "legionella",
+      "query": "avaliação de risco legionella",
+      "url": "/servicos/legionella/",
+      "baseline": {
+        "clicks": 0,
+        "impressions": 45,
+        "position": 25.1
+      },
+      "status": "observed",
+      "localIntent": false
+    },
+    {
+      "id": 2,
+      "serviceKey": "legionella",
+      "query": "análise legionella",
+      "url": "/servicos/legionella/",
+      "baseline": {
+        "clicks": 0,
+        "impressions": 31,
+        "position": 10.8
+      },
+      "status": "observed",
+      "localIntent": false
+    },
+    {
+      "id": 3,
+      "serviceKey": "legionella",
+      "query": "plano de prevenção e controlo da legionella",
+      "url": "/servicos/legionella/",
+      "baseline": {
+        "clicks": 0,
+        "impressions": 22,
+        "position": 8.8
+      },
+      "status": "observed",
+      "localIntent": false
+    },
+    {
+      "id": 4,
+      "serviceKey": "legionella",
+      "query": "legionella santarém",
+      "url": "/servicos/legionella/",
+      "baseline": null,
+      "status": "target_without_observed_baseline",
+      "localIntent": true
+    },
+    {
+      "id": 5,
+      "serviceKey": "radao",
+      "query": "medição radão",
+      "url": "/servicos/radao/",
+      "baseline": null,
+      "status": "target_without_observed_baseline",
+      "localIntent": false
+    },
+    {
+      "id": 6,
+      "serviceKey": "radao",
+      "query": "medição radão coimbra",
+      "url": "/servicos/radao/",
+      "baseline": null,
+      "status": "target_without_observed_baseline",
+      "localIntent": true
+    },
+    {
+      "id": 7,
+      "serviceKey": "radao",
+      "query": "avaliação radão abrantes",
+      "url": "/servicos/radao/",
+      "baseline": null,
+      "status": "target_without_observed_baseline",
+      "localIntent": true
+    },
+    {
+      "id": 8,
+      "serviceKey": "ruido-ocupacional",
+      "query": "avaliação ruído ocupacional",
+      "url": "/servicos/ruido-ocupacional/",
+      "baseline": null,
+      "status": "target_without_observed_baseline",
+      "localIntent": false
+    },
+    {
+      "id": 9,
+      "serviceKey": "ruido-ocupacional",
+      "query": "avaliação ruído leiria",
+      "url": "/servicos/ruido-ocupacional/",
+      "baseline": null,
+      "status": "target_without_observed_baseline",
+      "localIntent": true
+    },
+    {
+      "id": 10,
+      "serviceKey": "ruido-ocupacional",
+      "query": "medição ruído no trabalho",
+      "url": "/servicos/ruido-ocupacional/",
+      "baseline": null,
+      "status": "target_without_observed_baseline",
+      "localIntent": false
+    },
+    {
+      "id": 11,
+      "serviceKey": "qualidade-do-ar-interior",
+      "query": "avaliaçao da qualidade do ar interior",
+      "url": "/servicos/qualidade-do-ar-interior/",
+      "baseline": {
+        "clicks": 0,
+        "impressions": 34,
+        "position": 15.8
+      },
+      "status": "observed",
+      "localIntent": false
+    },
+    {
+      "id": 12,
+      "serviceKey": "qualidade-do-ar-interior",
+      "query": "avaliação da qualidade do ar interior",
+      "url": "/servicos/qualidade-do-ar-interior/",
+      "baseline": {
+        "clicks": 0,
+        "impressions": 1,
+        "position": 12
+      },
+      "status": "observed",
+      "localIntent": false
+    },
+    {
+      "id": 13,
+      "serviceKey": "qualidade-do-ar-interior",
+      "query": "qualidade do ar interior lisboa",
+      "url": "/servicos/qualidade-do-ar-interior/",
+      "baseline": null,
+      "status": "target_without_observed_baseline",
+      "localIntent": true
+    },
+    {
+      "id": 14,
+      "serviceKey": "manutencao-extintores",
+      "query": "manutenção extintores",
+      "url": "/servicos/manutencao-extintores/",
+      "baseline": {
+        "clicks": 0,
+        "impressions": 52,
+        "position": 10.3
+      },
+      "status": "observed",
+      "localIntent": false
+    },
+    {
+      "id": 15,
+      "serviceKey": "manutencao-extintores",
+      "query": "manutenção de extintores",
+      "url": "/servicos/manutencao-extintores/",
+      "baseline": {
+        "clicks": 0,
+        "impressions": 207,
+        "position": 32.9
+      },
+      "status": "observed",
+      "localIntent": false
+    },
+    {
+      "id": 16,
+      "serviceKey": "manutencao-extintores",
+      "query": "empresas de manutenção de extintores",
+      "url": "/servicos/manutencao-extintores/",
+      "baseline": {
+        "clicks": 0,
+        "impressions": 9,
+        "position": 13.9
+      },
+      "status": "observed",
+      "localIntent": false
+    },
+    {
+      "id": 17,
+      "serviceKey": "manutencao-extintores",
+      "query": "extintores torres novas",
+      "url": "/servicos/manutencao-extintores/",
+      "baseline": {
+        "clicks": 0,
+        "impressions": 13,
+        "position": 9.8
+      },
+      "status": "observed",
+      "localIntent": true
+    },
+    {
+      "id": 18,
+      "serviceKey": "seguranca-alimentar",
+      "query": "haccp restauração",
+      "url": "/servicos/seguranca-alimentar/",
+      "baseline": {
+        "clicks": 0,
+        "impressions": 336,
+        "position": 10.9
+      },
+      "status": "observed",
+      "localIntent": false
+    },
+    {
+      "id": 19,
+      "serviceKey": "seguranca-alimentar",
+      "query": "empresas de haccp",
+      "url": "/servicos/seguranca-alimentar/",
+      "baseline": {
+        "clicks": 0,
+        "impressions": 36,
+        "position": 9.6
+      },
+      "status": "observed",
+      "localIntent": false
+    },
+    {
+      "id": 20,
+      "serviceKey": "seguranca-alimentar",
+      "query": "haccp lisboa",
+      "url": "/servicos/seguranca-alimentar/",
+      "baseline": {
+        "clicks": 0,
+        "impressions": 79,
+        "position": 35.3
+      },
+      "status": "observed",
+      "localIntent": true
+    }
+  ]
+}

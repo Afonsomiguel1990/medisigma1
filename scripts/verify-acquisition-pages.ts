@@ -30,7 +30,7 @@ for(const path of paths) {
 for(const [source,destination] of Object.entries(LEGACY_REDIRECTS)) {
   const response=await fetch(origin+source+'?origem=verificacao',{redirect:'manual'});
   assert.equal(response.status,301,source);
-  const target=new URL(response.headers.get('location')!);
+  const target=new URL(response.headers.get('location')!,origin);
   assert.equal(target.pathname,destination);assert.equal(target.search,'?origem=verificacao');
   assert.equal((await fetch(target,{redirect:'manual'})).status,200,source+' direct target');
 }

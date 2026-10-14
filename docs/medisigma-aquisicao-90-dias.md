@@ -1,8 +1,8 @@
 # Medisigma: implementação e acompanhamento da aquisição
 
-Preparado a 14 de outubro de 2026 a partir de `origin/main` em `92d33aab1ba086784e963ab9a61937845d4451b9`, na branch `codex/seo-growth-20261014`. O checkout principal e o simulador por publicar foram preservados. O código, as migrações e as revisões editoriais aguardam publicação; as configurações de GA4 indicadas abaixo já foram guardadas.
+Publicado a 14 de outubro de 2026, após autorização do utilizador, pelo fluxo GitHub → Vercel. A implementação partiu de `origin/main` em `92d33aab1ba086784e963ab9a61937845d4451b9`, na branch `codex/seo-growth-20261014`. O checkout principal e o simulador por publicar foram preservados. As duas migrações e as seis revisões editoriais estão aplicadas e verificadas. A Vercel confirmou sucesso para o commit `bab42d27f8169fe1a501d4144bfca97c4257865c`.
 
-## Alterações preparadas
+## Alterações publicadas
 
 - Analytics: comandos `gtag` em formato `Arguments`, fila criada antes do carregamento da tag, conservação do consumidor instalado pelo Google, retoma após consentimento e navegação, evento `generate_lead` apenas para receções elegíveis e sem duplicação. ID e propriedade mantidos. `contact_form_start` mede o início do formulário sem enviar campos pessoais. `analytics_debug=1` permite a validação pública no DebugView após consentimento.
 - Pedidos: catálogo partilhado com radão, ruído ocupacional e qualidade do ar; ajuda contextual; três campos obrigatórios; backend independente do consentimento. Os formulários nativos e clientes sem UUID reutilizam pedidos idênticos durante 30 minutos, através da receção existente. Uma submissão com UUID mantém a deduplicação atual.
@@ -23,13 +23,23 @@ Propriedade `519429067`, fluxo `13284521770`, tag `G-GB5WGQPXK3`.
 - Fuso horário corrigido de Açores para Horário Portugal. O Google confirmou que a alteração afeta apenas dados posteriores e pode criar uma descontinuidade no dia da mudança. Moeda Euro mantida. O relatório do backend continua a identificar explicitamente os seus dias em UTC; para comparações por dia civil com o GA4, converter as fronteiras de Europe/Lisbon para UTC.
 - O fluxo continuava sem dados nas últimas 48 horas antes da publicação da correção. Isto não permite declarar a recolha recuperada.
 
-Provas locais: `output/seo-growth/ga4-dimensions.jpg` e `ga4-enhanced-after.jpg`. A receção em tempo real, o DebugView e a marcação de `generate_lead` como evento principal ficam para a validação após publicação e disparo confirmado. Não se devem gerar pedidos comerciais fictícios em produção para forçar esta verificação.
+Após publicação, o DebugView recebeu `page_view`, `session_start`, `scroll` e `contact_form_start`. Neste último, foram observados `service_key=radao`, `lead_kind=service_request` e `page_location=https://www.medisigma.pt/servicos/radao/`, sem os parâmetros do URL. A visão geral em tempo real também mostrou as páginas de radão, cookies e pedido de proposta. Estes eventos correspondem à validação e não demonstram crescimento comercial.
+
+Foram percorridos os controlos públicos para recusar cookies e voltar a aceitar apenas a análise. O formulário continuou acessível e o serviço Radão foi conservado na passagem para pedir proposta. Não foi submetido qualquer contacto. A marcação de `generate_lead` como evento principal continua dependente de um disparo válido de pedido real. Não se devem gerar pedidos comerciais fictícios em produção para forçar esta verificação.
+
+A verificação pós-publicação está agendada diariamente às 09:15 durante sete dias, na automação `medisigma-confirmar-convers-o-ap-s-publica-o`. Apenas observa dados e, após confirmar um evento válido, marca a conversão e confirma a persistência na interface. Termina após a validação ou as sete execuções previstas.
+
+Foi guardada no GA4 uma anotação de 14 de outubro: “Recolha GA4 recuperada e novos serviços publicados”. Identifica o dia parcial, a alteração do fuso e a necessidade de verificar continuidade antes de fechar a base comparativa.
+
+Provas: `output/seo-growth/ga4-dimensions.jpg`, `ga4-enhanced-after.jpg`, `live-ga4-service-key.jpg`, `live-ga4-realtime.jpg` e `live-sitemap-submitted.jpg`.
 
 ## Verificação e limites da prova
 
 Os testes de contactos, consentimento, permissões e migrações usam dados sintéticos e não enviam notificações comerciais. O servidor de apresentação local usa uma chave de escrita inválida e um destino de notificações local desativado.
 
 Build final e 82 testes automáticos concluídos. Verificados 82 URLs em HTML e Markdown, 19 páginas prioritárias com canónicas e sitemap, seis redirecionamentos diretos, seis revisões editoriais preparadas e 20 páginas com media, legendas e ligações de contacto.
+
+Após publicação, foram repetidas no domínio público as verificações dos 82 URLs, das 19 páginas prioritárias, dos seis redirecionamentos e das 20 páginas com media. Todas passaram. O verificador de redirecionamentos foi ajustado para aceitar o cabeçalho `Location` relativo devolvido pela Vercel, além do absoluto devolvido localmente. As seis revisões foram comparadas diretamente com os campos gravados em `web.posts`, com correspondência integral. As duas funções mantêm `security invoker`, `search_path` vazio e execução apenas por `service_role`.
 
 Foram verificados 48 percursos, em viewports de 320, 390, 820 e 1280 píxeis. A área útil de conteúdo foi, respetivamente, 305, 375, 805 e 1265 píxeis devido à barra de deslocamento. Não houve transbordo horizontal. Os formulários mantiveram empresa, email e serviço como únicos campos obrigatórios. O contrato HTML nativo, a submissão JSON e multipart e a deduplicação foram testados separadamente.
 
@@ -45,7 +55,13 @@ Esta comparação apoia a correção local e não substitui os dados de campo do
 
 A auditoria das dependências de produção encontrou zero vulnerabilidades conhecidas. A auditoria completa identificou 15 alertas nas dependências de desenvolvimento já presentes no lockfile, incluindo lint e processamento CSS. A atualização dessas dependências deve ser feita numa alteração própria.
 
-## Ordem de publicação e reversão
+## Search Console após publicação
+
+O sitemap `https://www.medisigma.pt/sitemap.xml` foi reenviado e a interface confirmou envio com êxito. Foi removido apenas o registo incorreto de `https://www.medisigma.pt/servicos/medicina-desportiva/` como sitemap HTML, sem remover a página do site ou do índice.
+
+Foram inspecionados os cinco URLs novos. Na inspeção inicial, todos estavam ainda fora do índice. Radão, ruído ocupacional e hotelaria surgiam como detetados; qualidade do ar e indústria ainda não eram reconhecidos. Os cinco pedidos de indexação foram aceites e adicionados à fila de rastreio de prioridade. O primeiro envio de hotelaria terminou com erro genérico do Search Console; a segunda tentativa foi aceite. Estes estados não equivalem a indexação concluída nem a posicionamento. O registo completo está em `output/seo-growth/live-publication-browser.json`.
+
+## Procedimento de publicação e reversão
 
 1. Obter autorização para publicar o conjunto de alterações através de GitHub e Vercel.
 2. Aplicar as duas migrações `20261014090000_acquisition_explicit_exclusions.sql` e `20261014091000_native_contact_retry.sql`. Confirmar funções e permissões. Não criam tabelas nem alteram os contactos históricos.
@@ -62,11 +78,11 @@ Para reverter o site, reverter os commits publicados e deixar o fluxo GitHub faz
 
 O indicador principal é o número de pedidos elegíveis guardados pelo backend. A base comercial será constituída pelos primeiros 28 dias completos de medição fiável após publicação. As taxas do GA4 usam apenas eventos e sessões com a mesma cobertura de consentimento. Cliques em telefone, email e WhatsApp são intenções. Impressões nas funcionalidades de IA da Pesquisa Google e visitas com origem identificada em assistentes são métricas diferentes.
 
-As metas de trabalho são +25% nos cliques orgânicos das páginas comerciais prioritárias e +25% nos pedidos, com números absolutos quando a base for inferior a dez. Avaliar aos dias 30, 60 e 90 a partir da publicação verificada. Fixar então as datas dos acompanhamentos; não iniciar o relógio de resultados com a versão ainda local.
+As metas de trabalho são +25% nos cliques orgânicos das páginas comerciais prioritárias e +25% nos pedidos, com números absolutos quando a base for inferior a dez. As avaliações foram agendadas neste chat para 13 de novembro, 13 de dezembro e 12 de janeiro de 2027, às 09:00, correspondentes aos dias 30, 60 e 90 após publicação. A automação ativa é `medisigma-avalia-es-aos-30-60-e-90-dias` e termina após três execuções. A base proposta são os 28 dias completos de 15 de outubro a 11 de novembro; confirmar a continuidade da recolha antes de a aceitar como fiável.
 
 ## Próximas ações por prioridade
 
-1. **Publicação e medição real:** concluir os passos acima e guardar a data de início da base fiável.
+1. **Conversões e continuidade da medição:** confirmar o primeiro pedido real elegível, observar `generate_lead` e marcá-lo como evento principal. A recolha de páginas e início de formulário já foi observada em produção. Verificar continuidade e excluir os eventos desta validação ao interpretar o desempenho comercial.
 2. **Perfil de Empresa:** o perfil público Medisigma em Abrantes existe, com telefone 241 331 504, categoria “Escritório empresarial”, 4,0/5 em 38 opiniões e horário publicado de segunda a sexta, 09:00–18:00. A morada surge como “Via Industrial 1 2 Lote 5, 2200-293 Abrantes”, diferente da formulação do site. Confirmar a normalização da morada, o horário real e a categoria disponível mais adequada à atividade. Na conta pessoal indicada pelo utilizador, o gestor não lista a Medisigma e a Pesquisa mostra “É o proprietário desta empresa?”. Não foi reivindicado nem criado qualquer perfil.
 3. **Prova técnica:** confirmar com a equipa os âmbitos, entregáveis e documentos de qualificação aplicáveis antes de acrescentar acreditações, métodos, prazos de execução ou revisão técnica nominal. Preparar fotografias atuais da sede e exemplos autorizados dos serviços para o perfil empresarial.
 4. **Primeiro ciclo de procura:** priorizar títulos e percursos de “HACCP restauração” (336 impressões, posição 10,9), “manutenção extintores” (52; 10,3) e “avaliaçao da qualidade do ar interior” (34; 15,8). Usar o registo estável das vinte pesquisas para acompanhar a progressão.

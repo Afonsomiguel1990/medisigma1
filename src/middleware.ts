@@ -7,7 +7,7 @@ import {
   negotiatePublicRepresentation,
 } from "@/lib/content-negotiation";
 import { agentFriendlyNotFoundMarkdown } from "@/lib/agent-recovery";
-import { LEGACY_REDIRECTS } from "@/lib/legacy-redirects";
+import { LEGACY_REDIRECTS, RETIRED_LEGACY_PATHS } from "@/lib/legacy-redirects";
 import {
   canonicalTrailingSlashPath,
   INTERNAL_HTML_PREFIX,
@@ -62,22 +62,24 @@ function notAcceptable(request: NextRequest) {
   return withAcceptVary(response);
 }
 
-function directNotFound(request: NextRequest) {
+function directNotFound(request: NextRequest, status: 404 | 410 = 404) {
   const representation = negotiatePublicRepresentation(
     request.headers.get("accept"),
   );
   const origin = request.nextUrl.origin;
   const markdown = representation === MARKDOWN_MEDIA_TYPE;
-  const html = `<!doctype html><html lang="pt"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>404: Página não encontrada</title></head><body><main><h1>404: Página não encontrada</h1><p>A página pedida não existe ou foi movida.</p><ul><li><a href="/sitemap.xml">Mapa do site</a></li><li><a href="/llms.txt">Instruções para agentes</a></li><li><a href="/servicos/">Serviços</a></li><li><a href="/blog/">Blog</a></li><li><a href="/contact/">Contactos</a></li></ul></main></body></html>`;
+  const title = status === 410 ? '410: Página removida' : '404: Página não encontrada';
+  const message = status === 410 ? 'Esta página foi retirada. Consulte os serviços ou contacte a nossa equipa.' : 'A página pedida não existe ou foi movida.';
+  const html = `<!doctype html><html lang="pt"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>${title}</title></head><body><main><h1>${title}</h1><p>${message}</p><ul><li><a href="/sitemap.xml">Mapa do site</a></li><li><a href="/llms.txt">Instruções para agentes</a></li><li><a href="/servicos/">Serviços</a></li><li><a href="/blog/">Blog</a></li><li><a href="/contact/">Contactos</a></li></ul></main></body></html>`;
   const body =
     request.method === "HEAD"
       ? null
       : markdown
-        ? agentFriendlyNotFoundMarkdown(origin)
+        ? status === 410 ? `# ${title}\n\n${message}\n\n- [Serviços](${origin}/servicos/)\n- [Contactos](${origin}/contact/)\n` : agentFriendlyNotFoundMarkdown(origin)
         : html;
 
   const response = new NextResponse(body, {
-    status: 404,
+    status,
     headers: {
       "Cache-Control": "no-store",
       "Content-Type": markdown
@@ -118,6 +120,7 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const legacyDestination = LEGACY_REDIRECTS[pathname.replace(/\/$/, '')];
   if (legacyDestination) return redirect(request, legacyDestination, 301);
+  if (RETIRED_LEGACY_PATHS.has(pathname.replace(/\/$/, ''))) return directNotFound(request, 410);
   if (/^\/(?:contactos?|fale-connosco)\/?$/.test(pathname)) {
     return redirect(request, "/contact/", 301);
   }

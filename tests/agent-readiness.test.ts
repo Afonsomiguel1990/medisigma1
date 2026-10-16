@@ -26,6 +26,38 @@ import {
 import { middleware } from "../src/middleware";
 import { RESOURCES } from '../src/lib/resources/catalog';
 
+test('retired business pages redirect to their equivalent and removed pages stay out of the index', async () => {
+  const redirects = [
+    ['/medicina_trabalho.php', '/servicos/medicina-no-trabalho/'],
+    ['/hig_seg_trabalho.php', '/servicos/seguranca-no-trabalho/'],
+    ['/controlo_haccp.php', '/servicos/seguranca-alimentar/'],
+    ['/extintores_manutencao_carreteis.php', '/servicos/seguranca-incendios/'],
+    ['/bolsa_recrutamento.php', '/recrutamento/'],
+    ['/consulta_comercial.php', '/pedir-proposta/'],
+  ];
+  for (const [path, destination] of redirects) {
+    for (const method of ['GET', 'HEAD']) {
+      const response = await middleware(new NextRequest(`https://www.medisigma.pt${path}?utm_source=bing`, { method }));
+      assert.equal(response.status, 301, path);
+      assert.equal(response.headers.get('Location'), `https://www.medisigma.pt${destination}?utm_source=bing`);
+    }
+  }
+  for (const path of ['/envia_comercial.php', '/epi.php', '/higienizacao.php', '/the-goonies-1985-web-1080p-magnet-link/']) {
+    for (const accept of ['text/html', 'text/markdown']) {
+      const response = await middleware(new NextRequest(`https://www.medisigma.pt${path}`, { headers: { Accept: accept } }));
+      assert.equal(response.status, 410, path);
+      assert.equal(response.headers.get('Location'), null);
+      assert.match(response.headers.get('X-Robots-Tag') || '', /noindex/);
+      assert.match(await response.text(), /410: Página removida/);
+    }
+  }
+  for (const path of ['/config.php', '/wp-admin/', '/unknown.php']) {
+    const response = await middleware(new NextRequest(`https://www.medisigma.pt${path}`));
+    assert.equal(response.status, 404, path);
+    assert.equal(response.headers.get('Location'), null);
+  }
+});
+
 test('resource routes normalize only known slugs and stay outside the sitemap', async () => {
   assert.equal(canonicalTrailingSlashPath('/recursos'), '/recursos/');
   for (const { slug } of RESOURCES) assert.equal(canonicalTrailingSlashPath(`/recursos/${slug}`), `/recursos/${slug}/`);

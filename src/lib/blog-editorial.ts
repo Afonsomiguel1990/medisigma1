@@ -57,6 +57,18 @@ export const BLOG_ALIASES: Record<string, string> = {
 };
 
 export function getServiceCta(slug: string) {
+  if (slug === 'medicina-trabalho-exames-obrigatorios') return {
+    url: '/pedir-proposta/?servico=medicina-no-trabalho', label: 'Medicina no Trabalho',
+    heading: 'Precisa de organizar os exames da sua equipa?',
+    description: 'Indique a atividade, o número de trabalhadores e a localização da empresa. A Medisigma prepara uma proposta para o acompanhamento de Medicina no Trabalho.',
+    action: 'Pedir proposta de Medicina no Trabalho',
+  };
+  if (slug === 'tipos-extintores-classes-fogo-portugal') return {
+    url: '/pedir-proposta/?servico=manutencao-extintores', label: 'Manutenção de Extintores',
+    heading: 'Precisa de manutenção para os extintores da sua empresa?',
+    description: 'Indique a localização das instalações e o número de extintores. A equipa Medisigma prepara uma proposta para a manutenção dos equipamentos.',
+    action: 'Pedir proposta de manutenção de extintores',
+  };
   if (slug === 'o-que-e-o-radao') return {
     url: '/servicos/radao/', label: 'Avaliação do risco de radão',
     heading: 'Precisa de apoio para avaliar o risco de radão?',

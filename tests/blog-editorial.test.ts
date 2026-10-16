@@ -4,10 +4,10 @@ import { BLOG_EDITORIAL, getServiceCta, getBlogAuthor, getBlogTitle, getBlogCano
 
 test('commercial destinations follow the subject instead of incidental words in article text', () => {
   const expected = {
-    'medicina-trabalho-exames-obrigatorios': '/servicos/medicina-no-trabalho/',
+    'medicina-trabalho-exames-obrigatorios': '/pedir-proposta/?servico=medicina-no-trabalho',
     'ficha-aptidao-trabalho-validade': '/servicos/medicina-no-trabalho/',
     'kit-primeiros-socorros-empresa': '/ferramentas/simulador-caixas-primeiros-socorros/',
-    'tipos-extintores-classes-fogo-portugal': '/servicos/manutencao-extintores/',
+    'tipos-extintores-classes-fogo-portugal': '/pedir-proposta/?servico=manutencao-extintores',
     'inspecoes-act-2025-guia-empresas': '/servicos/seguranca-no-trabalho/',
     'simulacros-de-emergencia-em-portugal-guia-completo': '/servicos/seguranca-incendios/',
     '40-horas-formacao-obrigatoria-empresas': '/servicos/formacao-certificada/',

@@ -8,6 +8,11 @@ import { priorityServices } from '@/lib/technical-services';
 export const dynamic = 'force-dynamic';
 
 const baseUrl = 'https://www.medisigma.pt';
+const bingLastModified = new Date('2026-10-16T00:00:00.000Z');
+const bingUpdatedPaths = new Set([
+  '/signalsigma/', '/servicos/seguranca-no-trabalho/',
+  '/blog/medicina-trabalho-exames-obrigatorios/', '/blog/tipos-extintores-classes-fogo-portugal/',
+]);
 const acquisitionLastModified = new Date('2026-10-14T00:00:00.000Z');
 const acquisitionPaths = new Set([
   ...Object.keys(serviceAreas).map(key => `/${key}/`),
@@ -37,7 +42,7 @@ function route(
   priority: number,
   lastModified: Date = staticLastModified,
 ): MetadataRoute.Sitemap[number] {
-  const modified = acquisitionPaths.has(path) ? acquisitionLastModified : editorialPaths.has(path) ? editorialLastModified : lastModified;
+  const modified = bingUpdatedPaths.has(path) ? bingLastModified : acquisitionPaths.has(path) ? acquisitionLastModified : editorialPaths.has(path) ? editorialLastModified : lastModified;
   return {
     url: `${baseUrl}${path}`,
     lastModified: mediaPaths.has(path) && mediaLastModified && mediaLastModified > modified ? mediaLastModified : modified,
@@ -114,7 +119,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const posts = await getAllPublishedPosts();
     blogRoutes = posts.map((post) => ({
       url: `${baseUrl}/blog/${post.slug}/`,
-      lastModified: new Date(post.updated_at || post.published_at || post.created_at),
+      lastModified: new Date(Math.max(new Date(post.updated_at || post.published_at || post.created_at).getTime(), bingUpdatedPaths.has(`/blog/${post.slug}/`) ? bingLastModified.getTime() : 0)),
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     }));

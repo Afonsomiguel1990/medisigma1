@@ -11,11 +11,11 @@ import { RestaurantTestimonial } from '@/components/sections/restaurant-testimon
 
 export const metadata: Metadata = {
   title: "Segurança no Trabalho | Avaliação de Riscos",
-  description: "Serviços especializados de segurança no trabalho em Portugal. Prevenção de acidentes, avaliação de riscos, vistorias técnicas e formação. Cumprimento integral da legislação SST.",
+  description: "Segurança no trabalho para empresas em Portugal. Avaliação de riscos, prevenção de acidentes, auditorias e formação adaptadas à atividade.",
   keywords: "segurança no trabalho, prevenção acidentes trabalho, avaliação riscos, técnico segurança trabalho, higiene trabalho, SST, vistorias técnicas, formação segurança, doenças profissionais",
   openGraph: {
     title: "Segurança no Trabalho | Avaliação de Riscos - Medisigma",
-    description: "Serviços especializados de segurança no trabalho. Prevenção de acidentes, avaliação de riscos e formação profissional.",
+    description: "Segurança no trabalho para empresas em Portugal. Avaliação de riscos, prevenção de acidentes, auditorias e formação adaptadas à atividade.",
     type: "website",
     locale: "pt_PT",
   },

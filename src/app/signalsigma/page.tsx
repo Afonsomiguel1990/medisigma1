@@ -8,7 +8,7 @@ import { ContactLink } from "@/components/custom/contact-link";
 
 export const metadata: Metadata = {
     title: "SinalSigma | Sinalética de Segurança",
-    description: "A SinalSigma, empresa do Grupo Medisigma, é especializada em sinalização de emergência, segurança no trabalho e sinalética informativa. Soluções completas e personalizadas.",
+    description: "Sinalética e sinalização de segurança para empresas. A SinalSigma, do Grupo Medisigma, prepara soluções de emergência, orientação e informação.",
     keywords: [
         "sinalética",
         "sinalização saidas de emergencia",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     ],
     openGraph: {
         title: "SinalSigma | Sinalética de Segurança - Medisigma",
-        description: "A SinalSigma, empresa do Grupo Medisigma, é especializada em sinalização de emergência, segurança no trabalho e sinalética informativa.",
+        description: "Sinalética e sinalização de segurança para empresas. A SinalSigma, do Grupo Medisigma, prepara soluções de emergência, orientação e informação.",
         type: "website",
         locale: "pt_PT",
     },

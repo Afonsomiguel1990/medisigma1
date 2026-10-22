@@ -1,5 +1,6 @@
 // The contact form only needs these small identifiers, not transcripts or media metadata.
 export const mediaContactServices = {
+  iluminancia: { serviceKey: 'seguranca-no-trabalho', serviceLabel: 'Segurança no Trabalho' },
   'sofalca-ruido': { serviceKey: 'ruido-ocupacional', serviceLabel: 'Ruído Ocupacional' },
   'herdade-amarela': { serviceKey: 'seguranca-incendios', serviceLabel: 'Segurança Contra Incêndios' },
   'seguranca-alimentar': { serviceKey: 'seguranca-alimentar', serviceLabel: 'Segurança Alimentar' },

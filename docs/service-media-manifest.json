@@ -201,5 +201,27 @@
     "width": 903,
     "height": 1600,
     "crop": null
+  },
+  {
+    "id": "iluminancia",
+    "source": "https://www.instagram.com/reel/Dew4S61irhh/",
+    "sourceSha256": "09c92f87e61c24d216594f5642d5a66ffb274f4f865213e565a6d869876bca9e",
+    "output": "iluminancia.mp4",
+    "bytes": 4861429,
+    "sha256": "78ba0fbca9b05a585a7bfe76926228d2df9476756422941607ae332ac3b9b08a",
+    "posterTimestamp": 9,
+    "duration": 26.57,
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "height": 1280,
+        "width": 720
+      },
+      {
+        "codec_type": "audio",
+        "codec_name": "aac"
+      }
+    ]
   }
 ]

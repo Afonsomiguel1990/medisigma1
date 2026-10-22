@@ -43,9 +43,13 @@ function route(
   lastModified: Date = staticLastModified,
 ): MetadataRoute.Sitemap[number] {
   const modified = bingUpdatedPaths.has(path) ? bingLastModified : acquisitionPaths.has(path) ? acquisitionLastModified : editorialPaths.has(path) ? editorialLastModified : lastModified;
+  const pageMediaDates = Object.values(serviceMedia)
+    .filter(entry => entry.servicePath === path && entry.video?.publishedAt)
+    .map(entry => new Date(entry.video!.publishedAt!).getTime());
+  const latestMediaDate = mediaPaths.has(path) && mediaLastModified ? mediaLastModified.getTime() : 0;
   return {
     url: `${baseUrl}${path}`,
-    lastModified: mediaPaths.has(path) && mediaLastModified && mediaLastModified > modified ? mediaLastModified : modified,
+    lastModified: new Date(Math.max(modified.getTime(), latestMediaDate, ...pageMediaDates)),
     changeFrequency,
     priority,
   };

@@ -2,7 +2,7 @@ import publication from '@/content/service-media-publication.json';
 import transcripts from '@/content/service-media-transcripts.json';
 
 const base = '/media/servicos';
-export type ServiceMediaId = 'sofalca-ruido' | 'herdade-amarela' | 'seguranca-alimentar' | 'ramiro' | 'benfica-abrantes' | 'extintores' | 'sinaletica' | 'pragas';
+export type ServiceMediaId = 'iluminancia' | 'sofalca-ruido' | 'herdade-amarela' | 'seguranca-alimentar' | 'ramiro' | 'benfica-abrantes' | 'extintores' | 'sinaletica' | 'pragas';
 export interface ServicePhoto { src: string; alt: string; caption: string; width: number; height: number }
 export interface ServiceVideoData {
   id: ServiceMediaId; src: string; poster: string; captions: string;
@@ -17,9 +17,17 @@ export interface ServiceMediaEntry {
 }
 const photo = (file: string, alt: string, caption: string, width = 900, height = 1600): ServicePhoto => ({ src: `${base}/${file}.webp`, alt, caption, width, height });
 function video(id: keyof typeof transcripts, title: string, description: string, duration: string, durationLabel: string): ServiceVideoData {
-  return { id, src: `${base}/${id}.mp4`, poster: `${base}/${id}-capa.webp`, captions: `${base}/${id}.pt.vtt`, title, description, duration, durationLabel, transcript: transcripts[id], publishedAt: publication.publishedAt };
+  const dates: Partial<Record<ServiceMediaId, string>> = publication.videoPublishedAt;
+  return { id, src: `${base}/${id}.mp4`, poster: `${base}/${id}-capa.webp`, captions: `${base}/${id}.pt.vtt`, title, description, duration, durationLabel, transcript: transcripts[id], publishedAt: dates[id] ?? publication.publishedAt };
 }
 export const serviceMedia: Record<ServiceMediaId, ServiceMediaEntry> = {
+  iluminancia: {
+    id: 'iluminancia', anchor: 'avaliacao-iluminancia-no-terreno', eyebrow: 'Avaliação de iluminância',
+    title: 'A iluminação mede-se no posto de trabalho.',
+    paragraphs: ['A equipa Medisigma mostra uma avaliação de iluminância numa fábrica, com medições realizadas com um luxímetro.', 'A avaliação considera as tarefas e as condições de cada posto de trabalho. Veja como é feita a medição e fale connosco sobre a iluminação na sua empresa.'],
+    serviceKey: 'seguranca-no-trabalho', serviceLabel: 'Segurança no Trabalho', servicePath: '/servicos/seguranca-no-trabalho/', cta: 'Pedir avaliação de iluminância', photos: [],
+    video: video('iluminancia', 'Avaliação de iluminância no local de trabalho', 'A equipa Medisigma utiliza um luxímetro para avaliar os níveis de iluminação nos postos de trabalho de uma fábrica.', 'PT26.57S', '27 s'),
+  },
   'sofalca-ruido': {
     id: 'sofalca-ruido', anchor: 'avaliacao-ruido-no-terreno', eyebrow: 'Avaliação de ruído',
     title: 'O ruído avalia-se no local de trabalho.',

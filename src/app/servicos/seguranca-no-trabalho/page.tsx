@@ -225,6 +225,7 @@ export default function SegurancaNoTrabalhoPage() {
           </div>
         </section>
 
+        <ServiceMediaSection id="iluminancia" />
         <ServiceMediaSection id="sofalca-ruido" />
 
         {/* Importance Section */}

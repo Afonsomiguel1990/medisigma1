@@ -17,7 +17,9 @@ for (const path of pages) {
     .map(match => JSON.parse(match[1])).filter(schema => schema['@type'] === 'VideoObject');
   assert.equal(schemas.length, publication.publishedAt ? videos.length : 0, `Missing VideoObject: ${path}`);
   for (const schema of schemas) {
-    assert.equal(schema.uploadDate, publication.publishedAt);
+    const media = Object.values(serviceMedia).find(entry => schema.contentUrl === `https://www.medisigma.pt${entry.video?.src}`);
+    assert.ok(media?.video, `Unknown video: ${schema.contentUrl}`);
+    assert.equal(schema.uploadDate, media.video.publishedAt);
     assert.ok(schema.name && schema.description && schema.transcript);
     assert.match(schema.duration, /^PT/);
     assert.match(schema.contentUrl, /^https:\/\/www\.medisigma\.pt\/media\/servicos\/.+\.mp4$/);
@@ -57,6 +59,6 @@ for (const src of checkedImages) {
   assert.equal(response.status, 200, src); assert.match(response.headers.get('content-type') || '', /^image\//);
   await response.arrayBuffer();
 }
-console.log(`Verified ${pages.length} pages, five seekable video URLs, captions and ${checkedImages.size} optimized images. No form submissions or notifications sent.`);
+console.log(`Verified ${pages.length} pages, ${Object.values(serviceMedia).filter(entry => entry.video).length} seekable video URLs, captions and ${checkedImages.size} optimized images. No form submissions or notifications sent.`);
 }
 main().catch(error => { console.error(error); process.exitCode = 1; });

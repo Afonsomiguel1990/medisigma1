@@ -51,5 +51,5 @@ for (const media of manifest) {
   const spokenText = cues.map(cue => cue[3].trim().replace(/\s+/g, ' ')).join(' ');
   assert.equal(transcripts[media.id].trim().replace(/\s+/g, ' '), spokenText, `Caption and transcript differ: ${media.id}`);
 }
-assert.equal(videos, 5);
+assert.equal(videos, 6);
 console.log(`Verified ${videos} videos, ${manifest.length - videos} photographs, faststart, file hashes and PT captions in ${fileURLToPath(root)}.`);

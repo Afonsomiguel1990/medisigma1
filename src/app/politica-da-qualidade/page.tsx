@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { qualityPolicyMission, qualityPolicyPath, qualityPolicyTitle } from '@/content/quality-policy';
 import { siteConfig } from '@/lib/site';
-import valuesIllustration from './valores.webp';
+import valuesImage from './valores.webp';
 
 const description = 'Política da Qualidade, missão, visão e valores do Grupo Medisigma.';
 const canonical = new URL(qualityPolicyPath, siteConfig.url).href;
@@ -88,8 +88,8 @@ export default function QualityPolicyPage() {
                 <li>Capital Humano e Envolvimento</li>
               </ul>
               <Image
-                src={valuesIllustration}
-                alt="Ilustração de uma profissional de saúde no trabalho a ouvir um trabalhador."
+                src={valuesImage}
+                alt="Técnico de bata branca num laboratório."
                 sizes="(max-width: 639px) 100vw, 384px"
                 className="h-auto w-full rounded-xl"
               />

@@ -8,6 +8,7 @@ import { priorityServices } from '@/lib/technical-services';
 export const dynamic = 'force-dynamic';
 
 const baseUrl = 'https://www.medisigma.pt';
+const qualityPolicyPublished = new Date('2026-11-18T00:00:00.000Z');
 const bingLastModified = new Date('2026-10-16T00:00:00.000Z');
 const bingUpdatedPaths = new Set([
   '/signalsigma/', '/servicos/seguranca-no-trabalho/',
@@ -58,7 +59,8 @@ function route(
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const mainRoutes: MetadataRoute.Sitemap = [
     route('/', 'monthly', 1.0),
-    route('/sobre-nos/', 'monthly', 0.8),
+    route('/sobre-nos/', 'monthly', 0.8, qualityPolicyPublished),
+    route('/politica-da-qualidade/', 'yearly', 0.7, qualityPolicyPublished),
     route('/servicos/', 'monthly', 0.9),
     route('/setores/industria/', 'monthly', 0.8),
     route('/setores/hotelaria-alojamento/', 'monthly', 0.8),

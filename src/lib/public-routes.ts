@@ -39,6 +39,7 @@ const CANONICAL_PUBLIC_ROUTES = new Set([
   "/lisboa",
   "/livro-reclamacoes",
   "/newsletter",
+  "/politica-da-qualidade",
   "/politica-de-privacidade",
   "/portalegre",
   "/recrutamento",

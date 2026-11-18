@@ -1,5 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
+import Link from 'next/link';
+import { qualityPolicyMission, qualityPolicyPath, qualityPolicyTitle } from '@/content/quality-policy';
 // import HeroVideoDialog from '@/components/magicui/hero-video-dialog';
 import { Features } from '@/components/ui/features';
 import { ServicesShowcase } from '@/components/sections/services-showcase';
@@ -150,12 +152,11 @@ export default function SobreNosPage() {
             <div className="text-center mb-6">
               <h3 className="text-2xl font-bold text-foreground mb-6">A Nossa Missão</h3>
               <p className="mt-2 mb-6 text-lg leading-8 text-muted-foreground max-w-4xl mx-auto">
-                O Grupo MEDISIGMA é um grupo de empresas prestadoras de serviços,
-                em diferentes áreas, sediado em Abrantes. Tem como missão satisfazer os clientes,
-                oferecendo-lhes serviços de elevada qualidade, tendo por base as normas de Saúde e
-                Segurança, com o empenho individual e coletivo dos colaboradores e ser reconhecida
-                como empresa líder no mercado, melhorando e inovando sempre os nossos serviços.
+                {qualityPolicyMission}
               </p>
+              <Link href={qualityPolicyPath} className="font-semibold text-secondary underline underline-offset-4 hover:text-foreground">
+                {qualityPolicyTitle}
+              </Link>
             </div>
           </div>
         </div>

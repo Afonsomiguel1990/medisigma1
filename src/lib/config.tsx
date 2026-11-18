@@ -987,6 +987,7 @@ export const siteConfig = {
       links: [
         { id: 1, title: "Início", url: "/" },
         { id: 2, title: "Sobre Nós", url: "/sobre-nos" },
+        { id: 8, title: "Política da Qualidade", url: "/politica-da-qualidade/" },
         { id: 3, title: "Casos de Sucesso", url: "/casos-de-sucesso" },
         { id: 4, title: "Testemunhos", url: "/testemunhos" },
         { id: 5, title: "Blog", url: "/blog" },

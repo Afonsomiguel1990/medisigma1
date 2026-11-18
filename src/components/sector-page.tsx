@@ -8,24 +8,22 @@ import { CommercialHero } from './commercial-hero';
 const sectors = {
   industria: {
     name: 'Indústria', title: 'Segurança e avaliações técnicas para a indústria',
-    description: 'Prepare as avaliações de ruído, qualidade do ar, radão, Legionella e segurança no trabalho da sua unidade industrial com a Medisigma.',
-    intro: 'O ruído da produção, a qualidade do ar e os sistemas de água pedem cuidados diferentes. A Medisigma ajuda a organizar as avaliações da sua unidade industrial e a definir as medidas de prevenção para a equipa.',
+    description: 'Avaliação de ruído ocupacional, prevenção de Legionella e segurança no trabalho para unidades industriais.',
+    intro: 'A Medisigma ajuda a avaliar a exposição ao ruído nas linhas de produção, a prevenir a Legionella nos sistemas de água e a definir medidas de segurança para cada posto de trabalho.',
     image: { src: '/media/servicos/medicao-ruido-industria.webp', alt: 'Avaliação de ruído realizada pela Medisigma na Sofalca, em Abrantes', position: 'center 45%' },
     action: 'Pedir apoio para a minha empresa',
     contactTitle: 'Vamos olhar para as necessidades da sua fábrica.',
     contactText: 'Quer avaliar um posto de trabalho ou reunir vários serviços? Conte-nos o que pretende melhorar. Ajudamos a escolher as avaliações e a preparar a intervenção.',
-    preparation: ['Localização das instalações, atividade, turnos e contacto responsável pelo acesso.', 'Tarefas, máquinas e períodos representativos de funcionamento.', 'Pisos ocupados, sistemas de água e ventilação e avaliações anteriores, quando existam.'],
+    preparation: ['Localização das instalações, atividade, turnos e contacto responsável pelo acesso.', 'Tarefas, máquinas e períodos representativos de funcionamento.', 'Sistemas de água existentes e registos de avaliações anteriores.'],
     services: [
       { key: 'ruido-ocupacional', name: 'Ruído ocupacional', need: 'Conhecer a exposição dos trabalhadores nas tarefas e nos turnos.' },
-      { key: 'qualidade-do-ar-interior', name: 'Qualidade do ar interior', need: 'Avaliar as condições do ar nos espaços ocupados. Identifique separadamente exposições a agentes químicos do processo industrial.' },
-      { key: 'radao', name: 'Radão', need: 'Preparar a avaliação e medição nos espaços de trabalho, tendo em conta os pisos e a utilização.' },
       { key: 'legionella', name: 'Legionella', need: 'Avaliar sistemas de água e equipamentos e organizar a prevenção e o acompanhamento.' },
       { key: 'seguranca-no-trabalho', name: 'Segurança no trabalho', need: 'Rever riscos profissionais, procedimentos e medidas de prevenção da atividade.' },
     ], media: 'sofalca-ruido' as const,
   },
   'hotelaria-alojamento': {
     name: 'Hotelaria e alojamento', title: 'Serviços técnicos para hotelaria e alojamento',
-    description: 'Legionella, qualidade do ar, HACCP e segurança contra incêndios para hotéis e alojamentos. Prepare o pedido com a Medisigma.',
+    description: 'Prevenção de Legionella, HACCP e segurança contra incêndios para hotéis e alojamentos. Prepare o pedido com a Medisigma.',
     intro: 'Entre os quartos, a cozinha e as áreas técnicas, há muito para acompanhar. A Medisigma ajuda a organizar a prevenção da Legionella, o HACCP e a segurança do edifício, com apoio ajustado ao funcionamento do seu alojamento.',
     image: { src: '/media/servicos/herdade-amarela-capa.webp', alt: 'Técnico Medisigma durante o acompanhamento da Herdade Amarela, em Abrantes', position: 'center 40%' },
     action: 'Pedir apoio para o meu alojamento',
@@ -34,7 +32,6 @@ const sectors = {
     preparation: ['Localização, tipo de alojamento, capacidade e períodos de abertura ou encerramento.', 'Sistemas de água, zonas comuns e utilização dos espaços; mencione piscinas ou outros equipamentos existentes.', 'Existência de cozinha ou restauração, plano de prevenção, registos de manutenção e avaliações anteriores.'],
     services: [
       { key: 'legionella', name: 'Legionella', need: 'Enquadrar as redes e equipamentos de água, o plano ou programa e o acompanhamento.' },
-      { key: 'qualidade-do-ar-interior', name: 'Qualidade do ar interior', need: 'Avaliar as condições dos espaços ocupados e a informação disponível sobre ventilação.' },
       { key: 'seguranca-alimentar', name: 'HACCP e segurança alimentar', need: 'Implementar ou acompanhar os procedimentos da cozinha e do serviço de refeições.' },
       { key: 'seguranca-incendios', name: 'Segurança contra incêndios', need: 'Preparar as medidas de autoproteção e o acompanhamento do edifício.' },
       { key: 'manutencao-extintores', name: 'Manutenção de extintores', need: 'Identificar os equipamentos, as quantidades e os locais para preparar a manutenção.' },

@@ -23,6 +23,11 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
 
 // Removed pages and a retired form handler have no equivalent public destination.
 export const RETIRED_LEGACY_PATHS = new Set([
+  '/servicos/radao',
+  '/servicos/qualidade-do-ar-interior',
+  '/blog/o-que-e-o-radao',
+  '/blog/radao-o-inimigo-invisivel-na-sua-empresa',
+  '/blog/qualidade-do-ar-interior-como-avaliar',
   '/envia_comercial.php',
   '/epi.php',
   '/higienizacao.php',

@@ -3,10 +3,10 @@
 import React, { useEffect, useId, useRef, useState } from 'react';
 import { submitContactIntent, type SubmissionIntent } from '@/lib/leads/client-submission';
 import { mediaContactIntent } from '@/lib/media-contact';
-import { CONTACT_SERVICES, CONTACT_SUCCESS_MESSAGE, contactServiceKey, normalizeContactService } from '@/lib/contact';
+import { PUBLIC_CONTACT_SERVICES, CONTACT_SUCCESS_MESSAGE, contactServiceKey } from '@/lib/contact';
 import Link from 'next/link';
 import { ProposalFields } from './ProposalFields';
-import { proposalHelp } from '@/lib/proposal';
+import { proposalHelp, proposalService } from '@/lib/proposal';
 import { trackContactFormStart } from '@/lib/analytics/client';
 
 interface ContactFormProps {
@@ -32,7 +32,7 @@ export default function ContactForm({ pagina, fonte, servicoDefault, acceptMedia
   const busy = useRef(false);
   const started = useRef(false);
   const intent = useRef<SubmissionIntent>({});
-  const initialService = normalizeContactService(servicoDefault);
+  const initialService = proposalService(servicoDefault);
   const [service, setService] = useState(initialService);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -47,7 +47,7 @@ export default function ContactForm({ pagina, fonte, servicoDefault, acceptMedia
       if (busy.current) return;
       const selected = mediaContactIntent((event as CustomEvent).detail?.mediaId);
       setMediaIntent(selected);
-      if (selected) setService(normalizeContactService(selected.serviceLabel));
+      if (selected) setService(proposalService(selected.serviceLabel));
     };
     window.addEventListener('medisigma:media-contact', selectService);
     return () => window.removeEventListener('medisigma:media-contact', selectService);
@@ -109,7 +109,7 @@ export default function ContactForm({ pagina, fonte, servicoDefault, acceptMedia
           <select id={`${id}-servico`} name="servico" required value={service} className={inputClass}
             onChange={event => { setService(event.target.value); setMediaIntent(undefined); }}>
             <option value="">Selecione o serviço...</option>
-            {CONTACT_SERVICES.map(option => <option key={option.value} value={option.value}>{'label' in option ? option.label : option.value}</option>)}
+            {PUBLIC_CONTACT_SERVICES.map(option => <option key={option.value} value={option.value}>{'label' in option ? option.label : option.value}</option>)}
           </select>
         </div>
         {proposal && <ProposalFields id={id} service={service} inputClass={inputClass} />}

@@ -88,9 +88,7 @@ export const technicalServices = {
 export type TechnicalServiceKey = keyof typeof technicalServices;
 export const priorityServices = [
   { key: 'legionella', name: 'Legionella', purpose: 'Redes de água, equipamentos e prevenção.' },
-  { key: 'radao', name: 'Radão', purpose: 'Avaliação e medição nos espaços ocupados.' },
   { key: 'ruido-ocupacional', name: 'Ruído ocupacional', purpose: 'Exposição dos trabalhadores durante as tarefas.' },
-  { key: 'qualidade-do-ar-interior', name: 'Qualidade do ar interior', purpose: 'Condições do ar e utilização dos edifícios.' },
   { key: 'manutencao-extintores', name: 'Manutenção de extintores', purpose: 'Acompanhamento dos equipamentos da instalação.' },
   { key: 'seguranca-alimentar', name: 'HACCP e segurança alimentar', purpose: 'Procedimentos e acompanhamento do estabelecimento.' },
 ] as const;

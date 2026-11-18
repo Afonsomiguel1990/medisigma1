@@ -7,7 +7,7 @@ import { NextRequest } from 'next/server';
 import ContactForm from '../src/components/ContactForm';
 import { ContactApiDetails } from '../src/components/ContactApiDetails';
 import { SocialProofTestimonials } from '../src/components/testimonial-scroll';
-import { CONTACT_SERVICES, CONTACT_SUCCESS_MESSAGE } from '../src/lib/contact';
+import { PUBLIC_CONTACT_SERVICES, CONTACT_SUCCESS_MESSAGE } from '../src/lib/contact';
 import { handleContactRequest } from '../src/lib/contact-http';
 import { validateLeadSubmission } from '../src/lib/leads/validation';
 import { submitLead } from '../src/lib/leads/submit';
@@ -32,12 +32,17 @@ test('retired public URLs redirect directly and retain query strings across repr
   }
 });
 
-test('new technical services work in proposal preselection and native submissions without attribution', async () => {
+test('proposal forms offer active services and existing submissions retain their service keys', async () => {
   for (const [key,label] of [['radao','Radão'],['ruido-ocupacional','Ruído Ocupacional'],['qualidade-do-ar-interior','Qualidade do Ar Interior']]) {
-    assert.equal(proposalService(key),label);
+    const expected = key === 'ruido-ocupacional' ? label : '';
+    assert.equal(proposalService(key), expected);
+    assert.equal(proposalService(label), expected);
     const lead=validateLeadSubmission({...payload,servico:label});
     assert.equal(lead?.serviceKey,key); assert.deepEqual(lead?.attribution,{status:'unknown'});
   }
+  const form = renderToStaticMarkup(<ContactForm servicoDefault="Radão" />);
+  const apiDetails = renderToStaticMarkup(<ContactApiDetails />);
+  assert.doesNotMatch(form + apiDetails, /rad[ãa]o|qualidade[- ]do[- ]ar/i);
 });
 function repository() {
   const rows: LeadSubmission[] = [];
@@ -138,7 +143,7 @@ test('new contact details affect idempotency, while old payload hashes remain co
 });
 
 test('form HTML supports native submission, all service defaults and separate optional fields', async () => {
-  for (const service of CONTACT_SERVICES) {
+  for (const service of PUBLIC_CONTACT_SERVICES) {
     const markup = renderToStaticMarkup(<ContactForm servicoDefault={service.value} />);
     assert.match(markup, /method="post"/); assert.match(markup, /action="\/api\/contact"/);
     assert.ok(markup.includes('value="' + service.value + '" selected=""'));
@@ -235,7 +240,7 @@ test('proposal changes rotate client intent and server hash, while equivalent qu
 });
 
 test('proposal page preselects known services only and exposes every optional field without JavaScript', async () => {
-  for (const service of CONTACT_SERVICES) assert.equal(proposalService(service.key), service.value);
+  for (const service of PUBLIC_CONTACT_SERVICES) assert.equal(proposalService(service.key), service.value);
   assert.equal(proposalService('<script>'), '');
   assert.equal(proposalQuestions('Medicina no Trabalho').workers, true);
   assert.equal(proposalQuestions('SST integrada').workers, true);

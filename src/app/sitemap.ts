@@ -13,11 +13,11 @@ const bingUpdatedPaths = new Set([
   '/signalsigma/', '/servicos/seguranca-no-trabalho/',
   '/blog/medicina-trabalho-exames-obrigatorios/', '/blog/tipos-extintores-classes-fogo-portugal/',
 ]);
-const acquisitionLastModified = new Date('2026-10-14T00:00:00.000Z');
+const acquisitionLastModified = new Date('2026-11-18T00:00:00.000Z');
 const acquisitionPaths = new Set([
   ...Object.keys(serviceAreas).map(key => `/${key}/`),
   ...priorityServices.map(service => `/servicos/${service.key}/`),
-  '/servicos/', '/setores/industria/', '/setores/hotelaria-alojamento/', '/pedir-proposta/',
+  '/', '/blog/', '/contact/', '/servicos/', '/setores/industria/', '/setores/hotelaria-alojamento/', '/pedir-proposta/',
 ]);
 const staticLastModified = new Date('2026-05-13T00:00:00.000Z');
 const controloPragasLastModified = new Date('2026-05-13T22:58:43.000Z');
@@ -80,9 +80,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     route('/servicos/controlo-pragas/', 'monthly', 0.8, controloPragasLastModified),
     route('/servicos/seguranca-incendios/', 'monthly', 0.8),
     route('/servicos/legionella/', 'monthly', 0.8),
-    route('/servicos/radao/', 'monthly', 0.8),
     route('/servicos/ruido-ocupacional/', 'monthly', 0.8),
-    route('/servicos/qualidade-do-ar-interior/', 'monthly', 0.8),
     route('/servicos/medicina-desportiva/', 'monthly', 0.8),
     route('/servicos/nutricao/', 'monthly', 0.8),
     route('/servicos/manutencao-extintores/', 'monthly', 0.8),

@@ -8,9 +8,9 @@ export const CONTACT_SERVICES = [
   { value: 'Psicologia', key: 'psicologia' },
   { value: 'Controlo de Pragas', key: 'controlo-pragas' },
   { value: 'Legionella', key: 'legionella' },
-  { value: 'Radão', key: 'radao' },
+  { value: 'Radão', key: 'radao', hidden: true },
   { value: 'Ruído Ocupacional', key: 'ruido-ocupacional' },
-  { value: 'Qualidade do Ar Interior', key: 'qualidade-do-ar-interior' },
+  { value: 'Qualidade do Ar Interior', key: 'qualidade-do-ar-interior', hidden: true },
   { value: 'Segurança Contra Incêndios', label: 'Segurança Contra Incêndios (SCIE)', key: 'seguranca-incendios' },
   { value: 'Manutenção de Extintores', key: 'manutencao-extintores' },
   { value: 'Medicina Desportiva', key: 'medicina-desportiva' },
@@ -20,6 +20,8 @@ export const CONTACT_SERVICES = [
   { value: 'Caixas de Primeiros Socorros', key: 'caixas-primeiros-socorros' },
   { value: 'Outros', key: 'outros' },
 ] as const;
+
+export const PUBLIC_CONTACT_SERVICES = CONTACT_SERVICES.filter(service => !('hidden' in service));
 
 export function normalizeContactService(value = '') {
   const aliases: Record<string, string> = {

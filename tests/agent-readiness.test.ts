@@ -42,7 +42,11 @@ test('retired business pages redirect to their equivalent and removed pages stay
       assert.equal(response.headers.get('Location'), `https://www.medisigma.pt${destination}?utm_source=bing`);
     }
   }
-  for (const path of ['/envia_comercial.php', '/epi.php', '/higienizacao.php', '/the-goonies-1985-web-1080p-magnet-link/']) {
+  for (const path of [
+    '/envia_comercial.php', '/epi.php', '/higienizacao.php', '/the-goonies-1985-web-1080p-magnet-link/',
+    '/servicos/radao/', '/servicos/qualidade-do-ar-interior/', '/blog/o-que-e-o-radao/',
+    '/blog/radao-o-inimigo-invisivel-na-sua-empresa/', '/blog/qualidade-do-ar-interior-como-avaliar/',
+  ]) {
     for (const accept of ['text/html', 'text/markdown']) {
       const response = await middleware(new NextRequest(`https://www.medisigma.pt${path}`, { headers: { Accept: accept } }));
       assert.equal(response.status, 410, path);

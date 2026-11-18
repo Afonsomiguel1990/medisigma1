@@ -1,5 +1,5 @@
 import React from 'react';
-import { CONTACT_SERVICES } from '@/lib/contact';
+import { PUBLIC_CONTACT_SERVICES } from '@/lib/contact';
 
 export function ContactApiDetails() {
   return <section className="mx-auto w-full max-w-6xl px-6 py-8 text-sm text-gray-700">
@@ -10,7 +10,7 @@ export function ContactApiDetails() {
         <p>Formatos aceites: <code>application/json</code>, <code>application/x-www-form-urlencoded</code> e <code>multipart/form-data</code>, sem ficheiros.</p>
         <p>Campos obrigatórios: <code>empresa</code>, <code>email</code> e <code>servico</code>. Campos opcionais: <code>nome</code>, <code>localidade</code>, <code>telefone</code>, <code>tipo_instalacao</code> e <code>mensagem</code>.</p>
         <p>Para <a href="/pedir-proposta/" className="underline">pedidos de proposta</a>, pode acrescentar <code>concelho</code>, até 200 caracteres, <code>nif</code>, com 9 algarismos, e <code>numero_trabalhadores</code>, <code>numero_estabelecimentos</code> ou <code>numero_extintores</code>. As quantidades são inteiros entre 1 e 1000000, enviados como número ou texto. Todos estes campos são opcionais. Use <code>fonte: pedido-proposta</code> para identificar a origem.</p>
-        <p>Serviços: {CONTACT_SERVICES.map(service => service.value).join('; ')}.</p>
+        <p>Serviços: {PUBLIC_CONTACT_SERVICES.map(service => service.value).join('; ')}.</p>
         <p>Limites: empresa, nome, localidade, serviço e tipo de instalação até 200 caracteres; email até 254; telefone até 40; mensagem até 2500. Deixe <code>confirm_mail</code> vazio.</p>
         <p>Para repetir uma tentativa sem duplicar o pedido, envie o mesmo <code>submission_id</code>, um UUID, com os mesmos dados. Para um novo pedido, use outro UUID.</p>
         <p>Sem <code>submission_id</code>, pedidos com os mesmos dados reutilizam a receção existente durante 30 minutos. A confirmação de gravação não equivale a qualificação comercial. O campo <code>analytics_eligible</code> indica se a receção pode originar o evento de captação, sempre dependente de consentimento.</p>

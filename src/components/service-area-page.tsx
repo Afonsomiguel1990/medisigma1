@@ -10,7 +10,7 @@ import { MEDISIGMA_POSTAL_ADDRESS, serializeJsonLd } from '@/lib/organization';
 export function serviceAreaMetadata(key: ServiceAreaKey): Metadata {
   const { name } = serviceAreas[key];
   const title = `Medicina do Trabalho e serviços técnicos em ${name}`;
-  const description = `Apoio a empresas em ${name}: medicina e segurança no trabalho, Legionella, radão, ruído, qualidade do ar, extintores e HACCP. Peça uma proposta.`;
+  const description = `A Medisigma apoia as empresas em ${name} na medicina e segurança no trabalho, prevenção de Legionella, avaliação de ruído, manutenção de extintores e HACCP.`;
   return { title, description, alternates: { canonical: `https://www.medisigma.pt/${key}/` }, openGraph: { title, description, locale: 'pt_PT', url: `https://www.medisigma.pt/${key}/` } };
 }
 export function ServiceAreaPage({ areaKey }: { areaKey: ServiceAreaKey }) {

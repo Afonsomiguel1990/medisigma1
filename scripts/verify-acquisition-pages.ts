@@ -2,13 +2,14 @@ import assert from 'node:assert/strict';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { remarkSafeEditorial } from '../src/lib/security/mdx';
 import { technicalServices } from '../src/lib/technical-services';
+import { VALID_SERVICE_SLUGS } from '../src/lib/public-routes';
 import { serviceAreas } from '../src/lib/service-areas';
 import { LEGACY_REDIRECTS } from '../src/lib/legacy-redirects';
 
 async function main() {
 const [{compileMDX},{default:remarkGfm}]=await Promise.all([import('next-mdx-remote/rsc'),import('remark-gfm')]);
 const origin=process.argv[2] || 'http://localhost:3085';
-const paths=[...Object.keys(technicalServices).map(key=>`/servicos/${key}/`),...Object.keys(serviceAreas).map(key=>`/${key}/`),'/setores/industria/','/setores/hotelaria-alojamento/'];
+const paths=[...VALID_SERVICE_SLUGS.filter(key => key in technicalServices).map(key=>`/servicos/${key}/`),...Object.keys(serviceAreas).map(key=>`/${key}/`),'/setores/industria/','/setores/hotelaria-alojamento/'];
 const sitemap=await (await fetch(origin+'/sitemap.xml')).text();
 const evidence=[];
 for(const path of paths) {

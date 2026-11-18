@@ -4,14 +4,15 @@ import { qualityPolicyMission, qualityPolicyPath, qualityPolicyTitle } from '@/c
 import { siteConfig } from '@/lib/site';
 import valuesIllustration from './valores.webp';
 
-const description = 'Política da Qualidade, missão, visão e valores do Grupo Medisigma. Documento PQ 01/1, de 03/12/2025.';
+const description = 'Política da Qualidade, missão, visão e valores do Grupo Medisigma.';
 const canonical = new URL(qualityPolicyPath, siteConfig.url).href;
-const headingClass = 'mb-3 text-lg font-bold tracking-wide text-blue-700 dark:text-blue-300';
+const headingClass = 'mb-3 scroll-mt-32 text-lg font-bold tracking-wide text-blue-700 dark:text-blue-300';
 
 export const metadata: Metadata = {
   title: qualityPolicyTitle,
   description,
-  authors: [{ name: 'Ana Lúcia Simões' }, { name: 'Rui Simões' }],
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
   alternates: { canonical },
   openGraph: { type: 'website', locale: 'pt_PT', siteName: siteConfig.name, title: qualityPolicyTitle, description, url: canonical },
   twitter: { card: 'summary', title: qualityPolicyTitle, description },
@@ -21,15 +22,9 @@ export default function QualityPolicyPage() {
   return (
     <main className="mx-auto w-full max-w-4xl px-9 py-12 text-foreground sm:px-12 sm:py-16 lg:px-16">
       <article aria-labelledby="titulo-politica">
-        <div className="mb-9 border-b border-border pb-7">
-          <h1 id="titulo-politica" className="max-w-3xl text-balance text-3xl font-bold tracking-tight sm:text-5xl sm:leading-tight">
-            {qualityPolicyTitle}
-          </h1>
-          <div className="mt-5 flex flex-wrap gap-x-6 gap-y-1 text-sm text-muted-foreground">
-            <p className="font-semibold text-foreground">PQ 01/1</p>
-            <p>Data: <time dateTime="2025-12-03">03/12/2025</time></p>
-          </div>
-        </div>
+        <h1 id="titulo-politica" className="mb-9 max-w-3xl border-b border-border pb-7 text-balance text-3xl font-bold tracking-tight sm:text-5xl sm:leading-tight">
+          {qualityPolicyTitle}
+        </h1>
 
         <div className="space-y-10 text-base leading-7 sm:text-lg sm:leading-8">
           <section aria-labelledby="politica">
@@ -92,19 +87,14 @@ export default function QualityPolicyPage() {
                 <li>Dinamismo</li>
                 <li>Capital Humano e Envolvimento</li>
               </ul>
-              <Image src={valuesIllustration} alt="" sizes="(max-width: 639px) 100vw, 360px" className="h-auto w-full max-w-sm" />
+              <Image
+                src={valuesIllustration}
+                alt="Ilustração de uma profissional de saúde no trabalho a ouvir um trabalhador."
+                sizes="(max-width: 639px) 100vw, 384px"
+                className="h-auto w-full rounded-xl"
+              />
             </div>
           </section>
-        </div>
-
-        <div className="mt-10 border-t border-border pt-6 leading-7">
-          <p>Abrantes, <time dateTime="2025-12-03">03 de dezembro de 2025</time></p>
-          <p className="mt-4 font-semibold">A Gerência</p>
-          <div className="flex flex-wrap gap-x-8">
-            <p>Ana Lúcia Simões</p>
-            <p>Rui Simões</p>
-          </div>
-          <p className="mt-6 text-sm text-muted-foreground">Mod 003_1</p>
         </div>
       </article>
     </main>

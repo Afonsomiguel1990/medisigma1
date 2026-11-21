@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { Activity, TriangleAlert } from "lucide-react";
 import { AnimatePresence, motion, useScroll } from "motion/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 
 const INITIAL_WIDTH = "70rem";
@@ -55,6 +56,7 @@ const servicosLinks = siteConfig.footerLinks.find(section => section.title === "
 const companiesLinks = siteConfig.companies || [];
 
 export function Navbar() {
+  const questPage = usePathname()?.replace(/\/$/, "") === "/jogos/sigma-quest";
   const { scrollY } = useScroll();
   const [hasScrolled, setHasScrolled] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -142,8 +144,8 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky z-50 top-4 mx-4 md:mx-0 flex justify-center transition-all duration-300",
-        hasScrolled ? "top-6" : "top-4 mx-0"
+        "z-50 mx-4 md:mx-0 flex justify-center transition-all duration-300",
+        questPage ? "relative" : cn("sticky", hasScrolled ? "top-6" : "top-4 mx-0")
       )}
     >
       <motion.div
@@ -160,7 +162,7 @@ export function Navbar() {
               : "shadow-none px-7",
           )}
         >
-          <div className="flex items-center justify-between h-[88px] py-4 px-6">
+          <div className={cn("flex items-center justify-between py-4 px-6", questPage ? "h-16" : "h-[88px]")}>
             <Link href="/" className="flex items-center flex-shrink-0">
               <Icons.logo className="h-48 w-auto md:h-64 lg:h-80" />
             </Link>

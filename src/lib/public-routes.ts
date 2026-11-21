@@ -35,6 +35,7 @@ const CANONICAL_PUBLIC_ROUTES = new Set([
   "/faqs/manutencao-extintores",
   "/fatima",
   "/ferramentas/simulador-caixas-primeiros-socorros",
+  "/jogos/sigma-quest",
   "/leiria",
   "/lisboa",
   "/livro-reclamacoes",

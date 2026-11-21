@@ -3,15 +3,15 @@ import { readdir, readFile } from 'node:fs/promises';
 import test from 'node:test';
 import { PGlite } from '@electric-sql/pglite';
 import {
-  facingCell, isMissionComplete, MAX_SCORE, MISSIONS, MISSION_TICKS, missionPoints, parseActions,
-  replayTurn, startMission, stepMission, TICK_MS, type Cell, type Command, type Direction, type MissionState,
-  type TurnAction,
+  COLUMNS, facingCell, goalCells, isMissionComplete, MAX_SCORE, MISSIONS, missionPoints, missionTicks, missionsFor,
+  parseActions, replayTurn, ROWS, startMission, stepMission, TICK_MS, type Cell, type Command, type Direction,
+  type MissionState, type RunVersion, type TurnAction,
 } from '../src/lib/turno-seguro/game';
 import { issueRunToken, validateFinishedRun } from '../src/lib/turno-seguro/record-server';
 
 const directions: Direction[] = ['up', 'right', 'down', 'left'];
 
-function pathTo(state: MissionState, target: Cell): Direction[] {
+function pathTo(state: MissionState, target: Cell, beside = true): Direction[] {
   const frontier = [{ state, path: [] as Direction[] }];
   const seen = new Set<string>();
   for (const option of frontier) {
@@ -19,7 +19,7 @@ function pathTo(state: MissionState, target: Cell): Direction[] {
     const key = [position.facing, ...position.player].join(',');
     if (seen.has(key)) continue;
     seen.add(key);
-    const [x, y] = facingCell(position);
+    const [x, y] = beside ? facingCell(position) : position.player;
     if (x === target[0] && y === target[1]) return path;
     for (const direction of directions) {
       frontier.push({ state: stepMission(position, direction), path: [...path, direction] });
@@ -28,24 +28,29 @@ function pathTo(state: MissionState, target: Cell): Direction[] {
   throw new Error(`Cannot reach ${target}`);
 }
 
-function completeTurn() {
+function completeTurn(version: RunVersion = 2) {
   const actions: TurnAction[] = [];
   const pointsByMission = [];
   let ticks = 0;
-  for (const [index, level] of MISSIONS.entries()) {
-    let state = startMission(index);
+  for (const [index, level] of missionsFor(version).entries()) {
+    let state = startMission(index, version);
     function act(command: Command) {
       actions.push([index, state.tick, command]);
       state = stepMission(state, command);
     }
+    if (level.kit) {
+      pathTo(state, level.kit).forEach(act);
+      act('act');
+    }
     for (const task of level.tasks) {
       pathTo(state, task.at).forEach(act);
       act('act');
-      if (index === 2 && task.destination) {
+      if ((index === 2 || (version === 2 && index === 1)) && task.destination) {
         pathTo(state, task.destination).forEach(act);
         act('act');
       }
     }
+    if (level.exit) pathTo(state, level.exit, false).forEach(act);
     assert.ok(isMissionComplete(state), level.title);
     pointsByMission.push(missionPoints(state));
     ticks += state.tick;
@@ -54,6 +59,10 @@ function completeTurn() {
 }
 
 test('all three missions are solvable and give the same score in server replay', () => {
+  for (const mission of MISSIONS) {
+    assert.ok(mission.map.length > ROWS && mission.map[0].length > COLUMNS);
+    assert.ok(mission.map.every((row) => row.length === mission.map[0].length), mission.title);
+  }
   const { actions, pointsByMission, ticks } = completeTurn();
   assert.ok(pointsByMission.every((points) => points > 300));
   assert.ok(pointsByMission.reduce((sum, points) => sum + points, 0) <= MAX_SCORE);
@@ -64,19 +73,40 @@ test('all three missions are solvable and give the same score in server replay',
 });
 
 test('timeout keeps tasks earned and advances even if other missions have no moves', () => {
-  let state = startMission(0);
+  let state = startMission(0, 1);
   const actions: TurnAction[] = [];
-  for (const command of [...pathTo(state, MISSIONS[0].tasks[0].at), 'act'] as Command[]) {
+  for (const command of [...pathTo(state, missionsFor(1)[0].tasks[0].at), 'act'] as Command[]) {
     actions.push([0, state.tick, command]);
     state = stepMission(state, command);
   }
-  assert.deepEqual(replayTurn(actions), { points: 100, durationMs: 3 * MISSION_TICKS * TICK_MS });
+  assert.deepEqual(replayTurn(actions, 1), { points: 100, durationMs: 3 * missionTicks(1) * TICK_MS });
+});
+
+test('the current workshop points first to the kit and then to the exit after marking the risks', () => {
+  const { kit, tasks, exit } = MISSIONS[0];
+  let state = startMission(0);
+  assert.deepEqual(goalCells(state), [kit]);
+  for (const move of pathTo(state, tasks[0].at)) state = stepMission(state, move);
+  state = stepMission(state, 'act');
+  assert.equal(missionPoints(state), 0);
+  for (const move of pathTo(state, kit!)) state = stepMission(state, move);
+  state = stepMission(state, 'act');
+  assert.equal(state.hasKit, true);
+  for (const task of tasks) {
+    for (const move of pathTo(state, task.at)) state = stepMission(state, move);
+    state = stepMission(state, 'act');
+  }
+  assert.equal(missionPoints(state), 300);
+  assert.equal(isMissionComplete(state), false);
+  assert.deepEqual(goalCells(state), [exit]);
+  for (const move of pathTo(state, exit!, false)) state = stepMission(state, move);
+  assert.equal(isMissionComplete(state), true);
 });
 
 test('invalid commands, duplicate ticks and commands after a victory are rejected', () => {
   assert.equal(parseActions([[0, 0, 'constructor']]), null);
   assert.equal(parseActions([[0, 0, 'act'], [0, 0, 'up']]), null);
-  assert.equal(parseActions([[0, MISSION_TICKS, 'act']]), null);
+  assert.equal(parseActions([[0, missionTicks(2), 'act']]), null);
   const { actions } = completeTurn();
   const last = actions.at(-1)!;
   assert.equal(replayTurn([...actions, [last[0], last[1] + 1, 'act']]), null);
@@ -91,18 +121,20 @@ test('valid score uses the replay, bound to a signed and timely run', async (con
   });
 
   const start = 1_794_000_000_000;
-  const { actions, ticks, pointsByMission } = completeTurn();
-  const token = await issueRunToken(start);
-  const submission = { token, actions, initials: 'áfs', points: 99999 };
-  const now = start + ticks * TICK_MS;
-  const saved = await validateFinishedRun(submission, now);
-  assert.equal(saved.points, pointsByMission.reduce((sum, points) => sum + points, 0));
-  assert.equal(saved.initials, 'AFS');
-  assert.deepEqual(saved, await validateFinishedRun(submission, now));
-  await assert.rejects(validateFinishedRun(submission, start), { status: 400 });
-  await assert.rejects(validateFinishedRun(submission, start + 600_001), { status: 410 });
-  const altered = token.slice(0, -1) + (token.endsWith('0') ? '1' : '0');
-  await assert.rejects(validateFinishedRun({ ...submission, token: altered }, now), { status: 400 });
+  for (const version of [1, 2] as const) {
+    const { actions, ticks, pointsByMission } = completeTurn(version);
+    const token = await issueRunToken(start, version);
+    const submission = { token, actions, initials: 'áfs', points: 99999 };
+    const now = start + ticks * TICK_MS;
+    const saved = await validateFinishedRun(submission, now);
+    assert.equal(saved.points, pointsByMission.reduce((sum, points) => sum + points, 0));
+    assert.equal(saved.initials, 'AFS');
+    assert.deepEqual(saved, await validateFinishedRun(submission, now));
+    await assert.rejects(validateFinishedRun(submission, start), { status: 400 });
+    await assert.rejects(validateFinishedRun(submission, start + 600_001), { status: 410 });
+    const altered = token.slice(0, -1) + (token.endsWith('0') ? '1' : '0');
+    await assert.rejects(validateFinishedRun({ ...submission, token: altered }, now), { status: 400 });
+  }
 });
 
 test('the ranking migration preserves tie order and restricts access to the server', async (context) => {

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import {
-  isMissionOver, MAX_SCORE, missionPoints, startMission, stepMission, TICK_MS,
+  CURRENT_RUN_VERSION, isMissionOver, MAX_SCORE, missionPoints, startMission, stepMission, TICK_MS,
   type Command, type Direction, type TurnAction,
 } from '@/lib/turno-seguro/game';
 
@@ -85,10 +85,14 @@ export function useTurn() {
     setToken(null);
     actions.current = [];
     try {
-      const response = await fetch(RUNS_URL, { method: 'POST', signal: AbortSignal.timeout(4500) });
+      const response = await fetch(RUNS_URL, {
+        method: 'POST',
+        headers: { 'X-Turno-Version': String(CURRENT_RUN_VERSION) },
+        signal: AbortSignal.timeout(4500),
+      });
       if (response.ok) {
         const body = await response.json();
-        if (typeof body.token === 'string') setToken(body.token);
+        if (typeof body.token === 'string' && body.token.startsWith(`${CURRENT_RUN_VERSION}.`)) setToken(body.token);
       }
     } catch {
       // Local play is available when the score service fails.

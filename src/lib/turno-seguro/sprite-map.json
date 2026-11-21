@@ -174,5 +174,57 @@
   "kitchen-left-2": [
     48,
     80
+  ],
+  "window": [
+    64,
+    80
+  ],
+  "notice": [
+    80,
+    80
+  ],
+  "mat": [
+    96,
+    80
+  ],
+  "stripe": [
+    112,
+    80
+  ],
+  "toolbox": [
+    0,
+    96
+  ],
+  "kit": [
+    16,
+    96
+  ],
+  "fridge": [
+    32,
+    96
+  ],
+  "stove": [
+    48,
+    96
+  ],
+  "exitClosed": [
+    64,
+    96
+  ],
+  "exitOpen": [
+    80,
+    96
+  ],
+  "mentorLara": [
+    96,
+    96
+  ],
+  "mentorRui": [
+    112,
+    96
+  ],
+  "mentorInes": [
+    0,
+    112
   ]
 }

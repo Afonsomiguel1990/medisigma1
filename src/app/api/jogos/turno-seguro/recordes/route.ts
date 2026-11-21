@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     });
     if (limited) return limited;
 
-    const body = await readBoundedJson(request, 16_000);
+    const body = await readBoundedJson(request, 24_000);
     const record = await validateFinishedRun(body);
     return gameJson(await storeRecord(record));
   } catch (error) {

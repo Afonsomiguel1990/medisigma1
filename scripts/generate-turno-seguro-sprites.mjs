@@ -247,6 +247,105 @@ for (const outfit of ['work', 'kitchen']) {
   }
 }
 
+draw('window', (box) => {
+  box(0, 0, 16, 16, deep);
+  box(1, 1, 14, 12, ink);
+  box(2, 2, 12, 9, '#96c5b4');
+  box(2, 7, 12, 4, '#6f9c8b');
+  box(3, 3, 3, 1, '#dcf2cd');
+  box(11, 3, 1, 5, '#cbe9c4');
+  box(7, 2, 1, 10, deep);
+  box(1, 12, 14, 1, steel);
+  box(0, 14, 16, 2, ink);
+});
+draw('notice', (box) => {
+  box(1, 2, 14, 12, ink);
+  box(2, 3, 12, 10, rust);
+  box(3, 4, 5, 6, cream);
+  box(9, 4, 4, 4, amber);
+  box(4, 6, 3, 1, moss);
+  box(10, 9, 3, 2, '#a8c3a1');
+});
+draw('mat', (box) => {
+  box(0, 2, 16, 12, deep);
+  box(0, 3, 16, 10, blue);
+  box(0, 4, 16, 1, '#7ba5a6');
+  box(0, 11, 16, 1, '#527c87');
+  box(2, 7, 3, 2, '#9ac0aa');
+  box(8, 7, 5, 2, '#9ac0aa');
+});
+draw('stripe', (box) => {
+  box(0, 7, 16, 3, '#6f7153');
+  box(1, 7, 5, 2, amber);
+  box(9, 7, 5, 2, amber);
+});
+draw('toolbox', (box) => {
+  box(1, 5, 14, 9, ink);
+  box(2, 4, 12, 8, rust);
+  box(2, 5, 12, 2, amber);
+  box(3, 11, 10, 1, '#c18a50');
+  box(6, 3, 4, 1, cream);
+  box(7, 8, 2, 2, cream);
+});
+draw('kit', (box) => {
+  box(1, 5, 14, 9, ink);
+  box(2, 5, 12, 7, amber);
+  box(5, 2, 6, 3, deep);
+  box(6, 3, 4, 2, cream);
+  box(7, 6, 2, 4, deep);
+  box(7, 11, 2, 1, deep);
+});
+draw('fridge', (box) => {
+  box(1, 1, 14, 14, deep);
+  box(2, 1, 12, 12, steel);
+  box(2, 1, 12, 2, cream);
+  box(2, 7, 12, 1, moss);
+  box(10, 4, 2, 1, ink);
+  box(10, 10, 2, 1, ink);
+});
+draw('stove', (box) => {
+  box(0, 3, 16, 12, deep);
+  box(0, 2, 16, 10, steel);
+  box(2, 4, 4, 4, ink);
+  box(10, 4, 4, 4, ink);
+  box(3, 5, 2, 2, moss);
+  box(11, 5, 2, 2, rust);
+  box(2, 12, 12, 1, cream);
+});
+for (const open of [false, true]) {
+  draw(open ? 'exitOpen' : 'exitClosed', (box) => {
+    box(0, 0, 16, 16, ink);
+    box(1, 1, 14, 13, open ? '#42724b' : moss);
+    box(3, 4, 10, 10, open ? '#214834' : '#718475');
+    box(3, 1, 10, 3, open ? '#b8eba0' : light);
+    box(6, 2, 4, 1, deep);
+    box(6, 9, 4, 1, open ? '#b8eba0' : deep);
+    box(0, 14, 16, 2, steel);
+  });
+}
+for (const [name, coat, skin, hair] of [
+  ['mentorLara', '#a78356', '#dda572', '#302822'],
+  ['mentorRui', '#657a8c', '#ba855e', '#354541'],
+  ['mentorInes', '#86a383', '#d6a074', '#544041'],
+]) {
+  draw(name, (box) => {
+    box(3, 13, 10, 2, moss);
+    box(5, 12, 2, 3, ink);
+    box(9, 12, 2, 3, ink);
+    box(3, 8, 10, 4, deep);
+    box(4, 10, 1, 2, skin);
+    box(11, 10, 1, 2, skin);
+    box(5, 8, 6, 5, coat);
+    box(5, 3, 6, 5, hair);
+    box(6, 4, 4, 4, skin);
+    box(6, 5, 1, 1, ink);
+    box(9, 5, 1, 1, ink);
+    box(7, 7, 2, 1, cream);
+    box(5, 2, 6, 2, name === 'mentorInes' ? cream : hair);
+    box(7, 9, 3, 2, cream);
+  });
+}
+
 const rows = Math.ceil(sheets.length / columns);
 const width = columns * size;
 const height = rows * size;
@@ -265,5 +364,5 @@ for (const [index, { name, pixels }] of sheets.entries()) {
 const output = new URL('../public/images/jogos/turno-seguro/', import.meta.url);
 await mkdir(output, { recursive: true });
 const png = await sharp(atlas, { raw: { width, height, channels: 4 } }).png().toBuffer();
-await writeFile(new URL('sprites.png', output), png);
+await writeFile(new URL('sprites-v2.png', output), png);
 await writeFile(new URL('../src/lib/turno-seguro/sprite-map.json', import.meta.url), JSON.stringify(coordinates, null, 2) + '\n');

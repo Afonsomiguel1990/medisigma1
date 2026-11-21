@@ -2,10 +2,10 @@
 
 import { useCallback, useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from 'react';
 import {
-  actionLabel, COLUMNS, completedTasks, isMissionComplete, MISSIONS, remainingSeconds,
+  actionLabel, COLUMNS, completedTasks, isMissionComplete, missionHint, MISSIONS, remainingSeconds,
   ROWS, TASK_POINTS, TILE, type Command,
 } from '@/lib/turno-seguro/game';
-import { drawMission, SPRITE_URL } from '@/lib/turno-seguro/draw';
+import { drawMission, drawPortrait, SPRITE_URL } from '@/lib/turno-seguro/draw';
 import { normalizeInitials, validInitials, type RecordEntry } from '@/lib/turno-seguro/record';
 import { RECORDS_URL, useTurn } from './use-turn';
 import styles from './turno-seguro.module.css';
@@ -30,6 +30,7 @@ export default function TurnoSeguro() {
   const consoleRef = useRef<HTMLDivElement>(null);
   const nextButton = useRef<HTMLButtonElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
+  const portrait = useRef<HTMLCanvasElement>(null);
   const [sheet, setSheet] = useState<HTMLImageElement | null>(null);
   const [assetError, setAssetError] = useState(false);
   const [board, setBoard] = useState<Board>({ state: 'loading' });
@@ -73,10 +74,16 @@ export default function TurnoSeguro() {
   }, [sheet, mission, playing]);
 
   useEffect(() => {
-    if (phase === 'playing') {
-      consoleRef.current?.scrollIntoView({ block: 'start', behavior: 'instant' });
-      consoleRef.current?.focus({ preventScroll: true });
+    if (phase === 'briefing' && portrait.current && sheet && room.mentor) {
+      drawPortrait(portrait.current, sheet, room.mentor.sprite);
     }
+  }, [phase, room.mentor, sheet]);
+
+  useEffect(() => {
+    if (phase === 'briefing' || phase === 'playing') {
+      consoleRef.current?.scrollIntoView({ block: 'start', behavior: 'instant' });
+    }
+    if (phase === 'playing') consoleRef.current?.focus({ preventScroll: true });
     if (phase === 'briefing' || phase === 'debrief') nextButton.current?.focus({ preventScroll: true });
   }, [phase]);
 
@@ -133,7 +140,7 @@ export default function TurnoSeguro() {
   }
 
   const points = game.total + (playing ? solved * TASK_POINTS : 0);
-  const clock = phase === 'home' || phase === 'starting' ? 30 : remainingSeconds(mission);
+  const clock = remainingSeconds(mission);
   const target = playing ? actionLabel(mission) : undefined;
 
   return (
@@ -141,7 +148,7 @@ export default function TurnoSeguro() {
       <div className={styles.content}>
         <header className={styles.heading}>
           <h1>Turno Seguro</h1>
-          <p>Completa três missões de segurança e deixa as tuas iniciais no quadro de recordes.</p>
+          <p>Fala com a equipa, segue os sinais no mapa e completa as três missões do turno.</p>
         </header>
 
         <div className={styles.station}>
@@ -170,25 +177,18 @@ export default function TurnoSeguro() {
 
               <div className={styles.screen}>
                 <canvas ref={canvas} width={COLUMNS * TILE} height={ROWS * TILE} aria-hidden="true" />
-                {phase !== 'playing' && (
+                {phase !== 'playing' && phase !== 'briefing' && (
                   <div className={styles.shade}>
                     <div className={styles.panel}>
                       {(phase === 'home' || phase === 'starting') && (
                         <>
-                          <p className={styles.screenTitle}>Preparado?</p>
-                          <p>30 segundos por missão.</p>
+                          <p className={styles.screenTitle}>Entra na oficina</p>
+                          <p>Usa as setas para andar e Ação junto de um alvo.</p>
                           {assetError
                             ? <button className={styles.primary} onClick={() => window.location.reload()}>Recarregar jogo</button>
                             : <button className={styles.primary} disabled={!sheet || phase === 'starting'} onClick={start}>
                               {phase === 'starting' ? 'A preparar…' : 'Começar turno'}
                             </button>}
-                        </>
-                      )}
-                      {phase === 'briefing' && (
-                        <>
-                          <h2 className={styles.screenTitle}>{room.title}</h2>
-                          <p>{room.instruction}</p>
-                          <button ref={nextButton} className={styles.primary} onClick={game.play}>Iniciar missão</button>
                         </>
                       )}
                       {phase === 'debrief' && (
@@ -216,13 +216,32 @@ export default function TurnoSeguro() {
                 )}
               </div>
 
-              <div className={styles.status}>
-                {playing && <span>{target ?? (mission.carrying === null ? 'Move-te junto do objetivo' : 'Leva-o ao símbolo igual')}</span>}
-                {playing && <span>{solved}/{room.tasks.length} tarefas</span>}
-              </div>
+              {playing && (
+                <div className={styles.status}>
+                  <div className={styles.objective}>
+                    <span className={styles.marker} aria-hidden="true" />
+                    <span aria-live="polite">{missionHint(mission)}</span>
+                    <span className={styles.progress} aria-label={`${solved} de ${room.tasks.length} tarefas`}>{solved}/{room.tasks.length}</span>
+                  </div>
+                  <div className={styles.context}>{target ? `Ação · ${target}` : 'Segue as marcas amarelas no mapa.'}</div>
+                </div>
+              )}
             </div>
 
-            {phase === 'finished' ? (
+            {phase === 'briefing' && room.mentor ? (
+              <div className={styles.dialogue}>
+                <canvas
+                  className={styles.portrait} ref={portrait}
+                  width={TILE} height={TILE} aria-hidden="true"
+                />
+                <div>
+                  <h2>{room.title}</h2>
+                  <p className={styles.speaker}><strong>{room.mentor.name}</strong> · {room.mentor.role}</p>
+                  <p>{room.instruction}</p>
+                  <button ref={nextButton} className={styles.primary} onClick={game.play}>Aceitar missão</button>
+                </div>
+              </div>
+            ) : phase === 'finished' ? (
               <div className={styles.scoreForm}>
                 {game.token ? (
                   <form onSubmit={save}>
@@ -271,6 +290,7 @@ export default function TurnoSeguro() {
                 <div className={styles.actionControl}>
                   <button
                     type="button" aria-label="Ação" aria-keyshortcuts="Space"
+                    className={target ? styles.actionReady : undefined}
                     disabled={!playing} onClick={() => game.command('act')}
                   >A</button>
                   <span>Ação</span>

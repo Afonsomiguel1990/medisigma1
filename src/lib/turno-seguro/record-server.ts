@@ -3,7 +3,7 @@ import { getSupabaseAdmin } from '@/lib/supabase';
 import { HttpError } from '@/lib/security/body';
 import { privateIdentifier } from '@/lib/security/identity';
 import { isAllowedOrigin } from '@/lib/security/origin';
-import { parseActions, replayTurn, TICK_MS } from './game';
+import { parseActions, replayTurn, TICK_MS, type RunVersion } from './game';
 import { normalizeInitials, validInitials, type RecordEntry } from './record';
 
 const SIGNING_PURPOSE = 'turno-seguro-partida';
@@ -19,18 +19,18 @@ export function gameJson(data: object, status = 200): Response {
   return Response.json(data, { status, headers: { 'Cache-Control': 'no-store' } });
 }
 
-export async function issueRunToken(now = Date.now()): Promise<string> {
-  const payload = `1.${randomUUID()}.${now}`;
+export async function issueRunToken(now = Date.now(), version: RunVersion = 1): Promise<string> {
+  const payload = `${version}.${randomUUID()}.${now}`;
   return `${payload}.${await privateIdentifier(SIGNING_PURPOSE, payload)}`;
 }
 
 async function verifyRunToken(token: unknown, now: number) {
   const match = typeof token === 'string'
-    ? /^(1\.([a-f\d-]{36})\.(\d{13}))\.([a-f\d]{64})$/.exec(token)
+    ? /^(([12])\.([a-f\d-]{36})\.(\d{13}))\.([a-f\d]{64})$/.exec(token)
     : null;
   if (!match) throw new HttpError(400, 'O código da partida é inválido.');
 
-  const [, payload, id, startedAt, actual] = match;
+  const [, payload, runVersion, id, startedAt, actual] = match;
   const expected = await privateIdentifier(SIGNING_PURPOSE, payload);
   if (!timingSafeEqual(Buffer.from(actual, 'hex'), Buffer.from(expected, 'hex'))) {
     throw new HttpError(400, 'O código da partida é inválido.');
@@ -39,16 +39,17 @@ async function verifyRunToken(token: unknown, now: number) {
   if (elapsed < -TICK_MS || elapsed > RUN_LIFETIME_MS) {
     throw new HttpError(410, 'Esta partida expirou. Começa um novo turno para entrares no quadro.');
   }
-  return { id, elapsed };
+  const version: RunVersion = runVersion === '2' ? 2 : 1;
+  return { id, elapsed, version };
 }
 
 export async function validateFinishedRun(body: Record<string, unknown>, now = Date.now()) {
   const initials = typeof body.initials === 'string' ? normalizeInitials(body.initials) : '';
   if (!validInitials(initials)) throw new HttpError(400, 'Escreve três letras para guardar o resultado.');
 
-  const { id, elapsed } = await verifyRunToken(body.token, now);
-  const actions = parseActions(body.actions);
-  const result = actions && replayTurn(actions);
+  const { id, elapsed, version } = await verifyRunToken(body.token, now);
+  const actions = parseActions(body.actions, version);
+  const result = actions && replayTurn(actions, version);
   if (!result || result.durationMs > elapsed + TICK_MS) {
     throw new HttpError(400, 'As jogadas desta partida são inválidas.');
   }

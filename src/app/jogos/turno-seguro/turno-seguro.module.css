@@ -524,6 +524,11 @@
 }
 
 @media (max-width: 700px) {
+  :global(header):has(+ .arcade) {
+    position: relative;
+    top: 0;
+  }
+
   .content {
     max-width: 530px;
     padding-bottom: 50px;
@@ -532,6 +537,10 @@
   .station {
     grid-template-columns: minmax(0, 1fr);
     gap: 25px;
+  }
+
+  .console {
+    scroll-margin-top: 12px;
   }
 
   .controls {

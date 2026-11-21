@@ -139,6 +139,13 @@ export default function TurnoSeguro() {
     if (direction && direction !== 'act') game.release(direction);
   }
 
+  function keepMobileConsoleVisible() {
+    const device = consoleRef.current;
+    if (device && window.matchMedia('(max-width: 700px)').matches && device.getBoundingClientRect().top < 0) {
+      device.scrollIntoView({ block: 'start', behavior: 'instant' });
+    }
+  }
+
   const points = game.total + (playing ? solved * TASK_POINTS : 0);
   const clock = remainingSeconds(mission);
   const target = playing ? actionLabel(mission) : undefined;
@@ -281,7 +288,10 @@ export default function TurnoSeguro() {
                       onPointerUp={() => game.release(direction)}
                       onPointerCancel={() => game.release(direction)}
                       onLostPointerCapture={() => game.release(direction)}
-                      onClick={(event) => { if (event.detail === 0) game.command(direction); }}
+                      onClick={(event) => {
+                        if (event.detail === 0) game.command(direction);
+                        keepMobileConsoleVisible();
+                      }}
                     >
                       <span aria-hidden="true">{icon}</span>
                     </button>
@@ -291,7 +301,10 @@ export default function TurnoSeguro() {
                   <button
                     type="button" aria-label="Ação" aria-keyshortcuts="Space"
                     className={target ? styles.actionReady : undefined}
-                    disabled={!playing} onClick={() => game.command('act')}
+                    disabled={!playing} onClick={() => {
+                      game.command('act');
+                      keepMobileConsoleVisible();
+                    }}
                   >A</button>
                   <span>Ação</span>
                 </div>

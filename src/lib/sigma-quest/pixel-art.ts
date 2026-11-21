@@ -477,10 +477,18 @@ function entityArt(g: Paint, state: Quest, object: Entity, t: number) {
     }
   } else if (object.kind === 'evidence') {
     const known = (progress.clues & 1 << object.index) !== 0;
-    frame(g, x - 6, y - 7, 12, 16, known ? '#b4c38f' : paper);
-    fill(g, x - 3, y - 8, 6, 3, clay);
-    for (let line = 0; line < 3; line++) fill(g, x - 3, y - 2 + line * 3, 6, 1, dark);
-    if (!known) marker(g, x, y - 12, '?', '#f9df9c', bounce);
+    if (object.index === 0) {
+      frame(g, x - 8, y - 10, 16, 17, palettes[state.area].top);
+      frame(g, x - 5, y - 8, 10, 12, known ? '#d4dfb0' : paper);
+      fill(g, x - 3, y - 6, 6, 2, clay);
+      for (let row = 0; row < 3; row++) fill(g, x - 3, y - 3 + row * 2, 6, 1, dark);
+      if (!known) marker(g, x, y - 13, '?', '#f9df9c', bounce);
+    } else {
+      frame(g, x - 6, y - 7, 12, 16, known ? '#b4c38f' : paper);
+      fill(g, x - 3, y - 8, 6, 3, clay);
+      for (let row = 0; row < 3; row++) fill(g, x - 3, y - 2 + row * 3, 6, 1, dark);
+      if (!known) marker(g, x, y - 12, '?', '#f9df9c', bounce);
+    }
   } else {
     frame(g, x - 7, y - 2, 14, 9, progress.extra ? '#b4c38f' : '#a9976f');
     if (canDoExtra(progress)) marker(g, x, y - 6, '+', gold, bounce);

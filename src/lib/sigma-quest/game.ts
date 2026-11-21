@@ -8,7 +8,7 @@ type Challenge = { zone: ZoneId; round: 'first' | 'second' | 'extra' | 'inspecti
 type Turn = { challenge: Challenge; pressure: number };
 export type Scene =
   | { type: 'map' }
-  | { type: 'note'; heading: string; text: string; award?: number }
+  | { type: 'note'; heading: string; text: string; award?: number; guide?: ZoneId }
   | { type: 'review' }
   | { type: 'choice'; turn: Turn }
   | { type: 'reaction'; turn: Turn; choice: Choice; awarded: number; combo: number }
@@ -65,8 +65,8 @@ function withProgress(state: Quest, zone: ZoneId, patch: Partial<Progress>): Que
   return { ...state, progress: { ...state.progress, [zone]: { ...state.progress[zone], ...patch } } };
 }
 
-function note(state: Quest, heading: string, text: string, award?: number): Quest {
-  return { ...state, scene: { type: 'note', heading, text, award } };
+function note(state: Quest, heading: string, text: string, detail?: { award?: number; guide?: ZoneId }): Quest {
+  return { ...state, scene: { type: 'note', heading, text, ...detail } };
 }
 
 function shuffle<T>(items: readonly T[], seed: number, key: string): T[] {
@@ -114,7 +114,7 @@ function interact(state: Quest, entity: Entity): Quest {
   }
   if (entity.kind === 'intro') {
     return note({ ...state, introduced: true }, 'Helena · Supervisora',
-      'Primeiro dia! Visita os cinco edifícios pela ordem que quiseres. Em cada um há uma pessoa que te ajuda, duas pistas e um Risco. No fim, mostra a caderneta à Inês, aqui na praça.');
+      'Primeiro dia! Visita os cinco edifícios pela ordem que quiseres. Em cada sala há alguém que te ajuda e um folheto na parede. Lê o folheto para ganhares pontos. No fim, mostra a caderneta à Inês, aqui na praça.');
   }
   if (entity.kind === 'inspector') {
     const remaining = ZONE_IDS.length - completedZones(state);
@@ -141,20 +141,23 @@ function interact(state: Quest, entity: Entity): Quest {
       };
     }
     case 'mentor':
-      return note(withProgress(state, state.area, { briefing: true }), zone.mentor, zone.briefing);
+      return note(withProgress(state, state.area, { briefing: true }), zone.mentor, zone.briefing, { guide: state.area });
     case 'evidence': {
       const bit = 1 << entity.index;
       const clue = zone.evidence[entity.index];
-      if (progress.clues & bit) return note(state, clue.label, clue.text);
+      const poster = entity.index === 0 ? state.area : undefined;
+      const heading = poster ? 'Folheto na parede' : clue.label;
+      if (progress.clues & bit) return note(state, heading, clue.text, { guide: poster });
       const updated = withProgress(state, state.area, { clues: progress.clues | bit });
-      return note({ ...updated, score: { ...state.score, clues: state.score.clues + CLUE_POINTS } }, clue.label, clue.text, CLUE_POINTS);
+      return note({ ...updated, score: { ...state.score, clues: state.score.clues + CLUE_POINTS } }, heading, clue.text,
+        { award: CLUE_POINTS, guide: poster });
     }
     case 'risk':
       if (state.area === 'office' && state.leftStressauro && !state.score.initiative) {
         const updated = { ...state, score: { ...state.score, initiative: INITIATIVE_POINTS } };
         return note(updated, 'Stressauro · De volta ao escritório',
           'Voltaste para ver como corriam as coisas. Olha, só me ficou um papel! Quando chegam dois pedidos urgentes, agora pergunto qual deve esperar. A Leonor até me deixou ajudar com o quadro.',
-          INITIATIVE_POINTS);
+          { award: INITIATIVE_POINTS });
       }
       return progress.completed ? note(state, zone.risk + ' · Resolvido', zone.resolution) : startTurn(state, state.area, 'first');
     case 'extra':

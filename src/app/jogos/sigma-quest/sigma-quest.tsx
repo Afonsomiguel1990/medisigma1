@@ -72,7 +72,7 @@ function actionLabel(target: Entity, quest?: Quest) {
     case 'intro':
     case 'mentor':
     case 'inspector': return 'Falar com ' + target.name;
-    case 'evidence': return 'Observar · ' + target.name;
+    case 'evidence': return target.index === 0 ? 'Ler o folheto na parede' : 'Observar · ' + target.name;
     case 'risk': return quest?.area === 'office' && quest.leftStressauro ? 'Falar com Stressauro' : 'Enfrentar ' + target.name;
     case 'extra': return 'Desafio · ' + target.name;
     case 'exit': return 'Voltar ao bairro';
@@ -121,18 +121,35 @@ function Help({ quest, walking, notice }: { quest: Quest; walking: string | null
       <p>{notice || (walking ? 'A caminho · ' + walking : quest.area === 'hub' ?
         (quest.introduced ? 'Escolhe um dos edifícios ou segue o objetivo sugerido.' : 'Fala com a Helena para receberes a tua primeira missão.') :
         (progress?.completed ? (canDoExtra(progress) ? 'Risco registado. Há um desafio extra neste edifício.' : 'Risco registado. Podes continuar a explorar ou voltar ao bairro.') :
-          'Explora o local, conversa com a equipa e resolve o encontro.'))}</p>
+          'Fala com a equipa ou lê o folheto na parede para aprenderes o básico.'))}</p>
     </div>
   );
 }
 
-function CampaignScene({ quest, act }: { quest: Quest; act: (action: QuestAction) => void }) {
+function FieldGuide({ zone }: { zone: ZoneId }) {
+  const subject = ZONES[zone];
+  return (
+    <section className={styles.fieldGuide} aria-labelledby="quest-field-guide">
+      <h3 id="quest-field-guide">Ficha de bolso · {subject.name}</h3>
+      <dl>
+        {subject.guide.map(tip => (
+          <div key={tip.title}><dt>{tip.title}</dt><dd>{tip.text}</dd></div>
+        ))}
+      </dl>
+    </section>
+  );
+}
+
+function CampaignScene({ quest, act, openGuide }: {
+  quest: Quest; act: (action: QuestAction) => void; openGuide: (zone: ZoneId) => void;
+}) {
   const scene = quest.scene;
   if (scene.type === 'note') return (
     <div className={styles.dialogue} aria-live="polite">
       <div className={styles.sceneMeta}><span className={styles.bullet} />{scene.heading}
         {scene.award && <strong className={styles.award}>+{scene.award} pts</strong>}</div>
       <p>{scene.text}</p>
+      {scene.guide && <FieldGuide zone={scene.guide} />}
       <button type="button" className={styles.primary} onClick={() => act('c')}>Continuar <span aria-hidden="true">↵</span></button>
     </div>
   );
@@ -141,7 +158,7 @@ function CampaignScene({ quest, act }: { quest: Quest; act: (action: QuestAction
     return (
       <div className={styles.dialogue}>
         <div className={styles.sceneMeta}><span className={styles.bullet} />Inês · Inspetora na história</div>
-        <p>Já tens os cinco Riscos. Vou apresentar-te cinco situações novas. {left > 0 && 'Se quiseres fazer mais pontos nos desafios extra, volta ao mapa antes de começar.'}</p>
+        <p>Já tens os cinco Riscos. Vou apresentar-te cinco situações novas. Podes consultar as fichas durante a inspeção. {left > 0 && 'Se quiseres fazer mais pontos nos desafios extra, volta ao mapa antes de começar.'}</p>
         <div className={styles.buttonRow}>
           <button type="button" className={styles.primary} onClick={() => act('c')}>Começar a inspeção</button>
           <button type="button" className={styles.secondary} onClick={() => act('b')}>Voltar ao mapa</button>
@@ -161,6 +178,7 @@ function CampaignScene({ quest, act }: { quest: Quest; act: (action: QuestAction
       <div className={styles.dialogue}>
         <div className={styles.sceneMeta}><span className={styles.bullet} />{heading}<strong className={styles.award}>Até {availablePoints(turn)} pts</strong></div>
         <p aria-live="polite">{content.prompt}</p>
+        <button type="button" className={styles.guideLink} onClick={() => openGuide(zone)}>Consultar ficha de bolso</button>
         <div className={styles.choices}>
           {content.choices.map(({ label }, index) => (
             <button key={label} type="button" className={styles.choice} aria-keyshortcuts={String(index + 1)}
@@ -189,7 +207,7 @@ function CampaignScene({ quest, act }: { quest: Quest; act: (action: QuestAction
 
 export default function SigmaQuest() {
   const play = useQuest();
-  const { session, ready, starting, walking, notice, start, act, cancel, tap, travelToZone, walkTo, markPublished } = play;
+  const { session, ready, starting, walking, notice, start, act, cancel, tap, travelToZone, walkTo, markPublished, markGuideRead } = play;
   const { board, refresh } = useRecords();
   const [panel, setPanel] = useState<Panel | null>(null);
   const [dex, setDex] = useState<ZoneId | null>(null);
@@ -203,7 +221,10 @@ export default function SigmaQuest() {
   const goal = nearby && freshTarget(quest, nearby) ? nearby : recommendedEntity(quest);
   const finish = quest.scene.type === 'finish';
   const sessionSeed = session?.save.seed;
-  const clock = useQuestClock(session?.save.token ?? null, Boolean(panel), finish ? session?.save.moves : undefined);
+  const firstZone = quest.scene.type === 'choice' && quest.scene.turn.challenge.round === 'first' ? quest.scene.turn.challenge.zone : null;
+  const introZone = firstZone && !session?.save.guidesRead?.includes(firstZone) ? firstZone : null;
+  const readingGuide = Boolean(introZone || (quest.scene.type === 'note' && quest.scene.guide));
+  const clock = useQuestClock(session?.save.token ?? null, Boolean(panel) || readingGuide, finish ? session?.save.moves : undefined);
   const points = clock.result?.points ?? totalPoints(quest.score);
 
   useEffect(() => {
@@ -211,18 +232,27 @@ export default function SigmaQuest() {
       game.current?.focus({ preventScroll: true });
       if (quest.scene.type !== 'map') game.current?.scrollIntoView({ block: 'nearest', behavior: 'instant' });
     }
-  }, [sessionSeed, panel, quest.scene.type]);
+  }, [sessionSeed, panel, quest.scene.type, introZone]);
 
   function open(next: Panel) {
     cancel(); setReset(false); setDex(null); setPanel(next);
   }
+  function openGuide(zone: ZoneId) {
+    open('dex');
+    setDex(zone);
+  }
   function close() {
+    if (panel === 'dex' && dex) markGuideRead(dex);
     setPanel(null);
+  }
+  function sceneAction(input: QuestAction) {
+    if (input === 'c' && quest.scene.type === 'note' && quest.scene.guide) markGuideRead(quest.scene.guide);
+    act(input);
   }
   function primary() {
     if (walking) { cancel(); return; }
     if (inMap) walkTo(goal);
-    else act('c');
+    else sceneAction('c');
   }
   function keyboard(event: KeyboardEvent<HTMLElement>) {
     if (event.altKey || event.ctrlKey || event.metaKey || event.target instanceof HTMLInputElement) return;
@@ -234,6 +264,14 @@ export default function SigmaQuest() {
       return;
     }
     if (!session || panel) return;
+    if (introZone) {
+      if (!event.repeat && (key === 'Enter' || key === ' ') &&
+        !(event.target instanceof HTMLElement && event.target.closest('button,a'))) {
+        event.preventDefault();
+        markGuideRead(introZone);
+      }
+      return;
+    }
     const move = movementKeys[key];
     if (move && inMap) {
       event.preventDefault();
@@ -249,7 +287,8 @@ export default function SigmaQuest() {
   }
   function follow(place: Entity) { close(); walkTo(place); }
   function enterZone(zone: ZoneId) { close(); travelToZone(zone); }
-  const currentProgress = quest.area === 'hub' ? null : quest.progress[quest.area];
+  const currentZone = quest.area === 'hub' ? null : quest.area;
+  const currentProgress = currentZone ? quest.progress[currentZone] : null;
   const selectedZone = dex && ZONES[dex];
 
   return (
@@ -300,7 +339,16 @@ export default function SigmaQuest() {
                 </div>
               </>
             )}
-            {session && !panel && !inMap && !finish && <CampaignScene quest={quest} act={act} />}
+            {session && !panel && !inMap && !finish && (
+              introZone ? (
+                <div className={styles.dialogue}>
+                  <div className={styles.sceneMeta}><span className={styles.bullet} />Antes do encontro</div>
+                  <p>A equipa deixou-te uma ficha com o básico para este local.</p>
+                  <FieldGuide zone={introZone} />
+                  <button type="button" className={styles.primary} onClick={() => markGuideRead(introZone)}>Ir para o encontro</button>
+                </div>
+              ) : <CampaignScene quest={quest} act={sceneAction} openGuide={openGuide} />
+            )}
             {session && !panel && finish && (
               <div className={styles.finish}>
                 <div className={styles.finishHead}>
@@ -349,12 +397,16 @@ export default function SigmaQuest() {
               {panel === 'local' && (
                 <>
                   <h2>{area.name}</h2>
+                  {currentZone && (
+                    <button type="button" className={styles.guideLink} onClick={() => openGuide(currentZone)}>Consultar ficha de bolso</button>
+                  )}
                   {session && inMap ? <LocalRoutes quest={quest} go={follow} /> : <p>Os destinos estão disponíveis quando estiveres no mapa.</p>}
                 </>
               )}
               {panel === 'dex' && (
                 dex && selectedZone ? (
                   <div className={styles.entry}>
+                    <FieldGuide zone={dex} />
                     <RiskIcon zone={dex} done={quest.progress[dex].completed} />
                     <p className={styles.small}>{selectedZone.name} · {evidenceCount(quest.progress[dex])}/2 pistas</p>
                     <h3>{quest.progress[dex].completed ? selectedZone.risk : 'Risco por descobrir'}</h3>
@@ -363,7 +415,7 @@ export default function SigmaQuest() {
                     ) : <p>Fala com a equipa e resolve o encontro neste local para registar a ficha.</p>}
                     <ul className={styles.evidence}>
                       {selectedZone.evidence.map((clue, i) => (
-                        <li key={clue.label}><strong>{clue.label}</strong><span>{quest.progress[dex].clues & 1 << i ? clue.text : 'Por observar no mapa.'}</span></li>
+                            <li key={clue.label}><strong>{i === 0 ? 'Folheto na parede' : clue.label}</strong><span>{quest.progress[dex].clues & 1 << i ? clue.text : 'Por observar no mapa.'}</span></li>
                       ))}
                     </ul>
                     <div className={styles.buttonRow}>
@@ -376,9 +428,9 @@ export default function SigmaQuest() {
               {panel === 'pause' && (
                 <>
                   {reset ? <p>Queres começar um turno novo? O progresso desta partida será substituído.</p> :
-                    <><h2>Turno em pausa</h2><p>O cronómetro pára com o menu aberto. O progresso fica guardado neste navegador.</p>
+                  <><h2>Turno em pausa</h2><p>O cronómetro fica em pausa no menu e nas fichas de bolso. O progresso fica guardado neste navegador.</p>
                       <p>Ganhas um ponto de tempo por cada dois segundos que sobram até aos 14 minutos de jogo ativo.</p>
-                      <p>As pistas valem 25 pontos cada e desbloqueiam desafios extra. As decisões à primeira aumentam a sequência. A pontuação máxima é de {formatPoints(MAX_SCORE)} pontos.</p></>}
+                      <p>O folheto e a outra pista de cada sala valem 25 pontos cada. Depois do encontro, as duas desbloqueiam um desafio extra. As decisões à primeira aumentam a sequência. A pontuação máxima é de {formatPoints(MAX_SCORE)} pontos.</p></>}
                   <div className={styles.buttonRow}>
                     <button type="button" className={styles.secondary} disabled={starting} onClick={() => {
                       if (session && !reset && !finish) { setReset(true); return; }

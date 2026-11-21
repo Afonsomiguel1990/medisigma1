@@ -62,7 +62,7 @@ function room(
     id, name: zone.name, width, height, spawn: point(middle, height - 3), props,
     objects: [
       { id: 'mentor', kind: 'mentor', at: mentor, name: zone.mentor.split(' · ')[0] },
-      { id: 'clue-1', kind: 'evidence', at: clues[0], name: zone.evidence[0].label, index: 0 },
+      { id: 'clue-1', kind: 'evidence', at: clues[0], name: 'Folheto na parede', index: 0 },
       { id: 'clue-2', kind: 'evidence', at: clues[1], name: zone.evidence[1].label, index: 1 },
       { id: 'risk', kind: 'risk', at: risk, name: zone.risk },
       { id: 'extra', kind: 'extra', at: extra, name: zone.extra.label },

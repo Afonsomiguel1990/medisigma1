@@ -3,14 +3,14 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { applyAction, MAX_EVENTS, newQuest, QUEST_VERSION, replayQuest, type Quest, type QuestAction } from '@/lib/sigma-quest/game';
 import { AREAS, entityInReach, findPath, type Entity, type Point } from '@/lib/sigma-quest/world';
-import type { ZoneId } from '@/lib/sigma-quest/cases';
+import { ZONE_IDS, type ZoneId } from '@/lib/sigma-quest/cases';
 
 export const RECORDS_URL = '/api/jogos/sigma-quest/recordes/';
 const runsUrl = '/api/jogos/sigma-quest/partidas/';
 const storageKey = 'medisigma-sigma-quest-v' + QUEST_VERSION;
 const STEP_MS = 62;
 
-type Save = { version: number; seed: number; token: string | null; moves: string; letters?: string };
+type Save = { version: number; seed: number; token: string | null; moves: string; letters?: string; guidesRead?: ZoneId[] };
 type Session = { save: Save; quest: Quest };
 
 function read(): Session | null {
@@ -18,7 +18,9 @@ function read(): Session | null {
     const save = JSON.parse(localStorage.getItem(storageKey) ?? 'null') as Save | null;
     if (!save || save.version !== QUEST_VERSION || (save.token !== null && typeof save.token !== 'string')) return null;
     const quest = replayQuest(save.seed, save.moves);
-    return quest && { save, quest };
+    const storedGuides = save.guidesRead;
+    const guidesRead = Array.isArray(storedGuides) ? ZONE_IDS.filter(zone => storedGuides.includes(zone)) : undefined;
+    return quest && { save: { ...save, guidesRead }, quest };
   } catch {
     return null;
   }
@@ -106,6 +108,13 @@ export function useQuest() {
     if (running?.save.token === token) update({ ...running, save: { ...running.save, letters } });
   }, [update]);
 
+  const markGuideRead = useCallback((zone: ZoneId) => {
+    const running = current.current;
+    if (!running || running.save.guidesRead?.includes(zone)) return;
+    const guidesRead = [...(running.save.guidesRead ?? []), zone];
+    update({ ...running, save: { ...running.save, guidesRead } });
+  }, [update]);
+
   const walk = useCallback((to: Point, target?: Entity, after?: () => void) => {
     cancel();
     const quest = current.current?.quest;
@@ -158,5 +167,5 @@ export function useQuest() {
     walk(point, object);
   }, [walk]);
 
-  return { session, ready, starting, walking, notice, start, act, cancel, tap, travelToZone, walkTo, markPublished };
+  return { session, ready, starting, walking, notice, start, act, cancel, tap, travelToZone, walkTo, markPublished, markGuideRead };
 }

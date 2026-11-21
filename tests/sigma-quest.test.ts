@@ -50,7 +50,13 @@ function campaign(seed: number, extras: boolean, mistakes = false, reverse = fal
     go('mentor');
     act('c');
     if (extras) {
-      for (const clue of ['clue-1', 'clue-2', 'clue-1']) { go(clue); act('c'); }
+      for (const [index, clue] of ['clue-1', 'clue-2', 'clue-1'].entries()) {
+        go(clue);
+        assert.equal(state.scene.type, 'note');
+        assert.equal(state.scene.guide, clue === 'clue-1' ? zone : undefined);
+        assert.equal(state.scene.award, index === 2 ? undefined : 25);
+        act('c');
+      }
     }
     go('risk');
     if (mistakes) { answer('partial'); answer('wrong'); }

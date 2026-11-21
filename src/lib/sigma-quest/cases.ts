@@ -3,6 +3,7 @@ export type ZoneId = typeof ZONE_IDS[number];
 
 export type Choice = { label: string; reaction: string; result: 'best' | 'partial' | 'wrong' };
 export type Decision = { prompt: string; choices: readonly [Choice, Choice, Choice, Choice] };
+type FieldTip = { title: string; text: string };
 
 export type Zone = {
   name: string;
@@ -10,6 +11,7 @@ export type Zone = {
   colour: string;
   mentor: string;
   briefing: string;
+  guide: readonly FieldTip[];
   evidence: readonly [{ label: string; text: string }, { label: string; text: string }];
   first: readonly [Decision, Decision];
   second: Decision;
@@ -28,7 +30,12 @@ const decision = (prompt: string, ...choices: Decision['choices']): Decision => 
 export const ZONES: Record<ZoneId, Zone> = {
   office: {
     name: 'Escritório', risk: 'Stressauro', colour: '#e4b467', mentor: 'Marta · Chefe de equipa',
-    briefing: 'O Stressauro cresce sempre que aparece um pedido «urgente». Espreita o quadro de tarefas e o posto da Leonor. Vamos perceber o que podemos mudar no trabalho.',
+    briefing: 'O Stressauro cresce cada vez que alguém diz que uma tarefa é urgente. Leva esta ficha e espreita o quadro de tarefas e o posto da Leonor.',
+    guide: [
+      { title: 'Quando tudo parece urgente', text: 'A equipa decide em conjunto o que tem de sair hoje, o que pode esperar e quem pode ajudar. Se entra uma tarefa urgente, combinem qual pode sair da lista.' },
+      { title: 'Quando as ordens chocam', text: 'Junta quem deu as instruções e combina uma prioridade e quem decide se voltarem a discordar. Uma pausa ajuda a recuperar. A organização do trabalho ainda precisa de ajuste.' },
+      { title: 'O posto de trabalho', text: 'Se o ecrã obriga a manter o pescoço virado, experimenta pô-lo de frente e ajustar a cadeira à pessoa.' },
+    ],
     evidence: [
       { label: 'Quadro de tarefas', text: 'Quatro tarefas para a mesma hora. Ninguém combinou por onde começar nem quem podia ajudar.' },
       { label: 'Posto da Leonor', text: 'O monitor está muito de lado. Para olhar para o ecrã, a Leonor tem de manter o pescoço virado.' },
@@ -66,7 +73,12 @@ export const ZONES: Record<ZoneId, Zone> = {
   },
   factory: {
     name: 'Fábrica', risk: 'Engreneco', colour: '#99c2cc', mentor: 'João · Operador',
-    briefing: 'Há corredores marcados para pessoas e máquinas. Vê o sinal de acesso e o registo de anomalias. Quando algo foge ao normal, fala com quem tem formação para intervir.',
+    briefing: 'Antes de entrarmos na zona das máquinas, vê esta ficha. O sinal de acesso e o registo de anomalias ajudam-te a perceber como a equipa trabalha.',
+    guide: [
+      { title: 'Caminhos para pessoas', text: 'O percurso pedonal é o caminho assinalado para peões, separado do tráfego de cargas. Se estiver bloqueado, para e pede à equipa outro percurso seguro.' },
+      { title: 'Máquina com uma proteção solta', text: 'Mantém a distância e avisa logo a pessoa responsável. A equipa com formação segue o procedimento da fábrica para intervir.' },
+      { title: 'O sinal indica a proteção', text: 'A proteção auditiva protege os ouvidos. Antes de entrar numa zona assinalada, confirma a autorização e o equipamento indicado.' },
+    ],
     evidence: [
       { label: 'Sinal de acesso', text: 'A linha no chão leva ao percurso pedonal. Para a zona assinalada junto às máquinas, confirma a autorização e a proteção indicada.' },
       { label: 'Registo de anomalias', text: 'Quando se deteta uma proteção danificada, a equipa comunica a situação à chefia e segue o procedimento de segurança.' },
@@ -104,7 +116,12 @@ export const ZONES: Record<ZoneId, Zone> = {
   },
   kitchen: {
     name: 'Cozinha', risk: 'Baratona', colour: '#e7a28c', mentor: 'Sofia · Responsável de cozinha',
-    briefing: 'A Baratona deixou marcas no armazém. Vê a embalagem e a folha de receção. A partir do que observares, conseguimos proteger os alimentos e deixar um registo útil.',
+    briefing: 'A Baratona deixou marcas no armazém. Tens aqui a ficha que usamos para explicar aos colegas novos o que observar na embalagem e na receção.',
+    guide: [
+      { title: 'Embalagem suspeita', text: 'Marcas de roedura podem indicar pragas. Separa e identifica o produto para ficar fora de uso e avisa quem gere a cozinha.' },
+      { title: 'O lote é um código', text: 'O lote identifica um grupo de produtos. Regista o produto, o lote, a hora e o que viste para a equipa conseguir seguir a entrega.' },
+      { title: 'O que é o plano HACCP', text: 'É o plano que diz o que verificar para proteger os alimentos. Quando falta um controlo na receção, sinaliza e mantém a entrega à parte até a responsável a verificar.' },
+    ],
     evidence: [
       { label: 'Embalagem roída', text: 'A caixa tem um rasgo irregular e marcas junto à base. Há mais stock em redor que a equipa deve verificar.' },
       { label: 'Folha de receção', text: 'A folha liga cada ocorrência aos produtos, ao lote e à hora. A equipa consulta o plano de autocontrolo para decidir o que fazer.' },
@@ -142,7 +159,12 @@ export const ZONES: Record<ZoneId, Zone> = {
   },
   hotel: {
     name: 'Hotel', risk: 'Legionela', colour: '#a9c9a4', mentor: 'Lina · Manutenção',
-    briefing: 'A Legionela é a personagem de um risco que não se vê. Compara o plano da ala e a ficha de manutenção. O trabalho do estagiário é documentar e alertar a pessoa responsável.',
+    briefing: 'Aqui a Legionela representa um risco invisível. Começa por esta ficha e depois compara o plano da ala com o registo de manutenção.',
+    guide: [
+      { title: 'A aparência da água engana', text: 'Mesmo que a água pareça límpida, vê no plano que verificações devem estar confirmadas antes de reabrir um espaço.' },
+      { title: 'Ler a ficha certa', text: 'Confirma se a ficha se refere à mesma ala e ao mesmo equipamento. Se faltar um registo ou houver informação contraditória, pede confirmação à manutenção antes da abertura.' },
+      { title: 'Deixar um aviso útil', text: 'Escreve a ala, o equipamento e a verificação em falta. Assim a equipa sabe onde ir e o que confirmar.' },
+    ],
     evidence: [
       { label: 'Plano da ala', text: 'A ala Nascente esteve fechada para obras. A reabertura tem verificações previstas no plano de prevenção da instalação.' },
       { label: 'Ficha de manutenção', text: 'O campo da última verificação está em branco. A ficha identifica a ala, o equipamento e quem deve confirmar o estado.' },
@@ -180,7 +202,12 @@ export const ZONES: Record<ZoneId, Zone> = {
   },
   warehouse: {
     name: 'Armazém', risk: 'Foguinho', colour: '#e68d63', mentor: 'Rita · Técnica de segurança',
-    briefing: 'Hoje há simulacro. O estagiário dá o alarme ao avistar fumo e segue as indicações de evacuação. Vê onde fica o alarme e onde a equipa se reúne.',
+    briefing: 'Hoje ensaiamos a evacuação. A ficha de bolso explica o teu papel. Vê também onde fica o alarme e onde a equipa se reúne.',
+    guide: [
+      { title: 'O alarme avisa toda a gente', text: 'No simulacro, a tua função ao detetar fumo é dar o alarme para avisar a equipa. Quem tem formação para intervir assume a ocorrência.' },
+      { title: 'Onde termina a saída', text: 'Segue o caminho assinalado até ao ponto de encontro, o local combinado para confirmar quem saiu. Os pertences podem esperar.' },
+      { title: 'Preparar o caminho', text: 'Antes do simulacro, avisa se houver caixas a bloquear uma saída. A equipa desimpede o percurso e combina outro sítio para as guardar.' },
+    ],
     evidence: [
       { label: 'Planta de emergência', text: 'A planta mostra a saída sinalizada e o ponto de encontro na praça, junto à bandeira.' },
       { label: 'Alarme do corredor', text: 'O botão pertence ao simulacro. A tua função na cena é dar o alarme e seguir as indicações de evacuação da equipa.' },

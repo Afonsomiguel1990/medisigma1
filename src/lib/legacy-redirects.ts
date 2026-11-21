@@ -1,5 +1,6 @@
 // Retired public addresses with a verified equivalent. Unknown paths remain 404.
 export const LEGACY_REDIRECTS: Record<string, string> = {
+  '/jogos/turno-seguro': '/jogos/sigma-quest/',
   '/blog/ficha-aptidao-trabalho-guia-completo': '/blog/ficha-aptidao-trabalho-validade/',
   '/Home.html': '/',
   '/index.php': '/',
@@ -23,6 +24,8 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
 
 // Removed pages and a retired form handler have no equivalent public destination.
 export const RETIRED_LEGACY_PATHS = new Set([
+  '/api/jogos/turno-seguro/partidas',
+  '/api/jogos/turno-seguro/recordes',
   '/servicos/radao',
   '/servicos/qualidade-do-ar-interior',
   '/blog/o-que-e-o-radao',

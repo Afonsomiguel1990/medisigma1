@@ -114,7 +114,7 @@ function interact(state: Quest, entity: Entity): Quest {
   }
   if (entity.kind === 'intro') {
     return note({ ...state, introduced: true }, 'Helena · Supervisora',
-      'Primeiro dia! Visita os cinco edifícios pela ordem que quiseres. Em cada sala há alguém que te ajuda e um folheto na parede. Lê o folheto para ganhares pontos. No fim, mostra a caderneta à Inês, aqui na praça.');
+      'Primeiro dia! Visita os cinco edifícios pela ordem que quiseres. Fala com quem lá trabalha ou lê o folheto para aprenderes o básico. Resolve o encontro e observa as duas pistas, incluindo o folheto, para desbloqueares o desafio extra. Quando tiveres os cinco Riscos, volta à praça para falar com a Inês.');
   }
   if (entity.kind === 'inspector') {
     const remaining = ZONE_IDS.length - completedZones(state);
@@ -236,8 +236,9 @@ export function recommendedEntity(state: Quest): Entity {
     return map.objects.find(object => object.id === target) ?? map.objects[0];
   }
   const progress = state.progress[state.area];
-  const target = !progress.briefing && !progress.completed ? 'mentor' :
-    progress.completed ? 'exit' : progress.clues === 3 ? 'risk' : !(progress.clues & 1) ? 'clue-1' : 'clue-2';
+  const target = !progress.completed && !progress.briefing && !(progress.clues & 1) ? 'mentor' :
+    !(progress.clues & 1) ? 'clue-1' : !(progress.clues & 2) ? 'clue-2' :
+    !progress.completed ? 'risk' : canDoExtra(progress) ? 'extra' : 'exit';
   return map.objects.find(object => object.id === target) ?? map.objects[0];
 }
 

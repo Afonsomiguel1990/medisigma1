@@ -91,6 +91,8 @@
 .fieldGuide dt { font-weight: 720; }
 .fieldGuide dd { margin: 2px 0 0; }
 .fieldGuide dt, .fieldGuide dd { font-size: 13px; line-height: 1.4; }
+.guideRepeat { margin: 4px 0 6px; }
+.guideRepeat summary { width: fit-content; padding: 8px 0; color: #2e6048; font: 700 12px/1.4 var(--mono); cursor: pointer; }
 .guideLink {
   min-height: 37px; padding: 4px 0; color: #2e6048;
   font: 700 12px/1.4 var(--mono); text-decoration: underline; text-underline-offset: 3px;

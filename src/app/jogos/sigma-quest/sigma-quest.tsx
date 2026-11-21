@@ -113,15 +113,25 @@ function LocalRoutes({ quest, go }: { quest: Quest; go: (target: Entity) => void
   );
 }
 
-function Help({ quest, walking, notice }: { quest: Quest; walking: string | null; notice: string }) {
-  const progress = quest.area !== 'hub' ? quest.progress[quest.area] : null;
+function objectiveText(suggestion: Entity): string {
+  switch (suggestion.kind) {
+    case 'intro': return 'Fala com a Helena para receberes a tua primeira missão.';
+    case 'door': return 'Segue a sugestão ou escolhe outro edifício no mapa.';
+    case 'inspector': return 'Já tens os cinco Riscos. Fala com a Inês na praça para começares a inspeção.';
+    case 'mentor': return 'Fala com a equipa ou lê o folheto na parede para aprenderes o básico.';
+    case 'evidence': return suggestion.index === 0 ? 'Lê o folheto na parede para registares a primeira pista.' :
+      'Observa a outra pista. As duas pistas e o encontro desbloqueiam o desafio extra.';
+    case 'risk': return 'Usa o que aprendeste nas duas decisões do encontro.';
+    case 'extra': return 'Risco registado. Podes avançar para o desafio extra deste edifício.';
+    case 'exit': return 'Podes voltar ao bairro e continuar o turno.';
+  }
+}
+
+function Help({ suggestion, walking, notice }: { suggestion: Entity; walking: string | null; notice: string }) {
   return (
     <div className={styles.dialogue} aria-live="polite">
       <div className={styles.sceneMeta}><span className={styles.bullet} />{notice ? 'Caderneta' : 'Objetivo'}</div>
-      <p>{notice || (walking ? 'A caminho · ' + walking : quest.area === 'hub' ?
-        (quest.introduced ? 'Escolhe um dos edifícios ou segue o objetivo sugerido.' : 'Fala com a Helena para receberes a tua primeira missão.') :
-        (progress?.completed ? (canDoExtra(progress) ? 'Risco registado. Há um desafio extra neste edifício.' : 'Risco registado. Podes continuar a explorar ou voltar ao bairro.') :
-          'Fala com a equipa ou lê o folheto na parede para aprenderes o básico.'))}</p>
+      <p>{notice || (walking ? 'A caminho · ' + walking : objectiveText(suggestion))}</p>
     </div>
   );
 }
@@ -140,8 +150,8 @@ function FieldGuide({ zone }: { zone: ZoneId }) {
   );
 }
 
-function CampaignScene({ quest, act, openGuide }: {
-  quest: Quest; act: (action: QuestAction) => void; openGuide: (zone: ZoneId) => void;
+function CampaignScene({ quest, act, openGuide, guideAlreadyRead }: {
+  quest: Quest; act: (action: QuestAction) => void; openGuide: (zone: ZoneId) => void; guideAlreadyRead: boolean;
 }) {
   const scene = quest.scene;
   if (scene.type === 'note') return (
@@ -149,7 +159,12 @@ function CampaignScene({ quest, act, openGuide }: {
       <div className={styles.sceneMeta}><span className={styles.bullet} />{scene.heading}
         {scene.award && <strong className={styles.award}>+{scene.award} pts</strong>}</div>
       <p>{scene.text}</p>
-      {scene.guide && <FieldGuide zone={scene.guide} />}
+      {scene.guide && (guideAlreadyRead ? (
+        <details className={styles.guideRepeat}>
+          <summary>Rever ficha de bolso</summary>
+          <FieldGuide zone={scene.guide} />
+        </details>
+      ) : <FieldGuide zone={scene.guide} />)}
       <button type="button" className={styles.primary} onClick={() => act('c')}>Continuar <span aria-hidden="true">↵</span></button>
     </div>
   );
@@ -178,7 +193,9 @@ function CampaignScene({ quest, act, openGuide }: {
       <div className={styles.dialogue}>
         <div className={styles.sceneMeta}><span className={styles.bullet} />{heading}<strong className={styles.award}>Até {availablePoints(turn)} pts</strong></div>
         <p aria-live="polite">{content.prompt}</p>
-        <button type="button" className={styles.guideLink} onClick={() => openGuide(zone)}>Consultar ficha de bolso</button>
+        <button type="button" className={styles.guideLink} onClick={() => openGuide(zone)}>
+          {inspection ? 'Consultar ficha · ' + ZONES[zone].name : 'Consultar ficha de bolso'}
+        </button>
         <div className={styles.choices}>
           {content.choices.map(({ label }, index) => (
             <button key={label} type="button" className={styles.choice} aria-keyshortcuts={String(index + 1)}
@@ -217,13 +234,16 @@ export default function SigmaQuest() {
   const area = AREAS[quest.area];
   const count = completedZones(quest);
   const inMap = quest.scene.type === 'map';
+  const suggestion = recommendedEntity(quest);
   const nearby = inMap && entityInReach(area, quest.position, quest.facing);
-  const goal = nearby && freshTarget(quest, nearby) ? nearby : recommendedEntity(quest);
+  const goal = nearby && freshTarget(quest, nearby) ? nearby : suggestion;
   const finish = quest.scene.type === 'finish';
   const sessionSeed = session?.save.seed;
   const firstZone = quest.scene.type === 'choice' && quest.scene.turn.challenge.round === 'first' ? quest.scene.turn.challenge.zone : null;
   const introZone = firstZone && !session?.save.guidesRead?.includes(firstZone) ? firstZone : null;
-  const readingGuide = Boolean(introZone || (quest.scene.type === 'note' && quest.scene.guide));
+  const noteGuide = quest.scene.type === 'note' ? quest.scene.guide : undefined;
+  const guideAlreadyRead = Boolean(noteGuide && session?.save.guidesRead?.includes(noteGuide));
+  const readingGuide = Boolean(introZone || noteGuide);
   const clock = useQuestClock(session?.save.token ?? null, Boolean(panel) || readingGuide, finish ? session?.save.moves : undefined);
   const points = clock.result?.points ?? totalPoints(quest.score);
 
@@ -264,9 +284,9 @@ export default function SigmaQuest() {
       return;
     }
     if (!session || panel) return;
+    const focusedControl = event.target instanceof HTMLElement && event.target.closest('button,a,summary');
     if (introZone) {
-      if (!event.repeat && (key === 'Enter' || key === ' ') &&
-        !(event.target instanceof HTMLElement && event.target.closest('button,a'))) {
+      if (!event.repeat && (key === 'Enter' || key === ' ') && !focusedControl) {
         event.preventDefault();
         markGuideRead(introZone);
       }
@@ -280,7 +300,7 @@ export default function SigmaQuest() {
       event.preventDefault();
       act(key as QuestAction);
     } else if (!event.repeat && (key === 'Enter' || key === ' ' || key === 'z') &&
-      (key === 'z' || !(event.target instanceof HTMLElement && event.target.closest('button,a')))) {
+      (key === 'z' || !focusedControl)) {
       event.preventDefault();
       primary();
     }
@@ -326,7 +346,7 @@ export default function SigmaQuest() {
             </div>}
             {session && !panel && inMap && (
               <>
-                <Help quest={quest} walking={walking} notice={notice} />
+                <Help suggestion={suggestion} walking={walking} notice={notice} />
                 <div className={styles.controls}>
                   <div className={styles.pad} aria-label="Comandos de movimento">
                     {directions.map(({ move, label, glyph }) => <button type="button" key={move}
@@ -347,7 +367,7 @@ export default function SigmaQuest() {
                   <FieldGuide zone={introZone} />
                   <button type="button" className={styles.primary} onClick={() => markGuideRead(introZone)}>Ir para o encontro</button>
                 </div>
-              ) : <CampaignScene quest={quest} act={sceneAction} openGuide={openGuide} />
+              ) : <CampaignScene quest={quest} act={sceneAction} openGuide={openGuide} guideAlreadyRead={guideAlreadyRead} />
             )}
             {session && !panel && finish && (
               <div className={styles.finish}>

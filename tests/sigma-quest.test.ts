@@ -5,7 +5,7 @@ import { test } from 'node:test';
 import { PGlite } from '@electric-sql/pglite';
 import { ZONE_IDS } from '../src/lib/sigma-quest/cases';
 import {
-  applyAction, completedExtras, completedZones, INITIATIVE_POINTS, MAX_SCORE, newQuest, replayQuest, timeBonus, totalPoints, turnContent,
+  applyAction, completedExtras, completedZones, INITIATIVE_POINTS, MAX_SCORE, newQuest, recommendedEntity, replayQuest, timeBonus, totalPoints, turnContent,
   type QuestAction,
 } from '../src/lib/sigma-quest/game';
 import { AREAS, findPath, walkable } from '../src/lib/sigma-quest/world';
@@ -100,6 +100,22 @@ test('five interiors can be explored in either order and a full campaign replays
     assert.equal(state.firstTries, 20);
     assert.deepEqual(replayQuest(seed, moves), state);
   }
+});
+
+test('the suggested route points to the extra and prioritizes any missing clues first', () => {
+  const quest = { ...newQuest(1), area: 'office' as const };
+  function suggestion(progress: Partial<typeof quest.progress.office>) {
+    const office = { ...quest.progress.office, ...progress };
+    return recommendedEntity({ ...quest, progress: { ...quest.progress, office } }).id;
+  }
+  assert.equal(suggestion({}), 'mentor');
+  assert.equal(suggestion({ briefing: true }), 'clue-1');
+  assert.equal(suggestion({ clues: 1 }), 'clue-2');
+  assert.equal(suggestion({ clues: 3 }), 'risk');
+  assert.equal(suggestion({ completed: true }), 'clue-1');
+  assert.equal(suggestion({ completed: true, clues: 1 }), 'clue-2');
+  assert.equal(suggestion({ completed: true, clues: 3 }), 'extra');
+  assert.equal(suggestion({ completed: true, clues: 3, extra: true }), 'exit');
 });
 
 test('a return to the Stressauro pays once and faster completions gain more points', () => {

@@ -1026,6 +1026,7 @@ export const siteConfig = {
         { id: 9, title: "FAQs Legionella", url: "/faqs/legionella" },
         { id: 10, title: "FAQs Extintores", url: "/faqs/manutencao-extintores" },
         { id: 12, title: "Simulador Primeiros Socorros", url: "/ferramentas/simulador-caixas-primeiros-socorros" },
+        { id: 13, title: "Jogo Turno Seguro", url: "/jogos/turno-seguro/" },
       ],
     },
     {

@@ -1,0 +1,178 @@
+{
+  "floorOffice": [
+    0,
+    0
+  ],
+  "floorWarehouse": [
+    16,
+    0
+  ],
+  "floorKitchen": [
+    32,
+    0
+  ],
+  "wallOffice": [
+    48,
+    0
+  ],
+  "wallWarehouse": [
+    64,
+    0
+  ],
+  "wallKitchen": [
+    80,
+    0
+  ],
+  "entry": [
+    96,
+    0
+  ],
+  "bench": [
+    112,
+    0
+  ],
+  "rack": [
+    0,
+    16
+  ],
+  "bay": [
+    16,
+    16
+  ],
+  "extinguisher": [
+    32,
+    16
+  ],
+  "counter": [
+    48,
+    16
+  ],
+  "cable": [
+    64,
+    16
+  ],
+  "spill": [
+    80,
+    16
+  ],
+  "papers": [
+    96,
+    16
+  ],
+  "crate": [
+    112,
+    16
+  ],
+  "fish": [
+    0,
+    32
+  ],
+  "bowl": [
+    16,
+    32
+  ],
+  "carrot": [
+    32,
+    32
+  ],
+  "flag": [
+    48,
+    32
+  ],
+  "work-up-0": [
+    64,
+    32
+  ],
+  "work-up-1": [
+    80,
+    32
+  ],
+  "work-up-2": [
+    96,
+    32
+  ],
+  "work-right-0": [
+    112,
+    32
+  ],
+  "work-right-1": [
+    0,
+    48
+  ],
+  "work-right-2": [
+    16,
+    48
+  ],
+  "work-down-0": [
+    32,
+    48
+  ],
+  "work-down-1": [
+    48,
+    48
+  ],
+  "work-down-2": [
+    64,
+    48
+  ],
+  "work-left-0": [
+    80,
+    48
+  ],
+  "work-left-1": [
+    96,
+    48
+  ],
+  "work-left-2": [
+    112,
+    48
+  ],
+  "kitchen-up-0": [
+    0,
+    64
+  ],
+  "kitchen-up-1": [
+    16,
+    64
+  ],
+  "kitchen-up-2": [
+    32,
+    64
+  ],
+  "kitchen-right-0": [
+    48,
+    64
+  ],
+  "kitchen-right-1": [
+    64,
+    64
+  ],
+  "kitchen-right-2": [
+    80,
+    64
+  ],
+  "kitchen-down-0": [
+    96,
+    64
+  ],
+  "kitchen-down-1": [
+    112,
+    64
+  ],
+  "kitchen-down-2": [
+    0,
+    80
+  ],
+  "kitchen-left-0": [
+    16,
+    80
+  ],
+  "kitchen-left-1": [
+    32,
+    80
+  ],
+  "kitchen-left-2": [
+    48,
+    80
+  ]
+}

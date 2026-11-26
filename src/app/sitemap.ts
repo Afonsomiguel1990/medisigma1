@@ -23,6 +23,7 @@ const acquisitionPaths = new Set([
 const staticLastModified = new Date('2026-05-13T00:00:00.000Z');
 const controloPragasLastModified = new Date('2026-05-13T22:58:43.000Z');
 const restaurantTestimonialLastModified = new Date('2026-09-08T00:00:00.000Z');
+const restaurantOpeningSectionLastModified = new Date('2026-11-26T19:45:50Z');
 const editorialLastModified = new Date('2026-09-14T00:00:00.000Z');
 const mediaLastModified = mediaPublication.publishedAt ? new Date(mediaPublication.publishedAt) : null;
 const mediaPaths = new Set([
@@ -50,13 +51,31 @@ function route(
   const latestMediaDate = mediaPaths.has(path) && mediaLastModified ? mediaLastModified.getTime() : 0;
   return {
     url: `${baseUrl}${path}`,
-    lastModified: new Date(Math.max(modified.getTime(), latestMediaDate, ...pageMediaDates)),
+    lastModified: new Date(Math.max(lastModified.getTime(), modified.getTime(), latestMediaDate, ...pageMediaDates)),
     changeFrequency,
     priority,
   };
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  let blogRoutes: MetadataRoute.Sitemap = [];
+  let blogIndexLastModified = acquisitionLastModified;
+  try {
+    const posts = await getAllPublishedPosts();
+    for (const post of posts) {
+      const published = new Date(post.published_at || post.created_at);
+      if (published > blogIndexLastModified) blogIndexLastModified = published;
+    }
+    blogRoutes = posts.map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}/`,
+      lastModified: new Date(Math.max(new Date(post.updated_at || post.published_at || post.created_at).getTime(), bingUpdatedPaths.has(`/blog/${post.slug}/`) ? bingLastModified.getTime() : 0)),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }));
+  } catch (error) {
+    console.error('Erro ao gerar sitemap dos posts:', error);
+  }
+
   const mainRoutes: MetadataRoute.Sitemap = [
     route('/', 'monthly', 1.0),
     route('/sobre-nos/', 'monthly', 0.8, qualityPolicyPublished),
@@ -64,7 +83,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     route('/servicos/', 'monthly', 0.9),
     route('/setores/industria/', 'monthly', 0.8),
     route('/setores/hotelaria-alojamento/', 'monthly', 0.8),
-    route('/blog/', 'weekly', 0.8),
+    route('/blog/', 'weekly', 0.8, blogIndexLastModified),
     route('/contact/', 'monthly', 0.7, new Date('2026-10-01T00:00:00.000Z')),
     route('/pedir-proposta/', 'monthly', 0.8, new Date('2026-10-01T00:00:00.000Z')),
     route('/recrutamento/', 'monthly', 0.7),
@@ -76,7 +95,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const serviceRoutes: MetadataRoute.Sitemap = [
     route('/servicos/medicina-no-trabalho/', 'monthly', 0.8, restaurantTestimonialLastModified),
     route('/servicos/seguranca-no-trabalho/', 'monthly', 0.8, restaurantTestimonialLastModified),
-    route('/servicos/seguranca-alimentar/', 'monthly', 0.8, restaurantTestimonialLastModified),
+    route('/servicos/seguranca-alimentar/', 'monthly', 0.8, restaurantOpeningSectionLastModified),
     route('/servicos/formacao-certificada/', 'monthly', 0.8),
     route('/servicos/psicologia/', 'monthly', 0.8),
     route('/servicos/controlo-pragas/', 'monthly', 0.8, controloPragasLastModified),
@@ -117,20 +136,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     route('/leiria/', 'monthly', 0.8),
     route('/fatima/', 'monthly', 0.8),
   ];
-
-  let blogRoutes: MetadataRoute.Sitemap = [];
-
-  try {
-    const posts = await getAllPublishedPosts();
-    blogRoutes = posts.map((post) => ({
-      url: `${baseUrl}/blog/${post.slug}/`,
-      lastModified: new Date(Math.max(new Date(post.updated_at || post.published_at || post.created_at).getTime(), bingUpdatedPaths.has(`/blog/${post.slug}/`) ? bingLastModified.getTime() : 0)),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    }));
-  } catch (error) {
-    console.error('Erro ao gerar sitemap dos posts:', error);
-  }
 
   return [
     ...mainRoutes,

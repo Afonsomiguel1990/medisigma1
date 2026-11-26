@@ -92,7 +92,30 @@ export default function SegurancaAlimentarPage() {
             </div>
           </div>
         </section>
-<ServiceRequestGuide serviceKey="seguranca-alimentar" />
+        <section
+          id="abrir-restaurante"
+          aria-labelledby="abrir-restaurante-titulo"
+          className="scroll-mt-32 bg-accent py-10 md:py-14"
+        >
+          <div className="container mx-auto max-w-6xl px-6 md:px-8">
+            <h2 id="abrir-restaurante-titulo" className="text-2xl font-bold text-gray-900 md:text-3xl">
+              Vai abrir um restaurante?
+            </h2>
+            <p className="mt-4 max-w-3xl text-lg leading-relaxed text-gray-700">
+              Quem recebe a primeira entrega? Como é que a sala confirma se um prato leva ovo?
+              Partimos da sua ementa para preparar o plano HACCP e os registos que a equipa vai usar.
+              Antes de abrir portas, ajudamos a cozinha e a sala a ensaiar esses cuidados durante um serviço.
+            </p>
+            <Link
+              href="/blog/haccp-abrir-restaurante/"
+              className="mt-5 inline-block font-semibold text-gray-900 underline decoration-2 underline-offset-4 hover:text-gray-700"
+            >
+              Ler o guia para preparar o HACCP antes de abrir um restaurante
+            </Link>
+          </div>
+        </section>
+
+        <ServiceRequestGuide serviceKey="seguranca-alimentar" />
 
         {/* Principles Section */}
         <section className="py-16 md:py-20 mx-4 md:mx-0">
